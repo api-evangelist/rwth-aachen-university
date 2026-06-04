@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coscine.rwth-aachen.de/schemas/resource.schema.json",
+  "title": "ResourceDto",
+  "description": "A Coscine resource (a storage-backed data container within a project). Derived from the Coscine Web API OpenAPI description (ResourceDto).",
+  "type": "object",
+  "required": [
+    "pid",
+    "type",
+    "name",
+    "displayName",
+    "description",
+    "applicationProfile",
+    "fixedValues",
+    "disciplines",
+    "visibility"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the resource."
+    },
+    "pid": {
+      "type": "string",
+      "description": "Persistent identifier for the resource."
+    },
+    "type": {
+      "type": "object",
+      "description": "The resource type (ResourceTypeDto), e.g. an S3 or linked storage backend."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the resource."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name of the resource."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the resource."
+    },
+    "keywords": {
+      "type": ["array", "null"],
+      "items": { "type": "string" },
+      "description": "Keywords associated with the resource."
+    },
+    "license": {
+      "type": ["object", "null"],
+      "description": "License associated with the resource (LicenseDto)."
+    },
+    "usageRights": {
+      "type": ["string", "null"],
+      "description": "Usage rights associated with the resource."
+    },
+    "metadataLocalCopy": {
+      "type": "boolean",
+      "description": "Whether a local copy of the metadata is available for the resource."
+    },
+    "metadataExtraction": {
+      "type": "boolean",
+      "description": "Whether metadata extraction is enabled for the resource."
+    },
+    "applicationProfile": {
+      "type": "object",
+      "description": "Application profile applied to the resource (ApplicationProfileMinimalDto)."
+    },
+    "fixedValues": {
+      "type": "object",
+      "description": "Fixed metadata values associated with resource manipulation."
+    },
+    "disciplines": {
+      "type": "array",
+      "description": "Disciplines associated with the resource (DisciplineDto).",
+      "items": { "type": "object" }
+    },
+    "visibility": {
+      "type": "object",
+      "description": "Visibility setting of the resource (VisibilityDto)."
+    },
+    "dateCreated": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date when the resource was created."
+    },
+    "archived": {
+      "type": "boolean",
+      "description": "Whether the resource is archived."
+    },
+    "maintenanceMode": {
+      "type": "boolean",
+      "description": "Whether the resource is in maintenance mode."
+    }
+  }
+}

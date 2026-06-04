@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coscine.rwth-aachen.de/schemas/project.schema.json",
+  "title": "ProjectDto",
+  "description": "A Coscine research project. Derived from the Coscine Web API OpenAPI description (ProjectDto).",
+  "type": "object",
+  "required": [
+    "id",
+    "pid",
+    "name",
+    "description",
+    "startDate",
+    "endDate",
+    "slug",
+    "visibility",
+    "disciplines",
+    "organizations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the project."
+    },
+    "pid": {
+      "type": "string",
+      "description": "Persistent identifier for the project."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the project."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the project."
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start date of the project."
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End date of the project."
+    },
+    "keywords": {
+      "type": ["array", "null"],
+      "items": { "type": "string" },
+      "description": "Collection of keywords associated with the project."
+    },
+    "displayName": {
+      "type": ["string", "null"],
+      "description": "Display name of the project."
+    },
+    "principleInvestigators": {
+      "type": ["string", "null"],
+      "description": "Principal investigators involved in the project."
+    },
+    "grantId": {
+      "type": ["string", "null"],
+      "description": "Grant ID associated with the project."
+    },
+    "visibility": {
+      "type": "object",
+      "description": "Visibility setting of the project (VisibilityDto)."
+    },
+    "disciplines": {
+      "type": "array",
+      "description": "Disciplines related to the project (DisciplineDto).",
+      "items": { "type": "object" }
+    },
+    "organizations": {
+      "type": "array",
+      "description": "Organizations associated with the project (ProjectOrganizationDto).",
+      "items": { "type": "object" }
+    },
+    "slug": {
+      "type": "string",
+      "description": "Slug for the project."
+    },
+    "creationDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date of creation of the project."
+    }
+  }
+}

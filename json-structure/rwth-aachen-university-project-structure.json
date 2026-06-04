@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://coscine.rwth-aachen.de/structures/project.struct.json",
+  "name": "Project",
+  "description": "JSON Structure for a Coscine research project (ProjectDto).",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier (UUID) for the project." },
+    "pid": { "type": "string", "description": "Persistent identifier for the project." },
+    "name": { "type": "string", "description": "Name of the project." },
+    "description": { "type": "string", "description": "Description of the project." },
+    "startDate": { "type": "string", "description": "Project start date (RFC 3339 date-time)." },
+    "endDate": { "type": "string", "description": "Project end date (RFC 3339 date-time)." },
+    "displayName": { "type": "string", "description": "Display name of the project." },
+    "principleInvestigators": { "type": "string", "description": "Principal investigators." },
+    "grantId": { "type": "string", "description": "Grant ID associated with the project." },
+    "slug": { "type": "string", "description": "URL slug for the project." },
+    "creationDate": { "type": "string", "description": "Project creation date (RFC 3339 date-time)." },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Keywords associated with the project."
+    },
+    "disciplines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Discipline identifiers related to the project."
+    },
+    "organizations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Organization identifiers associated with the project."
+    }
+  },
+  "required": ["id", "pid", "name", "description", "startDate", "endDate", "slug"]
+}

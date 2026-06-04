@@ -1,0 +1,29 @@
+{
+  "description": "Representative response payload for GET /api/v2/projects/{projectId} on the Coscine Web API, wrapped in the standard ProjectDtoResponse envelope.",
+  "data": {
+    "id": "f3b1c2d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+    "pid": "21.11102/f3b1c2d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+    "name": "FAIR Materials Data 2026",
+    "description": "Management of materials-science measurement data following FAIR principles.",
+    "startDate": "2026-01-01T00:00:00Z",
+    "endDate": "2028-12-31T00:00:00Z",
+    "keywords": ["materials science", "FAIR", "measurement"],
+    "displayName": "FAIR Materials Data 2026",
+    "principleInvestigators": "Prof. Dr. Example Investigator",
+    "grantId": "DFG-1234567",
+    "visibility": { "id": "ab12cd34-ef56-7890-ab12-cd34ef567890", "displayName": "Public" },
+    "disciplines": [
+      {
+        "id": "12345678-90ab-cdef-1234-567890abcdef",
+        "uri": "https://www.coscine.de/disciplines/material-science",
+        "displayNameDe": "Materialwissenschaft",
+        "displayNameEn": "Materials Science"
+      }
+    ],
+    "organizations": [
+      { "uri": "https://ror.org/04xfq0f34", "displayName": "RWTH Aachen University" }
+    ],
+    "slug": "fair-materials-data-2026",
+    "creationDate": "2026-01-05T09:30:00Z"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "coscine": "https://coscine.rwth-aachen.de/vocab#",
+    "@vocab": "https://coscine.rwth-aachen.de/vocab#",
+
+    "University": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "logo": "schema:logo",
+
+    "Project": "coscine:Project",
+    "Resource": "coscine:Resource",
+    "ApiToken": "coscine:ApiToken",
+    "Discipline": "coscine:Discipline",
+    "Organization": "schema:Organization",
+
+    "id": "@id",
+    "pid": { "@id": "schema:identifier" },
+    "displayName": "schema:name",
+    "keywords": { "@id": "schema:keywords", "@container": "@set" },
+    "startDate": { "@id": "schema:startDate", "@type": "schema:DateTime" },
+    "endDate": { "@id": "schema:endDate", "@type": "schema:DateTime" },
+    "creationDate": { "@id": "schema:dateCreated", "@type": "schema:DateTime" },
+    "dateCreated": { "@id": "schema:dateCreated", "@type": "schema:DateTime" },
+    "license": "schema:license",
+    "usageRights": "schema:usageInfo",
+    "principleInvestigators": "schema:author",
+    "creator": "schema:creator",
+    "disciplines": { "@id": "schema:about", "@container": "@set" },
+    "organizations": { "@id": "schema:sourceOrganization", "@container": "@set" },
+    "slug": "coscine:slug",
+    "visibility": "coscine:visibility",
+    "type": "coscine:resourceType",
+    "applicationProfile": "coscine:applicationProfile"
+  },
+  "@type": "University",
+  "@id": "https://www.rwth-aachen.de/",
+  "name": "RWTH Aachen University",
+  "url": "https://www.rwth-aachen.de/",
+  "description": "RWTH Aachen University (Rheinisch-Westfaelische Technische Hochschule Aachen), a leading German technical university. The Coscine research data management platform exposes a public OpenAPI-described REST API.",
+  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg"
+}

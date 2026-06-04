@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://coscine.rwth-aachen.de/structures/resource.struct.json",
+  "name": "Resource",
+  "description": "JSON Structure for a Coscine resource (ResourceDto) - a storage-backed data container within a project.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier (UUID) for the resource." },
+    "pid": { "type": "string", "description": "Persistent identifier for the resource." },
+    "type": { "type": "string", "description": "Resource type identifier (e.g. an S3 or linked storage backend)." },
+    "name": { "type": "string", "description": "Name of the resource." },
+    "displayName": { "type": "string", "description": "Display name of the resource." },
+    "description": { "type": "string", "description": "Description of the resource." },
+    "usageRights": { "type": "string", "description": "Usage rights associated with the resource." },
+    "applicationProfile": { "type": "string", "description": "Application profile applied to the resource." },
+    "metadataLocalCopy": { "type": "boolean", "description": "Whether a local copy of metadata is available." },
+    "metadataExtraction": { "type": "boolean", "description": "Whether metadata extraction is enabled." },
+    "archived": { "type": "boolean", "description": "Whether the resource is archived." },
+    "maintenanceMode": { "type": "boolean", "description": "Whether the resource is in maintenance mode." },
+    "dateCreated": { "type": "string", "description": "Resource creation date (RFC 3339 date-time)." },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Keywords associated with the resource."
+    },
+    "disciplines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Discipline identifiers associated with the resource."
+    }
+  },
+  "required": ["pid", "type", "name", "displayName", "description", "applicationProfile"]
+}

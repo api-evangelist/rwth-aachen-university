@@ -50,6 +50,28 @@ apis:
         url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
       - type: Authentication
         url: https://docs.coscine.de/en/api/api/
+      - type: OpenAPI
+        url: openapi/rwth-aachen-university-coscine.yaml
+      - type: JSONSchema
+        url: json-schema/rwth-aachen-university-project-schema.json
+      - type: JSONSchema
+        url: json-schema/rwth-aachen-university-resource-schema.json
+      - type: JSONSchema
+        url: json-schema/rwth-aachen-university-apitoken-schema.json
+      - type: x-json-structure
+        url: json-structure/rwth-aachen-university-project-structure.json
+      - type: x-json-structure
+        url: json-structure/rwth-aachen-university-resource-structure.json
+      - type: x-example
+        url: examples/rwth-aachen-university-get-project-example.json
+      - type: x-example
+        url: examples/rwth-aachen-university-get-resource-example.json
+      - type: x-spectral-rules
+        url: rules/rwth-aachen-university-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/rwth-aachen-university-vocabulary.yml
+      - type: x-json-ld-context
+        url: json-ld/rwth-aachen-university-context.jsonld
   - aid: rwth-aachen-university:publications-oai
     name: RWTH Publications OAI-PMH
     description: >-

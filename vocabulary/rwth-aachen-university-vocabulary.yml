@@ -1,0 +1,69 @@
+---
+vocabulary:
+  name: RWTH Aachen University Coscine API Vocabulary
+  description: >-
+    Controlled vocabulary of the core terms used across the Coscine Web API
+    (RWTH Aachen University research data management platform), derived from
+    its OpenAPI description. Terms reflect Coscine's FAIR research data model.
+  version: "2.0"
+  terms:
+    - term: Project
+      definition: >-
+        A research project in Coscine; the top-level container that groups
+        resources, members, disciplines, and organizations and carries a
+        persistent identifier (PID).
+      tags: [core, container, rdm]
+    - term: Resource
+      definition: >-
+        A storage-backed data container within a project, bound to a resource
+        type (e.g. RDS NRW S3 or linked storage) and an application profile.
+      tags: [core, storage, rdm]
+    - term: Blob
+      definition: >-
+        A binary object (file) stored under a resource, addressed by key via
+        the S3-style blob endpoints.
+      tags: [core, storage, file]
+    - term: ApplicationProfile
+      definition: >-
+        A metadata schema (expressed as SHACL/RDF) that constrains and describes
+        the metadata captured for a resource's contents.
+      tags: [metadata, profile, semantic]
+    - term: Graph
+      definition: >-
+        An RDF metadata graph holding the descriptive metadata for files within
+        a resource, conforming to the resource's application profile.
+      tags: [metadata, rdf, semantic]
+    - term: Discipline
+      definition: >-
+        A research discipline classification (with German and English labels)
+        associated with projects, resources, and users.
+      tags: [classification, taxonomy]
+    - term: Organization
+      definition: >-
+        An institution (identified by ROR or similar) associated with a project.
+      tags: [classification, institution]
+    - term: Visibility
+      definition: >-
+        The visibility setting controlling whether an entity's metadata is
+        public or internal.
+      tags: [access, governance]
+    - term: ApiToken
+      definition: >-
+        A bearer token issued to a user for authenticating API requests against
+        the Coscine Web API.
+      tags: [auth, security]
+    - term: PID
+      definition: >-
+        A persistent identifier (Handle) minted for projects, resources, and
+        files to support stable citation and FAIR findability.
+      tags: [identifier, fair, handle]
+    - term: Provenance
+      definition: >-
+        Records describing the origin and processing history of data within
+        a resource.
+      tags: [metadata, lineage]
+    - term: PublicationRequest
+      definition: >-
+        A request to publish a project's data, routed through the publication
+        advisory service for review.
+      tags: [publication, workflow]

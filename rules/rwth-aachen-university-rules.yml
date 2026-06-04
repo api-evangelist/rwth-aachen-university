@@ -1,0 +1,53 @@
+---
+# Spectral ruleset encoding patterns observed in the Coscine Web API
+# OpenAPI description (https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json).
+formats:
+  - oas3
+rules:
+  coscine-info-contact:
+    description: Info object should include a contact (Coscine Team servicedesk).
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  coscine-bearer-security:
+    description: Coscine secures operations with the Bearer (API token) security scheme.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      field: Bearer
+      function: truthy
+
+  coscine-paths-versioned:
+    description: All Coscine API paths are versioned under /api/v2/.
+    severity: warn
+    given: $.paths.*~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v2/"
+
+  coscine-operation-tags:
+    description: Every operation should be tagged for grouping (Project, Resource, etc.).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  coscine-operation-id:
+    description: Every operation should declare an operationId.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  coscine-response-envelope:
+    description: Schemas wrapping a single object use the "Response" suffix; paged lists use "PagedResponse".
+    severity: info
+    given: $.components.schemas
+    then:
+      function: truthy

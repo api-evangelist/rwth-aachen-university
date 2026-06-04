@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coscine.rwth-aachen.de/schemas/apitoken.schema.json",
+  "title": "ApiTokenDto",
+  "description": "A Coscine API token used for Bearer authentication against the Coscine Web API. Derived from the Coscine Web API OpenAPI description (ApiTokenDto).",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the API token."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name associated with the API token."
+    },
+    "creationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date when the API token was created."
+    },
+    "expiryDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The expiry date of the API token."
+    },
+    "token": {
+      "type": ["string", "null"],
+      "description": "The actual token value used for authentication."
+    },
+    "owner": {
+      "type": "object",
+      "description": "The owner of the API token (UserMinimalDto)."
+    }
+  }
+}
