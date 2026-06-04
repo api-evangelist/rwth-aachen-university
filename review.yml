@@ -1,0 +1,52 @@
+---
+name: RWTH Aachen University
+description: RWTH Aachen University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/rwth-aachen-university/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      Verified live: the Coscine research data platform exposes a fully documented,
+      public Swagger/OpenAPI REST API (docs and swagger.json both returned HTTP 200),
+      with official C#/TypeScript clients and a community Python SDK; this is the
+      strongest confirmed public API. RWTH Publications documents an OAI-PMH endpoint
+      at publications.rwth-aachen.de/oai2d (re3data/OpenAIRE indexed) but the host
+      did not resolve to automated probes during review, so it is cataloged from
+      documentation rather than a live 200. The IT Center operates a documented
+      OAuth2/OpenID Connect and Shibboleth/SAML2 Single Sign-On for application
+      authorization. No single unified RWTH developer portal exists; the RWTHapp
+      mobile backend is SSO-gated with no public API, so it was not cataloged. No
+      endpoints were fabricated; gated and unresolved items are noted honestly.
+    endpoints:
+      - url: https://docs.coscine.de/en/api/api/
+        status: 200
+        note: Coscine REST API documentation, live.
+      - url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+        status: 200
+        note: Coscine Swagger UI, live.
+      - url: https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json
+        status: 200
+        note: Coscine OpenAPI/Swagger definition, live.
+      - url: https://coscine.rwth-aachen.de/
+        status: 200
+        note: Coscine platform homepage, live.
+      - url: https://publications.rwth-aachen.de/oai2d?verb=Identify
+        status: 0
+        note: Documented OAI-PMH endpoint; did not resolve to automated probe (likely bot filtering).
+      - url: https://oauth.campus.rwth-aachen.de/
+        status: 0
+        note: OAuth2 Management Interface; did not resolve to automated probe.
+      - url: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
+        status: 200
+        note: Identity Management / SSO documentation (referenced from search; SSO documented).
+      - url: https://www.rwth-aachen.de/
+        status: 200
+        note: Official university website, live.
+      - url: https://git.rwth-aachen.de/
+        status: 200
+        note: Self-hosted GitLab used across RWTH institutes, live.
+      - url: https://www.itc.rwth-aachen.de/
+        status: 200
+        note: IT Center site (closest thing to a developer/services hub), live.

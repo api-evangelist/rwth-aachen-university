@@ -1,0 +1,103 @@
+---
+aid: rwth-aachen-university
+name: RWTH Aachen University
+description: >-
+  RWTH Aachen University (Rheinisch-Westfaelische Technische Hochschule Aachen)
+  is a leading German technical university, ranked #83 in the QS World University
+  Rankings 2025. Its public developer and API footprint is concentrated in
+  research-data and scholarly-infrastructure services operated by the IT Center
+  and University Library. The most prominent documented public API is Coscine,
+  a FAIR research data management platform exposing a Swagger/OpenAPI-described
+  REST API. The institutional repository RWTH Publications offers an OAI-PMH
+  metadata harvesting endpoint, and the IT Center operates a central Single
+  Sign-On supporting OAuth2/OpenID Connect and Shibboleth/SAML2 for application
+  authorization. The university also runs a self-hosted GitLab at
+  git.rwth-aachen.de used widely across its institutes.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/rwth-aachen-university/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research Data
+  - Open Access
+  - Germany
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: rwth-aachen-university:coscine
+    name: Coscine Research Data API
+    description: >-
+      Coscine (Collaborative Scientific Integration Environment) is RWTH Aachen
+      University's research data management platform. It provides a public,
+      Swagger/OpenAPI-documented REST API for managing projects, resources,
+      metadata, and research data stored via S3-based object storage, following
+      FAIR principles. Access requires an API access token. Official C#, TypeScript,
+      and a community Python SDK are available.
+    humanURL: https://docs.coscine.de/en/api/api/
+    baseURL: https://coscine.rwth-aachen.de/coscine/api/
+    tags: [ Research Data, FAIR, REST, OpenAPI, Data Management ]
+    properties:
+      - type: Documentation
+        url: https://docs.coscine.de/en/api/api/
+      - type: OpenAPI
+        url: https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json
+      - type: Swagger
+        url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+      - type: Authentication
+        url: https://docs.coscine.de/en/api/api/
+  - aid: rwth-aachen-university:publications-oai
+    name: RWTH Publications OAI-PMH
+    description: >-
+      RWTH Publications is the institutional repository providing access to the
+      publication output of RWTH Aachen University. It exposes metadata via the
+      Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) at
+      publications.rwth-aachen.de/oai2d, enabling third-party harvesting of
+      bibliographic records. The repository is indexed by OpenAIRE and re3data.
+    humanURL: https://publications.rwth-aachen.de/
+    baseURL: https://publications.rwth-aachen.de/oai2d
+    tags: [ OAI-PMH, Repository, Metadata, Open Access, Scholarly ]
+    properties:
+      - type: Documentation
+        url: https://publications.rwth-aachen.de/
+      - type: Repository
+        url: https://www.re3data.org/repository/r3d100012911
+  - aid: rwth-aachen-university:sso
+    name: RWTH Single Sign-On (OAuth2 / OpenID Connect / Shibboleth)
+    description: >-
+      The RWTH IT Center operates the central Single Sign-On at sso.rwth-aachen.de,
+      offering OAuth2 and OpenID Connect for web and mobile application
+      authorization (Device, Implicit, and Refresh grants) as well as
+      Shibboleth/SAML2 federated authentication via the DFN-AAI federation.
+      Application registration is handled through the OAuth2 Management Interface.
+    humanURL: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
+    tags: [ Authentication, OAuth2, OpenID Connect, Shibboleth, SAML, Identity ]
+    properties:
+      - type: Documentation
+        url: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
+      - type: Authentication
+        url: https://oauth.campus.rwth-aachen.de/
+common:
+  - type: Website
+    url: https://www.rwth-aachen.de/
+  - type: SourceCode
+    url: https://git.rwth-aachen.de/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/rwth-aachen-university/
+  - type: DeveloperPortal
+    url: https://www.itc.rwth-aachen.de/
+  - type: Plans
+    url: plans/rwth-aachen-university-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/rwth-aachen-university-rate-limits.yml
+  - type: FinOps
+    url: finops/rwth-aachen-university-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
