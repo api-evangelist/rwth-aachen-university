@@ -41,5 +41,5 @@
   "name": "RWTH Aachen University",
   "url": "https://www.rwth-aachen.de/",
   "description": "RWTH Aachen University (Rheinisch-Westfaelische Technische Hochschule Aachen), a leading German technical university. The Coscine research data management platform exposes a public OpenAPI-described REST API.",
-  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg"
+  "logo": "https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg"
 }
