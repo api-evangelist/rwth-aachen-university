@@ -1,0 +1,42 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.rwth-aachen.de
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct  9 03:50:57 2026 GMT
+  hsts: true
+  hsts_max_age: 15768000
+- host: docs.coscine.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 20 05:37:42 2026 GMT
+  hsts: false
+- host: coscine.rwth-aachen.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 13 14:03:10 2026 GMT
+  hsts: false
+domains:
+- domain: rwth-aachen.de
+  dnssec: true
+  caa:
+  - 0 iodef "mailto:ca@rwth-aachen.de"
+  - 0 issuemail "harica.gr"
+  - 0 issue "harica.gr"
+  - 0 issuewild ";"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: coscine.de
+  dnssec: false
+  caa:
+  - 0 iodef "mailto:ca@rwth-aachen.de"
+  - 0 issue "letsencrypt.org"
+  - 0 issuemail "harica.gr"
+  - 0 issue "harica.gr"
+  - 0 issuewild ";"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

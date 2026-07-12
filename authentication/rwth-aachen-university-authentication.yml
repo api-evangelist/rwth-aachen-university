@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rwth-aachen-university-coscine.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: JWT Authorization header using the Bearer scheme.
+  sources:
+  - openapi/rwth-aachen-university-coscine.yaml

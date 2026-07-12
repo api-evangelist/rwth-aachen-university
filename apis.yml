@@ -104,6 +104,12 @@ apis:
       - type: Authentication
         url: https://oauth.campus.rwth-aachen.de/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/rwth-aachen-university-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/rwth-aachen-university-domain-security.yml
+  - type: Authentication
+    url: authentication/rwth-aachen-university-authentication.yml
   - type: Website
     url: https://www.rwth-aachen.de/
   - type: SourceCode
