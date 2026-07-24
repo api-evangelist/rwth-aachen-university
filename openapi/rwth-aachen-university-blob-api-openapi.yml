@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Blob API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Blob
+  description: Endpoints for the Binary Large Objects (BLOBs).
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/blobs/{key}:
+    post:
+      tags:
+      - Blob
+      summary: Creates a new blob for a resource.
+      operationId: CreateBlob
+      parameters:
+      - name: projectId
+        in: path
+        description: The identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: key
+        in: path
+        description: The key for the new blob.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '201':
+          description: Blob created.
+        '400':
+          description: Blob already exists.
+        '415':
+          description: Blob is not of the type "multipart/form-data"
+        '413':
+          description: Blob is to large.
+      deprecated: true
+    get:
+      tags:
+      - Blob
+      summary: Download a blob from a resource.
+      operationId: GetBlob
+      parameters:
+      - name: projectId
+        in: path
+        description: The identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: key
+        in: path
+        description: The key associated with the blob.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the blob.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Blob does not exist.
+      deprecated: true
+    put:
+      tags:
+      - Blob
+      summary: Updates an existing blob of a resource.
+      operationId: UpdateBlob
+      parameters:
+      - name: projectId
+        in: path
+        description: The identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: key
+        in: path
+        description: The key associated with the blob to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '201':
+          description: Blob updated.
+        '400':
+          description: Blob already exists.
+        '415':
+          description: Blob is not of the type "multipart/form-data"
+        '413':
+          description: Blob is to large.
+      deprecated: true
+    delete:
+      tags:
+      - Blob
+      summary: Deletes a blob from a resource.
+      operationId: DeleteBlob
+      parameters:
+      - name: projectId
+        in: path
+        description: The identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: key
+        in: path
+        description: The key associated with the blob to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Blob deleted.
+        '404':
+          description: Blob does not exist.
+      deprecated: true
+  /api/v2/projects/{projectId}/resources/{resourceId}/blobs:
+    options:
+      tags:
+      - Blob
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

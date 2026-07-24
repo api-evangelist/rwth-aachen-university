@@ -1,0 +1,116 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Report API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Report
+  description: Controller for generating and downloading project-related reports.
+paths:
+  /api/v2/reports/project:
+    get:
+      tags:
+      - Report
+      summary: Download for the project report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetProjectReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports/project/quota:
+    get:
+      tags:
+      - Report
+      summary: Download for the project quota report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetProjectQuotaReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports/user:
+    get:
+      tags:
+      - Report
+      summary: Download for the user report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetUserReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports/application-profile:
+    get:
+      tags:
+      - Report
+      summary: Download for the applicationprofile report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetApplicationProfileReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports/resource:
+    get:
+      tags:
+      - Report
+      summary: Download for the resource report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetResourceReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports/resource/quota:
+    get:
+      tags:
+      - Report
+      summary: Download for the resource quota report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetResourceQuotaReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports/maintenance:
+    get:
+      tags:
+      - Report
+      summary: Download for the maintenance report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetMaintenanceReport
+      responses:
+        '200':
+          description: Returns the report.
+          content:
+            application/json: {}
+  /api/v2/reports:
+    options:
+      tags:
+      - Report
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

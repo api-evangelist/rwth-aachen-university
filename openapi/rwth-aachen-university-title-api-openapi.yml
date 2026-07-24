@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Title API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Title
+  description: Endpoints for the titles.
+paths:
+  /api/v2/titles/{titleId}:
+    get:
+      tags:
+      - Title
+      summary: Retrieves a title by ID.
+      operationId: GetTitle
+      parameters:
+      - name: titleId
+        in: path
+        description: The ID of the title.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns the title.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TitleDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TitleDtoResponse'
+        '404':
+          description: Title does not exist.
+  /api/v2/titles:
+    get:
+      tags:
+      - Title
+      summary: Retrieves all titles.
+      operationId: GetTitles
+      parameters:
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the titles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TitleDtoIEnumerableResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TitleDtoIEnumerableResponse'
+    options:
+      tags:
+      - Title
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    TitleDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TitleDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+    TitleDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TitleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,69 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin ResourceGraphContent API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: ResourceGraphContent
+  description: Endpoints for the graphs of resources.
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/graphs/metadata/content:
+    get:
+      tags:
+      - ResourceGraphContent
+      summary: Retrieves a resource graph.
+      operationId: GetResourceGraphContent
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project that the resource belongs to.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The ID of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/n-quads:
+              schema:
+                type: string
+    options:
+      tags:
+      - ResourceGraphContent
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

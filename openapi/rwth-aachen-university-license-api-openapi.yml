@@ -1,0 +1,174 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin License API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: License
+  description: Endpoints for the licenses.
+paths:
+  /api/v2/licenses/{licenseId}:
+    get:
+      tags:
+      - License
+      summary: Retrieves a license with the specified ID.
+      operationId: GetLicense
+      parameters:
+      - name: licenseId
+        in: path
+        description: The ID of the license.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns the license.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LicenseDtoResponse'
+        '404':
+          description: License does not exist.
+  /api/v2/licenses:
+    get:
+      tags:
+      - License
+      summary: Retrieves all licenses.
+      operationId: GetLicenses
+      parameters:
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the licenses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LicenseDtoPagedResponse'
+    options:
+      tags:
+      - License
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    LicenseDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    LicenseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the license.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the license.
+        url:
+          type: string
+          description: Gets or sets the Uri of the license.
+          format: uri
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for license details.
+    LicenseDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LicenseDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

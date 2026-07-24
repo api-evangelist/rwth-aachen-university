@@ -1,0 +1,212 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin ProjectResourceType API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: ProjectResourceType
+  description: Endpoints for the resource types.
+paths:
+  /api/v2/projects/{projectId}/resource-types:
+    get:
+      tags:
+      - ProjectResourceType
+      summary: Retrieves the available resource types information for a specific project.
+      operationId: GetAvailableResourceTypesInformationForProject
+      parameters:
+      - name: projectId
+        in: path
+        description: The Id or slug of the project.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the available resourceTypeInformation types information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeInformationDtoIEnumerableResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeInformationDtoIEnumerableResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    options:
+      tags:
+      - ProjectResourceType
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    ResourceContentPageDto:
+      type: object
+      properties:
+        readOnly:
+          type: boolean
+          description: Indicates whether the resource is read-only.
+        metadataView:
+          $ref: '#/components/schemas/ResourceContentPageMetadataViewDto'
+        entriesView:
+          $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
+      additionalProperties: false
+      description: Represents the content page details for a resource.
+    ResourceContentPageColumnsDto:
+      type: object
+      properties:
+        always:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Set of columns that should always be displayed in the content view.
+      additionalProperties: false
+      description: Represents a set of columns to be displayed in the content view.
+    ResourceCreationPageDto:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
+      additionalProperties: false
+      description: Represents the structure of resource type-specific components for steps in the resource creation page.
+    ResourceTypeStatus:
+      enum:
+      - hidden
+      - active
+      type: string
+      description: Specifies the status of a resource type.
+    ResourceTypeInformationDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceTypeInformationDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResourceContentPageMetadataViewDto:
+      type: object
+      properties:
+        editableDataUrl:
+          type: boolean
+          description: Indicates if a data URL can be provided and is editable.
+        editableKey:
+          type: boolean
+          description: Indicates if a key can be provided and is editable.
+      additionalProperties: false
+      description: Represents the metadata view for a resource's content page.
+    ResourceContentPageEntriesViewDto:
+      type: object
+      properties:
+        columns:
+          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
+      additionalProperties: false
+      description: Represents information about the resource type for the columns within the entries view Vue component.
+    ResourceTypeInformationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the resource type.
+          format: uuid
+        generalType:
+          type: string
+          description: The general type of the resource.
+          nullable: true
+        specificType:
+          type: string
+          description: The specific type of the resource.
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ResourceTypeStatus'
+        canCreate:
+          type: boolean
+          description: Indicates if the resource type supports creation.
+        canRead:
+          type: boolean
+          description: Indicates if the resource type supports reading.
+        canSetResourceReadonly:
+          type: boolean
+          description: Indicates if the resource type supports read-only.
+        canUpdate:
+          type: boolean
+          description: Indicates if the resource type supports updating.
+        canUpdateResource:
+          type: boolean
+          description: Indicates if the resource type supports updating (not an Object).
+        canDelete:
+          type: boolean
+          description: Indicates if the resource type supports deletion.
+        canDeleteResource:
+          type: boolean
+          description: Indicates if the resource type supports deletion (not an Object).
+        canList:
+          type: boolean
+          description: Indicates if the resource type supports listing.
+        canCreateLinks:
+          type: boolean
+          description: Indicates if the resource type supports linking.
+        canCopyLocalMetadata:
+          type: boolean
+          description: Indicates whether local backup of metadata is supported.
+        isArchived:
+          type: boolean
+          description: Indicates if the resource type is archived.
+        isQuotaAvailable:
+          type: boolean
+          description: Indicates if the resource type supports quota.
+        isQuotaAdjustable:
+          type: boolean
+          description: Indicates if the resource type quota can be changed.
+        supportsVersioning:
+          type: boolean
+          description: Indicates if the resource type supports versioning.
+        isEnabled:
+          type: boolean
+          description: Indicates if the resource type is enabled.
+          readOnly: true
+        resourceCreation:
+          $ref: '#/components/schemas/ResourceCreationPageDto'
+        resourceContent:
+          $ref: '#/components/schemas/ResourceContentPageDto'
+      additionalProperties: false
+      description: Represents information about a resource type.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

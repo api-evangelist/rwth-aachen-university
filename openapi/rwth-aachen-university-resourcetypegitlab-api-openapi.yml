@@ -1,0 +1,296 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin ResourceTypeGitLab API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: ResourceTypeGitLab
+  description: Endpoints for the gitlab resource types.
+paths:
+  /api/v2/resource-types/gitlab/projects:
+    get:
+      tags:
+      - ResourceTypeGitLab
+      summary: Retrieves all GitLab projects, that the user is a member of, based on the provided credentials.
+      operationId: GetAllGitlabProjects
+      parameters:
+      - name: Domain
+        in: query
+        description: Domain/Host of the GitLab Provider.
+        required: true
+        schema:
+          type: string
+          format: uri
+          example: https://git.rwth-aachen.de/
+        example: https://git.rwth-aachen.de/
+      - name: AccessToken
+        in: query
+        description: GitLab Project or Group Access Token.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the GitLab projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitlabProjectDtoIEnumerableResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GitlabProjectDtoIEnumerableResponse'
+        '403':
+          description: GitLab access token is invalid.
+  /api/v2/resource-types/gitlab/projects/{gitlabProjectId}:
+    get:
+      tags:
+      - ResourceTypeGitLab
+      summary: Retrieves a single GitLab project, that the user is a member of, based on the provided credentials.
+      operationId: GetGitlabProject
+      parameters:
+      - name: gitlabProjectId
+        in: path
+        description: The ID of the GitLab project.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Domain
+        in: query
+        description: Domain/Host of the GitLab Provider.
+        required: true
+        schema:
+          type: string
+          format: uri
+          example: https://git.rwth-aachen.de/
+        example: https://git.rwth-aachen.de/
+      - name: AccessToken
+        in: query
+        description: GitLab Project or Group Access Token.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the GitLab project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitlabProjectDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GitlabProjectDtoResponse'
+        '403':
+          description: GitLab access token is invalid.
+  /api/v2/resource-types/gitlab/projects/{gitlabProjectId}/branches:
+    get:
+      tags:
+      - ResourceTypeGitLab
+      summary: Retrieves all branches of a GitLab project, that the user is a member of, based on the provided credentials.
+      operationId: GetAllGitlabBranchesForProject
+      parameters:
+      - name: gitlabProjectId
+        in: path
+        description: The ID of the GitLab project.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: Domain
+        in: query
+        description: Domain/Host of the GitLab Provider.
+        required: true
+        schema:
+          type: string
+          format: uri
+          example: https://git.rwth-aachen.de/
+        example: https://git.rwth-aachen.de/
+      - name: AccessToken
+        in: query
+        description: GitLab Project or Group Access Token.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the GitLab project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitlabBranchDtoIEnumerableResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GitlabBranchDtoIEnumerableResponse'
+        '403':
+          description: GitLab access token is invalid.
+  /api/v2/resource-types/gitlab:
+    options:
+      tags:
+      - ResourceTypeGitLab
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    GitlabProjectDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GitlabProjectDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GitlabProjectDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GitlabProjectDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GitlabProjectDto:
+      required:
+      - archived
+      - createdAt
+      - defaultBranch
+      - description
+      - httpUrlToRepo
+      - id
+      - lastActivityAt
+      - name
+      - nameWithNamespace
+      - path
+      - pathWithNamespace
+      - sshUrlToRepo
+      - webUrl
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the GitLab project.
+          format: int32
+        archived:
+          type: boolean
+          description: Indicates if the GitLab project is archived.
+        name:
+          type: string
+          description: The name of the GitLab project.
+        nameWithNamespace:
+          type: string
+          description: The full name of the GitLab project including namespace.
+        description:
+          type: string
+          description: A brief description of the GitLab project.
+        defaultBranch:
+          type: string
+          description: The default branch of the GitLab project.
+        path:
+          type: string
+          description: The path of the GitLab project.
+        pathWithNamespace:
+          type: string
+          description: The path of the GitLab project including namespace.
+        lastActivityAt:
+          type: string
+          description: The timestamp of the last activity related to the GitLab project.
+        createdAt:
+          type: string
+          description: The creation timestamp of the GitLab project.
+        webUrl:
+          type: string
+          description: The URL to view the GitLab project in a web browser.
+        httpUrlToRepo:
+          type: string
+          description: The HTTP URL to access the GitLab project repository.
+        sshUrlToRepo:
+          type: string
+          description: The SSH URL to access the GitLab project repository.
+      additionalProperties: false
+      description: Represents a GitLab project data transfer object (DTO).
+    GitlabBranchDto:
+      required:
+      - canPush
+      - default
+      - developersCanMerge
+      - developersCanPush
+      - merged
+      - name
+      - protected
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the GitLab branch.
+        merged:
+          type: boolean
+          description: Indicates if the branch is merged.
+        protected:
+          type: boolean
+          description: Indicates if the branch is protected.
+        default:
+          type: boolean
+          description: Indicates if the branch is set as default.
+        developersCanPush:
+          type: boolean
+          description: Indicates if developers can push changes to the branch.
+        developersCanMerge:
+          type: boolean
+          description: Indicates if developers can merge changes into the branch.
+        canPush:
+          type: boolean
+          description: Indicates if the user can push changes to the branch.
+      additionalProperties: false
+      description: Represents a GitLab branch data transfer object (DTO).
+    GitlabBranchDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/GitlabBranchDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,297 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Graph API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Graph
+  description: Controller for managing storage operations for project resources.
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/graphs:
+    get:
+      tags:
+      - Graph
+      summary: "Retrieves a paginated subset of nodes that make up the metadata tree\r\nfor a specified resource within a given project."
+      operationId: GetStorageGraphTree
+      parameters:
+      - name: projectId
+        in: path
+        description: "The unique identifier of the project containing the resource.\r\nSupplied as a route parameter."
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: "The unique identifier of the resource whose metadata tree should be retrieved.\r\nSupplied as a route parameter."
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\n\r\n\r\nThe properties `HasChildren`, `HasMetadata`, `HasData` and `Subject` are supported for ordering.\r\nUse \"asc\" or \"desc\" as the direction.\r\nThe Default is `HasChildren desc, subject asc`.\r\n"
+        schema:
+          type: string
+      - name: Prefix
+        in: query
+        description: "Gets or sets the prefix filter.\r\n\r\n\r\nThe prefix to filter the storage objects by.\r\nSlashes are taken into account when filtering by prefix.\r\nThe forwads slash (/) character is treated as the path separator.\r\nThe lookup is only done for one level.\r\nTo look into the next level, include the trailing slash to indicate the next level of the tree.\r\n"
+        schema:
+          type: string
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successfully retrieved a paged list of metadata tree nodes for the specified resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageNodeDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StorageNodeDtoPagedResponse'
+        '403':
+          description: The user is missing the necessary authorization to access the resource.
+        '404':
+          description: The resource was not found.
+        '400':
+          description: Invalid request parameters were supplied.
+    options:
+      tags:
+      - Graph
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /api/v2/projects/{projectId}/resources/{resourceId}/graphs/{encodedPath}:
+    head:
+      tags:
+      - Graph
+      summary: Performs a metadata check for a graph node or group at the specified path without returning a response body.
+      operationId: HeadStorageGraph
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The resource exists. Metadata is available in the headers.
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: The resource was not found.
+        '400':
+          description: Invalid request parameters were supplied.
+        '401':
+          description: The user is not authorized to access the resource.
+    get:
+      tags:
+      - Graph
+      summary: Retrieves metadata for a graph node or group at the specified path.
+      operationId: GetStorageGraph
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The resource exists. Metadata is available in the body and headers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageNodeDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StorageNodeDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: The resource was not found.
+        '400':
+          description: Invalid request parameters were supplied.
+        '401':
+          description: The user is not authorized to access the resource.
+components:
+  schemas:
+    StorageNodeLinks:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+        children:
+          type: object
+          additionalProperties:
+            type: string
+        self:
+          type: object
+          additionalProperties:
+            type: string
+        links:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+      additionalProperties: false
+    StorageNodeDto:
+      type: object
+      properties:
+        subject:
+          type: string
+          format: uri
+          nullable: true
+        path:
+          type: string
+        prefix:
+          type: string
+          description: Gets the prefix of the node.
+        name:
+          type: string
+          description: Gets the name of the node.
+        hasMetadata:
+          type: boolean
+        hasData:
+          type: boolean
+        hasChildren:
+          type: boolean
+        links:
+          $ref: '#/components/schemas/StorageNodeLinks'
+      additionalProperties: false
+    StorageNodeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StorageNodeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StorageNodeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageNodeDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

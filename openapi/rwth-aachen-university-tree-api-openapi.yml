@@ -1,0 +1,904 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Tree API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Tree
+  description: Endpoints for the file and metadata trees.
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/trees/files:
+    get:
+      tags:
+      - Tree
+      summary: Retrieves the file tree associated with a resource.
+      description: The `OrderBy` query is currently not supported.
+      operationId: GetFileTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Path
+        in: query
+        description: Gets or sets the path of the file tree.
+        schema:
+          type: string
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the file tree of a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileTreeDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileTreeDtoPagedResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Project does not exist or has been deleted.
+      deprecated: true
+  /api/v2/projects/{projectId}/resources/{resourceId}/trees/metadata:
+    get:
+      tags:
+      - Tree
+      summary: Retrieves the metadata tree associated with a resource.
+      operationId: GetMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Path
+        in: query
+        description: Gets or sets the path of the metadata tree.
+        schema:
+          type: string
+      - name: Format
+        in: query
+        description: Gets or sets the format of the RDF data.
+        schema:
+          $ref: '#/components/schemas/RdfFormat'
+      - name: IncludeExtractedMetadata
+        in: query
+        description: Gets or sets if extracted metadata should be included.
+        schema:
+          type: boolean
+      - name: IncludeProvenance
+        in: query
+        description: Gets or sets if provenance metadata should be included.
+        schema:
+          type: boolean
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the metadata tree of a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoPagedResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Project does not exist or has been deleted.
+      deprecated: true
+    post:
+      tags:
+      - Tree
+      summary: Creates a new metadata tree for a resource.
+      operationId: CreateMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The metadata tree data for creation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForCreationDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForCreationDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForCreationDto'
+      responses:
+        '201':
+          description: Metadata tree created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+      deprecated: true
+    put:
+      tags:
+      - Tree
+      summary: Updates an existing metadata tree of a resource.
+      operationId: UpdateMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The updated metadata tree data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForUpdateDto'
+      responses:
+        '204':
+          description: Metadata tree updated.
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format or the resource is write-protected due to its archived status.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+      deprecated: true
+    delete:
+      tags:
+      - Tree
+      summary: Deletes (invalidates) a metadata tree associated with a resource.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: DeleteMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The dto for the deletion.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForDeletionDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForDeletionDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MetadataTreeForDeletionDto'
+      responses:
+        '204':
+          description: Metadata tree deleted.
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format or the resource is write-protected due to its archived status.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+      deprecated: true
+  /api/v2/projects/{projectId}/resources/{resourceId}/trees/metadata/specific:
+    get:
+      tags:
+      - Tree
+      summary: Retrieves the specific metadata tree associated with a resource.
+      operationId: GetSpecificMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Path
+        in: query
+        description: Gets or sets the path of the metadata tree.
+        required: true
+        schema:
+          type: string
+      - name: Format
+        in: query
+        description: Gets or sets the format of the RDF data.
+        schema:
+          $ref: '#/components/schemas/RdfFormat'
+      - name: IncludeExtractedMetadata
+        in: query
+        description: Gets or sets if extracted metadata should be included.
+        schema:
+          type: boolean
+      - name: IncludeProvenance
+        in: query
+        description: Gets or sets if provenance should be included.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        description: "Gets or sets the desired version.\r\nIf the version is null, the newest will be returned."
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns the specific metadata tree of a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Project does not exist or has been deleted.
+      deprecated: true
+  /api/v2/projects/{projectId}/resources/{resourceId}/trees/metadata/extracted:
+    post:
+      tags:
+      - Tree
+      summary: Creates a new extracted metadata tree for a resource.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: CreateExtractedMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The metadata tree data for creation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractedMetadataTreeForCreationDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExtractedMetadataTreeForCreationDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExtractedMetadataTreeForCreationDto'
+      responses:
+        '201':
+          description: Extracted Metadata tree created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTreeDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+      deprecated: true
+    put:
+      tags:
+      - Tree
+      summary: Updates an existing metadata tree of a resource.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: UpdateExtractedMetadataTree
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The updated metadata tree data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractedMetadataTreeForUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExtractedMetadataTreeForUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExtractedMetadataTreeForUpdateDto'
+      responses:
+        '204':
+          description: Metadata tree updated.
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format or the resource is write-protected due to its archived status.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+      deprecated: true
+  /api/v2/projects/{projectId}/resources/{resourceId}/trees:
+    options:
+      tags:
+      - Tree
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    MetadataTreeForCreationDto:
+      required:
+      - definition
+      - path
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the creation of a metadata tree.\r\nExtends the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto."
+    MetadataTreeForUpdateDto:
+      required:
+      - definition
+      - path
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the update of a metadata tree.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto."
+    ProvenanceParametersDto:
+      type: object
+      properties:
+        wasRevisionOf:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Gets or sets the adapted versions from the specific metadata tree.
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantDto'
+          description: Gets or sets the variants of the specific metadata tree.
+        wasInvalidatedBy:
+          type: string
+          description: Information if the specific metadata tree was invalidated by something.
+          format: uri
+          nullable: true
+        similarityToLastVersion:
+          type: number
+          description: The similarity to the last version.
+          format: double
+          nullable: true
+        metadataExtractorVersion:
+          type: string
+          description: Gets or initializes the version of the metadata extractor.
+          nullable: true
+        hashParameters:
+          $ref: '#/components/schemas/HashParametersDto'
+      additionalProperties: false
+      description: Data transfer object (DTO) representing Provenance Parameters in a request.
+    VariantDto:
+      type: object
+      properties:
+        graphName:
+          type: string
+          description: Name of the graph.
+          format: uri
+        similarity:
+          type: number
+          description: Similarity value 0-1
+          format: double
+      additionalProperties: false
+      description: Represents the variants of this specific metadata tree.
+    FileTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileTreeDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    TreeDataType:
+      enum:
+      - Tree
+      - Leaf
+      type: string
+      description: Represents the types of nodes within a hierarchical tree structure.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    ExtractedMetadataTreeForCreationDto:
+      required:
+      - definition
+      - id
+      - path
+      - provenance
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        id:
+          type: string
+          description: Gets or sets the id of the new metadata tree.
+          format: uri
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+        provenance:
+          $ref: '#/components/schemas/ProvenanceParametersDto'
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the creation of a metadata tree.\r\nExtends the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto."
+    RdfDefinitionForManipulationDto:
+      required:
+      - content
+      - type
+      type: object
+      properties:
+        content:
+          minLength: 1
+          type: string
+          description: The content of the RDF definition.
+        type:
+          $ref: '#/components/schemas/RdfFormat'
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) used for manipulating RDF definitions.
+    RdfDefinitionDto:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The content of the RDF definition.
+          nullable: true
+        type:
+          type: string
+          description: The type of the RDF definition.
+          nullable: true
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
+    MetadataTreeExtractedDto:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Gets the path of the tree item.
+        type:
+          $ref: '#/components/schemas/TreeDataType'
+        metadataId:
+          type: string
+          description: Gets the identifier of the metadata extraction graph.
+          format: uri
+        rawDataId:
+          type: string
+          description: Gets the identifier of the raw data extraction graph.
+          format: uri
+          nullable: true
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for extracted metadata within a tree structure, extending the base TreeDto.
+    FileTreeDto:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Gets the path of the tree item.
+        type:
+          $ref: '#/components/schemas/TreeDataType'
+        directory:
+          type: string
+          description: Gets or sets the directory of the file.
+        name:
+          type: string
+          description: Gets or sets the name of the file.
+        extension:
+          type: string
+          description: Gets or sets the extension of the file.
+        size:
+          type: integer
+          description: Gets or sets the size of the file in bytes.
+          format: int64
+        creationDate:
+          type: string
+          description: Gets or sets the creation date of the file.
+          format: date-time
+          nullable: true
+        changeDate:
+          type: string
+          description: Gets or sets the last change date of the file.
+          format: date-time
+          nullable: true
+        actions:
+          $ref: '#/components/schemas/FileActionsDto'
+        hidden:
+          type: boolean
+          description: Determines if the specific tree entry is hidden.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
+    MetadataTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetadataTreeDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    MetadataTreeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MetadataTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FileActionHttpMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      type: string
+      description: Represents the possible HTTP methods associated with file actions.
+    FileActionsDto:
+      type: object
+      properties:
+        download:
+          $ref: '#/components/schemas/FileActionDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
+    MetadataTreeForDeletionDto:
+      required:
+      - invalidatedBy
+      - path
+      - version
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        version:
+          type: integer
+          description: Gets or initializes the version of the metadata tree to be deleted.
+          format: int64
+        invalidatedBy:
+          type: string
+          description: Gets or initializes the invalidation entity.
+          format: uri
+      additionalProperties: false
+      description: Data transfer object (DTO) for deleting a specific version of metadata.
+    ProvenanceDto:
+      required:
+      - id
+      - variants
+      - wasRevisionOf
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the id of the current metadata graph.
+          format: uri
+        generatedAt:
+          type: string
+          description: Gets or sets the date and time when the metadata was generated.
+          format: date-time
+          nullable: true
+        wasRevisionOf:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Gets or sets the adapted versions from the specific metadata tree.
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantDto'
+          description: Gets or sets the variants of the specific metadata tree.
+        similarityToLastVersion:
+          type: number
+          description: The similarity to the last version.
+          format: double
+          nullable: true
+        wasInvalidatedBy:
+          type: string
+          description: Information if the specific metadata tree was invalidated by something.
+          format: uri
+          nullable: true
+        hashParameters:
+          $ref: '#/components/schemas/HashParametersDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for provenance information.
+    ExtractedMetadataTreeForUpdateDto:
+      required:
+      - definition
+      - id
+      - path
+      - provenance
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        id:
+          type: string
+          description: Gets or sets the id of the to update metadata tree.
+          format: uri
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+        provenance:
+          $ref: '#/components/schemas/ProvenanceParametersDto'
+        forceNewMetadataVersion:
+          type: boolean
+          description: Gets or initializes a flag for creating a new metadata version.
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the update of a metadata tree.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto."
+    RdfFormat:
+      enum:
+      - text/turtle
+      - application/ld+json
+      - application/x-trig
+      - application/n-quads
+      type: string
+      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
+    FileActionDto:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Gets or sets the presigned URL associated with the file action.
+          format: uri
+        method:
+          $ref: '#/components/schemas/FileActionHttpMethod'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
+    MetadataTreeDto:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Gets the path of the tree item.
+        type:
+          $ref: '#/components/schemas/TreeDataType'
+        id:
+          type: string
+          description: Gets or sets the id of the specific metadata tree.
+          format: uri
+        version:
+          type: string
+          description: Gets or sets the version associated with the metadata.
+        availableVersions:
+          type: array
+          items:
+            type: string
+          description: Gets or sets the collection of available versions related to the metadata.
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionDto'
+        extracted:
+          $ref: '#/components/schemas/MetadataTreeExtractedDto'
+        provenance:
+          $ref: '#/components/schemas/ProvenanceDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for metadata within a tree structure, extending the base TreeDto.
+    HashParametersDto:
+      required:
+      - algorithmName
+      - value
+      type: object
+      properties:
+        algorithmName:
+          minLength: 1
+          type: string
+          description: Gets or initializes the hash algorithm name.
+        value:
+          minLength: 1
+          type: string
+          description: Gets or initializes the hash value.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing Hash Parameters in a request.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

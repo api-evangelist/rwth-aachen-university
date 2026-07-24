@@ -1,0 +1,291 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Storage API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Storage
+  description: "Provides endpoints for managing blob storage operations for project resources,\r\nsuch as checking existence and deleting files or folders."
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/storage/{encodedPath}:
+    head:
+      tags:
+      - Storage
+      summary: Checks if a file or folder exists at the specified path within the given project and resource.
+      operationId: HeadFileFromStorage
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: query
+        description: The version to get. Null will default to the latest.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File or folder exists. Metadata is returned via response headers.
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: File or folder not found at the specified path.
+        '400':
+          description: Invalid path or query parameters.
+  /api/v2/projects/{projectId}/resources/{resourceId}/storage:
+    delete:
+      tags:
+      - Storage
+      summary: Deletes a file or folder at the specified path within the given project and resource.
+      operationId: DeleteFileFromStorage
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Blob deleted.
+        '404':
+          description: Blob does not exist.
+    get:
+      tags:
+      - Storage
+      summary: Lists the contents of a directory in the storage tree.
+      operationId: ListFilesFromStorage
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\n\r\n`Sorting is not yet supported for the file tree endpoint, but this property is included for consistency with other query parameter classes and to allow for future extensibility.`.\r\nUse \"asc\" or \"desc\" as the direction.\r\n"
+        schema:
+          type: string
+      - name: Prefix
+        in: query
+        description: "Gets or sets the prefix filter.\r\n\r\n\r\nThe prefix to filter the storage objects by.\r\nSlashes are taken into account when filtering by prefix.\r\nThe forwads slash (/) character is treated as the path separator.\r\nThe lookup is only done for one level.\r\nTo look into the next level, include the trailing slash to indicate the next level of the tree.\r\n"
+        schema:
+          type: string
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns a paged list of file tree entries for the specified resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileTreeDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileTreeDtoPagedResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: Resource not found.
+        '400':
+          description: Invalid query parameters.
+    options:
+      tags:
+      - Storage
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    TreeDataType:
+      enum:
+      - Tree
+      - Leaf
+      type: string
+      description: Represents the types of nodes within a hierarchical tree structure.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    FileTreeDto:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Gets the path of the tree item.
+        type:
+          $ref: '#/components/schemas/TreeDataType'
+        directory:
+          type: string
+          description: Gets or sets the directory of the file.
+        name:
+          type: string
+          description: Gets or sets the name of the file.
+        extension:
+          type: string
+          description: Gets or sets the extension of the file.
+        size:
+          type: integer
+          description: Gets or sets the size of the file in bytes.
+          format: int64
+        creationDate:
+          type: string
+          description: Gets or sets the creation date of the file.
+          format: date-time
+          nullable: true
+        changeDate:
+          type: string
+          description: Gets or sets the last change date of the file.
+          format: date-time
+          nullable: true
+        actions:
+          $ref: '#/components/schemas/FileActionsDto'
+        hidden:
+          type: boolean
+          description: Determines if the specific tree entry is hidden.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
+    FileActionDto:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Gets or sets the presigned URL associated with the file action.
+          format: uri
+        method:
+          $ref: '#/components/schemas/FileActionHttpMethod'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
+    FileActionHttpMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      type: string
+      description: Represents the possible HTTP methods associated with file actions.
+    FileTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileTreeDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    FileActionsDto:
+      type: object
+      properties:
+        download:
+          $ref: '#/components/schemas/FileActionDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

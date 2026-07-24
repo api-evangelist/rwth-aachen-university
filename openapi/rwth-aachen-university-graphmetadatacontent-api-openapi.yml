@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin GraphMetadataContent API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: GraphMetadataContent
+  description: "Controller responsible for accessing and managing RDF metadata content\r\nassociated with specific graph nodes of a project resource."
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/graphs/{encodedPath}/metadata/content:
+    get:
+      tags:
+      - GraphMetadataContent
+      summary: "Retrieves the raw RDF content of a specific metadata graph version\r\nfor the given resource and path."
+      operationId: GetMetadataContent
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The URL-encoded path representing the location of the graph node.
+        required: true
+        schema:
+          type: string
+      - name: graphVersion
+        in: query
+        description: The version identifier of the metadata graph to retrieve.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved the RDF content stream.
+          content:
+            text/turtle:
+              schema:
+                type: string
+            application/ld+json:
+              schema:
+                type: string
+        '404':
+          description: The specified metadata version or path was not found.
+        '400':
+          description: Invalid route or query parameters supplied.
+        '401':
+          description: The user is not authorized to access the resource.
+    put:
+      tags:
+      - GraphMetadataContent
+      summary: "Creates a new metadata graph version for a given resource and graph path.\r\nAccepts RDF content as the request body."
+      operationId: CreateMetadataVersion
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource. Supplied as a route parameter.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The URL-encoded path representing the location of the graph node.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              type: string
+              description: JSON-LD payload
+          text/turtle:
+            schema:
+              type: string
+              description: Turtle (TTL) RDF payload
+        required: true
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: The metadata version was successfully created.
+        '400':
+          description: Invalid or malformed RDF content was supplied.
+        '401':
+          description: The user is not authorized to modify the resource.
+        '415':
+          description: The provided content type is unsupported.
+    options:
+      tags:
+      - GraphMetadataContent
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: encodedPath
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,146 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Language API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Language
+  description: Endpoints for the languages.
+paths:
+  /api/v2/languages/{languageId}:
+    get:
+      tags:
+      - Language
+      summary: Retrieves a language by ID.
+      operationId: GetLanguage
+      parameters:
+      - name: languageId
+        in: path
+        description: The ID of the language.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns the language.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LanguageDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LanguageDtoResponse'
+        '404':
+          description: Language does not exist.
+  /api/v2/languages:
+    get:
+      tags:
+      - Language
+      summary: Retrieves all languages.
+      operationId: GetLanguages
+      parameters:
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the languages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LanguageDtoIEnumerableResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LanguageDtoIEnumerableResponse'
+    options:
+      tags:
+      - Language
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    LanguageDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LanguageDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LanguageDto:
+      required:
+      - abbreviation
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the language.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the language.
+        abbreviation:
+          type: string
+          description: Gets or sets the abbreviation for the language.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for language details.
+    LanguageDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

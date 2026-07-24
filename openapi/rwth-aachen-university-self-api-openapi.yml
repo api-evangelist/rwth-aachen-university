@@ -1,0 +1,622 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Self API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Self
+  description: Endpoints for the current authenticated user.
+paths:
+  /api/v2/self:
+    get:
+      tags:
+      - Self
+      summary: Retrieves the current authenticated user.
+      operationId: GetCurrentUser
+      responses:
+        '200':
+          description: Returns the current authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoResponse'
+    put:
+      tags:
+      - Self
+      summary: Updates the current authenticated user.
+      operationId: UpdateCurrentUser
+      requestBody:
+        description: The updated user data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserForUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UserForUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UserForUpdateDto'
+      responses:
+        '204':
+          description: User updated.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    delete:
+      tags:
+      - Self
+      summary: Deletes the current authenticated user.
+      operationId: DeleteCurrentUser
+      responses:
+        '204':
+          description: User deleted.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+        '409':
+          description: User has active project roles.
+    options:
+      tags:
+      - Self
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+  /api/v2/self/tos:
+    post:
+      tags:
+      - Self
+      summary: Accepts the current Terms Of Service for the current authenticated user.
+      operationId: AcceptCurrentTos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserTermsOfServiceAcceptDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UserTermsOfServiceAcceptDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UserTermsOfServiceAcceptDto'
+      responses:
+        '204':
+          description: Terms of Service accepted.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+  /api/v2/self/emails:
+    post:
+      tags:
+      - Self
+      summary: Confirms the email of a user.
+      operationId: ConfirmUserEmail
+      parameters:
+      - name: ConfirmationToken
+        in: query
+        description: Gets or initializes the confirmation token for user email confirmation.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Contact email confirmed.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+        '400':
+          description: Provided input has a bad format.
+  /api/v2/self/emails/resend:
+    post:
+      tags:
+      - Self
+      summary: Resends the confirmation email for a user.
+      operationId: ResendUserEmailConfirmation
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v2/self/identities:
+    post:
+      tags:
+      - Self
+      summary: Initiates user merging for the current user.
+      operationId: InitiateUserMerge
+      parameters:
+      - name: IdentityProvider
+        in: query
+        description: The identity provider from which user data is to be merged.
+        required: true
+        schema:
+          $ref: '#/components/schemas/IdentityProviders'
+      responses:
+        '200':
+          description: Returns the user merge dto.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserMergeDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserMergeDtoResponse'
+        '400':
+          description: Provided input has a bad format.
+  /api/v2/self/project-invitations:
+    post:
+      tags:
+      - Self
+      summary: Resolves a project invitation for the authenticated user.
+      operationId: ResolveProjectInvitation
+      requestBody:
+        description: The project invitation resolve data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInvitationResolveDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInvitationResolveDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectInvitationResolveDto'
+      responses:
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+  /api/v2/self/data-proccessing-consent:
+    post:
+      tags:
+      - Self
+      summary: Gives the consent for data processing for the current authenticated user.
+      operationId: GiveDataProcessingConsent
+      responses:
+        '204':
+          description: Data processing consent given.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+  /api/v2/self/active-project-roles-count:
+    get:
+      tags:
+      - Self
+      summary: Retrieves the number of active project roles for the currently authenticated user.
+      operationId: GetActiveProjectRolesCount
+      responses:
+        '200':
+          description: Returns the number of active project roles for the currently authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProjectRoleCountDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserProjectRoleCountDtoResponse'
+components:
+  schemas:
+    DisciplineForUserManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or initializes the identifier of the discipline.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing a discipline for user manipulation.
+    UserTermsOfServiceAcceptDto:
+      required:
+      - version
+      type: object
+      properties:
+        version:
+          minLength: 1
+          type: string
+          description: The version of the terms of service being accepted.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for accepting the terms of service by a user.
+    IdentityProviderDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the identity provider.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the identity provider.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for an identity provider.
+    UserProjectRoleCountDto:
+      type: object
+      properties:
+        activeProjectRolesTotal:
+          type: integer
+          description: Gets the total number of active project roles associated with the current authenticated user.
+          format: int32
+      additionalProperties: false
+      description: Represents a Data Transfer Object containing the number of active project roles for a user.
+    TitleForUserManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the title.
+          format: uuid
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for manipulating a user's title.
+    UserProjectRoleCountDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserProjectRoleCountDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DefaultOrganizationQuotaDto:
+      type: object
+      properties:
+        resourceTypeId:
+          type: string
+          description: Gets or sets the resource type id of the default quota.
+          format: uuid
+        defaultQuota:
+          type: integer
+          description: Gets or sets the default quota value.
+          format: int32
+        defaultMaxQuota:
+          type: integer
+          description: Gets or sets the default max quota value.
+          format: int32
+      additionalProperties: false
+      description: Represents the default quota of an organization.
+    UserEmailDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email address of the user.
+          nullable: true
+        isConfirmed:
+          type: boolean
+          description: Indicates whether the email address is confirmed.
+        isPrimary:
+          type: boolean
+          description: Indicates whether the email address is the primary one for the user.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for user email information.
+    LanguageForUserManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or initializes the identifier of the language.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing a language for user manipulation.
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+    CoscineRoleDto:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Gets or sets the name of the role (e.g. "User", "QuotaAdmin").
+      additionalProperties: false
+      description: Data Transfer Object (DTO) that represents a user role within Coscine.///
+    ProjectInvitationResolveDto:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: Gets or initializes the token associated with resolving the project invitation.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) for resolving a project invitation.
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    UserDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UserForUpdateDto:
+      required:
+      - disciplines
+      - email
+      - familyName
+      - givenName
+      - language
+      type: object
+      properties:
+        givenName:
+          minLength: 1
+          type: string
+          description: The user's given name.
+        familyName:
+          minLength: 1
+          type: string
+          description: The user's family name.
+        email:
+          minLength: 1
+          type: string
+          description: The user's email address.
+          format: email
+        title:
+          $ref: '#/components/schemas/TitleForUserManipulationDto'
+        language:
+          $ref: '#/components/schemas/LanguageForUserManipulationDto'
+        organization:
+          type: string
+          description: The user's organization.
+          nullable: true
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineForUserManipulationDto'
+          description: The disciplines associated with the user for manipulation.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for updating user details.
+    UserDto:
+      required:
+      - areToSAccepted
+      - disciplines
+      - displayName
+      - emails
+      - id
+      - identities
+      - organizations
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the user.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name of the user.
+        givenName:
+          type: string
+          description: The given name of the user.
+          nullable: true
+        familyName:
+          type: string
+          description: The family name of the user.
+          nullable: true
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserEmailDto'
+          description: The email addresses associated with the user.
+        title:
+          $ref: '#/components/schemas/TitleDto'
+        language:
+          $ref: '#/components/schemas/LanguageDto'
+        areToSAccepted:
+          type: boolean
+          description: Indicates if the terms of service are accepted by the user.
+        latestActivity:
+          type: string
+          description: The date and time of the latest activity of the user.
+          format: date-time
+          nullable: true
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineDto'
+          description: The disciplines associated with the user.
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserOrganizationDto'
+          description: The organizations associated with the user.
+        identities:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProviderDto'
+          description: The identity providers associated with the user.
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoscineRoleDto'
+          description: The coscine roles associated with the user.
+        dataProcessingConsentAt:
+          type: string
+          description: The date and time when the user give consent to the proccessing of data.
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for user-related information.
+    UserMergeDto:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: The token required for merging user accounts.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for merging user accounts.
+    UserOrganizationDto:
+      required:
+      - displayName
+      - readOnly
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Gets the ROR (Research Organization Registry) ID of the organization.
+          format: uri
+          nullable: true
+        displayName:
+          type: string
+          description: Gets the display name of the organization.
+        email:
+          type: string
+          description: Gets or sets the email address of the organization.
+          nullable: true
+        defaultQuota:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultOrganizationQuotaDto'
+          description: Gets or sets the default quota of the organization.
+          nullable: true
+        readOnly:
+          type: boolean
+          description: Gets a value indicating whether the organization's details can be modified.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for user-related organization information, inheriting from OrganizationDto.
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
+    UserMergeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserMergeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IdentityProviders:
+      enum:
+      - Shibboleth
+      - ORCiD
+      type: string
+      description: Specifies the supported external authentication services.
+    LanguageDto:
+      required:
+      - abbreviation
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the language.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the language.
+        abbreviation:
+          type: string
+          description: Gets or sets the abbreviation for the language.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for language details.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

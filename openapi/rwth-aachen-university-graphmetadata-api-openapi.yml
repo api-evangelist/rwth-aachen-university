@@ -1,0 +1,286 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin GraphMetadata API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: GraphMetadata
+  description: "Controller for managing metadata version history and retrieval\r\nfor project resources and graph nodes."
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/graphs/{encodedPath}/metadata/versions:
+    get:
+      tags:
+      - GraphMetadata
+      summary: "Retrieves a paginated list of all metadata versions available\r\nfor a specific graph node of a resource."
+      operationId: ListMetadataVersions
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The URL-encoded path to the graph node.
+        required: true
+        schema:
+          type: string
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\n\r\n\r\nThe property `version`is supported for ordering.\r\nUse \"asc\" or \"desc\" as the direction.\r\nThe Default is `version desc`.\r\n"
+        schema:
+          type: string
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successfully retrieved metadata version list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataVersionNodeDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MetadataVersionNodeDtoPagedResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: No metadata versions were found for the specified path.
+        '400':
+          description: Invalid query parameters supplied.
+  /api/v2/projects/{projectId}/resources/{resourceId}/graphs/{encodedPath}/metadata:
+    get:
+      tags:
+      - GraphMetadata
+      summary: Retrieves a specific version of the metadata graph for a given path.
+      operationId: GetMetadataVersion
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: "The URL-encoded path to the graph node.\r\n            Due to a limitation in the underlying structure, any trailing slashes in the path will be trimmed.\r\n            Test.txt and Test.txt/ will be treated as the same path."
+        required: true
+        schema:
+          type: string
+      - name: graphVersion
+        in: query
+        description: "The version identifier of the graph to retrieve.\r\nIf omitted, the latest version is returned."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved the specified metadata version.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataVersionNodeDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MetadataVersionNodeDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: The requested version was not found.
+        '400':
+          description: Invalid request parameters supplied.
+        '401':
+          description: The user is not authorized to access the resource.
+    head:
+      tags:
+      - GraphMetadata
+      summary: Checks the existence of a specific metadata version without returning content.
+      operationId: HeadMetadataVersion
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The URL-encoded path to the graph node.
+        required: true
+        schema:
+          type: string
+      - name: graphVersion
+        in: query
+        description: Optional version identifier of the graph to check.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The specified metadata version exists.
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: The metadata version was not found.
+        '400':
+          description: Invalid request parameters supplied.
+        '401':
+          description: The user is not authorized to access the resource.
+    options:
+      tags:
+      - GraphMetadata
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: encodedPath
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    MetadataVersionNodeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MetadataVersionNodeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    MetadataVersionNodeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetadataVersionNodeDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    MetadataVersionNodeDto:
+      type: object
+      properties:
+        subject:
+          type: string
+          format: uri
+          nullable: true
+        path:
+          type: string
+        version:
+          type: string
+        generatedAtTime:
+          type: string
+          format: date-time
+        isInvalidated:
+          type: boolean
+        isRevision:
+          type: boolean
+        hasVariant:
+          type: boolean
+        hasExtracted:
+          type: boolean
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

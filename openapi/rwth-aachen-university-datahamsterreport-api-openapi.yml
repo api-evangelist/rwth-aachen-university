@@ -1,0 +1,210 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin DataHamsterReport API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: DataHamsterReport
+  description: Controller for generating and downloading project-related reports.
+paths:
+  /api/v2/reports/data-hamster/3685:
+    get:
+      tags:
+      - DataHamsterReport
+      summary: Get the number of archived resources KPI report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetNumberOfArchivedResourcesKpi
+      responses:
+        '200':
+          description: Returns the data hamster report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataHamsterKpiDtoResponse'
+  /api/v2/reports/data-hamster/3681:
+    get:
+      tags:
+      - DataHamsterReport
+      summary: Get the number of created projects KPI report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetNumberOfCreatedProjectsKpi
+      responses:
+        '200':
+          description: Returns the data hamster report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataHamsterKpiDtoResponse'
+  /api/v2/reports/data-hamster/3683:
+    get:
+      tags:
+      - DataHamsterReport
+      summary: Get the number of created resources KPI report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetNumberOfCreatedResourcesKpi
+      responses:
+        '200':
+          description: Returns the data hamster report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataHamsterKpiDtoResponse'
+  /api/v2/reports/data-hamster/3691:
+    get:
+      tags:
+      - DataHamsterReport
+      summary: Get the number of users per day KPI report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetNumberOfUsersPerDayKpi
+      responses:
+        '200':
+          description: Returns the data hamster report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataHamsterKpiDtoResponse'
+  /api/v2/reports/data-hamster/type/{typeId}:
+    get:
+      tags:
+      - DataHamsterReport
+      summary: Get the storage usage per resource type report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetStorageByResourceTypeKpi
+      parameters:
+      - name: typeId
+        in: path
+        description: The id of the resource type.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns the data hamster report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageDataHamsterKpiDtoResponse'
+  /api/v2/reports/data-hamster/3689:
+    get:
+      tags:
+      - DataHamsterReport
+      summary: Get the number of users per ror report.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: GetUsersPerRorKpi
+      responses:
+        '200':
+          description: Returns the data hamster report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataHamsterKpiDtoIEnumerableResponse'
+  /api/v2/reports/data-hamster:
+    options:
+      tags:
+      - DataHamsterReport
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    DataHamsterKpiDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StorageDataHamsterKpiDto:
+      type: object
+      properties:
+        reserved:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
+        used:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
+      additionalProperties: false
+    DataHamsterKpiDto:
+      type: object
+      properties:
+        measurementId:
+          type: integer
+          format: int32
+        value:
+          type: number
+          format: double
+          nullable: true
+        start:
+          type: string
+          format: date-time
+          nullable: true
+        end:
+          type: string
+          format: date-time
+          nullable: true
+        additionalInfo:
+          type: object
+          additionalProperties:
+            type: string
+        query:
+          type: string
+          readOnly: true
+      additionalProperties: false
+    DataHamsterKpiDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataHamsterKpiDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StorageDataHamsterKpiDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StorageDataHamsterKpiDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

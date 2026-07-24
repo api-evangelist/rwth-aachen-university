@@ -1,0 +1,186 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Search API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Search
+  description: Endpoints for search.
+paths:
+  /api/v2/search:
+    get:
+      tags:
+      - Search
+      summary: Retrieves a search result by given search parameters.
+      operationId: GetSearchResults
+      parameters:
+      - name: Query
+        in: query
+        description: The search query
+        schema:
+          type: string
+      - name: UseAdvancedSyntax
+        in: query
+        description: Set true for advanced Elasticsearch search syntax
+        schema:
+          type: boolean
+      - name: Languages
+        in: query
+        description: Set the used languages
+        schema:
+          type: array
+          items:
+            type: string
+      - name: Category
+        in: query
+        description: Set the category filter
+        schema:
+          $ref: '#/components/schemas/SearchCategoryType'
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the search result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultDtoPagedSearchResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultDtoPagedSearchResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    options:
+      tags:
+      - Search
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    SearchResultDtoPagedSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResultDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCategory'
+          nullable: true
+      additionalProperties: false
+    SearchCategory:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the search category.
+        count:
+          type: integer
+          description: The count of occurrences for the search category.
+          format: int64
+      additionalProperties: false
+      description: Represents a search category with a name and count of occurrences.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    SearchCategoryType:
+      enum:
+      - None
+      - https://purl.org/coscine/terms/structure#Metadata
+      - https://purl.org/coscine/terms/structure#Project
+      - https://purl.org/coscine/terms/structure#Resource
+      type: string
+      description: Specifies the search item type.
+    SearchResultDto:
+      required:
+      - source
+      - type
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The URI associated with the search result.
+          format: uri
+        type:
+          $ref: '#/components/schemas/SearchCategoryType'
+        source:
+          description: The dynamic source data for the search result.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for search results.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,257 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Provenance API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Provenance
+  description: Endpoints for the provenance information.
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/provenance/specific:
+    get:
+      tags:
+      - Provenance
+      summary: Retrieves the specific provenance information associated with a resource.
+      operationId: GetSpecificProvenance
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Path
+        in: query
+        description: Gets or sets the path of the metadata tree.
+        required: true
+        schema:
+          type: string
+      - name: Version
+        in: query
+        description: "Gets or sets the desired version.\r\nIf the version is null, the newest will be returned."
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns the specific metadata tree of a resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvenanceDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProvenanceDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Project does not exist or has been deleted.
+    put:
+      tags:
+      - Provenance
+      summary: Updates existing specific provenance information of a resource.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: UpdateSpecificProvenance
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The updated provenance information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvenanceForUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProvenanceForUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProvenanceForUpdateDto'
+      responses:
+        '204':
+          description: Provenance information updated.
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format or the resource is write-protected due to its archived status.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+  /api/v2/projects/{projectId}/resources/{resourceId}/provenance:
+    options:
+      tags:
+      - Provenance
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    ProvenanceDto:
+      required:
+      - id
+      - variants
+      - wasRevisionOf
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the id of the current metadata graph.
+          format: uri
+        generatedAt:
+          type: string
+          description: Gets or sets the date and time when the metadata was generated.
+          format: date-time
+          nullable: true
+        wasRevisionOf:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Gets or sets the adapted versions from the specific metadata tree.
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantDto'
+          description: Gets or sets the variants of the specific metadata tree.
+        similarityToLastVersion:
+          type: number
+          description: The similarity to the last version.
+          format: double
+          nullable: true
+        wasInvalidatedBy:
+          type: string
+          description: Information if the specific metadata tree was invalidated by something.
+          format: uri
+          nullable: true
+        hashParameters:
+          $ref: '#/components/schemas/HashParametersDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for provenance information.
+    ProvenanceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProvenanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProvenanceForUpdateDto:
+      required:
+      - id
+      type: object
+      properties:
+        wasRevisionOf:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Gets or sets the adapted versions from the specific metadata tree.
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantDto'
+          description: Gets or sets the variants of the specific metadata tree.
+        wasInvalidatedBy:
+          type: string
+          description: Information if the specific metadata tree was invalidated by something.
+          format: uri
+          nullable: true
+        similarityToLastVersion:
+          type: number
+          description: The similarity to the last version.
+          format: double
+          nullable: true
+        metadataExtractorVersion:
+          type: string
+          description: Gets or initializes the version of the metadata extractor.
+          nullable: true
+        hashParameters:
+          $ref: '#/components/schemas/HashParametersDto'
+        id:
+          type: string
+          description: Gets or sets the id of the specific metadata tree.
+          format: uri
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the update of provenance\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProvenanceParametersDto."
+    VariantDto:
+      type: object
+      properties:
+        graphName:
+          type: string
+          description: Name of the graph.
+          format: uri
+        similarity:
+          type: number
+          description: Similarity value 0-1
+          format: double
+      additionalProperties: false
+      description: Represents the variants of this specific metadata tree.
+    HashParametersDto:
+      required:
+      - algorithmName
+      - value
+      type: object
+      properties:
+        algorithmName:
+          minLength: 1
+          type: string
+          description: Gets or initializes the hash algorithm name.
+        value:
+          minLength: 1
+          type: string
+          description: Gets or initializes the hash value.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing Hash Parameters in a request.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

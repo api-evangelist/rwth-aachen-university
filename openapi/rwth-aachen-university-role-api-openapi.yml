@@ -1,0 +1,177 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Role API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Role
+  description: Endpoints for the roles.
+paths:
+  /api/v2/roles/{roleId}:
+    get:
+      tags:
+      - Role
+      summary: Retrieves a role by ID.
+      operationId: GetRole
+      parameters:
+      - name: roleId
+        in: path
+        description: The ID of the role.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns the role.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RoleDtoResponse'
+        '404':
+          description: Role does not exist.
+  /api/v2/roles:
+    get:
+      tags:
+      - Role
+      summary: Retrieves all roles.
+      operationId: GetRoles
+      parameters:
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the roles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RoleDtoPagedResponse'
+    options:
+      tags:
+      - Role
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    RoleDto:
+      required:
+      - description
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the role.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name of the role.
+        description:
+          type: string
+          description: The description of the role.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a role.
+    RoleDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    RoleDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

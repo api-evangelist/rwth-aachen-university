@@ -1,0 +1,177 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin StorageContent API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: StorageContent
+  description: "Provides endpoints for managing raw file content in blob storage for project resources,\r\nincluding downloading, uploading, and updating files."
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/storage/{encodedPath}/content:
+    get:
+      tags:
+      - StorageContent
+      summary: Retrieves the raw content of a file, optionally at a specific version.
+      operationId: GetStorageRaw
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved the raw file content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '302':
+          description: Redirects to the file download URL.
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: The specified file was not found.
+        '400':
+          description: Invalid path or query parameters.
+    post:
+      tags:
+      - StorageContent
+      summary: Uploads a new file with raw content.
+      operationId: PostStorageRaw
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '201':
+          description: Blob created.
+        '400':
+          description: Blob already exists.
+        '415':
+          description: Blob is not of the type "multipart/form-data"
+        '413':
+          description: Blob is to large.
+    put:
+      tags:
+      - StorageContent
+      summary: Updates or overwrites a file with new raw content.
+      operationId: PutStorageRaw
+      parameters:
+      - name: projectId
+        in: path
+        description: The unique identifier of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The unique identifier of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: encodedPath
+        in: path
+        description: The url encoded path of the file.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '201':
+          description: Blob updated.
+        '400':
+          description: Blob already exists.
+        '415':
+          description: Blob is not of the type "multipart/form-data"
+        '413':
+          description: Blob is to large.
+    options:
+      tags:
+      - StorageContent
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: encodedPath
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

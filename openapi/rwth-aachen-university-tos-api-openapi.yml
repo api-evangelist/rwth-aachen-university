@@ -1,0 +1,83 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Tos API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Tos
+  description: Endpoints for the terms of services (tos).
+paths:
+  /api/v2/tos:
+    get:
+      tags:
+      - Tos
+      summary: Retrieves the current Terms of Service version.
+      operationId: GetTos
+      responses:
+        '200':
+          description: Returns the current Terms of Service version.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermsOfServiceDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TermsOfServiceDtoResponse'
+    options:
+      tags:
+      - Tos
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    TermsOfServiceDto:
+      required:
+      - href
+      - isCurrent
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+          description: The version of the terms of service.
+        href:
+          type: string
+          description: The URI point to the content of ToS' version
+          format: uri
+        isCurrent:
+          type: boolean
+          description: Indicates whether these terms of service are current or not.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for terms of service information.
+    TermsOfServiceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TermsOfServiceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,212 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Handle API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Handle
+  description: Endpoints for the handles.
+paths:
+  /api/v2/handles/{prefix}/{suffix}:
+    get:
+      tags:
+      - Handle
+      summary: Retrieves all values of a handle by its PID.
+      operationId: GetHandle
+      parameters:
+      - name: prefix
+        in: path
+        description: The prefix of the PID
+        required: true
+        schema:
+          type: string
+      - name: suffix
+        in: path
+        description: The suffix of the PID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the handles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandleDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandleDtoResponse'
+        '403':
+          description: User is missing authorization requirements. This endpoint is only available to Coscine Admin users.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    put:
+      tags:
+      - Handle
+      summary: Updates a handle.
+      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      operationId: UpdateHandle
+      parameters:
+      - name: prefix
+        in: path
+        description: The prefix of the PID
+        required: true
+        schema:
+          type: string
+      - name: suffix
+        in: path
+        description: The suffix of the PID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The handle for updating.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandleForUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/HandleForUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/HandleForUpdateDto'
+      responses:
+        '204':
+          description: Handle updated.
+        '403':
+          description: User is missing authorization requirements. This endpoint is only available to Coscine Admin users.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+  /api/v2/handles:
+    options:
+      tags:
+      - Handle
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    HandleValueDto:
+      type: object
+      properties:
+        idx:
+          type: integer
+          format: int32
+        type:
+          type: string
+        parsed_data: {}
+        data:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        ttl_type:
+          type: integer
+          format: int32
+        ttl:
+          type: integer
+          format: int32
+        refs:
+          type: array
+          items: {}
+        privs:
+          type: string
+      additionalProperties: false
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
+    HandleDto:
+      type: object
+      properties:
+        pid:
+          $ref: '#/components/schemas/PidDto'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandleValueDto'
+      additionalProperties: false
+    PidDto:
+      required:
+      - prefix
+      - suffix
+      type: object
+      properties:
+        prefix:
+          type: string
+          description: Gets or sets the prefix of the PID.
+        suffix:
+          type: string
+          description: Gets or sets the suffix of the PID.
+        identifier:
+          type: string
+          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/PidType'
+        isEntityValid:
+          type: boolean
+          description: Gets or sets a value indicating whether the linked entity is considered valid.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
+    HandleValueForUpdateDto:
+      required:
+      - parsed_data
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: The data type of the handle.
+        parsed_data:
+          description: The parsed data of the handle.
+        idx:
+          type: integer
+          description: The id of the handle.
+          format: int32
+      additionalProperties: false
+      description: Data transfer object (DTO) representing updating a handle.
+    HandleForUpdateDto:
+      required:
+      - values
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandleValueForUpdateDto'
+      additionalProperties: false
+    HandleDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/HandleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

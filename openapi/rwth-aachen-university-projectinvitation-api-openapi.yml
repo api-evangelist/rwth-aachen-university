@@ -1,0 +1,347 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin ProjectInvitation API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: ProjectInvitation
+  description: Endpoints for the project invitations.
+paths:
+  /api/v2/projects/{projectId}/invitations/{projectInvitationId}:
+    get:
+      tags:
+      - ProjectInvitation
+      summary: Retrieves a project invitation for a specified project.
+      operationId: GetProjectInvitation
+      parameters:
+      - name: projectId
+        in: path
+        description: The Id or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: projectInvitationId
+        in: path
+        description: The ID of the project invitation to retrieve.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns the project invitation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectInvitationDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectInvitationDtoResponse'
+        '404':
+          description: Project invitation does not exist.
+    delete:
+      tags:
+      - ProjectInvitation
+      summary: Deletes a project invitation for a specified project.
+      operationId: DeleteProjectInvitation
+      parameters:
+      - name: projectId
+        in: path
+        description: The Id or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: projectInvitationId
+        in: path
+        description: The ID of the project invitation to delete.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Project invitation deleted.
+        '403':
+          description: User is missing authorization requirements.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+  /api/v2/projects/{projectId}/invitations:
+    get:
+      tags:
+      - ProjectInvitation
+      summary: Retrieves all project invitations for a specified project.
+      operationId: GetProjectInvitations
+      parameters:
+      - name: projectId
+        in: path
+        description: The Id or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the project invitations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectInvitationDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectInvitationDtoPagedResponse'
+    post:
+      tags:
+      - ProjectInvitation
+      summary: Creates a project invitation for a specified project.
+      operationId: CreateProjectInvitation
+      parameters:
+      - name: projectId
+        in: path
+        description: The Id or slug of the project.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The project invitation data for creation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInvitationForProjectManipulationDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInvitationForProjectManipulationDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectInvitationForProjectManipulationDto'
+      responses:
+        '201':
+          description: Project invitation created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectInvitationDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectInvitationDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    options:
+      tags:
+      - ProjectInvitation
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    ProjectInvitationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectInvitationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PublicUserDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets the unique identifier of the user.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets the display name of the user.
+        givenName:
+          type: string
+          description: Gets the given name of the user.
+          nullable: true
+        familyName:
+          type: string
+          description: Gets the family name of the user.
+          nullable: true
+        email:
+          type: string
+          description: Gets the email address of the user.
+          nullable: true
+        title:
+          $ref: '#/components/schemas/TitleDto'
+      additionalProperties: false
+      description: Represents a public user data transfer object (DTO).
+    ProjectInvitationForProjectManipulationDto:
+      required:
+      - email
+      - roleId
+      type: object
+      properties:
+        roleId:
+          type: string
+          description: Gets or initializes the identifier of the role associated with the invitation.
+          format: uuid
+        email:
+          minLength: 1
+          type: string
+          description: Gets or initializes the email address of the invited user.
+          format: email
+      additionalProperties: false
+      description: Data transfer object (DTO) representing an invitation for project manipulation.
+    RoleMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the role.
+          format: uuid
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) containing minimal information about a role.
+    ProjectInvitationDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectInvitationDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+    ProjectInvitationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the invitation.
+          format: uuid
+        expirationDate:
+          type: string
+          description: Expiration date of the invitation.
+          format: date-time
+        email:
+          type: string
+          description: Email associated with the invitation.
+        issuer:
+          $ref: '#/components/schemas/PublicUserDto'
+        project:
+          $ref: '#/components/schemas/ProjectMinimalDto'
+        role:
+          $ref: '#/components/schemas/RoleMinimalDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for project invitations.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Maintenance API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Maintenance
+  description: Endpoints for the maintenances.
+paths:
+  /api/v2/maintenances:
+    get:
+      tags:
+      - Maintenance
+      summary: Retrieves the current maintenance messages.
+      operationId: GetCurrentMaintenances
+      responses:
+        '200':
+          description: Returns the maintenances.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceDtoPagedResponse'
+      deprecated: true
+    options:
+      tags:
+      - Maintenance
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    MaintenanceDto:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: Gets or sets the maintenance title.
+        href:
+          type: string
+          description: Gets or sets the URL related to the maintenance.
+          format: uri
+        type:
+          type: string
+          description: Gets or sets the type of maintenance.
+        body:
+          type: string
+          description: Gets or sets the description of the maintenance.
+        startsDate:
+          type: string
+          description: Gets or sets the start date of the maintenance, if available.
+          format: date-time
+          nullable: true
+        endsDate:
+          type: string
+          description: Gets or sets the end date of the maintenance, if available.
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: This class represents a maintenance with its significant properties, which is returned from the API.
+    MaintenanceDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MaintenanceDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

@@ -1,0 +1,176 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Notification API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Notification
+  description: Endpoints for the notifications.
+paths:
+  /api/v2/notifications/{notificationId}:
+    get:
+      tags:
+      - Notification
+      summary: Retrieves a notification.
+      operationId: GetNotification
+      parameters:
+      - name: notificationId
+        in: path
+        description: The ID of the notification.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the notification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoResponse'
+        '404':
+          description: Notification does not exist.
+  /api/v2/notifications:
+    get:
+      tags:
+      - Notification
+      summary: Retrieves all notifications.
+      operationId: GetNotifications
+      parameters:
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the notifications.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/NotificationDtoPagedResponse'
+    options:
+      tags:
+      - Notification
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    NotificationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    NotificationDto:
+      required:
+      - category
+      - id
+      - isOptional
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project notification.
+          format: uuid
+        category:
+          type: string
+          description: Category of the notification.
+        isOptional:
+          type: boolean
+          description: Field which clarifies if the notification is optional or not.
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a notification.
+    NotificationDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

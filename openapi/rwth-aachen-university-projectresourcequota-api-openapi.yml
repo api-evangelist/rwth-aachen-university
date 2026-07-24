@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin ProjectResourceQuota API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: ProjectResourceQuota
+  description: Endpoints for the resource quotas.
+paths:
+  /api/v2/projects/{projectId}/resources/{resourceId}/quota:
+    get:
+      tags:
+      - ProjectResourceQuota
+      summary: Retrieves the resource quota for a specific resource in a project.
+      operationId: GetQuotaForResourceForProject
+      parameters:
+      - name: projectId
+        in: path
+        description: The Id or slug of the project.
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        description: The ID of the resource.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: versionInfo
+        in: query
+        description: If versioning information should be loaded.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Returns the resource quota.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceQuotaDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceQuotaDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+    options:
+      tags:
+      - ProjectResourceQuota
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    QuotaDto:
+      required:
+      - unit
+      - value
+      type: object
+      properties:
+        value:
+          type: number
+          description: The value of the quota.
+          format: float
+        unit:
+          $ref: '#/components/schemas/QuotaUnit'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for quota values.
+    QuotaUnit:
+      enum:
+      - https://qudt.org/vocab/unit/BYTE
+      - https://qudt.org/vocab/unit/KibiBYTE
+      - https://qudt.org/vocab/unit/MebiBYTE
+      - https://qudt.org/vocab/unit/GibiBYTE
+      - https://qudt.org/vocab/unit/TebiBYTE
+      - https://qudt.org/vocab/unit/PebiBYTE
+      type: string
+      description: Specifies the unit of quota.
+    ResourceQuotaDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceQuotaDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResourceMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
+    ResourceQuotaDto:
+      required:
+      - resource
+      type: object
+      properties:
+        resource:
+          $ref: '#/components/schemas/ResourceMinimalDto'
+        usedPercentage:
+          type: number
+          description: The percentage of quota used by the resource.
+          format: float
+          nullable: true
+        used:
+          $ref: '#/components/schemas/QuotaDto'
+        versions:
+          $ref: '#/components/schemas/QuotaDto'
+        reserved:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

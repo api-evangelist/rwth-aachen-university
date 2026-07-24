@@ -1,0 +1,628 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Project API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Project
+  description: Endpoints for the projects.
+paths:
+  /api/v2/projects:
+    post:
+      tags:
+      - Project
+      summary: Creates a new project.
+      operationId: CreateProject
+      requestBody:
+        description: The project data for creation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectForCreationDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectForCreationDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectForCreationDto'
+      responses:
+        '201':
+          description: Project created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    get:
+      tags:
+      - Project
+      summary: Retrieves all projects.
+      operationId: GetProjects
+      parameters:
+      - name: IncludeOrganizations
+        in: query
+        description: Gets or sets a value indicating whether to retrieve the organizations.
+        schema:
+          type: boolean
+      - name: TopLevel
+        in: query
+        description: Gets or sets a value indicating whether to retrieve only top-level projects.
+        schema:
+          type: boolean
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoPagedResponse'
+        '403':
+          description: User is missing authorization requirements.
+    options:
+      tags:
+      - Project
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+  /api/v2/projects/{projectId}:
+    get:
+      tags:
+      - Project
+      summary: Retrieves a project.
+      operationId: GetProject
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project.
+        required: true
+        schema:
+          type: string
+      - name: IncludeSubProjects
+        in: query
+        description: Gets or sets a value indicating whether to include sub-projects in the retrieval.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Returns the project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoResponse'
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format.
+        '404':
+          description: Project does not exist or has been deleted.
+    put:
+      tags:
+      - Project
+      summary: Updates a project.
+      operationId: UpdateProject
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The updated project data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectForUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectForUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectForUpdateDto'
+      responses:
+        '204':
+          description: Project updated.
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format or the resource is write-protected due to its archived status.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+    delete:
+      tags:
+      - Project
+      summary: Deletes a project.
+      operationId: DeleteProject
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Project deleted.
+        '403':
+          description: User is missing authorization requirements.
+        '400':
+          description: Provided input has a bad format or the resource is write-protected due to its archived status.
+        '404':
+          description: Provided input refers to entries that do not exist or have been deleted.
+components:
+  schemas:
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
+        email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
+          type: string
+          description: Gets the data publication service's description.
+          nullable: true
+        organizationRor:
+          type: string
+          description: Gets the ROR of the organization that provides this publication service.
+          nullable: true
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
+    VisibilityDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the visibility setting.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name for the visibility setting.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
+    DisciplineForProjectManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or initializes the identifier of the discipline.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing a discipline for project manipulation.
+    OrganizationForProjectManipulationDto:
+      required:
+      - responsible
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Gets or initializes the URI of the organization.
+          format: uri
+        responsible:
+          type: boolean
+          description: Gets or initializes if the organization is responsible.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing an organization for project manipulation.
+    ProjectDto:
+      required:
+      - description
+      - disciplines
+      - endDate
+      - id
+      - name
+      - organizations
+      - pid
+      - slug
+      - startDate
+      - visibility
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+        pid:
+          type: string
+          description: Persistent identifier for the project.
+        name:
+          type: string
+          description: Name of the project.
+        description:
+          type: string
+          description: Description of the project.
+        startDate:
+          type: string
+          description: Start date of the project.
+          format: date-time
+        endDate:
+          type: string
+          description: End date of the project.
+          format: date-time
+        keywords:
+          type: array
+          items:
+            type: string
+          description: Collection of keywords associated with the project.
+          nullable: true
+        displayName:
+          type: string
+          description: Display name of the project.
+          nullable: true
+        principleInvestigators:
+          type: string
+          description: Principal investigators involved in the project.
+          nullable: true
+        grantId:
+          type: string
+          description: Grant ID associated with the project.
+          nullable: true
+        visibility:
+          $ref: '#/components/schemas/VisibilityDto'
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineDto'
+          description: Disciplines related to the project.
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectOrganizationDto'
+          description: Organizations associated with the project.
+        slug:
+          type: string
+          description: Slug for the project.
+        creator:
+          $ref: '#/components/schemas/UserMinimalDto'
+        creationDate:
+          type: string
+          description: Date of creation of the project.
+          format: date-time
+          nullable: true
+        subProjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDto'
+          description: Collection of sub-projects associated with this project.
+          nullable: true
+          deprecated: true
+        parent:
+          $ref: '#/components/schemas/ProjectMinimalDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for project information.
+    ProjectForUpdateDto:
+      required:
+      - description
+      - disciplines
+      - name
+      - organizations
+      - slug
+      - visibility
+      type: object
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+          description: Gets or initializes the name of the project.
+        description:
+          maxLength: 10000
+          minLength: 1
+          type: string
+          description: Gets or initializes the description of the project.
+        startDate:
+          type: string
+          description: Gets or initializes the start date of the project.
+          format: date-time
+        endDate:
+          type: string
+          description: Gets or initializes the end date of the project.
+          format: date-time
+        keywords:
+          type: array
+          items:
+            type: string
+          description: Gets or initializes the keywords associated with the project.
+          nullable: true
+        displayName:
+          maxLength: 25
+          type: string
+          description: Gets or initializes the display name of the project.
+          nullable: true
+        principleInvestigators:
+          maxLength: 500
+          type: string
+          description: Gets or initializes the principal investigators associated with the project.
+          nullable: true
+        grantId:
+          maxLength: 500
+          type: string
+          description: Gets or initializes the grant ID associated with the project.
+          nullable: true
+        visibility:
+          $ref: '#/components/schemas/VisibilityForProjectManipulationDto'
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineForProjectManipulationDto'
+          description: Gets or initializes the disciplines associated with the project.
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationForProjectManipulationDto'
+          description: Gets or initializes the organizations associated with the project.
+        slug:
+          maxLength: 63
+          minLength: 1
+          type: string
+          description: Gets or initializes the slug associated with the project for identification purposes.
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the update of a project.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectForManipulationDto."
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
+    ProjectDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    ProjectOrganizationDto:
+      required:
+      - displayName
+      - responsible
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
+          type: string
+          description: The email address of the organization.
+          nullable: true
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+        responsible:
+          type: boolean
+          description: Determines if the organization is Responsible for a given project.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization in the context of a project.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
+    VisibilityForProjectManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the visibility setting.
+          format: uuid
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for manipulating the visibility of a project.
+    ProjectForCreationDto:
+      required:
+      - description
+      - disciplines
+      - name
+      - organizations
+      - visibility
+      type: object
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+          description: Gets or initializes the name of the project.
+        description:
+          maxLength: 10000
+          minLength: 1
+          type: string
+          description: Gets or initializes the description of the project.
+        startDate:
+          type: string
+          description: Gets or initializes the start date of the project.
+          format: date-time
+        endDate:
+          type: string
+          description: Gets or initializes the end date of the project.
+          format: date-time
+        keywords:
+          type: array
+          items:
+            type: string
+          description: Gets or initializes the keywords associated with the project.
+          nullable: true
+        displayName:
+          maxLength: 25
+          type: string
+          description: Gets or initializes the display name of the project.
+          nullable: true
+        principleInvestigators:
+          maxLength: 500
+          type: string
+          description: Gets or initializes the principal investigators associated with the project.
+          nullable: true
+        grantId:
+          maxLength: 500
+          type: string
+          description: Gets or initializes the grant ID associated with the project.
+          nullable: true
+        visibility:
+          $ref: '#/components/schemas/VisibilityForProjectManipulationDto'
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineForProjectManipulationDto'
+          description: Gets or initializes the disciplines associated with the project.
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationForProjectManipulationDto'
+          description: Gets or initializes the organizations associated with the project.
+        parentId:
+          type: string
+          description: Gets or initializes the identifier of the parent project.
+          format: uuid
+          nullable: true
+        copyOwnersFromParent:
+          type: boolean
+          description: Gets or initializes if the owners of the parent project should be copied to the sub project.
+          nullable: true
+      additionalProperties: false
+      description: "Data transfer object (DTO) representing the creation of a project.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectForManipulationDto."
+    ProjectDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

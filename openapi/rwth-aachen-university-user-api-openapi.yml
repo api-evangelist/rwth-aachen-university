@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin User API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: User
+  description: Endpoints for the users.
+paths:
+  /api/v2/users:
+    get:
+      tags:
+      - User
+      summary: Retrieves all users.
+      operationId: GetUsers
+      parameters:
+      - name: OrderBy
+        in: query
+        description: Gets or sets the field by which the search results are ordered. Defaults to "firstName".
+        schema:
+          type: string
+      - name: SearchTerm
+        in: query
+        description: Gets or sets the search term.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the users.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicUserDtoIEnumerableResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PublicUserDtoIEnumerableResponse'
+        '403':
+          description: User is missing authorization requirements.
+    options:
+      tags:
+      - User
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    PublicUserDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets the unique identifier of the user.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets the display name of the user.
+        givenName:
+          type: string
+          description: Gets the given name of the user.
+          nullable: true
+        familyName:
+          type: string
+          description: Gets the family name of the user.
+          nullable: true
+        email:
+          type: string
+          description: Gets the email address of the user.
+          nullable: true
+        title:
+          $ref: '#/components/schemas/TitleDto'
+      additionalProperties: false
+      description: Represents a public user data transfer object (DTO).
+    PublicUserDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicUserDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

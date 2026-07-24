@@ -1,0 +1,221 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin Organization API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: Organization
+  description: Endpoints for the organizations.
+paths:
+  /api/v2/organizations/{organizationRorUri}:
+    get:
+      tags:
+      - Organization
+      summary: Retrieves an organization.
+      operationId: GetOrganization
+      parameters:
+      - name: organizationRorUri
+        in: path
+        description: The parameters for organization filtering and pagination.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the organizations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoResponse'
+  /api/v2/organizations:
+    get:
+      tags:
+      - Organization
+      summary: Retrieves all organizations.
+      operationId: GetOrganizations
+      parameters:
+      - name: SearchTerm
+        in: query
+        description: Gets or sets the search term used to filter organizations.
+        schema:
+          type: string
+      - name: Language
+        in: query
+        description: Language of name or text (dataPublicationService)
+        schema:
+          $ref: '#/components/schemas/AcceptedLanguage'
+      - name: FilterByPublicationService
+        in: query
+        description: Gets or sets the option to find only organizations having the publication service set.
+        schema:
+          type: boolean
+      - name: PageNumber
+        in: query
+        description: Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1.
+        schema:
+          type: integer
+          format: int32
+      - name: PageSize
+        in: query
+        description: Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10.
+        schema:
+          type: integer
+          format: int32
+      - name: OrderBy
+        in: query
+        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the organizations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoPagedResponse'
+    options:
+      tags:
+      - Organization
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
+        email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
+          type: string
+          description: Gets the data publication service's description.
+          nullable: true
+        organizationRor:
+          type: string
+          description: Gets the ROR of the organization that provides this publication service.
+          nullable: true
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
+    OrganizationDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDto'
+          nullable: true
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
+    OrganizationDto:
+      required:
+      - displayName
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
+          type: string
+          description: The email address of the organization.
+          nullable: true
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    OrganizationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/OrganizationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header

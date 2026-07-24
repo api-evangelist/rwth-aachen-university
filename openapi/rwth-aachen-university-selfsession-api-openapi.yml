@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  title: Coscine Web Admin SelfSession API
+  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  termsOfService: https://about.coscine.de/en/termsofuse/
+  contact:
+    name: Coscine Team
+    email: servicedesk@rwth-aachen.de
+  version: '2.0'
+servers:
+- url: https://coscine.rwth-aachen.de/coscine
+security:
+- Bearer: []
+tags:
+- name: SelfSession
+  description: Endpoints for the current current session.
+paths:
+  /api/v2/self/session:
+    get:
+      tags:
+      - SelfSession
+      summary: Initiate the login workflow with the default (NFDI4Ing AAI) provider.
+      operationId: Login
+      responses:
+        '200':
+          description: OK
+    options:
+      tags:
+      - SelfSession
+      summary: Responds with the HTTP methods allowed for the endpoint.
+      responses:
+        '200':
+          description: OK
+  /api/v2/self/session/{externalAuthenticatorId}:
+    get:
+      tags:
+      - SelfSession
+      summary: Initiate the login workflow with specific provider.
+      operationId: LoginWithProvider
+      parameters:
+      - name: externalAuthenticatorId
+        in: path
+        description: The ID of the external authenticator to use for login.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v2/self/session/merge/{externalAuthenticatorId}:
+    get:
+      tags:
+      - SelfSession
+      summary: Initiate the merge workflow with specific provider.
+      operationId: Merge
+      parameters:
+      - name: externalAuthenticatorId
+        in: path
+        description: The ID of the external authenticator to use for login.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v2/self/session/logout:
+    post:
+      tags:
+      - SelfSession
+      summary: Initiate the Log out workflow.
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: JWT Authorization header using the Bearer scheme.
+      name: Authorization
+      in: header
