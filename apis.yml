@@ -14,9 +14,22 @@ description: >-
   authorization. The university also runs a self-hosted GitLab at
   git.rwth-aachen.de used widely across its institutes.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rwth-aachen-university.png
 url: https://raw.githubusercontent.com/api-evangelist/rwth-aachen-university/refs/heads/main/apis.yml
 tags:
   - Education
@@ -29,80 +42,1742 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: rwth-aachen-university:coscine
-    name: Coscine Research Data API
-    description: >-
-      Coscine (Collaborative Scientific Integration Environment) is RWTH Aachen
-      University's research data management platform. It provides a public,
-      Swagger/OpenAPI-documented REST API for managing projects, resources,
-      metadata, and research data stored via S3-based object storage, following
-      FAIR principles. Access requires an API access token. Official C#, TypeScript,
-      and a community Python SDK are available.
-    humanURL: https://docs.coscine.de/en/api/api/
-    baseURL: https://coscine.rwth-aachen.de/coscine/api/
-    tags: [ Research Data, FAIR, REST, OpenAPI, Data Management ]
-    properties:
-      - type: Documentation
-        url: https://docs.coscine.de/en/api/api/
-      - type: OpenAPI
-        url: https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json
-      - type: Swagger
-        url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
-      - type: Authentication
-        url: https://docs.coscine.de/en/api/api/
-      - type: OpenAPI
-        url: openapi/rwth-aachen-university-coscine.yaml
-      - type: JSONSchema
-        url: json-schema/rwth-aachen-university-project-schema.json
-      - type: JSONSchema
-        url: json-schema/rwth-aachen-university-resource-schema.json
-      - type: JSONSchema
-        url: json-schema/rwth-aachen-university-apitoken-schema.json
-      - type: x-json-structure
-        url: json-structure/rwth-aachen-university-project-structure.json
-      - type: x-json-structure
-        url: json-structure/rwth-aachen-university-resource-structure.json
-      - type: x-example
-        url: examples/rwth-aachen-university-get-project-example.json
-      - type: x-example
-        url: examples/rwth-aachen-university-get-resource-example.json
-      - type: x-spectral-rules
-        url: rules/rwth-aachen-university-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/rwth-aachen-university-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/rwth-aachen-university-context.jsonld
-  - aid: rwth-aachen-university:publications-oai
-    name: RWTH Publications OAI-PMH
-    description: >-
-      RWTH Publications is the institutional repository providing access to the
-      publication output of RWTH Aachen University. It exposes metadata via the
-      Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH) at
-      publications.rwth-aachen.de/oai2d, enabling third-party harvesting of
-      bibliographic records. The repository is indexed by OpenAIRE and re3data.
-    humanURL: https://publications.rwth-aachen.de/
-    baseURL: https://publications.rwth-aachen.de/oai2d
-    tags: [ OAI-PMH, Repository, Metadata, Open Access, Scholarly ]
-    properties:
-      - type: Documentation
-        url: https://publications.rwth-aachen.de/
-      - type: Repository
-        url: https://www.re3data.org/repository/r3d100012911
-  - aid: rwth-aachen-university:sso
-    name: RWTH Single Sign-On (OAuth2 / OpenID Connect / Shibboleth)
-    description: >-
-      The RWTH IT Center operates the central Single Sign-On at sso.rwth-aachen.de,
-      offering OAuth2 and OpenID Connect for web and mobile application
-      authorization (Device, Implicit, and Refresh grants) as well as
-      Shibboleth/SAML2 federated authentication via the DFN-AAI federation.
-      Application registration is handled through the OAuth2 Management Interface.
-    humanURL: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
-    tags: [ Authentication, OAuth2, OpenID Connect, Shibboleth, SAML, Identity ]
-    properties:
-      - type: Documentation
-        url: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
-      - type: Authentication
-        url: https://oauth.campus.rwth-aachen.de/
+- aid: rwth-aachen-university:publications-oai
+  name: RWTH Publications OAI-PMH
+  description: >-
+    RWTH Publications is the institutional repository providing access to the publication output of RWTH
+    Aachen University. It exposes metadata via the Open Archives Initiative Protocol for Metadata Harvesting
+    (OAI-PMH) at publications.rwth-aachen.de/oai2d, enabling third-party harvesting of bibliographic records.
+    The repository is indexed by OpenAIRE and re3data.
+  humanURL: https://publications.rwth-aachen.de/
+  baseURL: https://publications.rwth-aachen.de/oai2d
+  tags:
+  - OAI-PMH
+  - Repository
+  - Metadata
+  - Open Access
+  - Scholarly
+  properties:
+  - type: Documentation
+    url: https://publications.rwth-aachen.de/
+  - type: Repository
+    url: https://www.re3data.org/repository/r3d100012911
+- aid: rwth-aachen-university:sso
+  name: RWTH Single Sign-On (OAuth2 / OpenID Connect / Shibboleth)
+  description: >-
+    The RWTH IT Center operates the central Single Sign-On at sso.rwth-aachen.de, offering OAuth2 and
+    OpenID Connect for web and mobile application authorization (Device, Implicit, and Refresh grants)
+    as well as Shibboleth/SAML2 federated authentication via the DFN-AAI federation. Application registration
+    is handled through the OAuth2 Management Interface.
+  humanURL: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
+  tags:
+  - Authentication
+  - OAuth2
+  - OpenID Connect
+  - Shibboleth
+  - SAML
+  - Identity
+  properties:
+  - type: Documentation
+    url: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
+  - type: Authentication
+    url: https://oauth.campus.rwth-aachen.de/
+- aid: rwth-aachen-university:rwth-aachen-university-admin-api
+  name: RWTH Aachen University Admin API
+  description: Endpoints for admin functionality.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-admin-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-applicationprofile-api
+  name: RWTH Aachen University ApplicationProfile API
+  description: Endpoints for the applications profiles.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ApplicationProfile
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-applicationprofile-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-blob-api
+  name: RWTH Aachen University Blob API
+  description: Endpoints for the Binary Large Objects (BLOBs).
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Blob
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-blob-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-datahamsterreport-api
+  name: RWTH Aachen University DataHamsterReport API
+  description: Controller for generating and downloading project-related reports.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - DataHamsterReport
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-datahamsterreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-discipline-api
+  name: RWTH Aachen University Discipline API
+  description: Endpoints for the disciplines.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Discipline
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-discipline-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-graph-api
+  name: RWTH Aachen University Graph API
+  description: Controller for managing storage operations for project resources.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Graph
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-graph-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-graphmetadata-api
+  name: RWTH Aachen University GraphMetadata API
+  description: "Controller for managing metadata version history and retrieval\r\nfor project resources\
+    \ and graph nodes."
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - GraphMetadata
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-graphmetadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-graphmetadatacontent-api
+  name: RWTH Aachen University GraphMetadataContent API
+  description: "Controller responsible for accessing and managing RDF metadata content\r\nassociated with\
+    \ specific graph nodes of a project resource."
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - GraphMetadataContent
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-graphmetadatacontent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-handle-api
+  name: RWTH Aachen University Handle API
+  description: Endpoints for the handles.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Handle
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-handle-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-language-api
+  name: RWTH Aachen University Language API
+  description: Endpoints for the languages.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Language
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-language-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-license-api
+  name: RWTH Aachen University License API
+  description: Endpoints for the licenses.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - License
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-license-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-maintenance-api
+  name: RWTH Aachen University Maintenance API
+  description: Endpoints for the maintenances.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Maintenance
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-maintenance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-notification-api
+  name: RWTH Aachen University Notification API
+  description: Endpoints for the notifications.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Notification
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-notification-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-organization-api
+  name: RWTH Aachen University Organization API
+  description: Endpoints for the organizations.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-organization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-pid-api
+  name: RWTH Aachen University Pid API
+  description: Endpoints for the pids.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Pid
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-pid-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-project-api
+  name: RWTH Aachen University Project API
+  description: Endpoints for the projects.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Project
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-project-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectgraphcontent-api
+  name: RWTH Aachen University ProjectGraphContent API
+  description: Endpoints for the graphs of projects.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectGraphContent
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectgraphcontent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectinvitation-api
+  name: RWTH Aachen University ProjectInvitation API
+  description: Endpoints for the project invitations.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectInvitation
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectinvitation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectmember-api
+  name: RWTH Aachen University ProjectMember API
+  description: Endpoints for the project members.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectMember
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectmember-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectpublicationrequest-api
+  name: RWTH Aachen University ProjectPublicationRequest API
+  description: Endpoints for the projects.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectPublicationRequest
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectpublicationrequest-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectquota-api
+  name: RWTH Aachen University ProjectQuota API
+  description: Endpoints for the project quotas.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectQuota
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectquota-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectresource-api
+  name: RWTH Aachen University ProjectResource API
+  description: Endpoints for the project resources.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectResource
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectresourcequota-api
+  name: RWTH Aachen University ProjectResourceQuota API
+  description: Endpoints for the resource quotas.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectResourceQuota
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectresourcequota-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectresourcetype-api
+  name: RWTH Aachen University ProjectResourceType API
+  description: Endpoints for the resource types.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectResourceType
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectresourcetype-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-projectsubprojects-api
+  name: RWTH Aachen University ProjectSubProjects API
+  description: Endpoints for the sub-projects.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ProjectSubProjects
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-projectsubprojects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-provenance-api
+  name: RWTH Aachen University Provenance API
+  description: Endpoints for the provenance information.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Provenance
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-provenance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-publicationadvisoryservice-api
+  name: RWTH Aachen University PublicationAdvisoryService API
+  description: Endpoints for the publication services.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - PublicationAdvisoryService
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-publicationadvisoryservice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-report-api
+  name: RWTH Aachen University Report API
+  description: Controller for generating and downloading project-related reports.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-report-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-resource-api
+  name: RWTH Aachen University Resource API
+  description: Endpoints for the resources.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Resource
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-resourcegraphcontent-api
+  name: RWTH Aachen University ResourceGraphContent API
+  description: Endpoints for the graphs of resources.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ResourceGraphContent
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-resourcegraphcontent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-resourcetype-api
+  name: RWTH Aachen University ResourceType API
+  description: Endpoints for the resource types.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ResourceType
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-resourcetype-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-resourcetypegitlab-api
+  name: RWTH Aachen University ResourceTypeGitLab API
+  description: Endpoints for the gitlab resource types.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - ResourceTypeGitLab
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-resourcetypegitlab-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-role-api
+  name: RWTH Aachen University Role API
+  description: Endpoints for the roles.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Role
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-role-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-search-api
+  name: RWTH Aachen University Search API
+  description: Endpoints for search.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-self-api
+  name: RWTH Aachen University Self API
+  description: Endpoints for the current authenticated user.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Self
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-self-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-selfapitoken-api
+  name: RWTH Aachen University SelfApiToken API
+  description: Endpoints for the api tokens of a user.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - SelfApiToken
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-selfapitoken-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-selfsession-api
+  name: RWTH Aachen University SelfSession API
+  description: Endpoints for the current current session.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - SelfSession
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-selfsession-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-storage-api
+  name: RWTH Aachen University Storage API
+  description: "Provides endpoints for managing blob storage operations for project resources,\r\nsuch\
+    \ as checking existence and deleting files or folders."
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Storage
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-storage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-storagecontent-api
+  name: RWTH Aachen University StorageContent API
+  description: "Provides endpoints for managing raw file content in blob storage for project resources,\r\
+    \nincluding downloading, uploading, and updating files."
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - StorageContent
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-storagecontent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-systemstatus-api
+  name: RWTH Aachen University SystemStatus API
+  description: Endpoints for system status messages.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - SystemStatus
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-systemstatus-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-title-api
+  name: RWTH Aachen University Title API
+  description: Endpoints for the titles.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Title
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-title-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-tos-api
+  name: RWTH Aachen University Tos API
+  description: Endpoints for the terms of services (tos).
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Tos
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-tos-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-tree-api
+  name: RWTH Aachen University Tree API
+  description: Endpoints for the file and metadata trees.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Tree
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-tree-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-user-api
+  name: RWTH Aachen University User API
+  description: Endpoints for the users.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-user-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-usernotificationoptout-api
+  name: RWTH Aachen University UserNotificationOptOut API
+  description: Endpoints for the user notification opt outs.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - UserNotificationOptOut
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-usernotificationoptout-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-visibility-api
+  name: RWTH Aachen University Visibility API
+  description: Endpoints for the visibilities.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Visibility
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-visibility-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
+- aid: rwth-aachen-university:rwth-aachen-university-vocabulary-api
+  name: RWTH Aachen University Vocabulary API
+  description: Endpoints for the Endpoints for the vocabularies.
+  humanURL: https://docs.coscine.de/en/api/api/
+  baseURL: https://coscine.rwth-aachen.de/coscine/api/
+  tags:
+  - Vocabulary
+  properties:
+  - type: OpenAPI
+    url: openapi/rwth-aachen-university-vocabulary-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coscine.de/en/api/api/
+  - type: Swagger
+    url: https://coscine.rwth-aachen.de/coscine/api/swagger/index.html
+  - type: Authentication
+    url: https://docs.coscine.de/en/api/api/
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-project-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-resource-schema.json
+  - type: JSONSchema
+    url: json-schema/rwth-aachen-university-apitoken-schema.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-project-structure.json
+  - type: x-json-structure
+    url: json-structure/rwth-aachen-university-resource-structure.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-project-example.json
+  - type: x-example
+    url: examples/rwth-aachen-university-get-resource-example.json
+  - type: x-spectral-rules
+    url: rules/rwth-aachen-university-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/rwth-aachen-university-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/rwth-aachen-university-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/rwth-aachen-university-agentic-access.yml
