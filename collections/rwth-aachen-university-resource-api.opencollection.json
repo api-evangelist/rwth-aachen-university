@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Resource API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a resource by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/resources/:resourceId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves a resource by its ID."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/resources"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

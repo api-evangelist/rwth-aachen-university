@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Handle API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Handle",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all values of a handle by its PID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/handles/:prefix/:suffix",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "path",
+                "description": "The prefix of the PID"
+              },
+              {
+                "name": "suffix",
+                "value": "",
+                "type": "path",
+                "description": "The suffix of the PID"
+              }
+            ]
+          },
+          "docs": "Retrieves all values of a handle by its PID."
+        },
+        {
+          "info": {
+            "name": "Updates a handle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/handles/:prefix/:suffix",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "path",
+                "description": "The prefix of the PID"
+              },
+              {
+                "name": "suffix",
+                "value": "",
+                "type": "path",
+                "description": "The suffix of the PID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/handles"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

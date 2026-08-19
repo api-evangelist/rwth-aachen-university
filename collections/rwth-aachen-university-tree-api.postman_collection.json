@@ -1,0 +1,3167 @@
+{
+  "item": [
+    {
+      "id": "b192fe00-e0fe-4184-b53e-1483176cbc6a",
+      "name": "Tree",
+      "description": {
+        "content": "Endpoints for the file and metadata trees.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d9ee3aa-b572-4256-8570-f92122769575",
+          "name": "Retrieves the file tree associated with a resource.",
+          "request": {
+            "name": "Retrieves the file tree associated with a resource.",
+            "description": {
+              "content": "The `OrderBy` query is currently not supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Path",
+                  "value": "<string>",
+                  "description": "Gets or sets the path of the file tree."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6579e28f-0126-4af5-8bee-1d200448161c",
+              "name": "Returns the file tree of a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"path\": \"string\",\n      \"type\": \"Leaf\",\n      \"directory\": \"string\",\n      \"name\": \"string\",\n      \"extension\": \"string\",\n      \"size\": 2154,\n      \"creationDate\": \"2022-02-26T23:37:25.419Z\",\n      \"changeDate\": \"1991-08-05T01:05:42.186Z\",\n      \"actions\": {\n        \"download\": {\n          \"url\": \"https://lSCwoWGkpHrJwqn.gtX7hvAfn.l0MLK.zobr8yLDtssJtcLsLV\",\n          \"method\": \"DELETE\"\n        }\n      },\n      \"hidden\": false\n    },\n    {\n      \"path\": \"string\",\n      \"type\": \"Tree\",\n      \"directory\": \"string\",\n      \"name\": \"string\",\n      \"extension\": \"string\",\n      \"size\": 4165,\n      \"creationDate\": \"1967-11-04T07:28:18.916Z\",\n      \"changeDate\": \"1981-04-14T23:22:24.986Z\",\n      \"actions\": {\n        \"download\": {\n          \"url\": \"http://NoDQZywPnigXqJhEHIUUZCfPBAYT.exkcMBl+6WCRKxXTY2tNlomjoKUqrjEOqlkNjIv4a8Yms4HK8Zlm+r8w2gHUD6p4lp7IR\",\n          \"method\": \"DELETE\"\n        }\n      },\n      \"hidden\": false\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 1810,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 8512,\n    \"totalPages\": 1788,\n    \"pageSize\": 2564,\n    \"totalCount\": 3087,\n    \"hasPrevious\": false,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58fb7091-5745-4f50-aae4-7e2f8f9bdfc1",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69ddcb19-86f1-461e-bede-1b950860383b",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c645705c-bb6e-422d-9cd6-4ec671f94645",
+              "name": "Project does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98ab8233-d2b7-4250-8464-0bb5c1079b4d",
+          "name": "Retrieves the metadata tree associated with a resource.",
+          "request": {
+            "name": "Retrieves the metadata tree associated with a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Path",
+                  "value": "<string>",
+                  "description": "Gets or sets the path of the metadata tree."
+                },
+                {
+                  "disabled": false,
+                  "key": "Format",
+                  "value": "<string>",
+                  "description": "Gets or sets the format of the RDF data."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeExtractedMetadata",
+                  "value": "<boolean>",
+                  "description": "Gets or sets if extracted metadata should be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeProvenance",
+                  "value": "<boolean>",
+                  "description": "Gets or sets if provenance metadata should be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72fec2cf-0881-4164-bd15-c26abb70f5bb",
+              "name": "Returns the metadata tree of a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"path\": \"string\",\n      \"type\": \"Tree\",\n      \"id\": \"https://kOxLZOUzpyrN.rzfJhxPp-NFeH4JSgIA+XAuV2All7Dhnfn-azbx\",\n      \"version\": \"string\",\n      \"availableVersions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      },\n      \"extracted\": {\n        \"path\": \"string\",\n        \"type\": \"Leaf\",\n        \"metadataId\": \"https://lA.cujwsLpHZ\",\n        \"rawDataId\": \"https://RqnSdaBNGGOnaqhmbJsCgQoigNj.yxkfio17lP5LW8lJUaryHdKwnTUYR1Me7f8Q\",\n        \"definition\": {\n          \"content\": \"string\",\n          \"type\": \"string\"\n        }\n      },\n      \"provenance\": {\n        \"id\": \"http://tdPnBcDGidCJwTqBbKyl.qvbzwp9cDuqWyF4gcoSvuQIdDQsupNLcL1BjPiuFNq4ALQfdomjotjD3N\",\n        \"variants\": [\n          {\n            \"graphName\": \"http://CEuXeLpFFuYDsNUnchEIY.finwmMzMTusEiMOm1DMlYuo2x5gzhOEO1xOlfUEnVbjywujNYq8CLkNgrPDZe\",\n            \"similarity\": 8418.240645095217\n          },\n          {\n            \"graphName\": \"http://ZEXGvNFzLIJiQkxjGfzSmqKUpvlpFZVi.rawbM6-\",\n            \"similarity\": 9333.178450882966\n          }\n        ],\n        \"wasRevisionOf\": [\n          \"http://Zygh.vyhgOP6+BRzPG3ZVxRsnWvcNwvBKQ5GwW+PQ\",\n          \"http://esbdQvSJddLzbi.atz1weJNMHdqp2RCS8L4k4fTUeg9JyaQQLt4QC3QwzFq9IK6flDa52KtDCdBDNYg23ktztbQKYwl.X\"\n        ],\n        \"generatedAt\": \"2017-11-17T11:08:16.743Z\",\n        \"similarityToLastVersion\": 7492.88865140564,\n        \"wasInvalidatedBy\": \"http://gkVe.fvezNWS7.hktmCgfjxko3oDNR7BaT0-a-XcVTzchbvojPvXWXeOeKAlcSWc2,Frd4kByVOn\",\n        \"hashParameters\": {\n          \"algorithmName\": \"string\",\n          \"value\": \"string\"\n        }\n      }\n    },\n    {\n      \"path\": \"string\",\n      \"type\": \"Leaf\",\n      \"id\": \"https://jjjceNrUHk.mlG3txuZAD0ZXSZtq-V-bpTBzr9,GqPSIglJ7r+ya5MP6dLxk,ZiI7\",\n      \"version\": \"string\",\n      \"availableVersions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      },\n      \"extracted\": {\n        \"path\": \"string\",\n        \"type\": \"Tree\",\n        \"metadataId\": \"https://KloPBjbqVkSxJx.pgM+craq33KWjJHbwcxO.NykDCbCWM\",\n        \"rawDataId\": \"http://ShDQltPMOJvQmmSDgGuvWWsRAVk.wjsJagQAyvg\",\n        \"definition\": {\n          \"content\": \"string\",\n          \"type\": \"string\"\n        }\n      },\n      \"provenance\": {\n        \"id\": \"http://ZkNV.liaseZ8XEIr+yxSbWYXOkpXud\",\n        \"variants\": [\n          {\n            \"graphName\": \"https://KEoborOywMPhplgskOnIzEX.iboEfxHZNURl.m9Cs0TwxzpML.cX9ZkVIYEowGsgraf\",\n            \"similarity\": 3789.804681315945\n          },\n          {\n            \"graphName\": \"https://wky.fqlrgNGr,eBxdiPNP2,TdGr6WN6nesITP9BIhNwgg\",\n            \"similarity\": 6253.014276819112\n          }\n        ],\n        \"wasRevisionOf\": [\n          \"http://T.pfc3t6CnQIBxLqR4I9hFtvsNin0kWxf1Y\",\n          \"https://tLByonsAouyW.isf9K\"\n        ],\n        \"generatedAt\": \"1979-10-28T00:46:49.318Z\",\n        \"similarityToLastVersion\": 2388.649642991737,\n        \"wasInvalidatedBy\": \"https://DWadzMrsps.jua.tV7YbrGy3s2QSSKgNR0s-T-rhENqmiuHBcq\",\n        \"hashParameters\": {\n          \"algorithmName\": \"string\",\n          \"value\": \"string\"\n        }\n      }\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 4752,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 2761,\n    \"totalPages\": 1723,\n    \"pageSize\": 9253,\n    \"totalCount\": 232,\n    \"hasPrevious\": false,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4452cab-ff46-4543-a100-e3728bde583a",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43b84326-a3ab-457a-8130-f2cf49a23dab",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9f51c8a-d50e-46b5-bc38-50a2223c7fc8",
+              "name": "Project does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bac2947a-d10d-430a-9a7c-9da016c72071",
+          "name": "Creates a new metadata tree for a resource.",
+          "request": {
+            "name": "Creates a new metadata tree for a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5907e012-d85b-4946-bd7c-9c6056142d91",
+              "name": "Metadata tree created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"path\": \"string\",\n    \"type\": \"Tree\",\n    \"id\": \"https://IEzZILaqQsXTGInfEyPrDrnBYqgrmlm.ieqYjzeR\",\n    \"version\": \"string\",\n    \"availableVersions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"definition\": {\n      \"content\": \"string\",\n      \"type\": \"string\"\n    },\n    \"extracted\": {\n      \"path\": \"string\",\n      \"type\": \"Leaf\",\n      \"metadataId\": \"https://eIKArjFQw.avXqaiEGOJ1BJALwZHlVo8d,DhzTLP2TINvD6UMMS4VMxMZvHnC1J+9rrbiaB3ZeE.bpjN\",\n      \"rawDataId\": \"http://VcSdHpVDyg.emTGhCH50aVzN--SEMe-NoNDyN8,v-ntsbpwWAAVPj0dFZ8iYK\",\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    \"provenance\": {\n      \"id\": \"https://SQkHTdIV.snX5OVkgG,,Bd2EctqaAASCjnO3CsR\",\n      \"variants\": [\n        {\n          \"graphName\": \"https://coVsNNkLLOx.micW8sbVHtNr3JLDtCLxyDLi3gJ\",\n          \"similarity\": 3306.1532502584632\n        },\n        {\n          \"graphName\": \"https://QYcKOtUZkXYSWSYTYHAh.lfuzcg8TqeqCi6eoRWoLCr8chHV\",\n          \"similarity\": 6364.652803823285\n        }\n      ],\n      \"wasRevisionOf\": [\n        \"https://UHyrwUrfhWTYvLyodOaJqdlhARVOMMX.gou3UKNHnYTHTGA+pdxZozqpS.6f9xG8YvXJkRphGZYz91YB2pteDHyM9QE3s.v\",\n        \"http://nmSIWXw.vsDdRfZ7+ced7CjbkzJ0ZcRq6cV,qIWhg6LQ7wv0fTjq+aAmic7H,jqTu8ttt.XsmGM.Jvb\"\n      ],\n      \"generatedAt\": \"1973-12-15T13:42:01.669Z\",\n      \"similarityToLastVersion\": 6124.923773001785,\n      \"wasInvalidatedBy\": \"https://xRFMjnsopvJynCEwhhPiQxaeBEj.kcflcAiJnyD1sN1ZGP+xwSmFyGsFPvvRAc6YXmsWQFxl9BvsK\",\n      \"hashParameters\": {\n        \"algorithmName\": \"string\",\n        \"value\": \"string\"\n      }\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 993,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0da08a0-23a3-449e-86f1-ea63b06e7f9d",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "339a1356-1cde-4397-b269-bea49dace3a6",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "deeb2f9e-2123-4001-a349-59d231b02937",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9cab04d-a654-41b4-b04b-87fd43c12079",
+          "name": "Updates an existing metadata tree of a resource.",
+          "request": {
+            "name": "Updates an existing metadata tree of a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5c92b7f-db33-4725-96e4-72ffba8f37b8",
+              "name": "Metadata tree updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "511b3185-f4f9-4c96-8d27-eb986161853b",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3898b970-e9da-4f03-b377-bba56c2494c0",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3ff544a-bd3f-4632-af4b-e9c8f25d632b",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e7e8657-748f-4849-bb11-f21156a38dcb",
+          "name": "Deletes (invalidates) a metadata tree associated with a resource.",
+          "request": {
+            "name": "Deletes (invalidates) a metadata tree associated with a resource.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invalidatedBy\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caa64767-976d-490c-8159-59f71db88c0e",
+              "name": "Metadata tree deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invalidatedBy\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7732ac67-b6e6-4ab2-b757-8e0784640372",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invalidatedBy\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eac69a4b-1123-4f93-8082-8d4b0c0060c8",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invalidatedBy\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce3f8a2d-35fb-422f-bc08-b79ad11dd0d1",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invalidatedBy\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a97c313b-b218-4acb-a0f1-31dedf4de4b2",
+          "name": "Retrieves the specific metadata tree associated with a resource.",
+          "request": {
+            "name": "Retrieves the specific metadata tree associated with a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata",
+                "specific"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Path",
+                  "value": "<string>",
+                  "description": "(Required) Gets or sets the path of the metadata tree."
+                },
+                {
+                  "disabled": false,
+                  "key": "Format",
+                  "value": "<string>",
+                  "description": "Gets or sets the format of the RDF data."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeExtractedMetadata",
+                  "value": "<boolean>",
+                  "description": "Gets or sets if extracted metadata should be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeProvenance",
+                  "value": "<boolean>",
+                  "description": "Gets or sets if provenance should be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired version.\r\nIf the version is null, the newest will be returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a73ad641-95ab-4a87-9e34-2bb90e456729",
+              "name": "Returns the specific metadata tree of a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"path\": \"string\",\n    \"type\": \"Tree\",\n    \"id\": \"https://IEzZILaqQsXTGInfEyPrDrnBYqgrmlm.ieqYjzeR\",\n    \"version\": \"string\",\n    \"availableVersions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"definition\": {\n      \"content\": \"string\",\n      \"type\": \"string\"\n    },\n    \"extracted\": {\n      \"path\": \"string\",\n      \"type\": \"Leaf\",\n      \"metadataId\": \"https://eIKArjFQw.avXqaiEGOJ1BJALwZHlVo8d,DhzTLP2TINvD6UMMS4VMxMZvHnC1J+9rrbiaB3ZeE.bpjN\",\n      \"rawDataId\": \"http://VcSdHpVDyg.emTGhCH50aVzN--SEMe-NoNDyN8,v-ntsbpwWAAVPj0dFZ8iYK\",\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    \"provenance\": {\n      \"id\": \"https://SQkHTdIV.snX5OVkgG,,Bd2EctqaAASCjnO3CsR\",\n      \"variants\": [\n        {\n          \"graphName\": \"https://coVsNNkLLOx.micW8sbVHtNr3JLDtCLxyDLi3gJ\",\n          \"similarity\": 3306.1532502584632\n        },\n        {\n          \"graphName\": \"https://QYcKOtUZkXYSWSYTYHAh.lfuzcg8TqeqCi6eoRWoLCr8chHV\",\n          \"similarity\": 6364.652803823285\n        }\n      ],\n      \"wasRevisionOf\": [\n        \"https://UHyrwUrfhWTYvLyodOaJqdlhARVOMMX.gou3UKNHnYTHTGA+pdxZozqpS.6f9xG8YvXJkRphGZYz91YB2pteDHyM9QE3s.v\",\n        \"http://nmSIWXw.vsDdRfZ7+ced7CjbkzJ0ZcRq6cV,qIWhg6LQ7wv0fTjq+aAmic7H,jqTu8ttt.XsmGM.Jvb\"\n      ],\n      \"generatedAt\": \"1973-12-15T13:42:01.669Z\",\n      \"similarityToLastVersion\": 6124.923773001785,\n      \"wasInvalidatedBy\": \"https://xRFMjnsopvJynCEwhhPiQxaeBEj.kcflcAiJnyD1sN1ZGP+xwSmFyGsFPvvRAc6YXmsWQFxl9BvsK\",\n      \"hashParameters\": {\n        \"algorithmName\": \"string\",\n        \"value\": \"string\"\n      }\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 993,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d0c8944-3d87-4a48-8e10-886a18e968a2",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c2b5ba6-52b7-41ed-b94a-d986aae45f71",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46dc7891-f5dc-4167-ac6d-6e5e7f37ec84",
+              "name": "Project does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeExtractedMetadata",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeProvenance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3530adc-dba2-4bc7-be1b-5b27472033b4",
+          "name": "Creates a new extracted metadata tree for a resource.",
+          "request": {
+            "name": "Creates a new extracted metadata tree for a resource.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata",
+                "extracted"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c38ed78-d2bd-444a-a7d2-099e58784abf",
+              "name": "Extracted Metadata tree created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"path\": \"string\",\n    \"type\": \"Tree\",\n    \"id\": \"https://gRCQrBUlJZNEKnwSnxUALyPmbCL.aqSg2eZsEXH.Hy\",\n    \"version\": \"string\",\n    \"availableVersions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"definition\": {\n      \"content\": \"string\",\n      \"type\": \"string\"\n    },\n    \"extracted\": {\n      \"path\": \"string\",\n      \"type\": \"Leaf\",\n      \"metadataId\": \"http://UrPXbtvAUpYsQ.cdlE\",\n      \"rawDataId\": \"http://Q.anBla.em.sv6jomK6RA6cYCe1FygTr0rd.BwXhFT.DGEbUTGjPkGzAQXKxVvchTygdMfomHZ\",\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    \"provenance\": {\n      \"id\": \"https://fqWMykabjzNEsgOoBdl.gpyrN4pK2mtBn+rNKBi+z9VUq1B6MYbOnG3Uu9iOapm9eutdLIwM2AGlN7GzM.MyOt8JC.ufXmBU3r5bm\",\n      \"variants\": [\n        {\n          \"graphName\": \"<uri>\",\n          \"similarity\": \"<double>\"\n        },\n        {\n          \"graphName\": \"<uri>\",\n          \"similarity\": \"<double>\"\n        }\n      ],\n      \"wasRevisionOf\": [\n        \"http://wWHRAzJWhowmKBpZPUaG.foxjg75L56Dpyi,-F.BI5kZuNjgeoFuTVqZa2Kxwvp2CFc,jSoL0SVllZzlVgjY\",\n        \"http://xOlnVgVlv.qolsFobrO3XoFr4VH305sh+4z\"\n      ],\n      \"generatedAt\": \"1950-05-25T00:33:50.864Z\",\n      \"similarityToLastVersion\": 4569.150222273268,\n      \"wasInvalidatedBy\": \"http://nVedkhSeToJeJRrfbYtHariWhLrEN.gzznZAD7sm2McN7dPpZ17W2634Xtb2c9w.e1qy+hyhGX2xCIDVyg5dvSqLD0lebVtYKFIsWOa5ZS6M6\",\n      \"hashParameters\": {\n        \"algorithmName\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    }\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 7615,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd23bacc-fefa-4ecc-ad9d-95369447d497",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9bcf994a-58b7-4bc5-92a6-bedf2324026b",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8adaa6d8-1ba3-44d9-a2ba-c1f114d249ca",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8572bf85-3589-479e-b37d-edd4551789a2",
+          "name": "Updates an existing metadata tree of a resource.",
+          "request": {
+            "name": "Updates an existing metadata tree of a resource.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees",
+                "metadata",
+                "extracted"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"forceNewMetadataVersion\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "394b291a-beb7-459f-a5eb-0cb16caf30fe",
+              "name": "Metadata tree updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"forceNewMetadataVersion\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53ef8c04-d159-44af-96ee-b80c1e32e697",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"forceNewMetadataVersion\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "decccd9b-904d-4e9a-8ea3-eb22fea3801b",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"forceNewMetadataVersion\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5e5b881-8918-4c80-b9d4-ab9337288c89",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees",
+                    "metadata",
+                    "extracted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"id\": \"<uri>\",\n  \"path\": \"<string>\",\n  \"provenance\": {\n    \"wasRevisionOf\": [\n      \"<uri>\",\n      \"<uri>\"\n    ],\n    \"variants\": [\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      },\n      {\n        \"graphName\": \"<uri>\",\n        \"similarity\": \"<double>\"\n      }\n    ],\n    \"wasInvalidatedBy\": \"<uri>\",\n    \"similarityToLastVersion\": \"<double>\",\n    \"metadataExtractorVersion\": \"<string>\",\n    \"hashParameters\": {\n      \"algorithmName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"forceNewMetadataVersion\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4a88e2e-d9fc-4673-ab78-7bfe12c34b9c",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "trees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32ef7b9e-cb4d-4fc6-9bd8-362d99980a57",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "trees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47171158-fd4e-4494-8f36-a57d2953369d",
+    "name": "Coscine Web Admin Tree API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

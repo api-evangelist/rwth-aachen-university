@@ -1,0 +1,2098 @@
+{
+  "item": [
+    {
+      "id": "3c2dc32b-020c-4633-8631-c458c13606cc",
+      "name": "Admin",
+      "description": {
+        "content": "Endpoints for admin functionality.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fea6aad8-e725-47e7-a069-7ebf399a16d8",
+          "name": "Retrieves all activity logs.",
+          "request": {
+            "name": "Retrieves all activity logs.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "activity-logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ActivityTimestampBefore",
+                  "value": "<dateTime>",
+                  "description": "The activity timestamp date before which activity logs should be retrieved."
+                },
+                {
+                  "disabled": false,
+                  "key": "ActivityTimestampAfter",
+                  "value": "<dateTime>",
+                  "description": "The activity timestamp date after which activity logs should be retrieved."
+                },
+                {
+                  "disabled": false,
+                  "key": "Guid",
+                  "value": "<uuid>",
+                  "description": "The GUID for which activity logs should be retrieved. Can be a project, resource or other ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "UserId",
+                  "value": "<uuid>",
+                  "description": "The user ID for which activity logs should be retrieved."
+                },
+                {
+                  "disabled": false,
+                  "key": "RegularExpression",
+                  "value": "<string>",
+                  "description": "The regular expression to filter activity logs' API path by. The regex must be a valid, already escaped string."
+                },
+                {
+                  "disabled": false,
+                  "key": "HttpMethod",
+                  "value": "<string>",
+                  "description": "The http method to filter activity logs by."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8ad8c1c-8762-4cd1-92fa-77546ed4197d",
+              "name": "Returns the activity logs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "activity-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ActivityTimestampBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ActivityTimestampAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "Guid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "UserId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "RegularExpression",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "HttpMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"86e5a4c1-1a36-a1a8-fc17-a098e09ee4e7\",\n      \"apiPath\": \"string\",\n      \"httpAction\": \"string\",\n      \"controllerName\": \"string\",\n      \"actionName\": \"string\",\n      \"userId\": \"19347de6-0697-7264-7539-dcfcef9255ac\",\n      \"activityTimestamp\": \"1983-06-18T03:31:11.906Z\"\n    },\n    {\n      \"id\": \"10b50d7e-5825-d2ae-8058-a21bf28f9624\",\n      \"apiPath\": \"string\",\n      \"httpAction\": \"string\",\n      \"controllerName\": \"string\",\n      \"actionName\": \"string\",\n      \"userId\": \"e6f94e29-f1c9-910d-4f2c-bfaaa5ae5d2c\",\n      \"activityTimestamp\": \"1964-06-09T06:16:25.022Z\"\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 5495,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 9048,\n    \"totalPages\": 3648,\n    \"pageSize\": 6625,\n    \"totalCount\": 9215,\n    \"hasPrevious\": true,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b79c1a46-8221-43ca-a1e3-ace6fa885033",
+          "name": "Retrieves all projects.",
+          "request": {
+            "name": "Retrieves all projects.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "TopLevel",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to filter top-level projects."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeDeleted",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to include deleted projects in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeQuotas",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to include quotas in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludePublicationRequests",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to include project publication requests in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Number of items per page. The maximum number of items per page is `250`."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e88b81b-f963-4303-af18-b4160caaedc5",
+              "name": "Returns the projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "TopLevel",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeQuotas",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludePublicationRequests",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"dc6d644c-8a28-244e-5d00-0429fe992807\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"67f32882-f213-859f-80b5-af9aca48c31a\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"endDate\": \"2003-05-22T06:39:31.164Z\",\n      \"id\": \"7280c27d-d2d7-eb9b-0766-d21bda4da143\",\n      \"name\": \"string\",\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"responsible\": true,\n          \"uri\": \"http://cUUVDLlhDOJLPGcxvzgzvlUYuAjs.nzjaJFlUQE\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        },\n        {\n          \"displayName\": \"string\",\n          \"responsible\": false,\n          \"uri\": \"http://rxctchnbnMdEDWJVCLf.mdyuK2vgmuHFQiFa,sgkmwZx0HeHSWqmoaoMK3THTP2Fb1UuLG3WZl2c0\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        }\n      ],\n      \"pid\": \"string\",\n      \"slug\": \"string\",\n      \"startDate\": \"1947-10-30T12:31:04.017Z\",\n      \"visibility\": {\n        \"id\": \"7585e1d8-17bc-b6f7-d848-15aa317c8920\",\n        \"displayName\": \"string\"\n      },\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"displayName\": \"string\",\n      \"principleInvestigators\": \"string\",\n      \"grantId\": \"string\",\n      \"creator\": {\n        \"id\": \"6f67ba88-7275-66e2-eaf6-034f3d1d25b3\"\n      },\n      \"creationDate\": \"1962-05-23T19:01:47.828Z\",\n      \"subProjects\": [\n        {\n          \"description\": \"string\",\n          \"disciplines\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"endDate\": \"1992-08-08T07:11:11.663Z\",\n          \"id\": \"10b1e570-2a10-3ce0-e03c-72e6c6eb82b0\",\n          \"name\": \"string\",\n          \"organizations\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pid\": \"string\",\n          \"slug\": \"string\",\n          \"startDate\": \"2015-08-24T22:26:56.747Z\",\n          \"visibility\": {\n            \"id\": \"2ab04e9e-17e1-fb8d-e409-7417a2af1c55\",\n            \"displayName\": \"string\"\n          },\n          \"keywords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"displayName\": \"string\",\n          \"principleInvestigators\": \"string\",\n          \"grantId\": \"string\",\n          \"creator\": {\n            \"id\": \"b61b9ee9-c7e3-1589-7aae-9b1ccdcd146d\"\n          },\n          \"creationDate\": \"1998-02-15T01:41:57.440Z\",\n          \"subProjects\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            }\n          ],\n          \"parent\": {\n            \"id\": \"a91020e6-097b-cf54-4448-137d06691e3f\"\n          }\n        },\n        {\n          \"description\": \"string\",\n          \"disciplines\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"endDate\": \"2012-12-01T19:52:06.514Z\",\n          \"id\": \"548d1478-abc0-31be-cc50-b11f2d8c5a1f\",\n          \"name\": \"string\",\n          \"organizations\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pid\": \"string\",\n          \"slug\": \"string\",\n          \"startDate\": \"2026-03-13T14:57:33.211Z\",\n          \"visibility\": {\n            \"id\": \"72b5a636-1943-d7b4-ae90-5fdf0629b44c\",\n            \"displayName\": \"string\"\n          },\n          \"keywords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"displayName\": \"string\",\n          \"principleInvestigators\": \"string\",\n          \"grantId\": \"string\",\n          \"creator\": {\n            \"id\": \"4d798996-117b-917c-8f8d-ad65335caaf8\"\n          },\n          \"creationDate\": \"1948-03-20T18:22:57.712Z\",\n          \"subProjects\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            }\n          ],\n          \"parent\": {\n            \"id\": \"89f0cceb-b925-ccdd-c2e9-8f180ab38d1a\"\n          }\n        }\n      ],\n      \"parent\": {\n        \"id\": \"e267b93c-0e9c-272c-7b87-d7685820cdb0\"\n      },\n      \"deleted\": false,\n      \"projectResources\": [\n        {\n          \"resourceId\": \"538b95e0-beb4-77f3-f73d-cbdc633847f8\",\n          \"projectId\": \"b82716b5-71e5-329c-e8b9-f80538e36cc7\"\n        },\n        {\n          \"resourceId\": \"f8c9b2bf-54ca-b1f0-ecca-92ef049a7dac\",\n          \"projectId\": \"a800aa03-213a-6453-ff01-ba6dac12ef79\"\n        }\n      ],\n      \"projectRoles\": [\n        {\n          \"projectId\": \"45a814aa-a4a4-0852-89d7-487253c0e374\",\n          \"userId\": \"169b1e51-9b50-242d-59d6-135ac0fbd834\",\n          \"roleId\": \"8cd23bd8-883d-0f59-568c-f74568957dee\"\n        },\n        {\n          \"projectId\": \"e4abed2b-3b93-f079-8ceb-57ac07d48448\",\n          \"userId\": \"dac5d885-e3a6-4978-3652-a0b3ff364bec\",\n          \"roleId\": \"09958ac6-09da-7238-9a2e-a0c9e5be14a0\"\n        }\n      ],\n      \"projectQuota\": [\n        {\n          \"projectId\": \"57e3abe0-d34d-53bf-b3ca-32e7a14d0d95\",\n          \"totalUsed\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 3178.4190573217775\n          },\n          \"totalReserved\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 3003.8992717766123\n          },\n          \"allocated\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 3958.879105161023\n          },\n          \"maximum\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 3572.2959694294464\n          },\n          \"resourceType\": {\n            \"id\": \"48505b40-6587-2219-fa36-9b12574b4a44\",\n            \"specificType\": \"string\"\n          },\n          \"resourceQuotas\": [\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"projectId\": \"9acf4663-2282-4c01-cd6d-4eb63cfb2112\",\n          \"totalUsed\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 9546.16296637283\n          },\n          \"totalReserved\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 9864.83157424299\n          },\n          \"allocated\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 2046.028367944075\n          },\n          \"maximum\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 7743.029073719269\n          },\n          \"resourceType\": {\n            \"id\": \"d2f54438-8435-0a61-0f1e-054cc7a142ba\",\n            \"specificType\": \"string\"\n          },\n          \"resourceQuotas\": [\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"publicationRequests\": [\n        {\n          \"id\": \"3f38312b-a3c2-3f38-aadc-a1cca10a22e3\",\n          \"project\": {\n            \"id\": \"81c3bd5a-0fb1-989a-c602-c6437127f80c\"\n          },\n          \"publicationServiceRorId\": \"http://NgqZIiJaJCQStmQPwQXfviPpIJa.eljfzJDfEJewrIpf5KDKaCET0QXMS7fgbA\",\n          \"creator\": {\n            \"id\": \"5e110a9a-cfec-98da-2dec-1bc3d4d7cea2\"\n          },\n          \"dateCreated\": \"2010-03-04T08:49:34.126Z\",\n          \"message\": \"string\",\n          \"resources\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"73e22aa0-5a88-19cb-c51a-37409b0223c4\",\n          \"project\": {\n            \"id\": \"b8269582-6791-3d46-fb2f-65398fe999e4\"\n          },\n          \"publicationServiceRorId\": \"http://lekxBGFvBxMBJtSblN.xwFGurDod8QSsfe86-hXLNI,nTtgtr\",\n          \"creator\": {\n            \"id\": \"dae5ce69-f628-00e9-4863-2d2eb589b3f0\"\n          },\n          \"dateCreated\": \"1965-12-03T19:00:06.786Z\",\n          \"message\": \"string\",\n          \"resources\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"80b1bead-6b88-d9e0-6b1a-a81f8be99006\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"d1572ba9-b0d6-5195-e264-1d5dc97d1e5f\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"endDate\": \"2021-09-21T13:06:06.416Z\",\n      \"id\": \"f5159831-a1f2-8e5d-e18b-4a4cde77a9a2\",\n      \"name\": \"string\",\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"responsible\": true,\n          \"uri\": \"http://FGKaCqWiJrAwSvAAW.smxCVgn4sMFSAaLP87op1R\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        },\n        {\n          \"displayName\": \"string\",\n          \"responsible\": true,\n          \"uri\": \"https://gaFeDaudXCBHIS.xtePne8KQ0Omoax,GoTAoXLpW.RKIeZtTUIg.afbF4nMU\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"strin\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        }\n      ],\n      \"pid\": \"string\",\n      \"slug\": \"string\",\n      \"startDate\": \"2019-04-25T14:21:08.665Z\",\n      \"visibility\": {\n        \"id\": \"eaaa7662-813a-8d21-0d9e-137091d03682\",\n        \"displayName\": \"string\"\n      },\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"displayName\": \"string\",\n      \"principleInvestigators\": \"string\",\n      \"grantId\": \"string\",\n      \"creator\": {\n        \"id\": \"ef4db3f6-b042-1f6c-142f-4e58ec0b289f\"\n      },\n      \"creationDate\": \"2000-11-08T03:27:52.957Z\",\n      \"subProjects\": [\n        {\n          \"description\": \"string\",\n          \"disciplines\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"endDate\": \"1989-09-22T06:29:03.818Z\",\n          \"id\": \"d1897d26-ea5e-5ba1-58ea-eda97b3cb391\",\n          \"name\": \"string\",\n          \"organizations\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pid\": \"string\",\n          \"slug\": \"string\",\n          \"startDate\": \"1953-05-16T22:26:50.179Z\",\n          \"visibility\": {\n            \"id\": \"7e06bc75-95ea-ae81-7853-354a02061a9e\",\n            \"displayName\": \"string\"\n          },\n          \"keywords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"displayName\": \"string\",\n          \"principleInvestigators\": \"string\",\n          \"grantId\": \"string\",\n          \"creator\": {\n            \"id\": \"ad9916fc-baab-24a1-808c-f34aa170e9e9\"\n          },\n          \"creationDate\": \"1981-09-16T15:25:16.538Z\",\n          \"subProjects\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            }\n          ],\n          \"parent\": {\n            \"id\": \"d95ea26b-b1c4-93c5-fdd6-46a21526a74c\"\n          }\n        },\n        {\n          \"description\": \"string\",\n          \"disciplines\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameDe\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"displayNameEn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"endDate\": \"1959-11-16T05:34:13.927Z\",\n          \"id\": \"9e141a61-1377-113b-bad1-c1627a3e294c\",\n          \"name\": \"string\",\n          \"organizations\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"responsible\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"uri\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"email\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"publicationAdvisoryService\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pid\": \"string\",\n          \"slug\": \"string\",\n          \"startDate\": \"2010-07-11T00:17:00.055Z\",\n          \"visibility\": {\n            \"id\": \"8e720045-8ca3-b02c-3ef4-df1a9cf88172\",\n            \"displayName\": \"string\"\n          },\n          \"keywords\": [\n            \"string\",\n            \"string\"\n          ],\n          \"displayName\": \"string\",\n          \"principleInvestigators\": \"string\",\n          \"grantId\": \"string\",\n          \"creator\": {\n            \"id\": \"505b7d1c-2e36-d845-bd69-c53d25c76c63\"\n          },\n          \"creationDate\": \"2012-05-01T23:16:44.955Z\",\n          \"subProjects\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n            }\n          ],\n          \"parent\": {\n            \"id\": \"2f0776fc-d072-59b3-aa58-6f0a5054eae2\"\n          }\n        }\n      ],\n      \"parent\": {\n        \"id\": \"2dae8bdc-5902-b4d4-5c42-0575050c86a8\"\n      },\n      \"deleted\": false,\n      \"projectResources\": [\n        {\n          \"resourceId\": \"b95579fa-f924-8659-178d-b4721c8b1021\",\n          \"projectId\": \"9ac75c3b-a5b3-968c-684e-dedeb9ca3096\"\n        },\n        {\n          \"resourceId\": \"c1709301-c4bb-4065-2e86-c0e2c2cd8b86\",\n          \"projectId\": \"483f601f-232f-ec55-0a85-207d35c265b9\"\n        }\n      ],\n      \"projectRoles\": [\n        {\n          \"projectId\": \"df00f10e-dd21-a755-3897-8d96397ce17d\",\n          \"userId\": \"3128a609-4d15-b112-9784-9b4975ed68b1\",\n          \"roleId\": \"9cdb1254-9b1a-ac4b-6f20-231b483b9351\"\n        },\n        {\n          \"projectId\": \"378e4044-4a7a-a969-d2be-e50943f45beb\",\n          \"userId\": \"3cfe3ac6-ed55-a16a-eea5-917545cf6a5e\",\n          \"roleId\": \"c099ead1-6ebb-9019-141b-bf6b52528a5d\"\n        }\n      ],\n      \"projectQuota\": [\n        {\n          \"projectId\": \"9a2c4789-71d0-58d8-0c32-ee0d442ed363\",\n          \"totalUsed\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 2183.3959525129885\n          },\n          \"totalReserved\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 1443.1782029114693\n          },\n          \"allocated\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 1254.2561748477165\n          },\n          \"maximum\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 7352.237004508855\n          },\n          \"resourceType\": {\n            \"id\": \"22dba82e-cb16-1829-9aee-1e1dbc315425\",\n            \"specificType\": \"string\"\n          },\n          \"resourceQuotas\": [\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"projectId\": \"32046f8c-4073-6945-1b0b-aaf601cddf70\",\n          \"totalUsed\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 5156.901608372825\n          },\n          \"totalReserved\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 3924.2794939874825\n          },\n          \"allocated\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 2535.663461829775\n          },\n          \"maximum\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 9437.438172016184\n          },\n          \"resourceType\": {\n            \"id\": \"8e52a52c-6fd2-d9fe-ee2a-ac81f3258d7d\",\n            \"specificType\": \"string\"\n          },\n          \"resourceQuotas\": [\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resource\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"usedPercentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"used\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"versions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reserved\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"publicationRequests\": [\n        {\n          \"id\": \"81f19de0-dcef-b7a1-8093-98143c2959f2\",\n          \"project\": {\n            \"id\": \"4442439c-4b9e-cef6-369f-af084cad2203\"\n          },\n          \"publicationServiceRorId\": \"https://XUf.qpZmWIQyPteajpC\",\n          \"creator\": {\n            \"id\": \"657448da-ad52-d6e2-acc1-d76c77aaa82e\"\n          },\n          \"dateCreated\": \"1985-11-02T20:53:55.683Z\",\n          \"message\": \"string\",\n          \"resources\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"f72fb7b6-f565-bcb8-be39-026a86d57cdb\",\n          \"project\": {\n            \"id\": \"5a2563d0-e6d4-296f-8be0-ea441d4a824c\"\n          },\n          \"publicationServiceRorId\": \"https://KWsFDA.mmyiBTk6J71mzStZI6EW3pG55HmfS+V.ljLVLAsfv\",\n          \"creator\": {\n            \"id\": \"6f4064c6-e134-6f43-a304-c4c260683d61\"\n          },\n          \"dateCreated\": \"2006-01-01T02:24:44.338Z\",\n          \"message\": \"string\",\n          \"resources\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 9113,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 5766,\n    \"totalPages\": 4274,\n    \"pageSize\": 4717,\n    \"totalCount\": 956,\n    \"hasPrevious\": true,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81678b27-6cbe-43a9-bded-8277678d20ee",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "TopLevel",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeQuotas",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludePublicationRequests",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4857734c-3dac-479c-a0bf-718d8cffa421",
+          "name": "Retrieves all resources.",
+          "request": {
+            "name": "Retrieves all resources.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "IncludeDeleted",
+                  "value": "<boolean>",
+                  "description": "Value indicating whether to include deleted resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeQuotas",
+                  "value": "<boolean>",
+                  "description": "Value indicating whether to include individual resource quotas."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Number of items per page. The maximum number of items per page is `250`."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc158a7d-679b-4c5e-977c-e0a08020e999",
+              "name": "Returns the resources.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeQuotas",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"applicationProfile\": {\n        \"uri\": \"http://SIxvOwaljNDYxvgxXHjDm.vec7,OWAhR3-gslHRoRrzzjXy0-ftt5BRN.\"\n      },\n      \"deleted\": false,\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"b28fadde-1957-cb2a-cc8e-8ce07c2bc4fb\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"192e0a7e-1551-7d13-59ef-182fcefe2734\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"fixedValues\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://DR.tkulGYmu3xJNNrwzImqOoBqG0i1AaHirToQdhCff4gfwxwxhNyfHOotxub6006l\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://pEkeRnPecxWBgOg.ezrsf,wVAKB3l7Nc.\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://RsCbLpCtWY.cixwkrlcawyScmzpf5u+JhLRjxuR3JXCWDEO7Y3L3LDL5-N.Pt\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://nfqqGXQGWgwNsIxAPYmLIbmCPtETnr.rrY,NKZ457BLUezn\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://owgJqXxxHMMPjLccreZC.xjdKhcb3AbNrjpwjmkB7oovOhHZDmMWT3tS7h\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://ZpIXeIuWuC.ysdViskKfEn2UR0Fp,SmDeae1NssNgljCPz1zgTym3sbjlJZYPtRu\",\n              \"targetClass\": \"string\"\n            }\n          ]\n        },\n        \"key_1\": {\n          \"key_0\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://RyfmtsCmCkHx.luUm09ddn5tLbCwTxEzXgzY92\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://qQiOwNM.guoX8t5CGgC2RHXRB5uyrWihgvlPAKthbgms\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://NhpfhGxcqT.afwSaz-csSns3pzM\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://YSjXUWWimtJTqrpvh.hkdqZeXWssafFbBShYXO9x2LWRsffj-r\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://txOpMbhlmELvQLlDgQejz.vfqiIwv5SRhHL5rnIQlJ5R4hdIhwGScG,cVBUAmsgpNnPugzEqHtVV2nI55hrSAy\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://ZKwKhjCOlUqMDCdHzEQqKQKQRdmzhteF.guw5rOtgN-eAGNGFxE+B-Z8ZjL.KvPaFUwDaZEaN7VSo\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://obWnhbVDTFSJ.apimku1hZ0SoaypJGQtsDbbzpqlbWfhV5KqyVJ3yUuX8FvmPNVXXs3T.TTT\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://NrWMmWiaamcyaYgjHMBjFLueeZXrADzPS.kzilUe98+Kk2C2ahVkx+O5IjuFCpEw-w2YsZHrLCFt,4tkaak3SF\",\n              \"targetClass\": \"string\"\n            }\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"pid\": \"string\",\n      \"projectResources\": [\n        {\n          \"resourceId\": \"d71644dd-b611-107c-dd26-4df1dd6bde28\",\n          \"projectId\": \"73573b5a-b51e-0519-9aa4-d107505eb7b1\"\n        },\n        {\n          \"resourceId\": \"c49383f7-3ef2-a840-82a6-7b0cf2198872\",\n          \"projectId\": \"9d17a228-a449-50ab-8cf6-cecd3e5a5a1a\"\n        }\n      ],\n      \"type\": {\n        \"generalType\": \"string\",\n        \"specificType\": \"string\",\n        \"id\": \"5316e914-263f-b4df-0a7e-a3506da8f28c\",\n        \"options\": {\n          \"linkedData\": {},\n          \"gitLab\": {\n            \"projectId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repoUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessToken\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"branch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rds\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fileSystemStorage\": {\n            \"directory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwWeb\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"visibility\": {\n        \"id\": \"c8a8bb74-3fea-34d4-fac3-a6a3cc35584f\",\n        \"displayName\": \"string\"\n      },\n      \"id\": \"a846e4a8-c001-7d73-90b6-dc0b3beaa998\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"license\": {\n        \"id\": \"5e305b87-a8f1-22c8-65e1-3404abdb3502\",\n        \"displayName\": \"string\",\n        \"url\": \"https://gBksacZebkPcSBLg.pceVZJ4vup8ZZDN4JsPwIRD9kF5KUJBnYD1RV62jFYFUN\"\n      },\n      \"usageRights\": \"string\",\n      \"metadataLocalCopy\": true,\n      \"metadataExtraction\": false,\n      \"dateCreated\": \"2025-10-29T07:01:53.676Z\",\n      \"creator\": {\n        \"id\": \"56f11d96-c547-3044-6795-c7687b05e4b0\"\n      },\n      \"archived\": false,\n      \"maintenanceMode\": true,\n      \"projects\": [\n        {\n          \"id\": \"eea02f21-2fbe-472e-87d3-a059d7b0434c\"\n        },\n        {\n          \"id\": \"3138079f-ae5c-cd1e-c5b6-438f21cbab77\"\n        }\n      ],\n      \"resourceQuota\": {\n        \"resource\": {\n          \"id\": \"7368790f-7920-6ee3-5f07-82bdc9af1aab\"\n        },\n        \"usedPercentage\": 6798.44415104129,\n        \"used\": {\n          \"unit\": \"https://qudt.org/vocab/unit/GibiBYTE\",\n          \"value\": 4634.147818429912\n        },\n        \"versions\": {\n          \"unit\": \"https://qudt.org/vocab/unit/MebiBYTE\",\n          \"value\": 6990.416635251656\n        },\n        \"reserved\": {\n          \"unit\": \"https://qudt.org/vocab/unit/TebiBYTE\",\n          \"value\": 3257.720913194546\n        }\n      }\n    },\n    {\n      \"applicationProfile\": {\n        \"uri\": \"http://uQDKgVbohJrtgydYHXVXToT.taxhX6laX-+Wm,lNispWDF.xYOjoN+Gcz-Yeej-XRj0VBwYnFD\"\n      },\n      \"deleted\": false,\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"136bd513-7cc5-209e-e657-444714077cae\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"60b2fd04-7849-824e-a608-2e1a50baaf45\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"fixedValues\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://LFQLJ.mtOZDz6.KrwXZTFrvVOsgMk4iZXry,t8XpbfqC1LHpLPbiIcbBr\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://PG.fbvoYYUXDU9gDNH5NogcYFK\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://OJAaTnURELgAHXkBmrFiwHf.tdPZZe,9fz8\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://LVRlqSiL.kigwHds4PtZFaR3AIerNWyi1lcN72oCy1gfFlKd\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://EvQXeiHyukxnlEgnuj.rtgvM2L0Ju3E3k0RQl-F+1PAv\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://jIfOtYApQhEizaedKmMOjy.avjtGlg5JJceSRVdpzl3HhiHYzPC7nfYMG,MjN.tQZXXdJ.agjzSGytdKXl.z6DbFFInD-6Nba41\",\n              \"targetClass\": \"string\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://YptkKmfTiLjZTafh.oiH.LwenMSrvS,3LIfELlSZdlyX73PiE35Vx\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"http://vAtUyeecnAFQr.xpYDGTT-29gyfsoBKRK7ayN2Tg0i5+B06p44GzYDxi9xY,pXzTs\",\n              \"targetClass\": \"string\"\n            }\n          ]\n        },\n        \"key_1\": {\n          \"key_0\": [\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://ZLOPbKUQnfRXYDrdrbsjJbjswxNhjpc.atbyCFDKhQY0SLEQ6zn3OhIjpyIXhS2gm1voM+meCtS4PINfIboQBFbENn+jiti\",\n              \"targetClass\": \"string\"\n            },\n            {\n              \"value\": \"string\",\n              \"type\": \"string\",\n              \"datatype\": \"https://hRyg.qrMsGFqd+sO3MgnwrNEkKnIFT,wODf+Pxzg\",\n              \"targetClass\": \"string\"\n            }\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"pid\": \"string\",\n      \"projectResources\": [\n        {\n          \"resourceId\": \"3a594f78-4f06-d09a-ca5d-d98f9e87f6e9\",\n          \"projectId\": \"0152d338-6e7e-8322-b099-b54be26230ba\"\n        },\n        {\n          \"resourceId\": \"5214a2a4-3548-e86f-60ee-fce9a5ddf8e8\",\n          \"projectId\": \"7d37e3d0-e456-dac4-9b0c-15ef58b80ca7\"\n        }\n      ],\n      \"type\": {\n        \"generalType\": \"string\",\n        \"specificType\": \"string\",\n        \"id\": \"98fb1104-4091-5ebc-32fd-5fe32d217e0b\",\n        \"options\": {\n          \"linkedData\": {},\n          \"gitLab\": {\n            \"projectId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repoUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessToken\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"branch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rds\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fileSystemStorage\": {\n            \"directory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwWeb\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"visibility\": {\n        \"id\": \"8ca60564-37d0-e0ba-29ca-b343482132da\",\n        \"displayName\": \"string\"\n      },\n      \"id\": \"9d467dbd-749b-64ed-3d28-e0c5a3664035\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"license\": {\n        \"id\": \"6afc7cc8-8b2e-a649-bf94-ae5ef0c27d7a\",\n        \"displayName\": \"string\",\n        \"url\": \"http://HIKVTPFSlrmGZqWqPVtXKRvOoBJ.ijB+qUptm1Z7GCvHcEue0eJVbFyYroI5XroaXdsF\"\n      },\n      \"usageRights\": \"string\",\n      \"metadataLocalCopy\": false,\n      \"metadataExtraction\": true,\n      \"dateCreated\": \"1960-01-25T20:27:25.002Z\",\n      \"creator\": {\n        \"id\": \"45af89d5-746e-1130-a958-406d5ff60fa0\"\n      },\n      \"archived\": false,\n      \"maintenanceMode\": false,\n      \"projects\": [\n        {\n          \"id\": \"1150f395-2c8f-1ced-afc6-6c48f6a510c7\"\n        },\n        {\n          \"id\": \"ff7e3bce-1069-aba9-80ff-bb0caa102528\"\n        }\n      ],\n      \"resourceQuota\": {\n        \"resource\": {\n          \"id\": \"31daf6e6-3cf0-043d-ee1f-da4aefaa1d99\"\n        },\n        \"usedPercentage\": 4308.3728551276245,\n        \"used\": {\n          \"unit\": \"https://qudt.org/vocab/unit/MebiBYTE\",\n          \"value\": 8276.48492041205\n        },\n        \"versions\": {\n          \"unit\": \"https://qudt.org/vocab/unit/GibiBYTE\",\n          \"value\": 1082.0551847573413\n        },\n        \"reserved\": {\n          \"unit\": \"https://qudt.org/vocab/unit/BYTE\",\n          \"value\": 7383.0423331462225\n        }\n      }\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 9002,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 7784,\n    \"totalPages\": 8280,\n    \"pageSize\": 3118,\n    \"totalCount\": 4453,\n    \"hasPrevious\": true,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf62f740-f4c6-479c-bbd5-c990270e77ef",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeDeleted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeQuotas",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb551a34-445d-4228-ba8f-3c5410a21b05",
+          "name": "Retrieves all users.",
+          "request": {
+            "name": "Retrieves all users.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "TosAccepted",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether the terms of service have been accepted by the user."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Number of items per page. The maximum number of items per page is `250`."
+                },
+                {
+                  "disabled": false,
+                  "key": "DataProcessingConsentGranted",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether the personal data processing consent have been granted by the user."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d4b33ad-1a3f-4c1f-b9d3-4882849e77cb",
+              "name": "Returns the users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "TosAccepted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "DataProcessingConsentGranted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"areToSAccepted\": false,\n      \"disciplines\": [\n        {\n          \"id\": \"d1812188-2838-b912-f903-d72c22973073\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"1fee993f-a7ab-8ffe-70d5-a10ccdd5521b\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"emails\": [\n        {\n          \"email\": \"string\",\n          \"isConfirmed\": false,\n          \"isPrimary\": false\n        },\n        {\n          \"email\": \"string\",\n          \"isConfirmed\": true,\n          \"isPrimary\": true\n        }\n      ],\n      \"id\": \"d96f6466-f875-6828-0087-8c82aadf9069\",\n      \"identities\": [\n        {\n          \"displayName\": \"string\",\n          \"id\": \"d86c6063-e670-0039-b34f-b5a2acff8a9b\"\n        },\n        {\n          \"displayName\": \"string\",\n          \"id\": \"ab9d1d2e-f8c6-ce8b-25fd-25587b620493\"\n        }\n      ],\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"readOnly\": false,\n          \"uri\": \"https://DEwoqrhXXiHpJDuGiVzrMKmDgsINtHl.osazNZ1sqd+in8XIcfR0QBZXzpqnPpSct\",\n          \"email\": \"string\",\n          \"defaultQuota\": [\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"displayName\": \"string\",\n          \"readOnly\": true,\n          \"uri\": \"http://wWeZgyTuSRmhI.ggthrT6--OnyR.FES+PwUCa2NWAXELvqrHOavgYNXiRVYug8N\",\n          \"email\": \"string\",\n          \"defaultQuota\": [\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"givenName\": \"string\",\n      \"familyName\": \"string\",\n      \"title\": {\n        \"displayName\": \"string\",\n        \"id\": \"7cb62898-e3d9-a992-5ab6-cd00ce275828\"\n      },\n      \"language\": {\n        \"abbreviation\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"8a4fa1e1-cbca-627a-34f7-5aaf903b4ee2\"\n      },\n      \"latestActivity\": \"1958-09-17T01:35:28.661Z\",\n      \"roles\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ],\n      \"dataProcessingConsentAt\": \"1968-12-24T18:33:09.251Z\"\n    },\n    {\n      \"areToSAccepted\": true,\n      \"disciplines\": [\n        {\n          \"id\": \"83a00200-fab2-c25e-f479-79d7ee131ac0\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"b590ea9f-8bb6-34ef-4ee5-4fb8a861ae21\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"emails\": [\n        {\n          \"email\": \"string\",\n          \"isConfirmed\": false,\n          \"isPrimary\": false\n        },\n        {\n          \"email\": \"string\",\n          \"isConfirmed\": true,\n          \"isPrimary\": false\n        }\n      ],\n      \"id\": \"5455a108-fe02-9335-9fc5-dbd850e3fccd\",\n      \"identities\": [\n        {\n          \"displayName\": \"string\",\n          \"id\": \"22d59c1c-ebb2-dde8-8fc6-4648a1d2a521\"\n        },\n        {\n          \"displayName\": \"string\",\n          \"id\": \"c9547770-7e6d-1421-3276-f4a350d9ffe2\"\n        }\n      ],\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"readOnly\": false,\n          \"uri\": \"http://efmlRBkhfrzqqJI.mtclqxJUnkJb+BxT6AWVoF0E0yOrpvSAOJnDKuwwDBR4Ol1v5tk\",\n          \"email\": \"string\",\n          \"defaultQuota\": [\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"displayName\": \"string\",\n          \"readOnly\": true,\n          \"uri\": \"http://EFEtNeXcArghnaNqGUkYSchcaLAKuN.etW58BB,ib25ZoJMZxgxZuwYcwOP6zgOZ8,6u9RFJG+sXMlNRJ.35sKhRTmvDYvvVe3Ewg4xDtAZTOw9urLLWh,R\",\n          \"email\": \"string\",\n          \"defaultQuota\": [\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"resourceTypeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"defaultMaxQuota\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"givenName\": \"string\",\n      \"familyName\": \"string\",\n      \"title\": {\n        \"displayName\": \"string\",\n        \"id\": \"13800cdb-9fbe-a85c-cb25-c153171e55ec\"\n      },\n      \"language\": {\n        \"abbreviation\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"c96a1f12-6256-0b3f-ca92-8a88ceda9917\"\n      },\n      \"latestActivity\": \"1982-03-28T12:57:17.502Z\",\n      \"roles\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ],\n      \"dataProcessingConsentAt\": \"1973-02-10T03:18:52.768Z\"\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 7673,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 9933,\n    \"totalPages\": 3679,\n    \"pageSize\": 5588,\n    \"totalCount\": 2158,\n    \"hasPrevious\": false,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf1136f5-853a-453b-b088-e92d6b1dfbca",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "TosAccepted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "DataProcessingConsentGranted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "889a2cba-6d05-4b9e-9b3d-52ef130fa924",
+          "name": "Gets a metadata graph.",
+          "request": {
+            "name": "Gets a metadata graph.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "metadata",
+                ":graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Format",
+                  "value": "<string>",
+                  "description": "Gets or sets the RDF format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The absolute URI of the graph to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "202d0f11-4636-4b6e-895e-eaaa3ef82ff7",
+              "name": "Returns the metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "metadata",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The absolute URI of the graph to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"content\": \"string\",\n    \"type\": \"string\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 4779,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcf15bd4-73ca-46e9-b6ff-ddcfd9bbf84e",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "metadata",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The absolute URI of the graph to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c39c246f-a9dc-4ed6-9c1a-d715457584b4",
+          "name": "Updates a metadata graph.",
+          "request": {
+            "name": "Updates a metadata graph.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "metadata",
+                ":graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The absolute URI of the graph to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3483c5a9-aa7d-4623-9814-ff7e5a25d461",
+              "name": "Metadata graph updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "metadata",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The absolute URI of the graph to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4d1d487-67e9-4dec-8b8b-70215461f347",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "metadata",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The absolute URI of the graph to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8f6948e-3c2a-4dbb-b6d5-25adc333fbac",
+          "name": "Patches a metadata graph.",
+          "request": {
+            "name": "Patches a metadata graph.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "metadata",
+                ":graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The absolute URI of the graph to patch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"operationType\": \"<string>\",\n      \"changes\": {\n        \"content\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"operationType\": \"<string>\",\n      \"changes\": {\n        \"content\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "104ec568-555d-4cb4-8cca-143721c45b0d",
+              "name": "Metadata graph patched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "metadata",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The absolute URI of the graph to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"operationType\": \"<string>\",\n      \"changes\": {\n        \"content\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"operationType\": \"<string>\",\n      \"changes\": {\n        \"content\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "139ce274-9505-4643-bdda-37bea452d03d",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "metadata",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The absolute URI of the graph to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"operationType\": \"<string>\",\n      \"changes\": {\n        \"content\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"operationType\": \"<string>\",\n      \"changes\": {\n        \"content\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4074865e-7aef-4227-abb2-cf29953476a1",
+          "name": "Gets all deployed graphs.",
+          "request": {
+            "name": "Gets all deployed graphs.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "graphs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a5ccd1b-96af-47bc-87b1-1f2a2a6e7df0",
+              "name": "Returns the metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"uri\": \"http://tGnrW.ekceTgp,CK4jLh9Qj3EebxzZ1k+txsZbewmOhL+Hfz9hc.rovAysElifO\",\n      \"fileHashes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"uri\": \"http://A.bnP+DVo.HEyS0ltyswsAn3BYE,R8o\",\n      \"fileHashes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 3105,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 6054,\n    \"totalPages\": 7158,\n    \"pageSize\": 5079,\n    \"totalCount\": 9757,\n    \"hasPrevious\": false,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fbbb6b1-ea10-4f5a-b1da-beaec36937d9",
+              "name": "User is missing authorization requirements. This endpoint is only available to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f02d5a4-f5ce-4fc5-bc07-44b1eecd4704",
+          "name": "Creates a new datasource for a specified resource and type.",
+          "request": {
+            "name": "Creates a new datasource for a specified resource and type.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "resource",
+                ":resourceId",
+                "type",
+                ":typeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "quota",
+                  "value": "<long>",
+                  "description": "The allocated quota for the datasource."
+                },
+                {
+                  "disabled": false,
+                  "key": "dsNrwReplicationGroup",
+                  "value": "<string>",
+                  "description": "The optional replication grouo for the datasource."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "typeId",
+                  "description": "(Required) The unique identifier of the datasource type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42367d0c-46a5-4213-baf2-db58ab979905",
+              "name": "Datasource successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "resource",
+                    ":resourceId",
+                    "type",
+                    ":typeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "quota",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "dsNrwReplicationGroup",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "typeId",
+                      "description": "(Required) The unique identifier of the datasource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"resourceTypeOptionId\": \"1c88cf36-5678-4254-18ad-37407865f324\"\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 2663,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5cc7052-10a3-4d67-bb8e-fd6a3587fe07",
+              "name": "User lacks authorization. Only accessible to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "resource",
+                    ":resourceId",
+                    "type",
+                    ":typeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "quota",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "dsNrwReplicationGroup",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "typeId",
+                      "description": "(Required) The unique identifier of the datasource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e585c07-0ac2-4f18-bd38-6bfe9a4949fb",
+          "name": "Updates the type and option ID of a specified resource.",
+          "request": {
+            "name": "Updates the type and option ID of a specified resource.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "resource",
+                ":resourceId",
+                "type",
+                ":typeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "optionId",
+                  "value": "<uuid>",
+                  "description": "The unique identifier of the new resource type option."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource to be updated."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "typeId",
+                  "description": "(Required) The unique identifier of the new resource type."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad12aa95-ca6f-497b-9007-407b7c27ae87",
+              "name": "Resource successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "resource",
+                    ":resourceId",
+                    "type",
+                    ":typeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "optionId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource to be updated."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "typeId",
+                      "description": "(Required) The unique identifier of the new resource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd974434-41e4-46e9-8fae-232c157c9c79",
+              "name": "User lacks authorization. Only accessible to Coscine Admin users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "resource",
+                    ":resourceId",
+                    "type",
+                    ":typeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "optionId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource to be updated."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "typeId",
+                      "description": "(Required) The unique identifier of the new resource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8c619ed-97a3-4d90-8452-1475b5671ecb",
+          "name": "Deletes the given user.",
+          "request": {
+            "name": "Deletes the given user.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) The id of the user."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95e42dfd-1257-4277-93df-ae2f92dc8da9",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) The id of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9351828b-4023-4231-a4cd-41f2bebccd4f",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "admin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7aab3ff-0890-4c69-8907-a63fea73b808",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "admin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f2ee932b-53e0-4fec-a0d9-78a940156c44",
+    "name": "Coscine Web Admin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

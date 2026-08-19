@@ -1,0 +1,963 @@
+{
+  "item": [
+    {
+      "id": "2b9f5622-2eb8-4ff9-94bf-98a54ce5b5e4",
+      "name": "ProjectInvitation",
+      "description": {
+        "content": "Endpoints for the project invitations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1577f70b-c166-4646-a515-c3bea8360190",
+          "name": "Retrieves a project invitation for a specified project.",
+          "request": {
+            "name": "Retrieves a project invitation for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "invitations",
+                ":projectInvitationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectInvitationId",
+                  "description": "(Required) The ID of the project invitation to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "354333b5-fed2-4fad-a1ce-5057ece5761d",
+              "name": "Returns the project invitation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations",
+                    ":projectInvitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectInvitationId",
+                      "description": "(Required) The ID of the project invitation to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"89dbf8c3-87de-36b4-ef4a-62f27b34d73a\",\n    \"expirationDate\": \"1985-01-15T22:56:58.297Z\",\n    \"email\": \"string\",\n    \"issuer\": {\n      \"displayName\": \"string\",\n      \"id\": \"d8ed1944-b6b6-f9d3-777c-5af305e2a3f6\",\n      \"givenName\": \"string\",\n      \"familyName\": \"string\",\n      \"email\": \"string\",\n      \"title\": {\n        \"displayName\": \"string\",\n        \"id\": \"88ceb846-f61e-6964-11e0-45667f1d431f\"\n      }\n    },\n    \"project\": {\n      \"id\": \"effa0496-fb04-b2bf-81c7-6c338b01aa64\"\n    },\n    \"role\": {\n      \"id\": \"9f336b49-269b-87a4-01d6-5d18080ce516\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 8459,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0415c8fa-5b0f-40b5-bc08-104106ec9c42",
+              "name": "Project invitation does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations",
+                    ":projectInvitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectInvitationId",
+                      "description": "(Required) The ID of the project invitation to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c8947a4-e1f8-4c18-94f7-7d867e59cd64",
+          "name": "Deletes a project invitation for a specified project.",
+          "request": {
+            "name": "Deletes a project invitation for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "invitations",
+                ":projectInvitationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectInvitationId",
+                  "description": "(Required) The ID of the project invitation to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "628b1893-ac34-4147-abf0-5cb6908f24a1",
+              "name": "Project invitation deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations",
+                    ":projectInvitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectInvitationId",
+                      "description": "(Required) The ID of the project invitation to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c39d4992-c7d6-4682-a415-14efbc40d71a",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations",
+                    ":projectInvitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectInvitationId",
+                      "description": "(Required) The ID of the project invitation to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d41dabb7-9798-4a67-960e-c215193c8f18",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations",
+                    ":projectInvitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectInvitationId",
+                      "description": "(Required) The ID of the project invitation to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf0f4bda-40d0-42af-b719-e7271d0ae147",
+          "name": "Retrieves all project invitations for a specified project.",
+          "request": {
+            "name": "Retrieves all project invitations for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad120310-dacd-4d68-a42b-2045359e8ad6",
+              "name": "Returns the project invitations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"eb0ce81e-9850-a09c-9602-9b0ddebf18c8\",\n      \"expirationDate\": \"2005-12-12T12:56:42.069Z\",\n      \"email\": \"string\",\n      \"issuer\": {\n        \"displayName\": \"string\",\n        \"id\": \"9281ede5-7b0f-cbe6-73de-2d298cdf8250\",\n        \"givenName\": \"string\",\n        \"familyName\": \"string\",\n        \"email\": \"string\",\n        \"title\": {\n          \"displayName\": \"string\",\n          \"id\": \"f5626625-87b3-a328-9be0-6ebbfabd6d56\"\n        }\n      },\n      \"project\": {\n        \"id\": \"a3121815-008b-7e09-9488-1565ece8a8b0\"\n      },\n      \"role\": {\n        \"id\": \"6efc9723-f01d-cd13-0077-e0192cc5fc7f\"\n      }\n    },\n    {\n      \"id\": \"7e1ff3c2-8a89-4f45-e6db-bbfcb830fabc\",\n      \"expirationDate\": \"1955-07-08T03:04:57.544Z\",\n      \"email\": \"string\",\n      \"issuer\": {\n        \"displayName\": \"string\",\n        \"id\": \"59c4afd0-7f2f-3954-a30a-857111570bdf\",\n        \"givenName\": \"string\",\n        \"familyName\": \"string\",\n        \"email\": \"string\",\n        \"title\": {\n          \"displayName\": \"string\",\n          \"id\": \"b2a31971-29ea-3afb-db6d-f710cc347cca\"\n        }\n      },\n      \"project\": {\n        \"id\": \"7e409536-3dde-2fe9-7415-2ed5b97415b8\"\n      },\n      \"role\": {\n        \"id\": \"a2d99e62-d308-3080-89f5-0f48a7dea9ce\"\n      }\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 3195,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 476,\n    \"totalPages\": 1198,\n    \"pageSize\": 2509,\n    \"totalCount\": 5967,\n    \"hasPrevious\": true,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e45ff0d-6389-44c8-8753-4e33cca0349e",
+          "name": "Creates a project invitation for a specified project.",
+          "request": {
+            "name": "Creates a project invitation for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"roleId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5960007e-7818-4176-aeee-b80da4c82b20",
+              "name": "Project invitation created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"roleId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"89dbf8c3-87de-36b4-ef4a-62f27b34d73a\",\n    \"expirationDate\": \"1985-01-15T22:56:58.297Z\",\n    \"email\": \"string\",\n    \"issuer\": {\n      \"displayName\": \"string\",\n      \"id\": \"d8ed1944-b6b6-f9d3-777c-5af305e2a3f6\",\n      \"givenName\": \"string\",\n      \"familyName\": \"string\",\n      \"email\": \"string\",\n      \"title\": {\n        \"displayName\": \"string\",\n        \"id\": \"88ceb846-f61e-6964-11e0-45667f1d431f\"\n      }\n    },\n    \"project\": {\n      \"id\": \"effa0496-fb04-b2bf-81c7-6c338b01aa64\"\n    },\n    \"role\": {\n      \"id\": \"9f336b49-269b-87a4-01d6-5d18080ce516\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 8459,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84133c8f-c6e9-4c3e-9a51-22dc7187ad07",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"roleId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f679f62a-74b2-4b41-8f35-e7af84734a63",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"roleId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79cddb87-ad19-4be5-91da-2fb3571c261d",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"roleId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33edcdf1-0cdc-4477-99ef-e03a80808ce3",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22ef318d-2271-43bb-b73a-88b78b50ae97",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "716ce490-00e2-43f3-8518-7e931877168b",
+    "name": "Coscine Web Admin ProjectInvitation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

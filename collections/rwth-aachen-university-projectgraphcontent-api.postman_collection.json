@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "fc8907dd-1202-4413-8b8f-8d8f5eff4e7e",
+      "name": "ProjectGraphContent",
+      "description": {
+        "content": "Endpoints for the graphs of projects.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f18b1843-a05c-4675-82dd-03f4f3bb494b",
+          "name": "Retrieves a project graph.",
+          "request": {
+            "name": "Retrieves a project graph.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "graphs",
+                "metadata",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The ID or slug of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/n-quads"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23a3bd12-80c1-4af4-ad04-ebac05dd3da4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "graphs",
+                    "metadata",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/n-quads"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/n-quads"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38413daa-30af-4f2d-8ea6-d33b8c0a2e48",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "graphs",
+                "metadata",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15e25427-f4bf-49d3-a49d-4c339acc7588",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "graphs",
+                    "metadata",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c4ab3f7-a8bb-428c-9f81-4bcb40cc93e6",
+    "name": "Coscine Web Admin ProjectGraphContent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

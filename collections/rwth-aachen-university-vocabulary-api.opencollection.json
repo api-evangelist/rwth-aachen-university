@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Vocabulary API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vocabulary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves top-level instances from vocabularies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/vocabularies",
+            "params": [
+              {
+                "name": "SearchTerm",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the search term used to filter vocabularies."
+              },
+              {
+                "name": "Language",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the language for which the vocabularies are requested."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "Retrieves top-level instances from vocabularies."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/vocabularies"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        },
+        {
+          "info": {
+            "name": "Retrieves a raw vocabulary by its identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/vocabularies/:vocabulary/raw",
+            "params": [
+              {
+                "name": "vocabulary",
+                "value": "",
+                "type": "path",
+                "description": "The URI of the vocabulary."
+              }
+            ]
+          },
+          "docs": "Retrieves a raw vocabulary by its identifier."
+        },
+        {
+          "info": {
+            "name": "Retrieves vocabulary instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/vocabularies/instances",
+            "params": [
+              {
+                "name": "Class",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the URI class, which is a required field."
+              },
+              {
+                "name": "SearchTerm",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the search term used to filter vocabulary instances."
+              },
+              {
+                "name": "Language",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the language for which the vocabulary instances are requested."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. The maximum number of items per page is `150`."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "Retrieves vocabulary instances."
+        },
+        {
+          "info": {
+            "name": "Retrieves a single instance from a vocabulary.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/vocabularies/instances/:instance",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "instance",
+                "value": "",
+                "type": "path",
+                "description": "The URI of the vocabulary instance to retrieve."
+              }
+            ]
+          },
+          "docs": "Could be a top-level instance, or an intermediate-level instance from a vocabulary."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

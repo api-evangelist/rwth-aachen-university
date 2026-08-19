@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "f45b5e51-243f-4000-9907-a7f38ee98b19",
+      "name": "Provenance",
+      "description": {
+        "content": "Endpoints for the provenance information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd81e113-ceab-4fb5-88b3-3dd123e35ff8",
+          "name": "Retrieves the specific provenance information associated with a resource.",
+          "request": {
+            "name": "Retrieves the specific provenance information associated with a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "provenance",
+                "specific"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Path",
+                  "value": "<string>",
+                  "description": "(Required) Gets or sets the path of the metadata tree."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired version.\r\nIf the version is null, the newest will be returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "876d4884-686d-450d-bcde-b18edfc867b0",
+              "name": "Returns the specific metadata tree of a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"http://G.mhyRu,O--Y+Ta\",\n    \"variants\": [\n      {\n        \"graphName\": \"https://bx.cwx2OvBH8cWT,zHQogceMccVouB.wrdzkFz\",\n        \"similarity\": 1343.077073838852\n      },\n      {\n        \"graphName\": \"http://bHoJsezvCyYbTDslSQriK.wirICU-F8sRq7AQLtSYWPA,qet9CV-abup-MsFq+zVLWMfay\",\n        \"similarity\": 3137.0578390991677\n      }\n    ],\n    \"wasRevisionOf\": [\n      \"http://cYBS.fgrltdrL9gd-S79usSG7hakovw7.iqS9i+vjWNnwvcd5NvhyK549TNg\",\n      \"https://p.yvpMeugXjpr4YH-UXDdsLMzw+98Gk6ABO+ioY7vcS9VbAJ,aLMulL\"\n    ],\n    \"generatedAt\": \"1972-10-19T16:54:08.602Z\",\n    \"similarityToLastVersion\": 1121.353422997,\n    \"wasInvalidatedBy\": \"https://IIhWVHbwzvMNr.tngYAUoJ-egI90JZ2K3sGOIYqhSC.iG9ZxamTXGIHB7s\",\n    \"hashParameters\": {\n      \"algorithmName\": \"string\",\n      \"value\": \"string\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 3683,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ec955ad-2e38-42ac-ab7e-5e382acf3f25",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1ea16f5-70be-44d3-bc0a-00a3170d15b0",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b78cb094-d31d-4ec0-9494-e4570071e3fd",
+              "name": "Project does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a42e5b81-6193-4a9b-bd1e-bf52d8ed1799",
+          "name": "Updates existing specific provenance information of a resource.",
+          "request": {
+            "name": "Updates existing specific provenance information of a resource.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "provenance",
+                "specific"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique identifier or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uri>\",\n  \"wasRevisionOf\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"variants\": [\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    },\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    }\n  ],\n  \"wasInvalidatedBy\": \"<uri>\",\n  \"similarityToLastVersion\": \"<double>\",\n  \"metadataExtractorVersion\": \"<string>\",\n  \"hashParameters\": {\n    \"algorithmName\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1a54c35-0ec3-4678-a520-4853edec54ab",
+              "name": "Provenance information updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uri>\",\n  \"wasRevisionOf\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"variants\": [\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    },\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    }\n  ],\n  \"wasInvalidatedBy\": \"<uri>\",\n  \"similarityToLastVersion\": \"<double>\",\n  \"metadataExtractorVersion\": \"<string>\",\n  \"hashParameters\": {\n    \"algorithmName\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65d1031d-ae04-4132-bbd3-abd184be5124",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uri>\",\n  \"wasRevisionOf\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"variants\": [\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    },\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    }\n  ],\n  \"wasInvalidatedBy\": \"<uri>\",\n  \"similarityToLastVersion\": \"<double>\",\n  \"metadataExtractorVersion\": \"<string>\",\n  \"hashParameters\": {\n    \"algorithmName\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c7716ce-0f35-4e8f-9edc-d5eca16614fe",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uri>\",\n  \"wasRevisionOf\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"variants\": [\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    },\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    }\n  ],\n  \"wasInvalidatedBy\": \"<uri>\",\n  \"similarityToLastVersion\": \"<double>\",\n  \"metadataExtractorVersion\": \"<string>\",\n  \"hashParameters\": {\n    \"algorithmName\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4192f25f-e4e5-479c-adbd-eacd1cf1164e",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance",
+                    "specific"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique identifier or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uri>\",\n  \"wasRevisionOf\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"variants\": [\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    },\n    {\n      \"graphName\": \"<uri>\",\n      \"similarity\": \"<double>\"\n    }\n  ],\n  \"wasInvalidatedBy\": \"<uri>\",\n  \"similarityToLastVersion\": \"<double>\",\n  \"metadataExtractorVersion\": \"<string>\",\n  \"hashParameters\": {\n    \"algorithmName\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7e61509-f925-4915-9917-cb59be67c585",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId",
+                "provenance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6b1198c-489b-438c-b6b9-fcf35e7972de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId",
+                    "provenance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da713c3d-066f-41c1-9244-6cb939c06403",
+    "name": "Coscine Web Admin Provenance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

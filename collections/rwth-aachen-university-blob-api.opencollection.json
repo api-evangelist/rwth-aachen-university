@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Blob API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download a blob from a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/blobs/:key",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier or slug of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the resource."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key associated with the blob."
+              }
+            ]
+          },
+          "docs": "Download a blob from a resource."
+        },
+        {
+          "info": {
+            "name": "Creates a new blob for a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/blobs/:key",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier or slug of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the resource."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key for the new blob."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a new blob for a resource."
+        },
+        {
+          "info": {
+            "name": "Updates an existing blob of a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/blobs/:key",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier or slug of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the resource."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key associated with the blob to update."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates an existing blob of a resource."
+        },
+        {
+          "info": {
+            "name": "Deletes a blob from a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/blobs/:key",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier or slug of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the resource."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key associated with the blob to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a blob from a resource."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/blobs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

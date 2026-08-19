@@ -1,0 +1,851 @@
+{
+  "item": [
+    {
+      "id": "0190d8f2-64d5-4c12-a9d8-03acedf40fbd",
+      "name": "ApplicationProfile",
+      "description": {
+        "content": "Endpoints for the applications profiles.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "364814f4-4bfd-4183-9db3-e21d06fe697e",
+          "name": "Retrieves all application profiles.",
+          "request": {
+            "name": "Retrieves all application profiles.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "application-profiles",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "SearchTerm",
+                  "value": "<string>",
+                  "description": "Gets or sets the search term used to filter application profiles."
+                },
+                {
+                  "disabled": false,
+                  "key": "Language",
+                  "value": "<string>",
+                  "description": "Gets or sets the language for which the application profiles are requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "Modules",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to include modules in the application profiles."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "514443e4-a013-40fe-840d-d5f30c7a1a0c",
+              "name": "Returns the application profiles.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Modules",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"uri\": \"https://HVpfwSLigoigUquGhuJaktkWdJeNWvu.clpa2pzFS,wmi3N+5R9J+ew.XXp,6GD1fQfnGwSAPIJZ1Of9FSQ.+5cwQJkedJi\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"uri\": \"http://tSbbNTEZDwxYJlpiP.aamE2tGKbS+ttbWOODybdB3xyRP2El\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"definition\": {\n        \"content\": \"string\",\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 1579,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 5823,\n    \"totalPages\": 937,\n    \"pageSize\": 6597,\n    \"totalCount\": 7977,\n    \"hasPrevious\": true,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "884a119f-5fef-44d9-82c5-670fffd53205",
+          "name": "Retrieves an application profile by its URI.",
+          "request": {
+            "name": "Retrieves an application profile by its URI.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "application-profiles",
+                "profiles",
+                ":profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "The desired data format for the returned application profile."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) The URI of the application profile to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The preferred language for the application profile data.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a6bf114-7796-47f0-afc2-dc829c100cde",
+              "name": "Returns the application profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "profiles",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) The URI of the application profile to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The preferred language for the application profile data.",
+                    "key": "Accept-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"uri\": \"https://ulXigdHNLndGKIvmzAtAYkQHDpYPuV.pqncFUPWo67ulpGOqXjvkmqYp2bzru9jlQyvUQyB9wprfNW9,NwhxQb\",\n    \"displayName\": \"string\",\n    \"description\": \"string\",\n    \"definition\": {\n      \"content\": \"string\",\n      \"type\": \"string\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 261,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1aa88401-44a9-4e97-8b06-d72607b5f6d5",
+              "name": "Application profile does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "profiles",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) The URI of the application profile to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The preferred language for the application profile data.",
+                    "key": "Accept-Language",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79798649-5f48-4739-98ba-eda9bf2d01b2",
+          "name": "Retrieves the `raw` application profile definition by its URI.",
+          "request": {
+            "name": "Retrieves the `raw` application profile definition by its URI.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "application-profiles",
+                "profiles",
+                ":profile",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) The URI of the application profile."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/turtle"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6249f845-7421-4240-b1c6-5ba01609a979",
+              "name": "Returns the raw application profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "profiles",
+                    ":profile",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) The URI of the application profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/turtle"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/ld+json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf12069b-202f-4363-a935-542417740dbb",
+              "name": "Application profile does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "profiles",
+                    ":profile",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) The URI of the application profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85e39672-7051-4706-8292-cd1d04d8014d",
+          "name": "Submits a request to create a new application profile.",
+          "request": {
+            "name": "Submits a request to create a new application profile.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "application-profiles",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"uri\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31a1c1bc-b0ea-4009-850b-2c9cb708d941",
+              "name": "Application profile request created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"uri\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"definition\": {\n      \"content\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"uri\": \"<uri>\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 6666,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1725c382-acbf-4a2a-b520-662b4b937015",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"uri\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44c968e0-8f56-4ea4-9c1d-6b35c6b44bb6",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"uri\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae8d7870-e4bf-4841-aa73-a8ce447079ce",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"content\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"uri\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2555ec96-44c8-44ae-a25b-d8df3730d4cf",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "application-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "275f5dc5-02e6-4973-a922-761466ab4738",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "application-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7b8a590-933f-4a59-b9d3-e7e64f5143c0",
+    "name": "Coscine Web Admin ApplicationProfile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin ProjectPublicationRequest API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ProjectPublicationRequest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new publication request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/publications/requests",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The Id or slug of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new publication request."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/publications/requests",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        },
+        {
+          "info": {
+            "name": "Retrieves a publication request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/publications/requests/:publicationRequestId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project."
+              },
+              {
+                "name": "publicationRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the publication request."
+              }
+            ]
+          },
+          "docs": "Retrieves a publication request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin User API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/users",
+            "params": [
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field by which the search results are ordered. Defaults to \"firstName\"."
+              },
+              {
+                "name": "SearchTerm",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the search term."
+              }
+            ]
+          },
+          "docs": "Retrieves all users."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/users"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

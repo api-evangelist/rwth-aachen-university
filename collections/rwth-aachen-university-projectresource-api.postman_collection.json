@@ -1,0 +1,1533 @@
+{
+  "item": [
+    {
+      "id": "624b15d1-544e-4a58-bf24-ead55b80cf0d",
+      "name": "ProjectResource",
+      "description": {
+        "content": "Endpoints for the project resources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5f84bf5-37ac-436e-88a8-938c815105d6",
+          "name": "Creates a new resource for a specified project.",
+          "request": {
+            "name": "Creates a new resource for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationProfile\": {\n    \"uri\": \"<uri>\"\n  },\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"resourceTypeId\": \"<uuid>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"projectId\": \"<integer>\",\n      \"repoUrl\": \"<uri>\",\n      \"tosAccepted\": \"<boolean>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d32e558e-eefd-4612-b2e7-f6b30b1f3994",
+              "name": "Resource created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationProfile\": {\n    \"uri\": \"<uri>\"\n  },\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"resourceTypeId\": \"<uuid>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"projectId\": \"<integer>\",\n      \"repoUrl\": \"<uri>\",\n      \"tosAccepted\": \"<boolean>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"applicationProfile\": {\n      \"uri\": \"https://hmabDqEaqGUbfgvUxagYVUHznUZJMcnnt.vztRX5AF7q-akSgdGYkmnOSi5\"\n    },\n    \"description\": \"string\",\n    \"disciplines\": [\n      {\n        \"id\": \"1502c557-4935-0618-e13c-d66bd5e5107c\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      },\n      {\n        \"id\": \"48f4d5e0-0a43-3740-4686-fc88b3fd91f1\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      }\n    ],\n    \"displayName\": \"string\",\n    \"fixedValues\": {\n      \"key_0\": {\n        \"key_0\": [\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"name\": \"string\",\n    \"pid\": \"string\",\n    \"type\": {\n      \"generalType\": \"string\",\n      \"specificType\": \"string\",\n      \"id\": \"f25a987d-83fb-42f9-096a-907a1146a110\",\n      \"options\": {\n        \"linkedData\": {},\n        \"gitLab\": {\n          \"projectId\": 589,\n          \"repoUrl\": \"string\",\n          \"accessToken\": \"string\",\n          \"branch\": \"string\"\n        },\n        \"rds\": {\n          \"bucketName\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"rdsS3\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"rdsS3Worm\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fileSystemStorage\": {\n          \"directory\": \"string\"\n        },\n        \"dataStorageNrwWeb\": {\n          \"bucketName\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dataStorageNrwS3\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dataStorageNrwS3Worm\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"visibility\": {\n      \"id\": \"d7f4c094-e34a-c8ce-98c1-6d91875707c3\",\n      \"displayName\": \"string\"\n    },\n    \"id\": \"dc0ddd95-04f2-eb6e-742a-797170971b33\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"license\": {\n      \"id\": \"4513eca3-911f-427c-5930-aed7dfdd49d8\",\n      \"displayName\": \"string\",\n      \"url\": \"https://IyfxKSXUlEivqB.hyctouEWDTKngyAga4yNUtFQ-kq7sfHbWWTcHt\"\n    },\n    \"usageRights\": \"string\",\n    \"metadataLocalCopy\": false,\n    \"metadataExtraction\": false,\n    \"dateCreated\": \"2013-08-07T16:15:15.252Z\",\n    \"creator\": {\n      \"id\": \"2b657aa2-8169-519f-07f5-15c3bcacb964\"\n    },\n    \"archived\": false,\n    \"maintenanceMode\": false,\n    \"projects\": [\n      {\n        \"id\": \"bc5a6726-bf36-f49a-2277-bdaa8846df86\"\n      },\n      {\n        \"id\": \"86e32aef-24c4-0367-7259-2de99ff2ca03\"\n      }\n    ]\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 505,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2546e6c7-c2da-4df9-8bbd-c9dd042aad71",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationProfile\": {\n    \"uri\": \"<uri>\"\n  },\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"resourceTypeId\": \"<uuid>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"projectId\": \"<integer>\",\n      \"repoUrl\": \"<uri>\",\n      \"tosAccepted\": \"<boolean>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "287b8edd-eafa-48c6-b4bb-10ecca4d720c",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationProfile\": {\n    \"uri\": \"<uri>\"\n  },\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"resourceTypeId\": \"<uuid>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"projectId\": \"<integer>\",\n      \"repoUrl\": \"<uri>\",\n      \"tosAccepted\": \"<boolean>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee7eda7d-b45b-4381-9b08-b2d5081836a6",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationProfile\": {\n    \"uri\": \"<uri>\"\n  },\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"resourceTypeId\": \"<uuid>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"projectId\": \"<integer>\",\n      \"repoUrl\": \"<uri>\",\n      \"tosAccepted\": \"<boolean>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7014a9ee-6483-4ad3-8830-8f2394251365",
+          "name": "Retrieves all resources for a specified project.",
+          "request": {
+            "name": "Retrieves all resources for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6f2444e-1709-4e2b-989b-4f1eeeee1fe7",
+              "name": "Returns the resources.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"applicationProfile\": {\n        \"uri\": \"http://maxJXhKbasFGy.ysiA4ymemjs\"\n      },\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"3ed8d223-0c87-2b4a-b0c1-f28ddfee61d9\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"5fda8062-003d-2e35-9423-fa4c8180e162\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"fixedValues\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            }\n          ]\n        },\n        \"key_1\": {\n          \"key_0\": [\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"pid\": \"string\",\n      \"type\": {\n        \"generalType\": \"string\",\n        \"specificType\": \"string\",\n        \"id\": \"70fd9929-7276-e548-17ca-5d3ebe026d01\",\n        \"options\": {\n          \"linkedData\": {},\n          \"gitLab\": {\n            \"projectId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repoUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessToken\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"branch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rds\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fileSystemStorage\": {\n            \"directory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwWeb\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"visibility\": {\n        \"id\": \"fd04b214-83aa-c16e-282d-2517a5e1f90f\",\n        \"displayName\": \"string\"\n      },\n      \"id\": \"7b65d0eb-0b4d-ece3-0f61-3f23044dd3f4\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"license\": {\n        \"id\": \"2f8d1874-671d-b360-6819-20bc080b1352\",\n        \"displayName\": \"string\",\n        \"url\": \"https://MPHFMXLxYLzQFBqoMNe.gzCDymZpjI7r9poD06qgsIm4sB4YAos3mdeJ.uznm5UpQOgKSUGhBWG-I\"\n      },\n      \"usageRights\": \"string\",\n      \"metadataLocalCopy\": false,\n      \"metadataExtraction\": false,\n      \"dateCreated\": \"1983-02-23T18:38:11.127Z\",\n      \"creator\": {\n        \"id\": \"f9d0ae50-56a2-1f60-c8e4-f3271c9fa9eb\"\n      },\n      \"archived\": true,\n      \"maintenanceMode\": true,\n      \"projects\": [\n        {\n          \"id\": \"f2522ae9-f16c-fedc-70b0-e5dcbc264e5c\"\n        },\n        {\n          \"id\": \"e4da55fa-7003-93e2-95ed-4a9fb8a3e3d1\"\n        }\n      ]\n    },\n    {\n      \"applicationProfile\": {\n        \"uri\": \"http://PrJPYZjmLPiqOqvSiEtIprmeNKDx.faYoX\"\n      },\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"9e524f66-19a8-bdfb-185d-90a50b51fd82\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"d663ec31-2b54-7a3e-48bf-0964c458d1d4\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"fixedValues\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"type\": \"<string>\",\n              \"datatype\": \"<uri>\",\n              \"targetClass\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"pid\": \"string\",\n      \"type\": {\n        \"generalType\": \"string\",\n        \"specificType\": \"string\",\n        \"id\": \"282754f0-f4df-6971-7068-24264afcdde8\",\n        \"options\": {\n          \"linkedData\": {},\n          \"gitLab\": {\n            \"projectId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repoUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessToken\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"branch\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rds\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"rdsS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fileSystemStorage\": {\n            \"directory\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwWeb\": {\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"dataStorageNrwS3Worm\": {\n            \"accessKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accessKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bucketName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endpoint\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyRead\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"secretKeyWrite\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"visibility\": {\n        \"id\": \"0a8f64bf-4000-b74e-5bba-a44ba221f00f\",\n        \"displayName\": \"string\"\n      },\n      \"id\": \"d6d1d902-b0a1-0fcc-d64d-2d8a66d77485\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"license\": {\n        \"id\": \"743ee864-54f1-56f9-5351-0c1d8fcaf74d\",\n        \"displayName\": \"string\",\n        \"url\": \"https://wIyzZgKbvTl.inmrGG,5EnUiPBXDm,hdZF0JH8ykgcMoVAUToWvQvGqeoXrGDNo5NyfDPU\"\n      },\n      \"usageRights\": \"string\",\n      \"metadataLocalCopy\": true,\n      \"metadataExtraction\": true,\n      \"dateCreated\": \"1947-08-16T16:04:56.600Z\",\n      \"creator\": {\n        \"id\": \"e8657ae8-5459-f6b7-51a9-5adff08e0f70\"\n      },\n      \"archived\": true,\n      \"maintenanceMode\": true,\n      \"projects\": [\n        {\n          \"id\": \"82fc7330-c8d9-bdb3-b350-a13c13bbd013\"\n        },\n        {\n          \"id\": \"2c8799c9-948b-f90c-815c-54045605bcae\"\n        }\n      ]\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 446,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 9801,\n    \"totalPages\": 5717,\n    \"pageSize\": 6103,\n    \"totalCount\": 3246,\n    \"hasPrevious\": true,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df8f0ce0-04af-4b29-ab69-fecb0a4843b6",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ecb23a2-08e5-4d84-9e7e-fe65262e188b",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdc0cdfe-594f-4fb7-8a8b-ad87e99555d8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc242035-b11b-490b-a109-be69ed1ad06e",
+          "name": "Retrieves a resource for a specified project.",
+          "request": {
+            "name": "Retrieves a resource for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The ID of the resource to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7fb5f8d-561b-4c41-bad1-3ef49b06992d",
+              "name": "Returns the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"applicationProfile\": {\n      \"uri\": \"https://fHMWKY.emhyKq25G8jcJzTwyC0r2hPWKSBWZ3VJ16-ulojcX8ay4V,TCKqxyX0yPVPK2u\"\n    },\n    \"description\": \"string\",\n    \"disciplines\": [\n      {\n        \"id\": \"e37040ae-8137-28dc-b9aa-7138f278fcc7\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      },\n      {\n        \"id\": \"7e634c49-c251-b8b4-9661-877f36353ba2\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      }\n    ],\n    \"displayName\": \"string\",\n    \"fixedValues\": {\n      \"key_0\": {\n        \"key_0\": [\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          }\n        ],\n        \"key_1\": [\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          }\n        ]\n      },\n      \"key_1\": {\n        \"key_0\": [\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          }\n        ],\n        \"key_1\": [\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          }\n        ],\n        \"key_2\": [\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"type\": \"<string>\",\n            \"datatype\": \"<uri>\",\n            \"targetClass\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"name\": \"string\",\n    \"pid\": \"string\",\n    \"type\": {\n      \"generalType\": \"string\",\n      \"specificType\": \"string\",\n      \"id\": \"a8bb264d-3297-a3db-a7b3-1332e9d54d04\",\n      \"options\": {\n        \"linkedData\": {},\n        \"gitLab\": {\n          \"projectId\": 8175,\n          \"repoUrl\": \"string\",\n          \"accessToken\": \"string\",\n          \"branch\": \"string\"\n        },\n        \"rds\": {\n          \"bucketName\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"rdsS3\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"rdsS3Worm\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fileSystemStorage\": {\n          \"directory\": \"string\"\n        },\n        \"dataStorageNrwWeb\": {\n          \"bucketName\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dataStorageNrwS3\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dataStorageNrwS3Worm\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"visibility\": {\n      \"id\": \"a3162b6c-16ec-58fd-4325-1e67628f973f\",\n      \"displayName\": \"string\"\n    },\n    \"id\": \"06651164-47e4-48e2-e6fe-f9d72547f8ef\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"license\": {\n      \"id\": \"8f9c0a73-750c-d297-04ce-5aa0e9a50621\",\n      \"displayName\": \"string\",\n      \"url\": \"https://jcHBOkUsRwdNQQOcXzPZ.chuli7h+2ohYAwPI5OvodkRCRmU85Ci4CAIqhAHtNBKmfPXHzZ3BgY83U+v8ahBgJm0Ee8-vPa0U\"\n    },\n    \"usageRights\": \"string\",\n    \"metadataLocalCopy\": true,\n    \"metadataExtraction\": true,\n    \"dateCreated\": \"1973-06-13T08:01:16.062Z\",\n    \"creator\": {\n      \"id\": \"2f749d7f-87be-f9a5-de2d-350fcb68b039\"\n    },\n    \"archived\": false,\n    \"maintenanceMode\": true,\n    \"projects\": [\n      {\n        \"id\": \"e616870a-7ea6-761e-83e2-4bc5d4c0d477\"\n      },\n      {\n        \"id\": \"5c389f7f-1e22-a837-0b23-3aac56da8df7\"\n      }\n    ]\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 6260,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "345b4920-200e-4f53-a6b5-9c616606d963",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d9bf8ab2-b6d1-4e70-b22e-8ce5530a3bfd",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffc6db9d-d92f-4f91-b060-2f6fb6d021be",
+              "name": "Resource does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "571cdd5b-72ce-4f5e-8534-89a25fa49385",
+          "name": "Updates a resource for a specified project.",
+          "request": {
+            "name": "Updates a resource for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The ID of the resource to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"archived\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_2\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"maintenanceMode\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98b091e9-fa08-4f0e-b874-5d45dc5ee8cb",
+              "name": "Resource updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"archived\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_1\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_2\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"maintenanceMode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4da02216-ed9b-401b-b483-e544a9cf6c52",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"archived\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_1\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_2\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"maintenanceMode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fd6da33-4bf2-44d5-96d3-ede180409b85",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"archived\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_1\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_2\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"maintenanceMode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "752e5572-e209-4b8d-a1fa-b70c6e1b197d",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"archived\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"displayName\": \"<string>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fixedValues\": {\n    \"key_0\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_1\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ],\n      \"key_1\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    },\n    \"key_2\": {\n      \"key_0\": [\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"type\": \"<string>\",\n          \"datatype\": \"<uri>\",\n          \"targetClass\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"license\": {\n    \"id\": \"<uuid>\"\n  },\n  \"usageRights\": \"<string>\",\n  \"metadataLocalCopy\": \"<boolean>\",\n  \"resourceTypeOptions\": {\n    \"linkedResourceTypeOptions\": {},\n    \"gitlabResourceTypeOptions\": {\n      \"accessToken\": \"<string>\",\n      \"branch\": \"<string>\"\n    },\n    \"rdsResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"rdsS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      }\n    },\n    \"dataStorageNrwWebResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3ResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    },\n    \"dataStorageNrwS3WormResourceTypeOptions\": {\n      \"quota\": {\n        \"unit\": \"<string>\",\n        \"value\": \"<long>\"\n      },\n      \"lifecycleOptions\": {\n        \"abortIncompleteMultipartAfterDays\": \"<integer>\",\n        \"noncurrentVersionExpireAfterDays\": \"<integer>\"\n      },\n      \"replicationGroup\": \"<string>\"\n    }\n  },\n  \"maintenanceMode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b37a20d-3e01-41c6-a177-735e39668de8",
+          "name": "Deletes a resource for a specified project.",
+          "request": {
+            "name": "Deletes a resource for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "resources",
+                ":resourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The ID of the resource to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7074893-0ae5-41bd-8ee2-053e4894554e",
+              "name": "Resource deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdd799e1-5c0c-4d89-9e9d-58f2648b32e8",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "327327c3-b953-4fff-9b0f-d083db5bac9d",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f40b397a-7a10-4846-830f-efab59d30eec",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fdd644fc-2c6d-4b33-8e2f-9ce9906a7e2c",
+    "name": "Coscine Web Admin ProjectResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

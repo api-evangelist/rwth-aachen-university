@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "73ea28de-4e7b-459d-ba8d-849f0aacc06c",
+      "name": "User",
+      "description": {
+        "content": "Endpoints for the users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96e66c3d-e876-4155-bf37-14e515793b9a",
+          "name": "Retrieves all users.",
+          "request": {
+            "name": "Retrieves all users.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field by which the search results are ordered. Defaults to \"firstName\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "SearchTerm",
+                  "value": "<string>",
+                  "description": "(Required) Gets or sets the search term."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c989a68-87dc-4ea4-981d-cdf4d6e60558",
+              "name": "Returns the users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"displayName\": \"string\",\n      \"id\": \"f756cb2a-efba-83f8-4a4c-2fc50ae4d8f0\",\n      \"givenName\": \"string\",\n      \"familyName\": \"string\",\n      \"email\": \"string\",\n      \"title\": {\n        \"displayName\": \"string\",\n        \"id\": \"e24eea49-7990-5fe1-df93-9d45e066c0e8\"\n      }\n    },\n    {\n      \"displayName\": \"string\",\n      \"id\": \"7cebf9c0-7b98-a66c-15e6-647504ee6f69\",\n      \"givenName\": \"string\",\n      \"familyName\": \"string\",\n      \"email\": \"string\",\n      \"title\": {\n        \"displayName\": \"string\",\n        \"id\": \"8f701b9b-fe1d-cfc3-ef34-6f24cab492b0\"\n      }\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 3499,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b9c218a-16cd-4cf7-bdab-58bbe51ed5ce",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b0c3bf9-afc8-4fe5-8014-04035e4933ba",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1864ada-99c2-431b-b923-2ac411330f70",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0b8e57d-284a-4890-8e27-28e0fa6d3742",
+    "name": "Coscine Web Admin User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

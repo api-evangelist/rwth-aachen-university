@@ -1,0 +1,356 @@
+{
+  "item": [
+    {
+      "id": "88450ce5-90c8-4212-8b2b-c40684d7c1a5",
+      "name": "Organization",
+      "description": {
+        "content": "Endpoints for the organizations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c3f3135-5841-4a95-a1cf-1cbe0dd45b7f",
+          "name": "Retrieves an organization.",
+          "request": {
+            "name": "Retrieves an organization.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations",
+                ":organizationRorUri"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationRorUri",
+                  "description": "(Required) The parameters for organization filtering and pagination."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17d6f4ae-fade-42af-b342-62f729fadbef",
+              "name": "Returns the organizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organizationRorUri"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationRorUri",
+                      "description": "(Required) The parameters for organization filtering and pagination."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"displayName\": \"string\",\n    \"uri\": \"http://bNgIKRprSwwAJvgeEBEXQX.gyqmrhG\",\n    \"email\": \"string\",\n    \"publicationAdvisoryService\": {\n      \"displayName\": \"string\",\n      \"email\": \"string\",\n      \"description\": \"string\",\n      \"organizationRor\": \"string\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 4957,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d79c58a-dc03-42e9-b237-1547d09b3fc3",
+          "name": "Retrieves all organizations.",
+          "request": {
+            "name": "Retrieves all organizations.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "SearchTerm",
+                  "value": "<string>",
+                  "description": "Gets or sets the search term used to filter organizations."
+                },
+                {
+                  "disabled": false,
+                  "key": "Language",
+                  "value": "<string>",
+                  "description": "Language of name or text (dataPublicationService)"
+                },
+                {
+                  "disabled": false,
+                  "key": "FilterByPublicationService",
+                  "value": "<boolean>",
+                  "description": "Gets or sets the option to find only organizations having the publication service set."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f426b53-4bfa-46ae-8f19-2f82622c53b1",
+              "name": "Returns the organizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "FilterByPublicationService",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"displayName\": \"string\",\n      \"uri\": \"https://VmWWoTTSkHiAZwTZSduczJvOimoPvH.lmrdKv.yK3VMhckZjlXoEyPmnXiFiWSF.\",\n      \"email\": \"string\",\n      \"publicationAdvisoryService\": {\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"description\": \"string\",\n        \"organizationRor\": \"string\"\n      }\n    },\n    {\n      \"displayName\": \"string\",\n      \"uri\": \"https://VWJqVroftCzbpxxVQEfziNck.xaiCAWY,Z5llcSjKaLbgAdyNCfKZ3Qy\",\n      \"email\": \"string\",\n      \"publicationAdvisoryService\": {\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"description\": \"string\",\n        \"organizationRor\": \"string\"\n      }\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 926,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 4260,\n    \"totalPages\": 5252,\n    \"pageSize\": 1990,\n    \"totalCount\": 3589,\n    \"hasPrevious\": false,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9d1415c-6c7a-47f8-ba41-2d6c7e619958",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50cbd018-1a94-4c7d-8403-2145a0555833",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8c67c3e-f4f0-4a45-b862-0287a01ccc03",
+    "name": "Coscine Web Admin Organization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

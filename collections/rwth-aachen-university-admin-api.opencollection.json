@@ -1,0 +1,434 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all activity logs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/activity-logs",
+            "params": [
+              {
+                "name": "ActivityTimestampBefore",
+                "value": "",
+                "type": "query",
+                "description": "The activity timestamp date before which activity logs should be retrieved."
+              },
+              {
+                "name": "ActivityTimestampAfter",
+                "value": "",
+                "type": "query",
+                "description": "The activity timestamp date after which activity logs should be retrieved."
+              },
+              {
+                "name": "Guid",
+                "value": "",
+                "type": "query",
+                "description": "The GUID for which activity logs should be retrieved. Can be a project, resource or other ID."
+              },
+              {
+                "name": "UserId",
+                "value": "",
+                "type": "query",
+                "description": "The user ID for which activity logs should be retrieved."
+              },
+              {
+                "name": "RegularExpression",
+                "value": "",
+                "type": "query",
+                "description": "The regular expression to filter activity logs' API path by. The regex must be a valid, already escaped string."
+              },
+              {
+                "name": "HttpMethod",
+                "value": "",
+                "type": "query",
+                "description": "The http method to filter activity logs by."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Retrieves all projects.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/projects",
+            "params": [
+              {
+                "name": "TopLevel",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets a value indicating whether to filter top-level projects."
+              },
+              {
+                "name": "IncludeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets a value indicating whether to include deleted projects in the results."
+              },
+              {
+                "name": "IncludeQuotas",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets a value indicating whether to include quotas in the results."
+              },
+              {
+                "name": "IncludePublicationRequests",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets a value indicating whether to include project publication requests in the results."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. The maximum number of items per page is `250`."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Retrieves all resources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/resources",
+            "params": [
+              {
+                "name": "IncludeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Value indicating whether to include deleted resources."
+              },
+              {
+                "name": "IncludeQuotas",
+                "value": "",
+                "type": "query",
+                "description": "Value indicating whether to include individual resource quotas."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. The maximum number of items per page is `250`."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Retrieves all users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/users",
+            "params": [
+              {
+                "name": "TosAccepted",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets a value indicating whether the terms of service have been accepted by the user."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page. The maximum number of items per page is `250`."
+              },
+              {
+                "name": "DataProcessingConsentGranted",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets a value indicating whether the personal data processing consent have been granted by the user."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Gets a metadata graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/metadata/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The absolute URI of the graph to get."
+              },
+              {
+                "name": "Format",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the RDF format."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Updates a metadata graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/metadata/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The absolute URI of the graph to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Patches a metadata graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/metadata/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The absolute URI of the graph to patch."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Gets all deployed graphs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/graphs",
+            "params": [
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Creates a new datasource for a specified resource and type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/resource/:resourceId/type/:typeId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the datasource type."
+              },
+              {
+                "name": "quota",
+                "value": "",
+                "type": "query",
+                "description": "The allocated quota for the datasource."
+              },
+              {
+                "name": "dsNrwReplicationGroup",
+                "value": "",
+                "type": "query",
+                "description": "The optional replication grouo for the datasource."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Updates the type and option ID of a specified resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/resource/:resourceId/type/:typeId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource to be updated."
+              },
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the new resource type."
+              },
+              {
+                "name": "optionId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the new resource type option."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Deletes the given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the user."
+              }
+            ]
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/admin"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

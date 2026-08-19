@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin StorageContent API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StorageContent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the raw content of a file, optionally at a specific version.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage/:encodedPath/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              }
+            ]
+          },
+          "docs": "Retrieves the raw content of a file, optionally at a specific version."
+        },
+        {
+          "info": {
+            "name": "Uploads a new file with raw content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage/:encodedPath/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a new file with raw content."
+        },
+        {
+          "info": {
+            "name": "Updates or overwrites a file with new raw content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage/:encodedPath/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates or overwrites a file with new raw content."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage/:encodedPath/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

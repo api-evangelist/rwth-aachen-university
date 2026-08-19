@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Storage API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checks if a file or folder exists at the specified path within the given project and resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage/:encodedPath",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version to get. Null will default to the latest."
+              }
+            ]
+          },
+          "docs": "Checks if a file or folder exists at the specified path within the given project and resource."
+        },
+        {
+          "info": {
+            "name": "Lists the contents of a directory in the storage tree.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\n\r\n`Sorting is not yet supported for the file tree endpoint, but this property is included for consistency with other query parameter classes and to allow for future extensibility.`.\r\nUse \"asc\" or \"desc\" as the direction.\r\n"
+              },
+              {
+                "name": "Prefix",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the prefix filter.\r\n\r\n\r\nThe prefix to filter the storage objects by.\r\nSlashes are taken into account when filtering by prefix.\r\nThe forwads slash (/) character is treated as the path separator.\r\nThe lookup is only done for one level.\r\nTo look into the next level, include the trailing slash to indicate the next level of the tree.\r\n"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              }
+            ]
+          },
+          "docs": "Lists the contents of a directory in the storage tree."
+        },
+        {
+          "info": {
+            "name": "Deletes a file or folder at the specified path within the given project and resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              }
+            ]
+          },
+          "docs": "Deletes a file or folder at the specified path within the given project and resource."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/storage",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

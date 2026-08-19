@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Self API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Self",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self"
+          },
+          "docs": "Retrieves the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Updates the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Deletes the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self"
+          },
+          "docs": "Deletes the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        },
+        {
+          "info": {
+            "name": "Accepts the current Terms Of Service for the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/tos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accepts the current Terms Of Service for the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Confirms the email of a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/emails",
+            "params": [
+              {
+                "name": "ConfirmationToken",
+                "value": "",
+                "type": "query",
+                "description": "Gets or initializes the confirmation token for user email confirmation."
+              }
+            ]
+          },
+          "docs": "Confirms the email of a user."
+        },
+        {
+          "info": {
+            "name": "Resends the confirmation email for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/emails/resend"
+          },
+          "docs": "Resends the confirmation email for a user."
+        },
+        {
+          "info": {
+            "name": "Initiates user merging for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/identities",
+            "params": [
+              {
+                "name": "IdentityProvider",
+                "value": "",
+                "type": "query",
+                "description": "The identity provider from which user data is to be merged."
+              }
+            ]
+          },
+          "docs": "Initiates user merging for the current user."
+        },
+        {
+          "info": {
+            "name": "Resolves a project invitation for the authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/project-invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resolves a project invitation for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Gives the consent for data processing for the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/data-proccessing-consent"
+          },
+          "docs": "Gives the consent for data processing for the current authenticated user."
+        },
+        {
+          "info": {
+            "name": "Retrieves the number of active project roles for the currently authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/active-project-roles-count"
+          },
+          "docs": "Retrieves the number of active project roles for the currently authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin SystemStatus API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SystemStatus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the internal messages.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/system/status/internal",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "StartDateAfter",
+                "value": "",
+                "type": "query",
+                "description": "Will only return messages that have their start date after this date (UTC)."
+              },
+              {
+                "name": "StartDateBefore",
+                "value": "",
+                "type": "query",
+                "description": "Will only return messages that have their start date before this date (UTC)."
+              },
+              {
+                "name": "EndDateAfter",
+                "value": "",
+                "type": "query",
+                "description": "Will only return messages that have their end date after this date (UTC)."
+              },
+              {
+                "name": "EndDateBefore",
+                "value": "",
+                "type": "query",
+                "description": "Will only return messages that have their end date before this date (UTC)."
+              },
+              {
+                "name": "Type",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages by their type  (e.g. information, warning, error)."
+              },
+              {
+                "name": "SearchTerm",
+                "value": "",
+                "type": "query",
+                "description": "Filter messages by text contained in the messages or title."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "Retrieves the internal messages."
+        },
+        {
+          "info": {
+            "name": "Retrieves the NOC messages.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/system/status/noc",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "Retrieves the NOC messages."
+        },
+        {
+          "info": {
+            "name": "Retrieves the NOC messages.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/system/status/noc/active",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieves the NOC messages."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/system/status"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

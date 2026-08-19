@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "320e5c41-99d8-4581-b773-89fd3c7fa8f6",
+      "name": "Maintenance",
+      "description": {
+        "content": "Endpoints for the maintenances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "797dd0d6-eac8-4e9f-ada6-2221abc94256",
+          "name": "Retrieves the current maintenance messages.",
+          "request": {
+            "name": "Retrieves the current maintenance messages.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "maintenances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "707618c3-59ca-4c7e-a384-474d3bd34309",
+              "name": "Returns the maintenances.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "maintenances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"displayName\": \"string\",\n      \"href\": \"https://z.pewA7IDzbcmF9G+P2cBr,KcNQa,Hj4evHAmGNaz\",\n      \"type\": \"string\",\n      \"body\": \"string\",\n      \"startsDate\": \"2015-09-08T01:21:40.793Z\",\n      \"endsDate\": \"2017-03-18T02:21:59.921Z\"\n    },\n    {\n      \"displayName\": \"string\",\n      \"href\": \"http://NUBNiUEFMtywurzEVURxEAD.mytyhS+co0l+qFwCKJ1kY2GegS5P\",\n      \"type\": \"string\",\n      \"body\": \"string\",\n      \"startsDate\": \"1984-12-17T06:51:00.106Z\",\n      \"endsDate\": \"2011-09-13T06:43:30.436Z\"\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 3517,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 1419,\n    \"totalPages\": 4642,\n    \"pageSize\": 2461,\n    \"totalCount\": 2937,\n    \"hasPrevious\": false,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7723ae08-400b-4db1-b1a8-eede27ee84a8",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "maintenances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba842964-5344-4fe6-8579-eb43d1755fe9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "maintenances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "49373db3-440d-42c3-af6a-12eb0ed8adf8",
+    "name": "Coscine Web Admin Maintenance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Report API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download for the project report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/project"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Download for the project quota report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/project/quota"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Download for the user report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/user"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Download for the applicationprofile report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/application-profile"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Download for the resource report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/resource"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Download for the resource quota report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/resource/quota"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Download for the maintenance report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports/maintenance"
+          },
+          "docs": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>"
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/reports"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

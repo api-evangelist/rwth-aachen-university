@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Search API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a search result by given search parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/search",
+            "params": [
+              {
+                "name": "Query",
+                "value": "",
+                "type": "query",
+                "description": "The search query"
+              },
+              {
+                "name": "UseAdvancedSyntax",
+                "value": "",
+                "type": "query",
+                "description": "Set true for advanced Elasticsearch search syntax"
+              },
+              {
+                "name": "Languages",
+                "value": "",
+                "type": "query",
+                "description": "Set the used languages"
+              },
+              {
+                "name": "Category",
+                "value": "",
+                "type": "query",
+                "description": "Set the category filter"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+              }
+            ]
+          },
+          "docs": "Retrieves a search result by given search parameters."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/search"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

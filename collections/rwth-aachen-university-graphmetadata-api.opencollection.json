@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin GraphMetadata API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphMetadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a paginated list of all metadata versions available\r\nfor a specific graph node of a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata/versions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The URL-encoded path to the graph node."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\n\r\n\r\nThe property `version`is supported for ordering.\r\nUse \"asc\" or \"desc\" as the direction.\r\nThe Default is `version desc`.\r\n"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all metadata versions available\r\nfor a specific graph node of a resource."
+        },
+        {
+          "info": {
+            "name": "Retrieves a specific version of the metadata graph for a given path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The URL-encoded path to the graph node.\r\n            Due to a limitation in the underlying structure, any trailing slashes in the path will be trimmed.\r\n            Test.txt and Test.txt/ will be treated as the same path."
+              },
+              {
+                "name": "graphVersion",
+                "value": "",
+                "type": "query",
+                "description": "The version identifier of the graph to retrieve.\r\nIf omitted, the latest version is returned."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific version of the metadata graph for a given path."
+        },
+        {
+          "info": {
+            "name": "Checks the existence of a specific metadata version without returning content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The URL-encoded path to the graph node."
+              },
+              {
+                "name": "graphVersion",
+                "value": "",
+                "type": "query",
+                "description": "Optional version identifier of the graph to check."
+              }
+            ]
+          },
+          "docs": "Checks the existence of a specific metadata version without returning content."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,349 @@
+{
+  "item": [
+    {
+      "id": "ac0978cf-d17c-4cb2-a1ca-c7d81a015ecf",
+      "name": "ResourceType",
+      "description": {
+        "content": "Endpoints for the resource types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1cb49980-1f75-44c2-b7f2-0a907c2f39a6",
+          "name": "Retrieves the entire global resource types information.",
+          "request": {
+            "name": "Retrieves the entire global resource types information.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1490c099-ec2c-4ccd-a7a2-cf574d010c16",
+              "name": "Returns the entire global resource types information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"64d849db-8e2e-e9c8-b9c0-bd50454b4c7d\",\n      \"generalType\": \"string\",\n      \"specificType\": \"string\",\n      \"status\": \"active\",\n      \"canCreate\": true,\n      \"canRead\": false,\n      \"canSetResourceReadonly\": true,\n      \"canUpdate\": true,\n      \"canUpdateResource\": true,\n      \"canDelete\": false,\n      \"canDeleteResource\": false,\n      \"canList\": true,\n      \"canCreateLinks\": false,\n      \"canCopyLocalMetadata\": true,\n      \"isArchived\": true,\n      \"isQuotaAvailable\": false,\n      \"isQuotaAdjustable\": false,\n      \"supportsVersioning\": true,\n      \"isEnabled\": true,\n      \"resourceCreation\": {\n        \"components\": [\n          [\n            \"string\",\n            \"string\"\n          ],\n          [\n            \"string\",\n            \"string\"\n          ]\n        ]\n      },\n      \"resourceContent\": {\n        \"readOnly\": false,\n        \"metadataView\": {\n          \"editableDataUrl\": false,\n          \"editableKey\": false\n        },\n        \"entriesView\": {\n          \"columns\": {\n            \"always\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"603c172e-812a-0248-f29c-8e7574c9945d\",\n      \"generalType\": \"string\",\n      \"specificType\": \"string\",\n      \"status\": \"hidden\",\n      \"canCreate\": true,\n      \"canRead\": false,\n      \"canSetResourceReadonly\": false,\n      \"canUpdate\": true,\n      \"canUpdateResource\": true,\n      \"canDelete\": true,\n      \"canDeleteResource\": true,\n      \"canList\": true,\n      \"canCreateLinks\": false,\n      \"canCopyLocalMetadata\": true,\n      \"isArchived\": true,\n      \"isQuotaAvailable\": true,\n      \"isQuotaAdjustable\": true,\n      \"supportsVersioning\": false,\n      \"isEnabled\": false,\n      \"resourceCreation\": {\n        \"components\": [\n          [\n            \"string\",\n            \"string\"\n          ],\n          [\n            \"string\",\n            \"string\"\n          ]\n        ]\n      },\n      \"resourceContent\": {\n        \"readOnly\": false,\n        \"metadataView\": {\n          \"editableDataUrl\": false,\n          \"editableKey\": false\n        },\n        \"entriesView\": {\n          \"columns\": {\n            \"always\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 3180,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d574e15-109c-4562-9d6e-f35c6f6c3df4",
+          "name": "Retrieves the resource type information for a specific resource type.",
+          "request": {
+            "name": "Retrieves the resource type information for a specific resource type.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types",
+                "types",
+                ":resourceTypeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceTypeId",
+                  "description": "(Required) The ID of the resource type to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7008604-acbf-40b4-9d7b-92480b351138",
+              "name": "Returns the resource type information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "types",
+                    ":resourceTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceTypeId",
+                      "description": "(Required) The ID of the resource type to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"bbdf0681-2ca9-3099-8ee0-dd209db7591c\",\n    \"generalType\": \"string\",\n    \"specificType\": \"string\",\n    \"status\": \"hidden\",\n    \"canCreate\": true,\n    \"canRead\": false,\n    \"canSetResourceReadonly\": false,\n    \"canUpdate\": false,\n    \"canUpdateResource\": true,\n    \"canDelete\": true,\n    \"canDeleteResource\": true,\n    \"canList\": true,\n    \"canCreateLinks\": false,\n    \"canCopyLocalMetadata\": true,\n    \"isArchived\": true,\n    \"isQuotaAvailable\": false,\n    \"isQuotaAdjustable\": true,\n    \"supportsVersioning\": false,\n    \"isEnabled\": true,\n    \"resourceCreation\": {\n      \"components\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    },\n    \"resourceContent\": {\n      \"readOnly\": false,\n      \"metadataView\": {\n        \"editableDataUrl\": true,\n        \"editableKey\": true\n      },\n      \"entriesView\": {\n        \"columns\": {\n          \"always\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      }\n    }\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 3804,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "036942fb-0e3f-45ff-af12-0ae82d04caf8",
+              "name": "Resource type does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "types",
+                    ":resourceTypeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceTypeId",
+                      "description": "(Required) The ID of the resource type to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d14df6a-d6c3-4eb3-971f-3171f3b8bc57",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e925f83-3aaa-4e50-87fb-8fccd594fa15",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0ddf1d7c-e7aa-460f-88e2-284777cdc49a",
+    "name": "Coscine Web Admin ResourceType API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

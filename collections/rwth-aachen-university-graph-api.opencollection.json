@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin Graph API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graph",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a paginated subset of nodes that make up the metadata tree\r\nfor a specified resource within a given project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project containing the resource.\r\nSupplied as a route parameter."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource whose metadata tree should be retrieved.\r\nSupplied as a route parameter."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the field name used for ordering the results.\r\n\r\n\r\nThe properties `HasChildren`, `HasMetadata`, `HasData` and `Subject` are supported for ordering.\r\nUse \"asc\" or \"desc\" as the direction.\r\nThe Default is `HasChildren desc, subject asc`.\r\n"
+              },
+              {
+                "name": "Prefix",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the prefix filter.\r\n\r\n\r\nThe prefix to filter the storage objects by.\r\nSlashes are taken into account when filtering by prefix.\r\nThe forwads slash (/) character is treated as the path separator.\r\nThe lookup is only done for one level.\r\nTo look into the next level, include the trailing slash to indicate the next level of the tree.\r\n"
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated subset of nodes that make up the metadata tree\r\nfor a specified resource within a given project."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        },
+        {
+          "info": {
+            "name": "Retrieves metadata for a graph node or group at the specified path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project. Supplied as a route parameter."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource. Supplied as a route parameter."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              }
+            ]
+          },
+          "docs": "Retrieves metadata for a graph node or group at the specified path."
+        },
+        {
+          "info": {
+            "name": "Performs a metadata check for a graph node or group at the specified path without returning a response body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project. Supplied as a route parameter."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource. Supplied as a route parameter."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The url encoded path of the file."
+              }
+            ]
+          },
+          "docs": "Performs a metadata check for a graph node or group at the specified path without returning a response body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

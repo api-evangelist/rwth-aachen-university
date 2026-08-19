@@ -1,0 +1,315 @@
+{
+  "item": [
+    {
+      "id": "d55d517f-fd62-40da-a5fe-b50846134b42",
+      "name": "Resource",
+      "description": {
+        "content": "Endpoints for the resources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5abc096-fcc0-45ce-89a3-de8bf6530e02",
+          "name": "Retrieves a resource by its ID.",
+          "request": {
+            "name": "Retrieves a resource by its ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resources",
+                ":resourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "resourceId",
+                  "description": "(Required) The ID of the resource to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e88d3b1-0559-4f05-8058-a64949dbb307",
+              "name": "Returns the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"applicationProfile\": {\n      \"uri\": \"http://BTgPHHQyaDhmMOtcRXAxMbQw.ymUoxnlm6BSf92\"\n    },\n    \"description\": \"string\",\n    \"disciplines\": [\n      {\n        \"id\": \"23304a06-f0ad-93b1-9b38-2486e9351694\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      },\n      {\n        \"id\": \"fab0cf8d-4182-0c5f-a6b5-814917c0a39b\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      }\n    ],\n    \"displayName\": \"string\",\n    \"fixedValues\": {\n      \"key_0\": {\n        \"key_0\": [\n          {\n            \"value\": \"string\",\n            \"type\": \"string\",\n            \"datatype\": \"https://f.guGgNoOu46GL3ffkJRnftv6W4QEwOgksVexV+U9\",\n            \"targetClass\": \"string\"\n          },\n          {\n            \"value\": \"string\",\n            \"type\": \"string\",\n            \"datatype\": \"http://vfZyoAG.cjesqurfCfEKXfK6NfGq\",\n            \"targetClass\": \"string\"\n          }\n        ]\n      }\n    },\n    \"name\": \"string\",\n    \"pid\": \"string\",\n    \"type\": {\n      \"generalType\": \"string\",\n      \"specificType\": \"string\",\n      \"id\": \"62584670-13d8-cb89-efb6-f61fd16480ba\",\n      \"options\": {\n        \"linkedData\": {},\n        \"gitLab\": {\n          \"projectId\": 9377,\n          \"repoUrl\": \"string\",\n          \"accessToken\": \"string\",\n          \"branch\": \"string\"\n        },\n        \"rds\": {\n          \"bucketName\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"rdsS3\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"rdsS3Worm\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fileSystemStorage\": {\n          \"directory\": \"string\"\n        },\n        \"dataStorageNrwWeb\": {\n          \"bucketName\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dataStorageNrwS3\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"dataStorageNrwS3Worm\": {\n          \"accessKeyRead\": \"string\",\n          \"accessKeyWrite\": \"string\",\n          \"bucketName\": \"string\",\n          \"endpoint\": \"string\",\n          \"secretKeyRead\": \"string\",\n          \"secretKeyWrite\": \"string\",\n          \"size\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"visibility\": {\n      \"id\": \"2c524b1d-e360-825c-fe2e-8373bfbf6cb8\",\n      \"displayName\": \"string\"\n    },\n    \"id\": \"4f3b5be8-f995-3ee4-d8c6-4f87d14d398e\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"license\": {\n      \"id\": \"1c0d68a0-7e34-bef6-2967-3d5d4daf99dd\",\n      \"displayName\": \"string\",\n      \"url\": \"http://FLhEBWbDoejpknBhe.evsyvDw2y9NiBp.VLw5ZH\"\n    },\n    \"usageRights\": \"string\",\n    \"metadataLocalCopy\": true,\n    \"metadataExtraction\": true,\n    \"dateCreated\": \"1998-08-02T08:44:10.092Z\",\n    \"creator\": {\n      \"id\": \"d316235f-bae4-263c-e9ee-680bad92b2a6\"\n    },\n    \"archived\": true,\n    \"maintenanceMode\": true,\n    \"projects\": [\n      {\n        \"id\": \"70c4a14c-f052-056e-6bac-b0ee23e5ab8b\"\n      },\n      {\n        \"id\": \"8dc8b3a7-dc90-e0e7-3920-a0091576b006\"\n      }\n    ]\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 3768,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59f77d08-2251-4fb9-a499-9b77de005c68",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd943295-0ddc-47c7-96fe-6b1497a6e095",
+              "name": "Resource does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resources",
+                    ":resourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "resourceId",
+                      "description": "(Required) The ID of the resource to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccebf17b-4e11-4ac7-8317-2648be8df27f",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10792e7f-b776-4095-84d0-e0c8d0e045c0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ac792004-deee-4450-88cc-5a4af352afdb",
+    "name": "Coscine Web Admin Resource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

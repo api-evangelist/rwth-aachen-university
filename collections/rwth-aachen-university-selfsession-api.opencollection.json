@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin SelfSession API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SelfSession",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate the login workflow with the default (NFDI4Ing AAI) provider.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/session"
+          },
+          "docs": "Initiate the login workflow with the default (NFDI4Ing AAI) provider."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/session"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        },
+        {
+          "info": {
+            "name": "Initiate the login workflow with specific provider.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/session/:externalAuthenticatorId",
+            "params": [
+              {
+                "name": "externalAuthenticatorId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the external authenticator to use for login."
+              }
+            ]
+          },
+          "docs": "Initiate the login workflow with specific provider."
+        },
+        {
+          "info": {
+            "name": "Initiate the merge workflow with specific provider.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/session/merge/:externalAuthenticatorId",
+            "params": [
+              {
+                "name": "externalAuthenticatorId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the external authenticator to use for login."
+              }
+            ]
+          },
+          "docs": "Initiate the merge workflow with specific provider."
+        },
+        {
+          "info": {
+            "name": "Initiate the Log out workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/self/session/logout"
+          },
+          "docs": "Initiate the Log out workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

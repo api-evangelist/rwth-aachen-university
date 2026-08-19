@@ -1,0 +1,531 @@
+{
+  "item": [
+    {
+      "id": "ed15d080-d775-4b0e-8b95-a6717729826a",
+      "name": "SystemStatus",
+      "description": {
+        "content": "Endpoints for system status messages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a22febb4-e80c-4166-a59b-ed12937ee0bd",
+          "name": "Retrieves the internal messages.",
+          "request": {
+            "name": "Retrieves the internal messages.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "system",
+                "status",
+                "internal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "StartDateAfter",
+                  "value": "<dateTime>",
+                  "description": "Will only return messages that have their start date after this date (UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "StartDateBefore",
+                  "value": "<dateTime>",
+                  "description": "Will only return messages that have their start date before this date (UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "EndDateAfter",
+                  "value": "<dateTime>",
+                  "description": "Will only return messages that have their end date after this date (UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "EndDateBefore",
+                  "value": "<dateTime>",
+                  "description": "Will only return messages that have their end date before this date (UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "Type",
+                  "value": "<string>",
+                  "description": "Filter messages by their type  (e.g. information, warning, error)."
+                },
+                {
+                  "disabled": false,
+                  "key": "SearchTerm",
+                  "value": "<string>",
+                  "description": "Filter messages by text contained in the messages or title."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The desired language.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "928f9975-9fc3-4ff3-9e2c-0a851a800cfc",
+              "name": "Returns the internal message.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "system",
+                    "status",
+                    "internal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "StartDateAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "StartDateBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EndDateAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EndDateBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired language.",
+                    "key": "Accept-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"type\": \"<string>\",\n      \"title\": \"string\",\n      \"href\": \"https://CtSpqGD.jwixtYBGmk7Qsk4cNHqlDP2fwbvoaWL-4R0\",\n      \"startDate\": \"1959-11-26T18:20:28.795Z\",\n      \"endDate\": \"1993-01-15T09:33:08.006Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"type\": \"<string>\",\n      \"title\": \"string\",\n      \"href\": \"https://wpJswmqzbItdbEQY.kwhixbX.0,vmbxcm2-,\",\n      \"startDate\": \"1965-06-05T17:34:46.192Z\",\n      \"endDate\": \"1989-02-10T18:37:41.518Z\"\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 2385,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 9048,\n    \"totalPages\": 1735,\n    \"pageSize\": 6424,\n    \"totalCount\": 5863,\n    \"hasPrevious\": true,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a8af128-dfd5-4b35-b374-530cbef73fe0",
+          "name": "Retrieves the NOC messages.",
+          "request": {
+            "name": "Retrieves the NOC messages.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "system",
+                "status",
+                "noc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The desired language.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b09712c0-d4ff-4eba-80c0-ce982f0aa51b",
+              "name": "Returns the NOC messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "system",
+                    "status",
+                    "noc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired language.",
+                    "key": "Accept-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"type\": \"<string>\",\n      \"title\": \"string\",\n      \"href\": \"http://jfEBXASQuPWJarUIi.fkerTEc\",\n      \"startDate\": \"2001-02-26T00:58:29.762Z\",\n      \"endDate\": \"2003-08-10T20:41:11.010Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"key_0\": \"string\"\n      },\n      \"type\": \"<string>\",\n      \"title\": \"string\",\n      \"href\": \"https://iOLswscmlXOZjRcIOUziXjLpKleOju.ahLXdMMqfsE6NTtPo9rn1u,HniEL\",\n      \"startDate\": \"1958-01-03T15:37:47.862Z\",\n      \"endDate\": \"1975-09-10T18:17:52.890Z\"\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 9153,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 1164,\n    \"totalPages\": 7371,\n    \"pageSize\": 6780,\n    \"totalCount\": 8090,\n    \"hasPrevious\": true,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6df30d2-f82b-443b-8536-ffb0f09fb21d",
+          "name": "Retrieves the NOC messages.",
+          "request": {
+            "name": "Retrieves the NOC messages.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "system",
+                "status",
+                "noc",
+                "active"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The desired language.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a024c6b0-7bd4-42ec-b9e1-a78a4e559288",
+              "name": "Returns the active NOC messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "system",
+                    "status",
+                    "noc",
+                    "active"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired language.",
+                    "key": "Accept-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"key_0\": \"string\"\n      },\n      \"type\": \"<string>\",\n      \"title\": \"string\",\n      \"href\": \"https://GTYcGAyGXExkqlhcmAAMEcRQciIEpZ.ikyoDZtQjDl.BRkTIqrHC\",\n      \"startDate\": \"1967-04-04T14:59:56.424Z\",\n      \"endDate\": \"2004-03-09T12:01:54.319Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"type\": \"<string>\",\n      \"title\": \"string\",\n      \"href\": \"http://Jkbnuia.bbnSINMknMhRZAz88m\",\n      \"startDate\": \"1993-06-28T07:38:03.801Z\",\n      \"endDate\": \"1983-11-19T11:10:06.462Z\"\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 6733,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b05c598a-1612-47a0-880a-e3eb259fdc75",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "system",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7e0b149-0ef2-438d-883f-f0ef6a5f6dd3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "system",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d90c6816-f467-42e7-9c29-cbffd75b7ea4",
+    "name": "Coscine Web Admin SystemStatus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

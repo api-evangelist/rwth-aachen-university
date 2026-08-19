@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin ResourceTypeGitLab API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ResourceTypeGitLab",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all GitLab projects, that the user is a member of, based on the provided credentials.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/resource-types/gitlab/projects",
+            "params": [
+              {
+                "name": "Domain",
+                "value": "https://git.rwth-aachen.de/",
+                "type": "query",
+                "description": "Domain/Host of the GitLab Provider."
+              },
+              {
+                "name": "AccessToken",
+                "value": "",
+                "type": "query",
+                "description": "GitLab Project or Group Access Token."
+              }
+            ]
+          },
+          "docs": "Retrieves all GitLab projects, that the user is a member of, based on the provided credentials."
+        },
+        {
+          "info": {
+            "name": "Retrieves a single GitLab project, that the user is a member of, based on the provided credentials.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/resource-types/gitlab/projects/:gitlabProjectId",
+            "params": [
+              {
+                "name": "gitlabProjectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the GitLab project."
+              },
+              {
+                "name": "Domain",
+                "value": "https://git.rwth-aachen.de/",
+                "type": "query",
+                "description": "Domain/Host of the GitLab Provider."
+              },
+              {
+                "name": "AccessToken",
+                "value": "",
+                "type": "query",
+                "description": "GitLab Project or Group Access Token."
+              }
+            ]
+          },
+          "docs": "Retrieves a single GitLab project, that the user is a member of, based on the provided credentials."
+        },
+        {
+          "info": {
+            "name": "Retrieves all branches of a GitLab project, that the user is a member of, based on the provided credentials.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/resource-types/gitlab/projects/:gitlabProjectId/branches",
+            "params": [
+              {
+                "name": "gitlabProjectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the GitLab project."
+              },
+              {
+                "name": "Domain",
+                "value": "https://git.rwth-aachen.de/",
+                "type": "query",
+                "description": "Domain/Host of the GitLab Provider."
+              },
+              {
+                "name": "AccessToken",
+                "value": "",
+                "type": "query",
+                "description": "GitLab Project or Group Access Token."
+              }
+            ]
+          },
+          "docs": "Retrieves all branches of a GitLab project, that the user is a member of, based on the provided credentials."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/resource-types/gitlab"
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

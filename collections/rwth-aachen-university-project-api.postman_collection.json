@@ -1,0 +1,1353 @@
+{
+  "item": [
+    {
+      "id": "330b33fe-6a3c-48a6-8455-24c88c369eee",
+      "name": "Project",
+      "description": {
+        "content": "Endpoints for the projects.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb257f5d-1d16-4180-81bd-4073ebac7a06",
+          "name": "Creates a new project.",
+          "request": {
+            "name": "Creates a new project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"copyOwnersFromParent\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35d13dba-0aa5-4ec7-9f00-0bb3779d79c9",
+              "name": "Project created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"copyOwnersFromParent\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"description\": \"string\",\n    \"disciplines\": [\n      {\n        \"id\": \"040701b2-065f-1259-a74c-f6c0a81892cd\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      },\n      {\n        \"id\": \"b791cff6-66df-dee0-5047-e3a2a1f88999\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      }\n    ],\n    \"endDate\": \"2021-03-16T17:06:30.762Z\",\n    \"id\": \"e44df9c0-2588-54a0-2a87-6b7f9bb8521e\",\n    \"name\": \"string\",\n    \"organizations\": [\n      {\n        \"displayName\": \"string\",\n        \"responsible\": false,\n        \"uri\": \"http://NGohRB.maT\",\n        \"email\": \"string\",\n        \"publicationAdvisoryService\": {\n          \"displayName\": \"string\",\n          \"email\": \"string\",\n          \"description\": \"string\",\n          \"organizationRor\": \"string\"\n        }\n      },\n      {\n        \"displayName\": \"string\",\n        \"responsible\": true,\n        \"uri\": \"http://PPRoeTyTDhdLBIcyywDYvRGIvv.hnhzO2ASWJgCsRlb\",\n        \"email\": \"string\",\n        \"publicationAdvisoryService\": {\n          \"displayName\": \"string\",\n          \"email\": \"string\",\n          \"description\": \"string\",\n          \"organizationRor\": \"string\"\n        }\n      }\n    ],\n    \"pid\": \"string\",\n    \"slug\": \"string\",\n    \"startDate\": \"1990-09-07T14:01:18.654Z\",\n    \"visibility\": {\n      \"id\": \"c131cef1-7a7d-13a4-0064-5db353c7c02b\",\n      \"displayName\": \"string\"\n    },\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"displayName\": \"string\",\n    \"principleInvestigators\": \"string\",\n    \"grantId\": \"string\",\n    \"creator\": {\n      \"id\": \"b5f8d179-185f-b777-bb41-bf63019df9ab\"\n    },\n    \"creationDate\": \"1949-02-19T17:39:31.749Z\",\n    \"subProjects\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n      }\n    ],\n    \"parent\": {\n      \"id\": \"0b75d03b-12f6-c26c-31d3-621071ec029b\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 3538,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b0932f5-66d9-42b3-921b-adccbf3bcad8",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"copyOwnersFromParent\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "586366d3-c1cf-44a4-a7a5-6fd741cd6354",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"copyOwnersFromParent\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8042dca6-ae0a-4a49-b555-650b52a07145",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"copyOwnersFromParent\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a94b3292-9e45-47e6-9f96-20e10244d456",
+          "name": "Retrieves all projects.",
+          "request": {
+            "name": "Retrieves all projects.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "IncludeOrganizations",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to retrieve the organizations."
+                },
+                {
+                  "disabled": false,
+                  "key": "TopLevel",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to retrieve only top-level projects."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "361f107c-acb4-49c9-a445-fdcbe1f14c8c",
+              "name": "Returns the projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeOrganizations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "TopLevel",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"57e1fbd5-cc59-625e-4b1a-7281574ae583\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"765b41d5-0872-1acf-d0b5-238eda7ba258\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"endDate\": \"1947-02-05T19:54:04.123Z\",\n      \"id\": \"42a5bfbd-8129-d1eb-8081-106209eda51a\",\n      \"name\": \"string\",\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"responsible\": false,\n          \"uri\": \"http://GOaDtYhnXXC.salwWR6lCCsEjM2F+9mUMfqRaQN3EOoMlFJPl6+\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        },\n        {\n          \"displayName\": \"string\",\n          \"responsible\": false,\n          \"uri\": \"http://UffoIToWwaG.wtdDHx-uOLv01L\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        }\n      ],\n      \"pid\": \"string\",\n      \"slug\": \"string\",\n      \"startDate\": \"1997-05-22T18:22:58.892Z\",\n      \"visibility\": {\n        \"id\": \"bee43999-1eeb-5dcd-e798-426d54c20b55\",\n        \"displayName\": \"string\"\n      },\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"displayName\": \"string\",\n      \"principleInvestigators\": \"string\",\n      \"grantId\": \"string\",\n      \"creator\": {\n        \"id\": \"a289dc3d-a596-5d18-d926-a37145e75f41\"\n      },\n      \"creationDate\": \"2004-09-14T19:33:26.473Z\",\n      \"subProjects\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        }\n      ],\n      \"parent\": {\n        \"id\": \"069dd9c8-4cd8-2e90-1710-8cc360a7a218\"\n      }\n    },\n    {\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"445a39b2-8373-e575-be54-5d85ddd162dd\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"ec81fd57-08f9-6797-da66-f586f8b11605\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"endDate\": \"2007-01-27T23:40:46.980Z\",\n      \"id\": \"365e906a-ffc3-c75c-1b38-755eec552383\",\n      \"name\": \"string\",\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"responsible\": true,\n          \"uri\": \"https://WCErjAbyBlQnVghQM.lcpqyBMCJPX1odGm5dD\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        },\n        {\n          \"displayName\": \"string\",\n          \"responsible\": false,\n          \"uri\": \"http://UnZPUyjcSdeiiVflPXjglGEzSzX.izfodwgo.UWsEuXIvzgv6tFswZMAlDke3b7vbCtIpwtb2RT2n\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        }\n      ],\n      \"pid\": \"string\",\n      \"slug\": \"string\",\n      \"startDate\": \"1951-12-03T08:06:03.179Z\",\n      \"visibility\": {\n        \"id\": \"7f3d9d5a-1559-3f2e-18d3-7b25882beefc\",\n        \"displayName\": \"string\"\n      },\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"displayName\": \"string\",\n      \"principleInvestigators\": \"string\",\n      \"grantId\": \"string\",\n      \"creator\": {\n        \"id\": \"6ed64cb3-86ea-2b10-376b-b23a1a2b2243\"\n      },\n      \"creationDate\": \"1955-10-16T10:08:57.436Z\",\n      \"subProjects\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        }\n      ],\n      \"parent\": {\n        \"id\": \"0b64d8e4-71a7-0723-c92f-502f8b178401\"\n      }\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 2282,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 2209,\n    \"totalPages\": 1548,\n    \"pageSize\": 3968,\n    \"totalCount\": 4372,\n    \"hasPrevious\": true,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58c3f451-b50a-442b-b4ff-9208873716e2",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeOrganizations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "TopLevel",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc5c0ef0-37d0-4c17-94ce-58656f50bfbb",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6567c77-524c-41f5-bba2-9850e65a4730",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a36a8ef5-78f8-44d6-983c-0acc122f30e3",
+          "name": "Retrieves a project.",
+          "request": {
+            "name": "Retrieves a project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "IncludeSubProjects",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to include sub-projects in the retrieval."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The ID of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "574afb6d-db1f-454e-99e4-a73050412cd1",
+              "name": "Returns the project.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeSubProjects",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"description\": \"string\",\n    \"disciplines\": [\n      {\n        \"id\": \"b64d7f85-50a6-84d5-78fa-b7be7e14285a\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      },\n      {\n        \"id\": \"3acdf952-4e0d-910b-c2f2-1822a7429711\",\n        \"uri\": \"string\",\n        \"displayNameDe\": \"string\",\n        \"displayNameEn\": \"string\"\n      }\n    ],\n    \"endDate\": \"1961-11-08T01:48:39.715Z\",\n    \"id\": \"9a4c3274-3333-2633-12a7-20b17b784ccd\",\n    \"name\": \"string\",\n    \"organizations\": [\n      {\n        \"displayName\": \"string\",\n        \"responsible\": false,\n        \"uri\": \"http://jCMfQaCjVXFoyFEyssxiGYbeLJ.djzyE,YHDTBrxUF,400jwYzGtUflWwDvsZgqkLukEtEcmjVH3UjeAn+\",\n        \"email\": \"string\",\n        \"publicationAdvisoryService\": {\n          \"displayName\": \"string\",\n          \"email\": \"string\",\n          \"description\": \"string\",\n          \"organizationRor\": \"string\"\n        }\n      },\n      {\n        \"displayName\": \"string\",\n        \"responsible\": false,\n        \"uri\": \"https://I.qxyxscGhFhejKPaLTn9OY7T,xyV.8LpOFk-O.e1JV\",\n        \"email\": \"string\",\n        \"publicationAdvisoryService\": {\n          \"displayName\": \"string\",\n          \"email\": \"string\",\n          \"description\": \"string\",\n          \"organizationRor\": \"string\"\n        }\n      }\n    ],\n    \"pid\": \"string\",\n    \"slug\": \"string\",\n    \"startDate\": \"2001-08-25T15:00:21.171Z\",\n    \"visibility\": {\n      \"id\": \"5bfe9559-a0d6-7d5e-17e6-c68e63acf576\",\n      \"displayName\": \"string\"\n    },\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"displayName\": \"string\",\n    \"principleInvestigators\": \"string\",\n    \"grantId\": \"string\",\n    \"creator\": {\n      \"id\": \"888a1a38-b3cf-f4ce-1ffa-a671bb1b07ed\"\n    },\n    \"creationDate\": \"1978-12-14T10:38:34.868Z\",\n    \"subProjects\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n      }\n    ],\n    \"parent\": {\n      \"id\": \"6df014e0-b696-4798-b137-73cd50922c13\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 2894,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f474e5b-dfdb-4d34-8ff9-d0707bb56b03",
+              "name": "Provided input has a bad format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeSubProjects",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "087729b5-9d7c-4230-8e94-da19f9f91288",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeSubProjects",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea9fca25-0a96-45d3-8c93-10e86d391055",
+              "name": "Project does not exist or has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeSubProjects",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8bd358f-56e8-4a4b-b58a-d86b00318da2",
+          "name": "Updates a project.",
+          "request": {
+            "name": "Updates a project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The ID of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"slug\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94e5a3dc-0a7b-4a6d-9b16-fa1ebf7abd99",
+              "name": "Project updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"slug\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9c13ec5-eba0-4f7c-980d-b61f51799c23",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"slug\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98cfeb42-7fdb-43ec-8cd9-a4872cd9a9bb",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"slug\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "662c2897-d1f5-455e-a234-c30f89f5b817",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"disciplines\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"organizations\": [\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    },\n    {\n      \"responsible\": \"<boolean>\",\n      \"uri\": \"<uri>\"\n    }\n  ],\n  \"slug\": \"<string>\",\n  \"visibility\": {\n    \"id\": \"<uuid>\"\n  },\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"displayName\": \"<string>\",\n  \"principleInvestigators\": \"<string>\",\n  \"grantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80ec7346-67e2-4ffb-a1a5-d29c4166aff0",
+          "name": "Deletes a project.",
+          "request": {
+            "name": "Deletes a project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The ID of the project."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c85424d-129a-4d36-9517-9042dd39ddfd",
+              "name": "Project deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c23a007f-b0fe-49dc-af4e-b64c931aa429",
+              "name": "Provided input has a bad format or the resource is write-protected due to its archived status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ae02528-1830-4458-9831-bcd4d40ca17e",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4daa959-2470-458a-9a94-b8bbf3f35358",
+              "name": "Provided input refers to entries that do not exist or have been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "357e3b4e-9af1-4260-9cc4-58af9a20fd1f",
+    "name": "Coscine Web Admin Project API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

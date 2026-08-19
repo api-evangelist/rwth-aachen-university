@@ -1,0 +1,605 @@
+{
+  "item": [
+    {
+      "id": "629e4ecd-b6df-48a2-82aa-7a472565dfe5",
+      "name": "Vocabulary",
+      "description": {
+        "content": "Endpoints for the Endpoints for the vocabularies.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe8f56d4-06da-448e-8dac-d80003a9f001",
+          "name": "Retrieves top-level instances from vocabularies.",
+          "request": {
+            "name": "Retrieves top-level instances from vocabularies.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vocabularies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "SearchTerm",
+                  "value": "<string>",
+                  "description": "Gets or sets the search term used to filter vocabularies."
+                },
+                {
+                  "disabled": false,
+                  "key": "Language",
+                  "value": "<string>",
+                  "description": "Gets or sets the language for which the vocabularies are requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "855d77e7-1f1b-4b8d-8063-54058ebfc6d3",
+              "name": "Returns the top-level vocabularies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vocabularies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"classUri\": \"http://OwNYhnYowOVtjflNgeZXInGIzKn.mbpeVw7EZkHx.Tt33QdS\",\n      \"graphUri\": \"https://dPdxgBvfincVNdqpQS.rleI0NoQ1DTFve-H,zgTxXzMVnXPD\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"classUri\": \"https://hXoNhApPVSMBkkdzzwvfh.ppehGTmNd5XuNbk7lYV+fXm-Bwmi1Zi,MeNhqyICMotmR2Yd6pWDic19BR1OHwBNDrBx\",\n      \"graphUri\": \"http://oeXvbFkWJuMSI.avJZjoyko.NH3Memq7C\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 4008,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 1448,\n    \"totalPages\": 1404,\n    \"pageSize\": 4320,\n    \"totalCount\": 6181,\n    \"hasPrevious\": false,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c5a524e-111a-4ad1-a8a1-d09232c4536f",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vocabularies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e60ea875-6d33-4e97-9c97-1a7fbf642606",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vocabularies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40b11852-14a3-4040-98b5-110cced77810",
+          "name": "Retrieves a raw vocabulary by its identifier.",
+          "request": {
+            "name": "Retrieves a raw vocabulary by its identifier.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vocabularies",
+                ":vocabulary",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vocabulary",
+                  "description": "(Required) The URI of the vocabulary."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/turtle"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd00f7db-392b-4538-9e3e-4f99c14999eb",
+              "name": "Returns the raw vocabulary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vocabularies",
+                    ":vocabulary",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vocabulary",
+                      "description": "(Required) The URI of the vocabulary."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/turtle"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/ld+json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28e2c827-7ad1-4c82-8f52-392ab1310df1",
+          "name": "Retrieves vocabulary instances.",
+          "request": {
+            "name": "Retrieves vocabulary instances.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vocabularies",
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Class",
+                  "value": "<uri>",
+                  "description": "(Required) Gets or sets the URI class, which is a required field."
+                },
+                {
+                  "disabled": false,
+                  "key": "SearchTerm",
+                  "value": "<string>",
+                  "description": "Gets or sets the search term used to filter vocabulary instances."
+                },
+                {
+                  "disabled": false,
+                  "key": "Language",
+                  "value": "<string>",
+                  "description": "Gets or sets the language for which the vocabulary instances are requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Number of items per page. The maximum number of items per page is `150`."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "233bea8c-7d5a-4712-82af-07d9b4b329e1",
+              "name": "Returns the vocabulary instances.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vocabularies",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Class",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "SearchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"graphUri\": \"http://gmOlSVDlTZ.fftjO4CVBY2SH+rcnI7gacmOpGdOajgSR0NlnGxbNfc\",\n      \"instanceUri\": \"https://BtCqHmRapbCfWqdBrCVnAvwEUCWelTPoH.xfzws0Yn+S0bK2vI09\",\n      \"typeUri\": \"https://yuUrAYnRpJNEdIM.bohoqpb.v6qHqTtHD2ia36mcdobRmm3U16Mi2Y,J\",\n      \"subClassOfUri\": \"http://d.ezkNQntal0-5B6ffrN+a.OqQlP-m,HS3,sWlAjk+kwOByWg3LOQftaws1cQ,XSgzY,\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"graphUri\": \"http://MZkKJBCokASra.dwuhXC-xa2RddgYDu9ekB6cyuWnj0tlZwm.vR5ci1X,JWgOzfgts91TCs6yF6L.jjboBKiY5NZYuOgQ68MsTkFSMyc\",\n      \"instanceUri\": \"https://lNjuBZOnbWKRKUkq.phabKj15rfzbfpamx-S6FKfGWHFnesdyToKzJBjCfjIOLdtCsusnfkSbqSo\",\n      \"typeUri\": \"https://pqItMKwIkPhDxh.oqHXmzpIm.q9GmAszQjmM0WzdPKNsc15Q5Oh\",\n      \"subClassOfUri\": \"https://mCaFxeBGazOkQz.uvyseg1JQtsVdt-y3sdel,oI.nfGwNQe.EOPOk-UgIpIhmRAndodj8+iFv2\",\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 50,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 5048,\n    \"totalPages\": 6824,\n    \"pageSize\": 6349,\n    \"totalCount\": 5914,\n    \"hasPrevious\": true,\n    \"hasNext\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c314ee5b-d446-4abf-bf11-6184ed3d0218",
+          "name": "Retrieves a single instance from a vocabulary.",
+          "request": {
+            "name": "Retrieves a single instance from a vocabulary.",
+            "description": {
+              "content": "Could be a top-level instance, or an intermediate-level instance from a vocabulary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "vocabularies",
+                "instances",
+                ":instance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instance",
+                  "description": "(Required) The URI of the vocabulary instance to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The preferred language for the instance data.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4845ec8-081d-492f-8e84-6dfcba65ce08",
+              "name": "Returns the vocabulary instance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "vocabularies",
+                    "instances",
+                    ":instance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instance",
+                      "description": "(Required) The URI of the vocabulary instance to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The preferred language for the instance data.",
+                    "key": "Accept-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"graphUri\": \"http://pTzPaLMDKRjMdxUpjHQDWbAeSIC.tfgjLN44RhbhZIrDsmFAOjDzrCxxNQFy+Y\",\n    \"instanceUri\": \"https://WyHGESmDlJhhFcZ.uidEgQTiNxZvl7AX4l-dn848gAdyTOBHfJSwdezy\",\n    \"typeUri\": \"http://cF.vtrY\",\n    \"subClassOfUri\": \"http://sTGaHsJBrBZFIEAJiwhBZx.dganDApZsu,E5,6\",\n    \"displayName\": \"string\",\n    \"description\": \"string\"\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 9394,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebe8a6a1-915f-4259-87bb-a3366e507d2c",
+    "name": "Coscine Web Admin Vocabulary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

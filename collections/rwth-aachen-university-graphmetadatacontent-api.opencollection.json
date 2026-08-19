@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coscine Web Admin GraphMetadataContent API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphMetadataContent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the raw RDF content of a specific metadata graph version\r\nfor the given resource and path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project. Supplied as a route parameter."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource. Supplied as a route parameter."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The URL-encoded path representing the location of the graph node."
+              },
+              {
+                "name": "graphVersion",
+                "value": "",
+                "type": "query",
+                "description": "The version identifier of the metadata graph to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves the raw RDF content of a specific metadata graph version\r\nfor the given resource and path."
+        },
+        {
+          "info": {
+            "name": "Creates a new metadata graph version for a given resource and graph path.\r\nAccepts RDF content as the request body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project. Supplied as a route parameter."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource. Supplied as a route parameter."
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path",
+                "description": "The URL-encoded path representing the location of the graph node."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new metadata graph version for a given resource and graph path.\r\nAccepts RDF content as the request body."
+        },
+        {
+          "info": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "https://coscine.rwth-aachen.de/coscine/api/v2/projects/:projectId/resources/:resourceId/graphs/:encodedPath/metadata/content",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "encodedPath",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Responds with the HTTP methods allowed for the endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

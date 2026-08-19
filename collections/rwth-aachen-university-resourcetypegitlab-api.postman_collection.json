@@ -1,0 +1,648 @@
+{
+  "item": [
+    {
+      "id": "95353a97-2a7e-4d88-829b-c86d2a647d12",
+      "name": "ResourceTypeGitLab",
+      "description": {
+        "content": "Endpoints for the gitlab resource types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0871523-6da8-44d0-afc1-a88ec2e075c6",
+          "name": "Retrieves all GitLab projects, that the user is a member of, based on the provided credentials.",
+          "request": {
+            "name": "Retrieves all GitLab projects, that the user is a member of, based on the provided credentials.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types",
+                "gitlab",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Domain",
+                  "value": "<uri>",
+                  "description": "(Required) Domain/Host of the GitLab Provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessToken",
+                  "value": "<string>",
+                  "description": "(Required) GitLab Project or Group Access Token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "196fa9f0-27f6-4b50-b802-530e780b06e5",
+              "name": "Returns the GitLab projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Domain",
+                      "value": "https://git.rwth-aachen.de/"
+                    },
+                    {
+                      "key": "AccessToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"archived\": true,\n      \"createdAt\": \"string\",\n      \"defaultBranch\": \"string\",\n      \"description\": \"string\",\n      \"httpUrlToRepo\": \"string\",\n      \"id\": 3725,\n      \"lastActivityAt\": \"string\",\n      \"name\": \"string\",\n      \"nameWithNamespace\": \"string\",\n      \"path\": \"string\",\n      \"pathWithNamespace\": \"string\",\n      \"sshUrlToRepo\": \"string\",\n      \"webUrl\": \"string\"\n    },\n    {\n      \"archived\": false,\n      \"createdAt\": \"string\",\n      \"defaultBranch\": \"string\",\n      \"description\": \"string\",\n      \"httpUrlToRepo\": \"string\",\n      \"id\": 4768,\n      \"lastActivityAt\": \"string\",\n      \"name\": \"string\",\n      \"nameWithNamespace\": \"string\",\n      \"path\": \"string\",\n      \"pathWithNamespace\": \"string\",\n      \"sshUrlToRepo\": \"string\",\n      \"webUrl\": \"string\"\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 6033,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c5f7f69-7aee-436f-a28f-95e6b12438f1",
+              "name": "GitLab access token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Domain",
+                      "value": "https://git.rwth-aachen.de/"
+                    },
+                    {
+                      "key": "AccessToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05db4944-453c-4ded-85a6-20f251afed29",
+          "name": "Retrieves a single GitLab project, that the user is a member of, based on the provided credentials.",
+          "request": {
+            "name": "Retrieves a single GitLab project, that the user is a member of, based on the provided credentials.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types",
+                "gitlab",
+                "projects",
+                ":gitlabProjectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Domain",
+                  "value": "<uri>",
+                  "description": "(Required) Domain/Host of the GitLab Provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessToken",
+                  "value": "<string>",
+                  "description": "(Required) GitLab Project or Group Access Token."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "gitlabProjectId",
+                  "description": "(Required) The ID of the GitLab project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e230851-7364-4591-b19c-f73b65ccc869",
+              "name": "Returns the GitLab project.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab",
+                    "projects",
+                    ":gitlabProjectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Domain",
+                      "value": "https://git.rwth-aachen.de/"
+                    },
+                    {
+                      "key": "AccessToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "gitlabProjectId",
+                      "description": "(Required) The ID of the GitLab project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"archived\": false,\n    \"createdAt\": \"string\",\n    \"defaultBranch\": \"string\",\n    \"description\": \"string\",\n    \"httpUrlToRepo\": \"string\",\n    \"id\": 1522,\n    \"lastActivityAt\": \"string\",\n    \"name\": \"string\",\n    \"nameWithNamespace\": \"string\",\n    \"path\": \"string\",\n    \"pathWithNamespace\": \"string\",\n    \"sshUrlToRepo\": \"string\",\n    \"webUrl\": \"string\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 396,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6957b418-363f-4ad2-91c0-ffb97f92f0d3",
+              "name": "GitLab access token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab",
+                    "projects",
+                    ":gitlabProjectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Domain",
+                      "value": "https://git.rwth-aachen.de/"
+                    },
+                    {
+                      "key": "AccessToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "gitlabProjectId",
+                      "description": "(Required) The ID of the GitLab project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64d4fcf2-b4df-48d7-8e3e-a583d7a8441e",
+          "name": "Retrieves all branches of a GitLab project, that the user is a member of, based on the provided credentials.",
+          "request": {
+            "name": "Retrieves all branches of a GitLab project, that the user is a member of, based on the provided credentials.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types",
+                "gitlab",
+                "projects",
+                ":gitlabProjectId",
+                "branches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Domain",
+                  "value": "<uri>",
+                  "description": "(Required) Domain/Host of the GitLab Provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "AccessToken",
+                  "value": "<string>",
+                  "description": "(Required) GitLab Project or Group Access Token."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "gitlabProjectId",
+                  "description": "(Required) The ID of the GitLab project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0ae2973-39fa-460b-b31d-e808f82f8730",
+              "name": "Returns the GitLab project.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab",
+                    "projects",
+                    ":gitlabProjectId",
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Domain",
+                      "value": "https://git.rwth-aachen.de/"
+                    },
+                    {
+                      "key": "AccessToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "gitlabProjectId",
+                      "description": "(Required) The ID of the GitLab project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"canPush\": false,\n      \"default\": false,\n      \"developersCanMerge\": true,\n      \"developersCanPush\": false,\n      \"merged\": true,\n      \"name\": \"string\",\n      \"protected\": true\n    },\n    {\n      \"canPush\": true,\n      \"default\": false,\n      \"developersCanMerge\": true,\n      \"developersCanPush\": true,\n      \"merged\": false,\n      \"name\": \"string\",\n      \"protected\": false\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 4777,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dacd49e-bae0-4106-b319-69cd326a5587",
+              "name": "GitLab access token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab",
+                    "projects",
+                    ":gitlabProjectId",
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Domain",
+                      "value": "https://git.rwth-aachen.de/"
+                    },
+                    {
+                      "key": "AccessToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "gitlabProjectId",
+                      "description": "(Required) The ID of the GitLab project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d13ab102-d283-4771-b203-6c6578cf6cc6",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "resource-types",
+                "gitlab"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75bcab0e-c404-4903-bc75-e6d031af53f2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "resource-types",
+                    "gitlab"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4eda4a79-b4a3-4e03-8061-b3a74f399afb",
+    "name": "Coscine Web Admin ResourceTypeGitLab API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

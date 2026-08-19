@@ -1,0 +1,347 @@
+{
+  "item": [
+    {
+      "id": "aa81e3aa-c5a1-41a6-adb6-e030d254074e",
+      "name": "ProjectSubProjects",
+      "description": {
+        "content": "Endpoints for the sub-projects.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4645885-f3e1-489a-b7b0-7311604b5d1f",
+          "name": "Retrieves all subprojects for a specified project.",
+          "request": {
+            "name": "Retrieves all subprojects for a specified project.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "subprojects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "IncludeOrganizations",
+                  "value": "<boolean>",
+                  "description": "Gets or sets a value indicating whether to retrieve the organizations."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page number. Should be greater than or equal to 1. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "Gets or sets the desired page size. Should be between 1 and the maximum allowed page size (50). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The Id or slug of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0cb3148-54ca-41ab-b468-4bc5ad9cbfc3",
+              "name": "Returns the subprojects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "subprojects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeOrganizations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"06c48567-e614-7312-aa8a-0bfd73973a0d\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"fdf85565-0152-3650-edff-df048717c55d\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"endDate\": \"2014-11-24T06:50:00.061Z\",\n      \"id\": \"6097b987-cd66-80c6-1b22-1f8d74f9a27e\",\n      \"name\": \"string\",\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"responsible\": true,\n          \"uri\": \"http://wCU.bkyVGACE9gOd5tWWkGHKZD.V7OpRpJriNNms.vKzMglYq4jE6jtXUvwKY\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        },\n        {\n          \"displayName\": \"string\",\n          \"responsible\": false,\n          \"uri\": \"https://tJmQAhqJRENfQd.wnsOd8-+VUioIuM2QBYduHmwZG,bR+I23adkoPRx\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        }\n      ],\n      \"pid\": \"string\",\n      \"slug\": \"string\",\n      \"startDate\": \"1967-05-28T16:49:59.335Z\",\n      \"visibility\": {\n        \"id\": \"2171a66d-ef66-787c-7b08-307db62f5e55\",\n        \"displayName\": \"string\"\n      },\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"displayName\": \"string\",\n      \"principleInvestigators\": \"string\",\n      \"grantId\": \"string\",\n      \"creator\": {\n        \"id\": \"e1997854-4651-313a-eaeb-c69f5e9da8e0\"\n      },\n      \"creationDate\": \"2015-06-21T04:46:27.915Z\",\n      \"subProjects\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        }\n      ],\n      \"parent\": {\n        \"id\": \"734eb739-0815-c4b8-9487-161d8d92e825\"\n      }\n    },\n    {\n      \"description\": \"string\",\n      \"disciplines\": [\n        {\n          \"id\": \"f631feb4-bcc6-c70a-bc02-03ca49abc2dc\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        },\n        {\n          \"id\": \"e9c7a87d-5a15-b86e-6565-a8948d0c08e7\",\n          \"uri\": \"string\",\n          \"displayNameDe\": \"string\",\n          \"displayNameEn\": \"string\"\n        }\n      ],\n      \"endDate\": \"2000-04-13T14:58:21.962Z\",\n      \"id\": \"9deaabab-9aef-2dfb-f742-870da83ee436\",\n      \"name\": \"string\",\n      \"organizations\": [\n        {\n          \"displayName\": \"string\",\n          \"responsible\": true,\n          \"uri\": \"http://jeZvO.dcnwMenIn6vrQ0bi7wEwZzz-WF+ogP,Yh3FSuk.8L0Q3MDsD+MM.6ltlAU5Q\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        },\n        {\n          \"displayName\": \"string\",\n          \"responsible\": false,\n          \"uri\": \"http://DvpikPnhlTTIiIlt.lym7Z9qqmHVPr5gzZZqb+w5g0ucQG0cdgRa\",\n          \"email\": \"string\",\n          \"publicationAdvisoryService\": {\n            \"displayName\": \"string\",\n            \"email\": \"string\",\n            \"description\": \"string\",\n            \"organizationRor\": \"string\"\n          }\n        }\n      ],\n      \"pid\": \"string\",\n      \"slug\": \"string\",\n      \"startDate\": \"2014-08-08T20:14:16.287Z\",\n      \"visibility\": {\n        \"id\": \"14967c71-938a-3378-1da7-881b80455db8\",\n        \"displayName\": \"string\"\n      },\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"displayName\": \"string\",\n      \"principleInvestigators\": \"string\",\n      \"grantId\": \"string\",\n      \"creator\": {\n        \"id\": \"30fcd7be-7c1c-9071-25c6-31522c33402d\"\n      },\n      \"creationDate\": \"2024-02-22T02:44:39.620Z\",\n      \"subProjects\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ProjectDto detected>\"\n        }\n      ],\n      \"parent\": {\n        \"id\": \"d0665f3d-2dfa-f9bc-2c08-b4f4cb690c89\"\n      }\n    }\n  ],\n  \"isSuccess\": false,\n  \"statusCode\": 2096,\n  \"traceId\": \"string\",\n  \"pagination\": {\n    \"currentPage\": 5941,\n    \"totalPages\": 493,\n    \"pageSize\": 3172,\n    \"totalCount\": 2563,\n    \"hasPrevious\": false,\n    \"hasNext\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00b6510e-84cb-4c81-a43a-7fa06333bee5",
+              "name": "User is missing authorization requirements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "subprojects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "IncludeOrganizations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The Id or slug of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c5753fb-c761-47a3-ad37-0dbaf75d09b9",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "projects",
+                ":projectId",
+                "subprojects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90dd6667-7d01-477a-86bc-d60ebbf3297d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "subprojects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "82315b4d-e061-4dae-bc9a-ea2e76f4e488",
+    "name": "Coscine Web Admin ProjectSubProjects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}

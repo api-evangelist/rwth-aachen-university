@@ -1,0 +1,654 @@
+{
+  "item": [
+    {
+      "id": "7d068647-c6f4-4b95-9aa7-7d6032ae1cda",
+      "name": "DataHamsterReport",
+      "description": {
+        "content": "Controller for generating and downloading project-related reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1953b5cf-6512-46ca-974c-040349df9643",
+          "name": "Get the number of archived resources KPI report.",
+          "request": {
+            "name": "Get the number of archived resources KPI report.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster",
+                "3685"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2961ac2-fe5d-46f0-a224-8756e580464d",
+              "name": "Returns the data hamster report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster",
+                    "3685"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"measurementId\": 1311,\n    \"value\": 2228.212980213005,\n    \"start\": \"1972-11-26T05:53:41.756Z\",\n    \"end\": \"1962-02-23T03:12:02.511Z\",\n    \"additionalInfo\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"query\": \"string\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 7244,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1085c82a-1580-4c85-90df-c7e76e20534f",
+          "name": "Get the number of created projects KPI report.",
+          "request": {
+            "name": "Get the number of created projects KPI report.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster",
+                "3681"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cbf54c2-27cd-4df1-8bda-530e197e02d3",
+              "name": "Returns the data hamster report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster",
+                    "3681"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"measurementId\": 1311,\n    \"value\": 2228.212980213005,\n    \"start\": \"1972-11-26T05:53:41.756Z\",\n    \"end\": \"1962-02-23T03:12:02.511Z\",\n    \"additionalInfo\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"query\": \"string\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 7244,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec81ae6c-1d24-42e5-9225-509b9b719741",
+          "name": "Get the number of created resources KPI report.",
+          "request": {
+            "name": "Get the number of created resources KPI report.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster",
+                "3683"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e990cbd7-9d0d-4106-af97-dbe469f36301",
+              "name": "Returns the data hamster report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster",
+                    "3683"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"measurementId\": 1311,\n    \"value\": 2228.212980213005,\n    \"start\": \"1972-11-26T05:53:41.756Z\",\n    \"end\": \"1962-02-23T03:12:02.511Z\",\n    \"additionalInfo\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"query\": \"string\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 7244,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1664042-ffde-420d-9e40-75c1f25d03a1",
+          "name": "Get the number of users per day KPI report.",
+          "request": {
+            "name": "Get the number of users per day KPI report.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster",
+                "3691"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7db2a9f-eb06-4a1d-bc8d-f033bdca11cf",
+              "name": "Returns the data hamster report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster",
+                    "3691"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"measurementId\": 1311,\n    \"value\": 2228.212980213005,\n    \"start\": \"1972-11-26T05:53:41.756Z\",\n    \"end\": \"1962-02-23T03:12:02.511Z\",\n    \"additionalInfo\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"query\": \"string\"\n  },\n  \"isSuccess\": true,\n  \"statusCode\": 7244,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e63bc89f-be76-4745-aed5-7a973fac70a5",
+          "name": "Get the storage usage per resource type report.",
+          "request": {
+            "name": "Get the storage usage per resource type report.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster",
+                "type",
+                ":typeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "typeId",
+                  "description": "(Required) The id of the resource type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c383a134-9807-4f02-a870-52f13c7a2bfa",
+              "name": "Returns the data hamster report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster",
+                    "type",
+                    ":typeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "typeId",
+                      "description": "(Required) The id of the resource type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"reserved\": {\n      \"measurementId\": 6119,\n      \"value\": 7262.698024757324,\n      \"start\": \"2000-09-27T09:17:07.241Z\",\n      \"end\": \"1974-01-20T00:42:36.132Z\",\n      \"additionalInfo\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"query\": \"string\"\n    },\n    \"used\": {\n      \"measurementId\": 3422,\n      \"value\": 3809.8962032479144,\n      \"start\": \"1951-09-12T00:47:23.258Z\",\n      \"end\": \"2025-01-23T01:35:20.970Z\",\n      \"additionalInfo\": {\n        \"key_0\": \"string\"\n      },\n      \"query\": \"string\"\n    }\n  },\n  \"isSuccess\": false,\n  \"statusCode\": 6589,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cca9d13e-61bd-4284-8b4d-a668b32cd899",
+          "name": "Get the number of users per ror report.",
+          "request": {
+            "name": "Get the number of users per ror report.",
+            "description": {
+              "content": "<p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster",
+                "3689"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c15fbba9-6896-434b-bd6b-6da8dd91db81",
+              "name": "Returns the data hamster report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster",
+                    "3689"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"measurementId\": 2829,\n      \"value\": 997.0415001916999,\n      \"start\": \"2009-11-07T10:15:15.689Z\",\n      \"end\": \"1999-10-22T21:23:54.083Z\",\n      \"additionalInfo\": {\n        \"key_0\": \"string\"\n      },\n      \"query\": \"string\"\n    },\n    {\n      \"measurementId\": 6683,\n      \"value\": 7996.65832148056,\n      \"start\": \"1993-09-15T07:43:47.488Z\",\n      \"end\": \"2012-09-21T16:30:35.319Z\",\n      \"additionalInfo\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"query\": \"string\"\n    }\n  ],\n  \"isSuccess\": true,\n  \"statusCode\": 6312,\n  \"traceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "074108a3-01da-4e4d-83fb-b63df8346e7b",
+          "name": "Responds with the HTTP methods allowed for the endpoint.",
+          "request": {
+            "name": "Responds with the HTTP methods allowed for the endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                "data-hamster"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "OPTIONS",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da82cfa5-e20c-4174-b3c2-8f410b770b36",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    "data-hamster"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coscine.rwth-aachen.de/coscine",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2038e428-5383-4b13-8b6d-2d73e4399072",
+    "name": "Coscine Web Admin DataHamsterReport API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.\n\nContact Support:\n Name: Coscine Team\n Email: servicedesk@rwth-aachen.de",
+      "type": "text/plain"
+    }
+  }
+}
