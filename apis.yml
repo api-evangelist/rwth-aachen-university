@@ -72,6 +72,12 @@ apis:
   humanURL: https://help.itc.rwth-aachen.de/en/service/rhb2fhkpjhb7/
   tags:
   - Authentication
+  - OpenID Connect
+  - Shibboleth
+  - SAML
+  - Identity
+  tags_raw:
+  - Authentication
   - OAuth2
   - OpenID Connect
   - Shibboleth
@@ -1350,6 +1356,8 @@ apis:
   humanURL: https://docs.coscine.de/en/api/api/
   baseURL: https://coscine.rwth-aachen.de/coscine/api/
   tags:
+  - Self API Token
+  tags_raw:
   - SelfApiToken
   properties:
   - type: OpenAPI
@@ -1496,6 +1504,8 @@ apis:
   humanURL: https://docs.coscine.de/en/api/api/
   baseURL: https://coscine.rwth-aachen.de/coscine/api/
   tags:
+  - System Status
+  tags_raw:
   - SystemStatus
   properties:
   - type: OpenAPI
@@ -1568,6 +1578,8 @@ apis:
   humanURL: https://docs.coscine.de/en/api/api/
   baseURL: https://coscine.rwth-aachen.de/coscine/api/
   tags:
+  - TOS
+  tags_raw:
   - Tos
   properties:
   - type: OpenAPI
