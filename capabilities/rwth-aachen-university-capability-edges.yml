@@ -1,0 +1,36 @@
+slug: rwth-aachen-university
+provider: RWTH Aachen University
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: ProjectPublicationRequest
+  spec_file: rwth-aachen-university-projectpublicationrequest-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.72
+  evidence: POST /api/v2/projects/{projectId}/publications/requests  CreatePublicationRequest  Creates
+    a new publication request.
+  reason: Requests to publish project research data, routed via a publication advisory service; this is
+    stewardship of scholarly output/publication in a research-data platform.
+- tag: Pid
+  spec_file: rwth-aachen-university-pid-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.7
+  evidence: GET /api/v2/pids/{prefix}/{suffix}  GetPid  Retrieves the Persistent Identifier (PID) for
+    a given prefix and suffix.
+  reason: Persistent identifiers for research data outputs; the Scholarly Output & Publication Management
+    sub-capability explicitly covers 'publications, open access, and persistent identifiers'. Some ambiguity
+    as PIDs here identify datasets rather than publications.

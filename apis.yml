@@ -1803,6 +1803,9 @@ apis:
   - type: x-json-ld-context
     url: json-ld/rwth-aachen-university-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/rwth-aachen-university-capability-edges.yml
+    name: RWTH Aachen University Business Capability Map
   - type: AgenticAccess
     url: agentic-access/rwth-aachen-university-agentic-access.yml
   - type: VulnerabilityDisclosure
