@@ -1436,7 +1436,7 @@ apis:
   humanURL: https://docs.coscine.de/en/api/api/
   baseURL: https://coscine.rwth-aachen.de/coscine/api/
   tags:
-  - SelfApiToken
+  - Self API Token
   tags_raw:
   - SelfApiToken
   properties:
@@ -1588,7 +1588,7 @@ apis:
   humanURL: https://docs.coscine.de/en/api/api/
   baseURL: https://coscine.rwth-aachen.de/coscine/api/
   tags:
-  - SystemStatus
+  - System Status
   tags_raw:
   - SystemStatus
   properties:
@@ -1664,7 +1664,7 @@ apis:
   humanURL: https://docs.coscine.de/en/api/api/
   baseURL: https://coscine.rwth-aachen.de/coscine/api/
   tags:
-  - Tos
+  - TOS
   tags_raw:
   - Tos
   properties:

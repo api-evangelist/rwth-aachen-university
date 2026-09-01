@@ -1,23 +1,25 @@
 ---
 kin_checks:
   slug: rwth-aachen-university
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T230545
+  schema_version: 0.17.2
+  scored_at: '2026-09-01'
+  run_ts: 2026-09-01T063623
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.16.0.yml; counts below let you verify that.
+    in rubric/scoring-0.17.2.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 36
+    earned: 41
     partial: 12
-    missed: 59
+    missed: 54
     na: 23
   checks:
   - id: maintainer_present
     status: missed
-  - id: base_url_per_api
+  - id: multiple_apis
     status: missed
-  - id: well_known_published
+  - id: human_url_per_api
+    status: missed
+  - id: base_url_per_api
     status: missed
   - id: llms_txt_published
     status: missed
@@ -65,8 +67,6 @@ kin_checks:
     status: missed
   - id: examples_published
     status: missed
-  - id: api_reference_present
-    status: missed
   - id: getting_started_present
     status: missed
   - id: sdk_count_1
@@ -81,8 +81,6 @@ kin_checks:
     status: missed
   - id: agent_skill_present
     status: missed
-  - id: support_channel
-    status: missed
   - id: blog_present
     status: missed
   - id: plans_multiple
@@ -91,19 +89,11 @@ kin_checks:
     status: missed
   - id: sign_up_present
     status: missed
-  - id: terms_of_service
-    status: missed
-  - id: privacy_policy
-    status: missed
   - id: compliance_published
     status: missed
   - id: trust_center
     status: missed
   - id: reg_oauth_scopes
-    status: missed
-  - id: reg_terms_of_service
-    status: missed
-  - id: reg_privacy_policy
     status: missed
   - id: reg_compliance_published
     status: missed
