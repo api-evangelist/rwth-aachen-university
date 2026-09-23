@@ -1,0 +1,133 @@
+---
+aid: rwth-aachen-university
+name: RWTH Aachen University Domain Standard Conformance
+description: >-
+  Conformance of RWTH Aachen University's institution-operated surfaces against the Kin Score
+  `education` regulatory regime standards[]. Reward-only: a standard appears here only when it was
+  confirmed against a live endpoint or against an explicit declaration inside a contract this
+  repository holds. Standards in the regime with no evidence are listed under `not_evidenced` and are
+  deliberately NOT claimed.
+regime: education
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of publications.rwth-aachen.de, sso.rwth-aachen.de, api.datacite.org and the Coscine
+  Web API v2 OpenAPI served at coscine.rwth-aachen.de, 2026-08-30.
+
+conformance:
+
+  - standard: oai-pmh
+    status: conformant
+    x-operator: institution
+    detail: >-
+      RWTH Publications, the institutional repository operated by the University Library, exposes a
+      fully functional OAI-PMH 2.0 interface on RWTH's own registrable domain. verb=Identify returns
+      repositoryName "RWTH Publications", protocolVersion 2.0, granularity YYYY-MM-DDThh:mm:ssZ,
+      deletedRecord "persistent", earliestDatestamp 2013-01-15T09:35:46Z and adminEmail
+      pub.nachweis@ub.rwth-aachen.de. verb=ListMetadataFormats advertises five metadata prefixes.
+    evidence:
+      - url: https://publications.rwth-aachen.de/oai2d?verb=Identify
+        status: 200
+        locator: OAI-PMH/Identify/repositoryName = "RWTH Publications"; protocolVersion = 2.0
+      - url: https://publications.rwth-aachen.de/oai2d?verb=ListMetadataFormats
+        status: 200
+        locator: 'metadataPrefix: marcxml, openCost, xMetaDissPlus, epicur, oai_dc'
+      - url: https://publications.rwth-aachen.de/oai2d?verb=ListSets
+        status: 200
+        locator: OAI-PMH set hierarchy served
+    generated: '2026-08-30'
+    method: probed
+
+  - standard: saml
+    status: conformant
+    x-operator: institution
+    detail: >-
+      The RWTH IT Center operates a Shibboleth Identity Provider publishing signed SAML 2.0 metadata
+      as application/xml on its own domain. The EntitiesDescriptor is XML-DSig signed (rsa-sha256),
+      carries entityID https://login.rz.rwth-aachen.de/shibboleth and declares
+      protocolSupportEnumeration urn:oasis:names:tc:SAML:2.0:protocol with four SingleSignOnService
+      bindings (Redirect, POST, POST-SimpleSign, SOAP/ECP).
+    evidence:
+      - url: https://sso.rwth-aachen.de/idp/shibboleth
+        status: 200
+        locator: 'EntitiesDescriptor entityID="https://login.rz.rwth-aachen.de/shibboleth"; protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"'
+    generated: '2026-08-30'
+    method: probed
+
+  - standard: shibboleth
+    status: conformant
+    x-operator: institution
+    detail: >-
+      Two independent confirmations. (1) The SAML metadata above is served from a Shibboleth IdP at
+      the conventional /idp/shibboleth path, with /idp/profile/SAML2/* endpoints. (2) The Coscine Web
+      API contract held in this repository declares Shibboleth in its own component schema — not a
+      prose claim, a contract declaration.
+    evidence:
+      - url: https://sso.rwth-aachen.de/idp/shibboleth
+        status: 200
+        locator: SingleSignOnService Location https://sso.rwth-aachen.de/idp/profile/SAML2/Redirect/SSO
+      - url: https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json
+        status: 200
+        locator: components.schemas.IdentityProviders.enum = ["Shibboleth", "ORCiD"]
+    generated: '2026-08-30'
+    method: probed
+
+  - standard: orcid
+    status: conformant
+    x-operator: institution
+    detail: >-
+      Coscine, RWTH's own research data management platform, accepts ORCiD as a first-class external
+      identity provider. This is declared inside the OpenAPI contract itself, in
+      components.schemas.IdentityProviders, which is exactly where domain_standard_conformance reads
+      it from rather than from a prose claim on a web page.
+    evidence:
+      - url: https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json
+        status: 200
+        locator: 'components.schemas.IdentityProviders: {enum: [Shibboleth, ORCiD], description: "Specifies the supported external authentication services."}'
+    generated: '2026-08-30'
+    method: probed
+
+  - standard: datacite
+    status: conformant
+    x-operator: institution
+    detail: >-
+      RWTH Aachen University is a DataCite member in its own right, not through a consortium proxy.
+      DataCite's own API returns provider id "rwth" named "RWTH Aachen University" with
+      rorId https://ror.org/04xfq0f34 and country DE, and a repository client "rwth.publications"
+      resolving to https://publications.rwth-aachen.de. DOI minting for the institutional repository
+      is therefore RWTH-operated.
+    evidence:
+      - url: https://api.datacite.org/providers?query=rwth
+        status: 200
+        locator: 'data[].id = "rwth"; attributes.name = "RWTH Aachen University"; attributes.rorId = "https://ror.org/04xfq0f34"'
+      - url: https://api.datacite.org/clients?query=rwth
+        status: 200
+        locator: 'data[].id = "rwth.publications"; attributes.url = "https://publications.rwth-aachen.de"'
+    generated: '2026-08-30'
+    method: probed
+
+not_evidenced:
+  note: >-
+    These are in the `education` regime standards[] and were looked for. No conformance is claimed for
+    any of them. Absence here is a measurement, not an omission — inventing a conformance to fill a
+    rubric slot is the specific failure this pipeline exists to prevent.
+  standards:
+    - standard: lti
+      detail: >-
+        RWTHmoodle runs at moodle.rwth-aachen.de (HTTP 200) and Moodle supports LTI as a product
+        capability, but no LTI registration, platform configuration, or tool contract is published by
+        RWTH. A vendor product's capability is not the institution's declared conformance.
+    - standard: scim
+      detail: No SCIM provisioning endpoint or contract found on any RWTH-operated host.
+    - standard: oneroster
+      detail: Not found; OneRoster is a K-12 / US-centric standard with no German HE deployment signal.
+    - standard: ed-fi
+      detail: Not found; Ed-Fi is US K-12 and does not apply to a German technical university.
+    - standard: caliper
+      detail: No Caliper analytics endpoint or declaration found.
+    - standard: qti
+      detail: No QTI assessment interchange surface published.
+    - standard: crossref
+      detail: >-
+        RWTH Publications mints DOIs through DataCite (confirmed above), not Crossref. No Crossref
+        member record or deposit surface was found under RWTH's own operation.

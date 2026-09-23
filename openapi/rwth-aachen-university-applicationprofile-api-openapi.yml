@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ApplicationProfile API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Application Profile API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ApplicationProfile
-      summary: Retrieves all application profiles.
+      summary: Retrieves all application profiles
       operationId: GetApplicationProfiles
       parameters:
       - name: SearchTerm
@@ -51,7 +51,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -68,7 +74,7 @@ paths:
     get:
       tags:
       - ApplicationProfile
-      summary: Retrieves an application profile by its URI.
+      summary: Retrieves an application profile by its URI
       operationId: GetApplicationProfile
       parameters:
       - name: profile
@@ -103,7 +109,7 @@ paths:
     get:
       tags:
       - ApplicationProfile
-      summary: Retrieves the `raw` application profile definition by its URI.
+      summary: Retrieves the `raw` application profile definition by its URI
       operationId: GetRawApplicationProfile
       parameters:
       - name: profile
@@ -128,7 +134,7 @@ paths:
     post:
       tags:
       - ApplicationProfile
-      summary: Submits a request to create a new application profile.
+      summary: Submits a request to create a new application profile
       operationId: CreateApplicationProfileRequest
       requestBody:
         description: The details required to create a new application profile.
@@ -162,54 +168,37 @@ paths:
     options:
       tags:
       - ApplicationProfile
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ApplicationProfiles
+      x-operation-id-source: derived
 components:
   schemas:
     ApplicationProfileDtoPagedResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ApplicationProfileDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
-    ApplicationProfileForCreationDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApplicationProfileForCreationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
       additionalProperties: false
     ApplicationProfileDto:
       required:
@@ -221,17 +210,82 @@ components:
           description: The URI associated with the application profile.
           format: uri
         displayName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The display name for the application profile.
-          nullable: true
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The description of the application profile.
-          nullable: true
         definition:
           $ref: '#/components/schemas/RdfDefinitionDto'
       additionalProperties: false
       description: Represents an application profile data transfer object.
+    ApplicationProfileForCreationDto:
+      required:
+      - definition
+      - name
+      - uri
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          description: Gets or initializes the name of the application profile.
+        uri:
+          type: string
+          description: Gets or initializes the URI of the application profile.
+          format: uri
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of an application profile.
+    ApplicationProfileForCreationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationProfileForCreationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ApplicationProfileDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationProfileDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    RdfFormat:
+      enum:
+      - text/turtle
+      - application/ld+json
+      - application/x-trig
+      - application/n-quads
+      type: string
+      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
     Pagination:
       type: object
       properties:
@@ -261,6 +315,21 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    RdfDefinitionDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          description: The content of the RDF definition.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of the RDF definition.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
     RdfDefinitionForManipulationDto:
       required:
       - content
@@ -275,62 +344,12 @@ components:
           $ref: '#/components/schemas/RdfFormat'
       additionalProperties: false
       description: Represents the data transfer object (DTO) used for manipulating RDF definitions.
-    RdfFormat:
+    AcceptedLanguage:
       enum:
-      - text/turtle
-      - application/ld+json
-      - application/x-trig
-      - application/n-quads
+      - de
+      - en
       type: string
-      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
-    ApplicationProfileForCreationDto:
-      required:
-      - definition
-      - name
-      - uri
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or initializes the name of the application profile.
-        uri:
-          type: string
-          description: Gets or initializes the URI of the application profile.
-          format: uri
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of an application profile.
-    ApplicationProfileDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApplicationProfileDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    RdfDefinitionDto:
-      type: object
-      properties:
-        content:
-          type: string
-          description: The content of the RDF definition.
-          nullable: true
-        type:
-          type: string
-          description: The type of the RDF definition.
-          nullable: true
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
+      description: Accepted languages by the API.
   securitySchemes:
     Bearer:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ResourceTypeGitLab API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Resource Type Git Lab API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ResourceTypeGitLab
-      summary: Retrieves all GitLab projects, that the user is a member of, based on the provided credentials.
+      summary: Retrieves all GitLab projects, that the user is a member of, based on the…
       operationId: GetAllGitlabProjects
       parameters:
       - name: Domain
@@ -53,7 +53,7 @@ paths:
     get:
       tags:
       - ResourceTypeGitLab
-      summary: Retrieves a single GitLab project, that the user is a member of, based on the provided credentials.
+      summary: Retrieves a single GitLab project, that the user is a member of, based on the…
       operationId: GetGitlabProject
       parameters:
       - name: gitlabProjectId
@@ -94,7 +94,7 @@ paths:
     get:
       tags:
       - ResourceTypeGitLab
-      summary: Retrieves all branches of a GitLab project, that the user is a member of, based on the provided credentials.
+      summary: Retrieves all branches of a GitLab project, that the user is a member of, based…
       operationId: GetAllGitlabBranchesForProject
       parameters:
       - name: gitlabProjectId
@@ -135,12 +135,36 @@ paths:
     options:
       tags:
       - ResourceTypeGitLab
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ResourceTypesGitlab
+      x-operation-id-source: derived
 components:
   schemas:
+    GitlabBranchDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GitlabBranchDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     GitlabProjectDtoResponse:
       type: object
       properties:
@@ -150,32 +174,49 @@ components:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    GitlabProjectDtoIEnumerableResponse:
+    GitlabBranchDto:
+      required:
+      - canPush
+      - default
+      - developersCanMerge
+      - developersCanPush
+      - merged
+      - name
+      - protected
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/GitlabProjectDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
+        name:
           type: string
-          nullable: true
+          description: The name of the GitLab branch.
+        merged:
+          type: boolean
+          description: Indicates if the branch is merged.
+        protected:
+          type: boolean
+          description: Indicates if the branch is protected.
+        default:
+          type: boolean
+          description: Indicates if the branch is set as default.
+        developersCanPush:
+          type: boolean
+          description: Indicates if developers can push changes to the branch.
+        developersCanMerge:
+          type: boolean
+          description: Indicates if developers can merge changes into the branch.
+        canPush:
+          type: boolean
+          description: Indicates if the user can push changes to the branch.
       additionalProperties: false
+      description: Represents a GitLab branch data transfer object (DTO).
     GitlabProjectDto:
       required:
       - archived
@@ -235,58 +276,27 @@ components:
           description: The SSH URL to access the GitLab project repository.
       additionalProperties: false
       description: Represents a GitLab project data transfer object (DTO).
-    GitlabBranchDto:
-      required:
-      - canPush
-      - default
-      - developersCanMerge
-      - developersCanPush
-      - merged
-      - name
-      - protected
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the GitLab branch.
-        merged:
-          type: boolean
-          description: Indicates if the branch is merged.
-        protected:
-          type: boolean
-          description: Indicates if the branch is protected.
-        default:
-          type: boolean
-          description: Indicates if the branch is set as default.
-        developersCanPush:
-          type: boolean
-          description: Indicates if developers can push changes to the branch.
-        developersCanMerge:
-          type: boolean
-          description: Indicates if developers can merge changes into the branch.
-        canPush:
-          type: boolean
-          description: Indicates if the user can push changes to the branch.
-      additionalProperties: false
-      description: Represents a GitLab branch data transfer object (DTO).
-    GitlabBranchDtoIEnumerableResponse:
+    GitlabProjectDtoIEnumerableResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/GitlabBranchDto'
-          nullable: true
+            $ref: '#/components/schemas/GitlabProjectDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

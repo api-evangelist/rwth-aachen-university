@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin SelfSession API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Self Session API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - SelfSession
-      summary: Initiate the login workflow with the default (NFDI4Ing AAI) provider.
+      summary: Initiate the login workflow with the default (NFDI4Ing AAI) provider
       operationId: Login
       responses:
         '200':
@@ -27,15 +27,17 @@ paths:
     options:
       tags:
       - SelfSession
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2SelfSession
+      x-operation-id-source: derived
   /api/v2/self/session/{externalAuthenticatorId}:
     get:
       tags:
       - SelfSession
-      summary: Initiate the login workflow with specific provider.
+      summary: Initiate the login workflow with specific provider
       operationId: LoginWithProvider
       parameters:
       - name: externalAuthenticatorId
@@ -52,7 +54,7 @@ paths:
     get:
       tags:
       - SelfSession
-      summary: Initiate the merge workflow with specific provider.
+      summary: Initiate the merge workflow with specific provider
       operationId: Merge
       parameters:
       - name: externalAuthenticatorId
@@ -69,10 +71,12 @@ paths:
     post:
       tags:
       - SelfSession
-      summary: Initiate the Log out workflow.
+      summary: Initiate the Log out workflow
       responses:
         '200':
           description: OK
+      operationId: postApiV2SelfSessionLogout
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

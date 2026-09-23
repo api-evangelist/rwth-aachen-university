@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin User API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web User API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - User
-      summary: Retrieves all users.
+      summary: Retrieves all users
       operationId: GetUsers
       parameters:
       - name: OrderBy
@@ -48,60 +48,14 @@ paths:
     options:
       tags:
       - User
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Users
+      x-operation-id-source: derived
 components:
   schemas:
-    PublicUserDto:
-      required:
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets the unique identifier of the user.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets the display name of the user.
-        givenName:
-          type: string
-          description: Gets the given name of the user.
-          nullable: true
-        familyName:
-          type: string
-          description: Gets the family name of the user.
-          nullable: true
-        email:
-          type: string
-          description: Gets the email address of the user.
-          nullable: true
-        title:
-          $ref: '#/components/schemas/TitleDto'
-      additionalProperties: false
-      description: Represents a public user data transfer object (DTO).
-    PublicUserDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublicUserDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
     TitleDto:
       required:
       - displayName
@@ -117,6 +71,60 @@ components:
           description: The displayed name of the title.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for title information.
+    PublicUserDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets the unique identifier of the user.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets the display name of the user.
+        givenName:
+          type:
+          - string
+          - 'null'
+          description: Gets the given name of the user.
+        familyName:
+          type:
+          - string
+          - 'null'
+          description: Gets the family name of the user.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Gets the email address of the user.
+        title:
+          $ref: '#/components/schemas/TitleDto'
+      additionalProperties: false
+      description: Represents a public user data transfer object (DTO).
+    PublicUserDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PublicUserDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

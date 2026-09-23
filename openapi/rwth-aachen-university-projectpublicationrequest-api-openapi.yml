@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ProjectPublicationRequest API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project Publication Request API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     post:
       tags:
       - ProjectPublicationRequest
-      summary: Creates a new publication request.
+      summary: Creates a new publication request
       operationId: CreatePublicationRequest
       parameters:
       - name: projectId
@@ -59,7 +59,7 @@ paths:
     options:
       tags:
       - ProjectPublicationRequest
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -69,11 +69,13 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdPublicationsRequests
+      x-operation-id-source: derived
   /api/v2/projects/{projectId}/publications/requests/{publicationRequestId}:
     get:
       tags:
       - ProjectPublicationRequest
-      summary: Retrieves a publication request.
+      summary: Retrieves a publication request
       operationId: GetPublicationRequest
       parameters:
       - name: projectId
@@ -107,6 +109,17 @@ paths:
           description: Publication request does not exist or has been deleted.
 components:
   schemas:
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
     PublicationRequestForCreationDto:
       required:
       - publicationServiceRorId
@@ -124,9 +137,10 @@ components:
             format: uuid
           description: The resource guids.
         message:
-          type: string
+          type:
+          - string
+          - 'null'
           description: A message of the requester.
-          nullable: true
       additionalProperties: false
       description: Data transfer object (DTO) representing the creation of a publication request.
     UserMinimalDto:
@@ -140,44 +154,6 @@ components:
           format: uuid
       additionalProperties: false
       description: Represents a minimal Data Transfer Object (DTO) for user information.
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    ResourceMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
-    ProjectPublicationRequestDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectPublicationRequestDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
     ProjectPublicationRequestDto:
       type: object
       properties:
@@ -198,9 +174,10 @@ components:
           description: The date and time when the request was created.
           format: date-time
         message:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional message associated with the publication request.
-          nullable: true
         resources:
           type: array
           items:
@@ -208,6 +185,35 @@ components:
           description: Collection of the resources involved in the publication request.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a project publication request.
+    ResourceMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
+    ProjectPublicationRequestDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectPublicationRequestDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

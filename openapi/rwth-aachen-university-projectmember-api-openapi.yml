@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ProjectMember API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project Member API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ProjectMember
-      summary: Retrieves a project membership for a specified project.
+      summary: Retrieves a project membership for a specified project
       operationId: GetMembership
       parameters:
       - name: projectId
@@ -50,7 +50,7 @@ paths:
     put:
       tags:
       - ProjectMember
-      summary: Updates a project membership for a specified project.
+      summary: Updates a project membership for a specified project
       operationId: UpdateMembership
       parameters:
       - name: projectId
@@ -90,7 +90,7 @@ paths:
     delete:
       tags:
       - ProjectMember
-      summary: Deletes a project membership for a specified project.
+      summary: Deletes a project membership for a specified project
       operationId: DeleteMembership
       parameters:
       - name: projectId
@@ -117,7 +117,7 @@ paths:
     get:
       tags:
       - ProjectMember
-      summary: Retrieves all project memberships for a specified project.
+      summary: Retrieves all project memberships for a specified project
       operationId: GetMemberships
       parameters:
       - name: projectId
@@ -140,7 +140,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -156,7 +162,7 @@ paths:
     post:
       tags:
       - ProjectMember
-      summary: Creates a project membership for a specified project.
+      summary: Creates a project membership for a specified project
       operationId: AddMembership
       parameters:
       - name: projectId
@@ -196,7 +202,7 @@ paths:
     options:
       tags:
       - ProjectMember
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -206,11 +212,13 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdMembers
+      x-operation-id-source: derived
   /api/v2/projects/{projectId}/members/me:
     get:
       tags:
       - ProjectMember
-      summary: Retrieves the project role of the authenticated user for a specified project.
+      summary: Retrieves the project role of the authenticated user for a specified project
       operationId: GetMyMembership
       parameters:
       - name: projectId
@@ -233,6 +241,35 @@ paths:
           description: Authenticated user has no role in the given project.
 components:
   schemas:
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    ProjectRoleForProjectCreationDto:
+      required:
+      - roleId
+      - userId
+      type: object
+      properties:
+        roleId:
+          type: string
+          description: Gets or initializes the identifier of the role associated with the project manipulation.
+          format: uuid
+        userId:
+          type: string
+          description: Gets or initializes the identifier of the user associated with the project role creation.
+          format: uuid
+      additionalProperties: false
+      description: 'Data transfer object (DTO) representing the creation of a project role within a project.
+
+        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectRoleForProjectManipulationDto.'
     ProjectRoleForProjectManipulationDto:
       required:
       - roleId
@@ -244,54 +281,24 @@ components:
           format: uuid
       additionalProperties: false
       description: Data transfer object (DTO) representing a project role for manipulation within a project.
-    PublicUserDto:
-      required:
-      - displayName
-      - id
+    ProjectRoleDtoResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: Gets the unique identifier of the user.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets the display name of the user.
-        givenName:
-          type: string
-          description: Gets the given name of the user.
-          nullable: true
-        familyName:
-          type: string
-          description: Gets the family name of the user.
-          nullable: true
-        email:
-          type: string
-          description: Gets the email address of the user.
-          nullable: true
-        title:
-          $ref: '#/components/schemas/TitleDto'
+        data:
+          $ref: '#/components/schemas/ProjectRoleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-      description: Represents a public user data transfer object (DTO).
-    RoleDto:
-      required:
-      - description
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the role.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name of the role.
-        description:
-          type: string
-          description: The description of the role.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a role.
     TitleDto:
       required:
       - displayName
@@ -307,37 +314,38 @@ components:
           description: The displayed name of the title.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for title information.
-    ProjectRoleDto:
+    PublicUserDto:
+      required:
+      - displayName
+      - id
       type: object
       properties:
         id:
           type: string
-          description: Identifier of the project role.
+          description: Gets the unique identifier of the user.
           format: uuid
-        project:
-          $ref: '#/components/schemas/ProjectMinimalDto'
-        role:
-          $ref: '#/components/schemas/RoleDto'
-        user:
-          $ref: '#/components/schemas/PublicUserDto'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for a project role.
-    ProjectRoleDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectRoleDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
+        displayName:
           type: string
-          nullable: true
+          description: Gets the display name of the user.
+        givenName:
+          type:
+          - string
+          - 'null'
+          description: Gets the given name of the user.
+        familyName:
+          type:
+          - string
+          - 'null'
+          description: Gets the family name of the user.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Gets the email address of the user.
+        title:
+          $ref: '#/components/schemas/TitleDto'
       additionalProperties: false
+      description: Represents a public user data transfer object (DTO).
     Pagination:
       type: object
       properties:
@@ -367,54 +375,64 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    ProjectMinimalDto:
+    RoleDto:
       required:
+      - description
+      - displayName
       - id
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the project.
+          description: The unique identifier of the role.
           format: uuid
+        displayName:
+          type: string
+          description: The display name of the role.
+        description:
+          type: string
+          description: The description of the role.
       additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
+      description: Represents a Data Transfer Object (DTO) for a role.
+    ProjectRoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier of the project role.
+          format: uuid
+        project:
+          $ref: '#/components/schemas/ProjectMinimalDto'
+        role:
+          $ref: '#/components/schemas/RoleDto'
+        user:
+          $ref: '#/components/schemas/PublicUserDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for a project role.
     ProjectRoleDtoPagedResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ProjectRoleDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    ProjectRoleForProjectCreationDto:
-      required:
-      - roleId
-      - userId
-      type: object
-      properties:
-        roleId:
-          type: string
-          description: Gets or initializes the identifier of the role associated with the project manipulation.
-          format: uuid
-        userId:
-          type: string
-          description: Gets or initializes the identifier of the user associated with the project role creation.
-          format: uuid
-      additionalProperties: false
-      description: "Data transfer object (DTO) representing the creation of a project role within a project.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectRoleForProjectManipulationDto."
   securitySchemes:
     Bearer:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Visibility API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Visibility API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Visibility
-      summary: Retrieves a visibility by ID.
+      summary: Retrieves a visibility by ID
       operationId: GetVisibility
       parameters:
       - name: visibilityId
@@ -45,7 +45,7 @@ paths:
     get:
       tags:
       - Visibility
-      summary: Retrieves all visibilities.
+      summary: Retrieves all visibilities
       operationId: GetVisibilities
       parameters:
       - name: PageNumber
@@ -62,7 +62,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -78,39 +84,37 @@ paths:
     options:
       tags:
       - Visibility
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Visibilities
+      x-operation-id-source: derived
 components:
   schemas:
-    VisibilityDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the visibility setting.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
-    VisibilityDtoResponse:
+    VisibilityDtoPagedResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/VisibilityDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VisibilityDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
     Pagination:
       type: object
@@ -141,26 +145,35 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    VisibilityDtoPagedResponse:
+    VisibilityDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the visibility setting.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name for the visibility setting.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
+    VisibilityDtoResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/VisibilityDto'
-          nullable: true
+          $ref: '#/components/schemas/VisibilityDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

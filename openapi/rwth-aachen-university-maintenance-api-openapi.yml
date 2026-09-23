@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Maintenance API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Maintenance API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Maintenance
-      summary: Retrieves the current maintenance messages.
+      summary: Retrieves the current maintenance messages
       operationId: GetCurrentMaintenances
       responses:
         '200':
@@ -35,12 +35,38 @@ paths:
     options:
       tags:
       - Maintenance
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Maintenances
+      x-operation-id-source: derived
 components:
   schemas:
+    MaintenanceDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MaintenanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     MaintenanceDto:
       type: object
       properties:
@@ -58,38 +84,19 @@ components:
           type: string
           description: Gets or sets the description of the maintenance.
         startsDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or sets the start date of the maintenance, if available.
           format: date-time
-          nullable: true
         endsDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or sets the end date of the maintenance, if available.
           format: date-time
-          nullable: true
       additionalProperties: false
       description: This class represents a maintenance with its significant properties, which is returned from the API.
-    MaintenanceDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MaintenanceDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     Pagination:
       type: object
       properties:

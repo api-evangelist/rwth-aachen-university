@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin DataHamsterReport API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Data Hamster Report API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,8 +19,8 @@ paths:
     get:
       tags:
       - DataHamsterReport
-      summary: Get the number of archived resources KPI report.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Get the number of archived resources KPI report
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetNumberOfArchivedResourcesKpi
       responses:
         '200':
@@ -33,8 +33,8 @@ paths:
     get:
       tags:
       - DataHamsterReport
-      summary: Get the number of created projects KPI report.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Get the number of created projects KPI report
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetNumberOfCreatedProjectsKpi
       responses:
         '200':
@@ -47,8 +47,8 @@ paths:
     get:
       tags:
       - DataHamsterReport
-      summary: Get the number of created resources KPI report.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Get the number of created resources KPI report
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetNumberOfCreatedResourcesKpi
       responses:
         '200':
@@ -61,8 +61,8 @@ paths:
     get:
       tags:
       - DataHamsterReport
-      summary: Get the number of users per day KPI report.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Get the number of users per day KPI report
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetNumberOfUsersPerDayKpi
       responses:
         '200':
@@ -75,8 +75,8 @@ paths:
     get:
       tags:
       - DataHamsterReport
-      summary: Get the storage usage per resource type report.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Get the storage usage per resource type report
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetStorageByResourceTypeKpi
       parameters:
       - name: typeId
@@ -97,8 +97,8 @@ paths:
     get:
       tags:
       - DataHamsterReport
-      summary: Get the number of users per ror report.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Get the number of users per ror report
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetUsersPerRorKpi
       responses:
         '200':
@@ -111,80 +111,35 @@ paths:
     options:
       tags:
       - DataHamsterReport
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ReportsDataHamster
+      x-operation-id-source: derived
 components:
   schemas:
-    DataHamsterKpiDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    StorageDataHamsterKpiDto:
-      type: object
-      properties:
-        reserved:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
-        used:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
-      additionalProperties: false
-    DataHamsterKpiDto:
-      type: object
-      properties:
-        measurementId:
-          type: integer
-          format: int32
-        value:
-          type: number
-          format: double
-          nullable: true
-        start:
-          type: string
-          format: date-time
-          nullable: true
-        end:
-          type: string
-          format: date-time
-          nullable: true
-        additionalInfo:
-          type: object
-          additionalProperties:
-            type: string
-        query:
-          type: string
-          readOnly: true
-      additionalProperties: false
     DataHamsterKpiDtoIEnumerableResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/DataHamsterKpiDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     StorageDataHamsterKpiDtoResponse:
       type: object
@@ -195,12 +150,69 @@ components:
           type: boolean
           readOnly: true
         statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DataHamsterKpiDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DataHamsterKpiDto:
+      type: object
+      properties:
+        measurementId:
           type: integer
           format: int32
-          nullable: true
-        traceId:
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        start:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        end:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalInfo:
+          type: object
+          additionalProperties:
+            type: string
+        query:
           type: string
-          nullable: true
+          readOnly: true
+      additionalProperties: false
+    StorageDataHamsterKpiDto:
+      type: object
+      properties:
+        reserved:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
+        used:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
       additionalProperties: false
   securitySchemes:
     Bearer:

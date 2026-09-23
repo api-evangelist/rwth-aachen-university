@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Vocabulary API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Vocabulary API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Vocabulary
-      summary: Retrieves top-level instances from vocabularies.
+      summary: Retrieves top-level instances from vocabularies
       operationId: GetVocabularies
       parameters:
       - name: SearchTerm
@@ -46,7 +46,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -62,15 +68,17 @@ paths:
     options:
       tags:
       - Vocabulary
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Vocabularies
+      x-operation-id-source: derived
   /api/v2/vocabularies/{vocabulary}/raw:
     get:
       tags:
       - Vocabulary
-      summary: Retrieves a raw vocabulary by its identifier.
+      summary: Retrieves a raw vocabulary by its identifier
       operationId: GetRawVocabulary
       parameters:
       - name: vocabulary
@@ -93,7 +101,7 @@ paths:
     get:
       tags:
       - Vocabulary
-      summary: Retrieves vocabulary instances.
+      summary: Retrieves vocabulary instances
       operationId: GetVocabularyInstances
       parameters:
       - name: Class
@@ -127,7 +135,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -144,7 +158,7 @@ paths:
     get:
       tags:
       - Vocabulary
-      summary: Retrieves a single instance from a vocabulary.
+      summary: Retrieves a single instance from a vocabulary
       description: Could be a top-level instance, or an intermediate-level instance from a vocabulary.
       operationId: GetVocabularyInstance
       parameters:
@@ -171,33 +185,6 @@ paths:
                 $ref: '#/components/schemas/VocabularyInstanceDtoResponse'
 components:
   schemas:
-    VocabularyDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/VocabularyDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
     VocabularyDto:
       required:
       - classUri
@@ -213,13 +200,15 @@ components:
           description: The URI of the top-level parent class in the vocabulary.
           format: uri
         displayName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The display name of the vocabulary.
-          nullable: true
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The description of the vocabulary.
-          nullable: true
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for vocabulary details.
     VocabularyInstanceDtoResponse:
@@ -231,12 +220,75 @@ components:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    VocabularyInstanceDto:
+      required:
+      - graphUri
+      type: object
+      properties:
+        graphUri:
           type: string
-          nullable: true
+          description: The URI of the graph containing the vocabulary.
+          format: uri
+        instanceUri:
+          type: string
+          description: The URI of the instance.
+          format: uri
+        typeUri:
+          type:
+          - string
+          - 'null'
+          description: The URI representing the type of the instance.
+          format: uri
+        subClassOfUri:
+          type:
+          - string
+          - 'null'
+          description: The URI of the direct parent class.
+          format: uri
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The display name of the vocabulary instance.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the vocabulary instance.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for vocabulary instance details.
+    VocabularyInstanceDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VocabularyInstanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
     Pagination:
       type: object
@@ -267,60 +319,36 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    VocabularyInstanceDtoPagedResponse:
+    VocabularyDtoPagedResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/VocabularyInstanceDto'
-          nullable: true
+            $ref: '#/components/schemas/VocabularyDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    VocabularyInstanceDto:
-      required:
-      - graphUri
-      type: object
-      properties:
-        graphUri:
-          type: string
-          description: The URI of the graph containing the vocabulary.
-          format: uri
-        instanceUri:
-          type: string
-          description: The URI of the instance.
-          format: uri
-        typeUri:
-          type: string
-          description: The URI representing the type of the instance.
-          format: uri
-          nullable: true
-        subClassOfUri:
-          type: string
-          description: The URI of the direct parent class.
-          format: uri
-          nullable: true
-        displayName:
-          type: string
-          description: The display name of the vocabulary instance.
-          nullable: true
-        description:
-          type: string
-          description: The description of the vocabulary instance.
-          nullable: true
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for vocabulary instance details.
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
   securitySchemes:
     Bearer:
       type: apiKey

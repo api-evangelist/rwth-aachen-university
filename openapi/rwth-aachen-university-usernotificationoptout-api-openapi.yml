@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin UserNotificationOptOut API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web User Notification Opt Out API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - UserNotificationOptOut
-      summary: Retrieves a user notification opt out for a specified notification.
+      summary: Retrieves a user notification opt out for a specified notification
       operationId: GetUserNotification
       parameters:
       - name: notificationId
@@ -44,7 +44,7 @@ paths:
     get:
       tags:
       - UserNotificationOptOut
-      summary: Retrieves all user notification opt outs of the current user.
+      summary: Retrieves all user notification opt outs of the current user
       operationId: GetUserNotifications
       parameters:
       - name: PageNumber
@@ -61,7 +61,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -79,7 +85,7 @@ paths:
     post:
       tags:
       - UserNotificationOptOut
-      summary: Creates a user notification opt out for a specified user.
+      summary: Creates a user notification opt out for a specified user
       operationId: CreateUserNotification
       requestBody:
         description: The user notification opt out data for creation.
@@ -110,15 +116,17 @@ paths:
     options:
       tags:
       - UserNotificationOptOut
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2UserNotifications
+      x-operation-id-source: derived
   /api/v2/user-notifications/{id}:
     delete:
       tags:
       - UserNotificationOptOut
-      summary: Deletes a user notification opt out for a specified user.
+      summary: Deletes a user notification opt out for a specified user
       operationId: DeleteUserNotification
       parameters:
       - name: id
@@ -137,38 +145,6 @@ paths:
           description: Provided input refers to entries that do not exist or have been deleted.
 components:
   schemas:
-    UserNotificationOptOutDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserNotificationOptOutDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    UserNotificationForCreationDto:
-      required:
-      - notificationId
-      type: object
-      properties:
-        notificationId:
-          type: string
-          description: The id of the notification.
-          format: uuid
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of a user notification.
     Pagination:
       type: object
       properties:
@@ -228,13 +204,50 @@ components:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    UserNotificationOptOutDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserNotificationOptOutDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    UserNotificationForCreationDto:
+      required:
+      - notificationId
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: The id of the notification.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of a user notification.
   securitySchemes:
     Bearer:
       type: apiKey

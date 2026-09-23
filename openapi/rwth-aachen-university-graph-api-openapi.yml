@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Graph API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Graph API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,30 +19,58 @@ paths:
     get:
       tags:
       - Graph
-      summary: "Retrieves a paginated subset of nodes that make up the metadata tree\r\nfor a specified resource within a given project."
+      summary: Retrieves a paginated subset of nodes that make up the metadata tree for a…
       operationId: GetStorageGraphTree
       parameters:
       - name: projectId
         in: path
-        description: "The unique identifier of the project containing the resource.\r\nSupplied as a route parameter."
+        description: 'The unique identifier of the project containing the resource.
+
+          Supplied as a route parameter.'
         required: true
         schema:
           type: string
       - name: resourceId
         in: path
-        description: "The unique identifier of the resource whose metadata tree should be retrieved.\r\nSupplied as a route parameter."
+        description: 'The unique identifier of the resource whose metadata tree should be retrieved.
+
+          Supplied as a route parameter.'
         required: true
         schema:
           type: string
           format: uuid
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\n\r\n\r\nThe properties `HasChildren`, `HasMetadata`, `HasData` and `Subject` are supported for ordering.\r\nUse \"asc\" or \"desc\" as the direction.\r\nThe Default is `HasChildren desc, subject asc`.\r\n"
+        description: 'Gets or sets the field name used for ordering the results.
+
+
+
+          The properties `HasChildren`, `HasMetadata`, `HasData` and `Subject` are supported for ordering.
+
+          Use "asc" or "desc" as the direction.
+
+          The Default is `HasChildren desc, subject asc`.
+
+          '
         schema:
           type: string
       - name: Prefix
         in: query
-        description: "Gets or sets the prefix filter.\r\n\r\n\r\nThe prefix to filter the storage objects by.\r\nSlashes are taken into account when filtering by prefix.\r\nThe forwads slash (/) character is treated as the path separator.\r\nThe lookup is only done for one level.\r\nTo look into the next level, include the trailing slash to indicate the next level of the tree.\r\n"
+        description: 'Gets or sets the prefix filter.
+
+
+
+          The prefix to filter the storage objects by.
+
+          Slashes are taken into account when filtering by prefix.
+
+          The forwads slash (/) character is treated as the path separator.
+
+          The lookup is only done for one level.
+
+          To look into the next level, include the trailing slash to indicate the next level of the tree.
+
+          '
         schema:
           type: string
       - name: PageNumber
@@ -76,7 +104,7 @@ paths:
     options:
       tags:
       - Graph
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -91,11 +119,13 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdResourcesByResourceIdGraphs
+      x-operation-id-source: derived
   /api/v2/projects/{projectId}/resources/{resourceId}/graphs/{encodedPath}:
     head:
       tags:
       - Graph
-      summary: Performs a metadata check for a graph node or group at the specified path without returning a response body.
+      summary: Performs a metadata check for a graph node or group at the specified path…
       operationId: HeadStorageGraph
       parameters:
       - name: projectId
@@ -131,7 +161,7 @@ paths:
     get:
       tags:
       - Graph
-      summary: Retrieves metadata for a graph node or group at the specified path.
+      summary: Retrieves metadata for a graph node or group at the specified path
       operationId: GetStorageGraph
       parameters:
       - name: projectId
@@ -173,6 +203,31 @@ paths:
           description: The user is not authorized to access the resource.
 components:
   schemas:
+    StorageNodeDto:
+      type: object
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+          format: uri
+        path:
+          type: string
+        prefix:
+          type: string
+          description: Gets the prefix of the node.
+        name:
+          type: string
+          description: Gets the name of the node.
+        hasMetadata:
+          type: boolean
+        hasData:
+          type: boolean
+        hasChildren:
+          type: boolean
+        links:
+          $ref: '#/components/schemas/StorageNodeLinks'
+      additionalProperties: false
     StorageNodeLinks:
       type: object
       properties:
@@ -198,67 +253,6 @@ components:
             type: object
             additionalProperties:
               type: string
-      additionalProperties: false
-    StorageNodeDto:
-      type: object
-      properties:
-        subject:
-          type: string
-          format: uri
-          nullable: true
-        path:
-          type: string
-        prefix:
-          type: string
-          description: Gets the prefix of the node.
-        name:
-          type: string
-          description: Gets the name of the node.
-        hasMetadata:
-          type: boolean
-        hasData:
-          type: boolean
-        hasChildren:
-          type: boolean
-        links:
-          $ref: '#/components/schemas/StorageNodeLinks'
-      additionalProperties: false
-    StorageNodeDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StorageNodeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    StorageNodeDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/StorageNodeDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
     Pagination:
       type: object
@@ -289,6 +283,48 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    StorageNodeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StorageNodeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    StorageNodeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StorageNodeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

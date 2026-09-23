@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Tos API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Tos API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -12,14 +12,14 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: Tos
+- name: TOS
   description: Endpoints for the terms of services (tos).
 paths:
   /api/v2/tos:
     get:
       tags:
-      - Tos
-      summary: Retrieves the current Terms of Service version.
+      - TOS
+      summary: Retrieves the current Terms of Service version
       operationId: GetTos
       responses:
         '200':
@@ -33,13 +33,33 @@ paths:
                 $ref: '#/components/schemas/TermsOfServiceDtoResponse'
     options:
       tags:
-      - Tos
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      - TOS
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Tos
+      x-operation-id-source: derived
 components:
   schemas:
+    TermsOfServiceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TermsOfServiceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     TermsOfServiceDto:
       required:
       - href
@@ -59,22 +79,6 @@ components:
           description: Indicates whether these terms of service are current or not.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for terms of service information.
-    TermsOfServiceDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TermsOfServiceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ProjectSubProjects API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project Sub Projects API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ProjectSubProjects
-      summary: Retrieves all subprojects for a specified project.
+      summary: Retrieves all subprojects for a specified project
       operationId: GetSubProjectsForProject
       parameters:
       - name: projectId
@@ -47,7 +47,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -65,7 +71,7 @@ paths:
     options:
       tags:
       - ProjectSubProjects
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -75,44 +81,45 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdSubprojects
+      x-operation-id-source: derived
 components:
   schemas:
-    PublicationAdvisoryServiceDto:
+    ProjectMinimalDto:
       required:
-      - displayName
-      - email
-      type: object
-      properties:
-        displayName:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's display name.
-        email:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's email address.
-        description:
-          type: string
-          description: Gets the data publication service's description.
-          nullable: true
-        organizationRor:
-          type: string
-          description: Gets the ROR of the organization that provides this publication service.
-          nullable: true
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the publication advisory service of an organization.
-    VisibilityDto:
+      - id
       type: object
       properties:
         id:
           type: string
-          description: The identifier for the visibility setting.
+          description: Unique identifier for the project.
           format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
+      description: Represents a minimal data transfer object (DTO) for a project.
+    ProjectDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProjectDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     ProjectDto:
       required:
       - description
@@ -149,23 +156,27 @@ components:
           description: End date of the project.
           format: date-time
         keywords:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: Collection of keywords associated with the project.
-          nullable: true
         displayName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Display name of the project.
-          nullable: true
         principleInvestigators:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Principal investigators involved in the project.
-          nullable: true
         grantId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Grant ID associated with the project.
-          nullable: true
         visibility:
           $ref: '#/components/schemas/VisibilityDto'
         disciplines:
@@ -184,21 +195,86 @@ components:
         creator:
           $ref: '#/components/schemas/UserMinimalDto'
         creationDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Date of creation of the project.
           format: date-time
-          nullable: true
         subProjects:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ProjectDto'
           description: Collection of sub-projects associated with this project.
-          nullable: true
           deprecated: true
         parent:
           $ref: '#/components/schemas/ProjectMinimalDto'
       additionalProperties: false
       description: Represents a data transfer object (DTO) for project information.
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
+        email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Gets the data publication service's description.
+        organizationRor:
+          type:
+          - string
+          - 'null'
+          description: Gets the ROR of the organization that provides this publication service.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
+    ProjectOrganizationDto:
+      required:
+      - displayName
+      - responsible
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the organization.
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+        responsible:
+          type: boolean
+          description: Determines if the organization is Responsible for a given project.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization in the context of a project.
     Pagination:
       type: object
       properties:
@@ -246,74 +322,18 @@ components:
           description: The display name of the discipline in English.
       additionalProperties: false
       description: Represents the data transfer object for a discipline.
-    ProjectMinimalDto:
-      required:
-      - id
+    VisibilityDto:
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the project.
+          description: The identifier for the visibility setting.
           format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    ProjectOrganizationDto:
-      required:
-      - displayName
-      - responsible
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The ROR (Research Organization Registry) ID of the organization.
-          format: uri
         displayName:
           type: string
-          description: The display name of the organization.
-        email:
-          type: string
-          description: The email address of the organization.
-          nullable: true
-        publicationAdvisoryService:
-          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
-        responsible:
-          type: boolean
-          description: Determines if the organization is Responsible for a given project.
+          description: The display name for the visibility setting.
       additionalProperties: false
-      description: Represents a data transfer object (DTO) for an organization in the context of a project.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    ProjectDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
   securitySchemes:
     Bearer:
       type: apiKey

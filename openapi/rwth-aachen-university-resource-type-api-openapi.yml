@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ResourceType API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Resource Type API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -12,14 +12,14 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: ResourceType
+- name: Resource Type
   description: Endpoints for the resource types.
 paths:
   /api/v2/resource-types/types:
     get:
       tags:
-      - ResourceType
-      summary: Retrieves the entire global resource types information.
+      - Resource Type
+      summary: Retrieves the entire global resource types information
       operationId: GetAllResourceTypesInformation
       responses:
         '200':
@@ -34,8 +34,8 @@ paths:
   /api/v2/resource-types/types/{resourceTypeId}:
     get:
       tags:
-      - ResourceType
-      summary: Retrieves the resource type information for a specific resource type.
+      - Resource Type
+      summary: Retrieves the resource type information for a specific resource type
       operationId: GetResourceTypeInformation
       parameters:
       - name: resourceTypeId
@@ -60,13 +60,37 @@ paths:
   /api/v2/resource-types:
     options:
       tags:
-      - ResourceType
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      - Resource Type
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ResourceTypes
+      x-operation-id-source: derived
 components:
   schemas:
+    ResourceTypeInformationDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceTypeInformationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ResourceContentPageDto:
       type: object
       properties:
@@ -79,88 +103,12 @@ components:
           $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
       additionalProperties: false
       description: Represents the content page details for a resource.
-    ResourceContentPageColumnsDto:
-      type: object
-      properties:
-        always:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Set of columns that should always be displayed in the content view.
-      additionalProperties: false
-      description: Represents a set of columns to be displayed in the content view.
-    ResourceCreationPageDto:
-      type: object
-      properties:
-        components:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
-      additionalProperties: false
-      description: Represents the structure of resource type-specific components for steps in the resource creation page.
     ResourceTypeStatus:
       enum:
       - hidden
       - active
       type: string
       description: Specifies the status of a resource type.
-    ResourceTypeInformationDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceTypeInformationDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ResourceTypeInformationDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResourceTypeInformationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ResourceContentPageMetadataViewDto:
-      type: object
-      properties:
-        editableDataUrl:
-          type: boolean
-          description: Indicates if a data URL can be provided and is editable.
-        editableKey:
-          type: boolean
-          description: Indicates if a key can be provided and is editable.
-      additionalProperties: false
-      description: Represents the metadata view for a resource's content page.
-    ResourceContentPageEntriesViewDto:
-      type: object
-      properties:
-        columns:
-          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
-      additionalProperties: false
-      description: Represents information about the resource type for the columns within the entries view Vue component.
     ResourceTypeInformationDto:
       type: object
       properties:
@@ -169,13 +117,15 @@ components:
           description: The unique identifier of the resource type.
           format: uuid
         generalType:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The general type of the resource.
-          nullable: true
         specificType:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The specific type of the resource.
-          nullable: true
         status:
           $ref: '#/components/schemas/ResourceTypeStatus'
         canCreate:
@@ -230,6 +180,65 @@ components:
           $ref: '#/components/schemas/ResourceContentPageDto'
       additionalProperties: false
       description: Represents information about a resource type.
+    ResourceContentPageColumnsDto:
+      type: object
+      properties:
+        always:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Set of columns that should always be displayed in the content view.
+      additionalProperties: false
+      description: Represents a set of columns to be displayed in the content view.
+    ResourceCreationPageDto:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
+      additionalProperties: false
+      description: Represents the structure of resource type-specific components for steps in the resource creation page.
+    ResourceTypeInformationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceTypeInformationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ResourceContentPageMetadataViewDto:
+      type: object
+      properties:
+        editableDataUrl:
+          type: boolean
+          description: Indicates if a data URL can be provided and is editable.
+        editableKey:
+          type: boolean
+          description: Indicates if a key can be provided and is editable.
+      additionalProperties: false
+      description: Represents the metadata view for a resource's content page.
+    ResourceContentPageEntriesViewDto:
+      type: object
+      properties:
+        columns:
+          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
+      additionalProperties: false
+      description: Represents information about the resource type for the columns within the entries view Vue component.
   securitySchemes:
     Bearer:
       type: apiKey

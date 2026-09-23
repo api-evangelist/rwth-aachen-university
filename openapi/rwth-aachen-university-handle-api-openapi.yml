@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Handle API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Handle API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Handle
-      summary: Retrieves all values of a handle by its PID.
+      summary: Retrieves all values of a handle by its PID
       operationId: GetHandle
       parameters:
       - name: prefix
@@ -51,8 +51,8 @@ paths:
     put:
       tags:
       - Handle
-      summary: Updates a handle.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Updates a handle
+      description: 'Required JWT roles for access: administrator.'
       operationId: UpdateHandle
       parameters:
       - name: prefix
@@ -90,12 +90,31 @@ paths:
     options:
       tags:
       - Handle
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Handles
+      x-operation-id-source: derived
 components:
   schemas:
+    HandleValueForUpdateDto:
+      required:
+      - parsed_data
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: The data type of the handle.
+        parsed_data:
+          description: The parsed data of the handle.
+        idx:
+          type: integer
+          description: The id of the handle.
+          format: int32
+      additionalProperties: false
+      description: Data transfer object (DTO) representing updating a handle.
     HandleValueDto:
       type: object
       properties:
@@ -122,12 +141,6 @@ components:
         privs:
           type: string
       additionalProperties: false
-    PidType:
-      enum:
-      - project
-      - resource
-      type: string
-      description: Specifies the type of PID.
     HandleDto:
       type: object
       properties:
@@ -161,33 +174,6 @@ components:
           description: Gets or sets a value indicating whether the linked entity is considered valid.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
-    HandleValueForUpdateDto:
-      required:
-      - parsed_data
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-          description: The data type of the handle.
-        parsed_data:
-          description: The parsed data of the handle.
-        idx:
-          type: integer
-          description: The id of the handle.
-          format: int32
-      additionalProperties: false
-      description: Data transfer object (DTO) representing updating a handle.
-    HandleForUpdateDto:
-      required:
-      - values
-      type: object
-      properties:
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/HandleValueForUpdateDto'
-      additionalProperties: false
     HandleDtoResponse:
       type: object
       properties:
@@ -197,12 +183,30 @@ components:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
+    HandleForUpdateDto:
+      required:
+      - values
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandleValueForUpdateDto'
       additionalProperties: false
   securitySchemes:
     Bearer:

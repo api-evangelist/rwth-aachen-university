@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Search API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Search API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Search
-      summary: Retrieves a search result by given search parameters.
+      summary: Retrieves a search result by given search parameters
       operationId: GetSearchResults
       parameters:
       - name: Query
@@ -58,7 +58,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -80,50 +86,61 @@ paths:
     options:
       tags:
       - Search
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Search
+      x-operation-id-source: derived
 components:
   schemas:
+    SearchResultDto:
+      required:
+      - source
+      - type
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The URI associated with the search result.
+          format: uri
+        type:
+          $ref: '#/components/schemas/SearchCategoryType'
+        source:
+          description: The dynamic source data for the search result.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for search results.
     SearchResultDtoPagedSearchResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/SearchResultDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
         categories:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/SearchCategory'
-          nullable: true
       additionalProperties: false
-    SearchCategory:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the search category.
-        count:
-          type: integer
-          description: The count of occurrences for the search category.
-          format: int64
-      additionalProperties: false
-      description: Represents a search category with a name and count of occurrences.
     Pagination:
       type: object
       properties:
@@ -161,23 +178,18 @@ components:
       - https://purl.org/coscine/terms/structure#Resource
       type: string
       description: Specifies the search item type.
-    SearchResultDto:
-      required:
-      - source
-      - type
-      - uri
+    SearchCategory:
       type: object
       properties:
-        uri:
+        name:
           type: string
-          description: The URI associated with the search result.
-          format: uri
-        type:
-          $ref: '#/components/schemas/SearchCategoryType'
-        source:
-          description: The dynamic source data for the search result.
+          description: The name of the search category.
+        count:
+          type: integer
+          description: The count of occurrences for the search category.
+          format: int64
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for search results.
+      description: Represents a search category with a name and count of occurrences.
   securitySchemes:
     Bearer:
       type: apiKey

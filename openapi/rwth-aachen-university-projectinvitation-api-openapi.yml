@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ProjectInvitation API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project Invitation API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ProjectInvitation
-      summary: Retrieves a project invitation for a specified project.
+      summary: Retrieves a project invitation for a specified project
       operationId: GetProjectInvitation
       parameters:
       - name: projectId
@@ -50,7 +50,7 @@ paths:
     delete:
       tags:
       - ProjectInvitation
-      summary: Deletes a project invitation for a specified project.
+      summary: Deletes a project invitation for a specified project
       operationId: DeleteProjectInvitation
       parameters:
       - name: projectId
@@ -77,7 +77,7 @@ paths:
     get:
       tags:
       - ProjectInvitation
-      summary: Retrieves all project invitations for a specified project.
+      summary: Retrieves all project invitations for a specified project
       operationId: GetProjectInvitations
       parameters:
       - name: projectId
@@ -100,7 +100,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -116,7 +122,7 @@ paths:
     post:
       tags:
       - ProjectInvitation
-      summary: Creates a project invitation for a specified project.
+      summary: Creates a project invitation for a specified project
       operationId: CreateProjectInvitation
       parameters:
       - name: projectId
@@ -156,7 +162,7 @@ paths:
     options:
       tags:
       - ProjectInvitation
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -166,99 +172,42 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdInvitations
+      x-operation-id-source: derived
 components:
   schemas:
-    ProjectInvitationDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectInvitationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PublicUserDto:
-      required:
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets the unique identifier of the user.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets the display name of the user.
-        givenName:
-          type: string
-          description: Gets the given name of the user.
-          nullable: true
-        familyName:
-          type: string
-          description: Gets the family name of the user.
-          nullable: true
-        email:
-          type: string
-          description: Gets the email address of the user.
-          nullable: true
-        title:
-          $ref: '#/components/schemas/TitleDto'
-      additionalProperties: false
-      description: Represents a public user data transfer object (DTO).
-    ProjectInvitationForProjectManipulationDto:
-      required:
-      - email
-      - roleId
-      type: object
-      properties:
-        roleId:
-          type: string
-          description: Gets or initializes the identifier of the role associated with the invitation.
-          format: uuid
-        email:
-          minLength: 1
-          type: string
-          description: Gets or initializes the email address of the invited user.
-          format: email
-      additionalProperties: false
-      description: Data transfer object (DTO) representing an invitation for project manipulation.
-    RoleMinimalDto:
+    ProjectMinimalDto:
       required:
       - id
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier of the role.
+          description: Unique identifier for the project.
           format: uuid
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) containing minimal information about a role.
+      description: Represents a minimal data transfer object (DTO) for a project.
     ProjectInvitationDtoPagedResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ProjectInvitationDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
@@ -277,6 +226,55 @@ components:
           description: The displayed name of the title.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for title information.
+    ProjectInvitationForProjectManipulationDto:
+      required:
+      - email
+      - roleId
+      type: object
+      properties:
+        roleId:
+          type: string
+          description: Gets or initializes the identifier of the role associated with the invitation.
+          format: uuid
+        email:
+          minLength: 1
+          type: string
+          description: Gets or initializes the email address of the invited user.
+          format: email
+      additionalProperties: false
+      description: Data transfer object (DTO) representing an invitation for project manipulation.
+    PublicUserDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets the unique identifier of the user.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets the display name of the user.
+        givenName:
+          type:
+          - string
+          - 'null'
+          description: Gets the given name of the user.
+        familyName:
+          type:
+          - string
+          - 'null'
+          description: Gets the family name of the user.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Gets the email address of the user.
+        title:
+          $ref: '#/components/schemas/TitleDto'
+      additionalProperties: false
+      description: Represents a public user data transfer object (DTO).
     ProjectInvitationDto:
       type: object
       properties:
@@ -328,17 +326,35 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    ProjectMinimalDto:
+    ProjectInvitationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectInvitationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    RoleMinimalDto:
       required:
       - id
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the project.
+          description: The unique identifier of the role.
           format: uuid
       additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
+      description: Represents a Data Transfer Object (DTO) containing minimal information about a role.
   securitySchemes:
     Bearer:
       type: apiKey

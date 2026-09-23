@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin SelfApiToken API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Self API Token API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -12,14 +12,14 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: SelfApiToken
+- name: Self API Token
   description: Endpoints for the api tokens of a user.
 paths:
   /api/v2/self/api-tokens/{apiTokenId}:
     get:
       tags:
-      - SelfApiToken
-      summary: Retrieves an API token for the current authenticated user.
+      - Self API Token
+      summary: Retrieves an API token for the current authenticated user
       operationId: GetApiToken
       parameters:
       - name: apiTokenId
@@ -43,8 +43,8 @@ paths:
           description: API token does not exist.
     delete:
       tags:
-      - SelfApiToken
-      summary: Revokes an API token for the current authenticated user.
+      - Self API Token
+      summary: Revokes an API token for the current authenticated user
       operationId: RevokeToken
       parameters:
       - name: apiTokenId
@@ -64,8 +64,8 @@ paths:
   /api/v2/self/api-tokens:
     get:
       tags:
-      - SelfApiToken
-      summary: Retrieves all API tokens for the current authenticated user.
+      - Self API Token
+      summary: Retrieves all API tokens for the current authenticated user
       operationId: GetAllApiTokens
       parameters:
       - name: PageNumber
@@ -82,7 +82,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -97,8 +103,8 @@ paths:
                 $ref: '#/components/schemas/ApiTokenDtoPagedResponse'
     post:
       tags:
-      - SelfApiToken
-      summary: Creates an API token for the current authenticated user.
+      - Self API Token
+      summary: Creates an API token for the current authenticated user
       operationId: CreateApiToken
       requestBody:
         description: The API token data for creation.
@@ -128,29 +134,15 @@ paths:
           description: Provided input refers to entries that do not exist or have been deleted.
     options:
       tags:
-      - SelfApiToken
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      - Self API Token
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2SelfApiTokens
+      x-operation-id-source: derived
 components:
   schemas:
-    ApiTokenDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiTokenDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
     ApiTokenDto:
       type: object
       properties:
@@ -170,13 +162,67 @@ components:
           description: The expiry date of the API token.
           format: date-time
         token:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The actual token used for authentication.
-          nullable: true
         owner:
           $ref: '#/components/schemas/UserMinimalDto'
       additionalProperties: false
       description: Represents an API token used for authentication.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
+    ApiTokenForCreationDto:
+      required:
+      - expiresInDays
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          description: Gets or sets the name of the API token.
+        expiresInDays:
+          maximum: 370
+          minimum: 1
+          type: integer
+          description: Gets or sets the expiration duration of the token in days.
+          format: int32
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of an API token.
+    ApiTokenDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTokenDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -206,55 +252,23 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    ApiTokenForCreationDto:
-      required:
-      - expiresInDays
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or sets the name of the API token.
-        expiresInDays:
-          maximum: 370
-          minimum: 1
-          type: integer
-          description: Gets or sets the expiration duration of the token in days.
-          format: int32
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of an API token.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    ApiTokenDtoPagedResponse:
+    ApiTokenDtoResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiTokenDto'
-          nullable: true
+          $ref: '#/components/schemas/ApiTokenDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

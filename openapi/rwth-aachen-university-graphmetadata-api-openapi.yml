@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin GraphMetadata API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Graph Metadata API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -13,13 +13,15 @@ security:
 - Bearer: []
 tags:
 - name: GraphMetadata
-  description: "Controller for managing metadata version history and retrieval\r\nfor project resources and graph nodes."
+  description: 'Controller for managing metadata version history and retrieval
+
+    for project resources and graph nodes.'
 paths:
   /api/v2/projects/{projectId}/resources/{resourceId}/graphs/{encodedPath}/metadata/versions:
     get:
       tags:
       - GraphMetadata
-      summary: "Retrieves a paginated list of all metadata versions available\r\nfor a specific graph node of a resource."
+      summary: Retrieves a paginated list of all metadata versions available for a specific…
       operationId: ListMetadataVersions
       parameters:
       - name: projectId
@@ -43,7 +45,17 @@ paths:
           type: string
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\n\r\n\r\nThe property `version`is supported for ordering.\r\nUse \"asc\" or \"desc\" as the direction.\r\nThe Default is `version desc`.\r\n"
+        description: 'Gets or sets the field name used for ordering the results.
+
+
+
+          The property `version`is supported for ordering.
+
+          Use "asc" or "desc" as the direction.
+
+          The Default is `version desc`.
+
+          '
         schema:
           type: string
       - name: PageNumber
@@ -78,7 +90,7 @@ paths:
     get:
       tags:
       - GraphMetadata
-      summary: Retrieves a specific version of the metadata graph for a given path.
+      summary: Retrieves a specific version of the metadata graph for a given path
       operationId: GetMetadataVersion
       parameters:
       - name: projectId
@@ -96,13 +108,15 @@ paths:
           format: uuid
       - name: encodedPath
         in: path
-        description: "The URL-encoded path to the graph node.\r\n            Due to a limitation in the underlying structure, any trailing slashes in the path will be trimmed.\r\n            Test.txt and Test.txt/ will be treated as the same path."
+        description: "The URL-encoded path to the graph node.\n            Due to a limitation in the underlying structure, any trailing slashes in the path will be trimmed.\n            Test.txt and Test.txt/ will be treated as the same path."
         required: true
         schema:
           type: string
       - name: graphVersion
         in: query
-        description: "The version identifier of the graph to retrieve.\r\nIf omitted, the latest version is returned."
+        description: 'The version identifier of the graph to retrieve.
+
+          If omitted, the latest version is returned.'
         schema:
           type: string
       responses:
@@ -126,7 +140,7 @@ paths:
     head:
       tags:
       - GraphMetadata
-      summary: Checks the existence of a specific metadata version without returning content.
+      summary: Checks the existence of a specific metadata version without returning content
       operationId: HeadMetadataVersion
       parameters:
       - name: projectId
@@ -167,7 +181,7 @@ paths:
     options:
       tags:
       - GraphMetadata
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -187,6 +201,8 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdResourcesByResourceIdGraphsByEncodedPathMetadata
+      x-operation-id-source: derived
 components:
   schemas:
     MetadataVersionNodeDtoResponse:
@@ -198,12 +214,14 @@ components:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Pagination:
       type: object
@@ -238,20 +256,23 @@ components:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/MetadataVersionNodeDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
@@ -259,9 +280,10 @@ components:
       type: object
       properties:
         subject:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
         path:
           type: string
         version:

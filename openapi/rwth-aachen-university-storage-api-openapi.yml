@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Storage API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Storage API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -13,13 +13,15 @@ security:
 - Bearer: []
 tags:
 - name: Storage
-  description: "Provides endpoints for managing blob storage operations for project resources,\r\nsuch as checking existence and deleting files or folders."
+  description: 'Provides endpoints for managing blob storage operations for project resources,
+
+    such as checking existence and deleting files or folders.'
 paths:
   /api/v2/projects/{projectId}/resources/{resourceId}/storage/{encodedPath}:
     head:
       tags:
       - Storage
-      summary: Checks if a file or folder exists at the specified path within the given project and resource.
+      summary: Checks if a file or folder exists at the specified path within the given…
       operationId: HeadFileFromStorage
       parameters:
       - name: projectId
@@ -59,7 +61,7 @@ paths:
     delete:
       tags:
       - Storage
-      summary: Deletes a file or folder at the specified path within the given project and resource.
+      summary: Deletes a file or folder at the specified path within the given project and…
       operationId: DeleteFileFromStorage
       parameters:
       - name: projectId
@@ -89,7 +91,7 @@ paths:
     get:
       tags:
       - Storage
-      summary: Lists the contents of a directory in the storage tree.
+      summary: Lists the contents of a directory in the storage tree
       operationId: ListFilesFromStorage
       parameters:
       - name: projectId
@@ -107,12 +109,33 @@ paths:
           format: uuid
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\n\r\n`Sorting is not yet supported for the file tree endpoint, but this property is included for consistency with other query parameter classes and to allow for future extensibility.`.\r\nUse \"asc\" or \"desc\" as the direction.\r\n"
+        description: 'Gets or sets the field name used for ordering the results.
+
+
+          `Sorting is not yet supported for the file tree endpoint, but this property is included for consistency with other query parameter classes and to allow for future extensibility.`.
+
+          Use "asc" or "desc" as the direction.
+
+          '
         schema:
           type: string
       - name: Prefix
         in: query
-        description: "Gets or sets the prefix filter.\r\n\r\n\r\nThe prefix to filter the storage objects by.\r\nSlashes are taken into account when filtering by prefix.\r\nThe forwads slash (/) character is treated as the path separator.\r\nThe lookup is only done for one level.\r\nTo look into the next level, include the trailing slash to indicate the next level of the tree.\r\n"
+        description: 'Gets or sets the prefix filter.
+
+
+
+          The prefix to filter the storage objects by.
+
+          Slashes are taken into account when filtering by prefix.
+
+          The forwads slash (/) character is treated as the path separator.
+
+          The lookup is only done for one level.
+
+          To look into the next level, include the trailing slash to indicate the next level of the tree.
+
+          '
         schema:
           type: string
       - name: PageNumber
@@ -146,7 +169,7 @@ paths:
     options:
       tags:
       - Storage
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -161,14 +184,82 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdResourcesByResourceIdStorage
+      x-operation-id-source: derived
 components:
   schemas:
-    TreeDataType:
+    FileActionHttpMethod:
       enum:
-      - Tree
-      - Leaf
+      - GET
+      - POST
+      - PUT
+      - DELETE
       type: string
-      description: Represents the types of nodes within a hierarchical tree structure.
+      description: Represents the possible HTTP methods associated with file actions.
+    FileTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FileTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    FileTreeDto:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Gets the path of the tree item.
+        type:
+          $ref: '#/components/schemas/TreeDataType'
+        directory:
+          type: string
+          description: Gets or sets the directory of the file.
+        name:
+          type: string
+          description: Gets or sets the name of the file.
+        extension:
+          type: string
+          description: Gets or sets the extension of the file.
+        size:
+          type: integer
+          description: Gets or sets the size of the file in bytes.
+          format: int64
+        creationDate:
+          type:
+          - string
+          - 'null'
+          description: Gets or sets the creation date of the file.
+          format: date-time
+        changeDate:
+          type:
+          - string
+          - 'null'
+          description: Gets or sets the last change date of the file.
+          format: date-time
+        actions:
+          $ref: '#/components/schemas/FileActionsDto'
+        hidden:
+          type: boolean
+          description: Determines if the specific tree entry is hidden.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
     Pagination:
       type: object
       properties:
@@ -198,44 +289,19 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    FileTreeDto:
+    FileActionsDto:
       type: object
       properties:
-        path:
-          type: string
-          description: Gets the path of the tree item.
-        type:
-          $ref: '#/components/schemas/TreeDataType'
-        directory:
-          type: string
-          description: Gets or sets the directory of the file.
-        name:
-          type: string
-          description: Gets or sets the name of the file.
-        extension:
-          type: string
-          description: Gets or sets the extension of the file.
-        size:
-          type: integer
-          description: Gets or sets the size of the file in bytes.
-          format: int64
-        creationDate:
-          type: string
-          description: Gets or sets the creation date of the file.
-          format: date-time
-          nullable: true
-        changeDate:
-          type: string
-          description: Gets or sets the last change date of the file.
-          format: date-time
-          nullable: true
-        actions:
-          $ref: '#/components/schemas/FileActionsDto'
-        hidden:
-          type: boolean
-          description: Determines if the specific tree entry is hidden.
+        download:
+          $ref: '#/components/schemas/FileActionDto'
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
+      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
+    TreeDataType:
+      enum:
+      - Tree
+      - Leaf
+      type: string
+      description: Represents the types of nodes within a hierarchical tree structure.
     FileActionDto:
       type: object
       properties:
@@ -247,42 +313,6 @@ components:
           $ref: '#/components/schemas/FileActionHttpMethod'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
-    FileActionHttpMethod:
-      enum:
-      - GET
-      - POST
-      - PUT
-      - DELETE
-      type: string
-      description: Represents the possible HTTP methods associated with file actions.
-    FileTreeDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileTreeDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    FileActionsDto:
-      type: object
-      properties:
-        download:
-          $ref: '#/components/schemas/FileActionDto'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
   securitySchemes:
     Bearer:
       type: apiKey

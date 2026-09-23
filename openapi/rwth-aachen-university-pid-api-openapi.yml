@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Pid API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Pid API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Pid
-      summary: Retrieves the Persistent Identifier (PID) for a given prefix and suffix.
+      summary: Retrieves the Persistent Identifier (PID) for a given prefix and suffix
       operationId: GetPid
       parameters:
       - name: prefix
@@ -53,7 +53,7 @@ paths:
     post:
       tags:
       - Pid
-      summary: Sends an inquiry to the owner of the given PID.
+      summary: Sends an inquiry to the owner of the given PID
       operationId: SendRequestToOwner
       parameters:
       - name: prefix
@@ -92,8 +92,8 @@ paths:
     get:
       tags:
       - Pid
-      summary: Retrieves all PIDs.
-      description: <p><strong>Required JWT roles for access:</strong> <code>administrator</code>.</p>
+      summary: Retrieves all PIDs
+      description: 'Required JWT roles for access: administrator.'
       operationId: GetPids
       parameters:
       - name: IncludeProjects
@@ -125,7 +125,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -143,41 +149,82 @@ paths:
     options:
       tags:
       - Pid
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Pids
+      x-operation-id-source: derived
 components:
   schemas:
-    PidType:
-      enum:
-      - project
-      - resource
-      type: string
-      description: Specifies the type of PID.
-    PidDto:
+    PidRequestDto:
       required:
-      - prefix
-      - suffix
+      - email
+      - message
+      - name
       type: object
       properties:
-        prefix:
+        name:
+          minLength: 1
           type: string
-          description: Gets or sets the prefix of the PID.
-        suffix:
+          description: Gets or initializes the name associated with the PID request.
+        email:
+          minLength: 1
           type: string
-          description: Gets or sets the suffix of the PID.
-        identifier:
+          description: Gets or initializes the email associated with the PID request.
+          format: email
+        message:
+          maxLength: 5000
+          minLength: 1
           type: string
-          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
-          readOnly: true
-        type:
-          $ref: '#/components/schemas/PidType'
-        isEntityValid:
+          description: Gets or initializes the message for the PID request.
+        sendConfirmationEmail:
           type: boolean
-          description: Gets or sets a value indicating whether the linked entity is considered valid.
+          description: Gets or initializes whether to send a confirmation email for the PID request.
       additionalProperties: false
-      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
+      description: Data transfer object (DTO) representing a PID request.
+    PidDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PidDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PidDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PidDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -207,69 +254,35 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    PidRequestDto:
+    PidDto:
       required:
-      - email
-      - message
-      - name
+      - prefix
+      - suffix
       type: object
       properties:
-        name:
-          minLength: 1
+        prefix:
           type: string
-          description: Gets or initializes the name associated with the PID request.
-        email:
-          minLength: 1
+          description: Gets or sets the prefix of the PID.
+        suffix:
           type: string
-          description: Gets or initializes the email associated with the PID request.
-          format: email
-        message:
-          maxLength: 5000
-          minLength: 1
+          description: Gets or sets the suffix of the PID.
+        identifier:
           type: string
-          description: Gets or initializes the message for the PID request.
-        sendConfirmationEmail:
-          type: boolean
-          description: Gets or initializes whether to send a confirmation email for the PID request.
-      additionalProperties: false
-      description: Data transfer object (DTO) representing a PID request.
-    PidDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PidDto'
-          nullable: true
-        isSuccess:
-          type: boolean
+          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
           readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    PidDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/PidDto'
-        isSuccess:
+        type:
+          $ref: '#/components/schemas/PidType'
+        isEntityValid:
           type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
+          description: Gets or sets a value indicating whether the linked entity is considered valid.
       additionalProperties: false
+      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
   securitySchemes:
     Bearer:
       type: apiKey

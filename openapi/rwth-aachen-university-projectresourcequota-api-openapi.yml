@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ProjectResourceQuota API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project Resource Quota API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ProjectResourceQuota
-      summary: Retrieves the resource quota for a specific resource in a project.
+      summary: Retrieves the resource quota for a specific resource in a project
       operationId: GetQuotaForResourceForProject
       parameters:
       - name: projectId
@@ -56,7 +56,7 @@ paths:
     options:
       tags:
       - ProjectResourceQuota
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -71,8 +71,70 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdResourcesByResourceIdQuota
+      x-operation-id-source: derived
 components:
   schemas:
+    ResourceQuotaDto:
+      required:
+      - resource
+      type: object
+      properties:
+        resource:
+          $ref: '#/components/schemas/ResourceMinimalDto'
+        usedPercentage:
+          type:
+          - number
+          - 'null'
+          description: The percentage of quota used by the resource.
+          format: float
+        used:
+          $ref: '#/components/schemas/QuotaDto'
+        versions:
+          $ref: '#/components/schemas/QuotaDto'
+        reserved:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
+    ResourceQuotaDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceQuotaDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    QuotaUnit:
+      enum:
+      - https://qudt.org/vocab/unit/BYTE
+      - https://qudt.org/vocab/unit/KibiBYTE
+      - https://qudt.org/vocab/unit/MebiBYTE
+      - https://qudt.org/vocab/unit/GibiBYTE
+      - https://qudt.org/vocab/unit/TebiBYTE
+      - https://qudt.org/vocab/unit/PebiBYTE
+      type: string
+      description: Specifies the unit of quota.
+    ResourceMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
     QuotaDto:
       required:
       - unit
@@ -87,63 +149,6 @@ components:
           $ref: '#/components/schemas/QuotaUnit'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for quota values.
-    QuotaUnit:
-      enum:
-      - https://qudt.org/vocab/unit/BYTE
-      - https://qudt.org/vocab/unit/KibiBYTE
-      - https://qudt.org/vocab/unit/MebiBYTE
-      - https://qudt.org/vocab/unit/GibiBYTE
-      - https://qudt.org/vocab/unit/TebiBYTE
-      - https://qudt.org/vocab/unit/PebiBYTE
-      type: string
-      description: Specifies the unit of quota.
-    ResourceQuotaDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResourceQuotaDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ResourceMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
-    ResourceQuotaDto:
-      required:
-      - resource
-      type: object
-      properties:
-        resource:
-          $ref: '#/components/schemas/ResourceMinimalDto'
-        usedPercentage:
-          type: number
-          description: The percentage of quota used by the resource.
-          format: float
-          nullable: true
-        used:
-          $ref: '#/components/schemas/QuotaDto'
-        versions:
-          $ref: '#/components/schemas/QuotaDto'
-        reserved:
-          $ref: '#/components/schemas/QuotaDto'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
   securitySchemes:
     Bearer:
       type: apiKey

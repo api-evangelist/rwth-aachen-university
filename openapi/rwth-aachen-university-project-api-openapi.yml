@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Project API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     post:
       tags:
       - Project
-      summary: Creates a new project.
+      summary: Creates a new project
       operationId: CreateProject
       requestBody:
         description: The project data for creation.
@@ -52,7 +52,7 @@ paths:
     get:
       tags:
       - Project
-      summary: Retrieves all projects.
+      summary: Retrieves all projects
       operationId: GetProjects
       parameters:
       - name: IncludeOrganizations
@@ -79,7 +79,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -97,15 +103,17 @@ paths:
     options:
       tags:
       - Project
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Projects
+      x-operation-id-source: derived
   /api/v2/projects/{projectId}:
     get:
       tags:
       - Project
-      summary: Retrieves a project.
+      summary: Retrieves a project
       operationId: GetProject
       parameters:
       - name: projectId
@@ -138,7 +146,7 @@ paths:
     put:
       tags:
       - Project
-      summary: Updates a project.
+      summary: Updates a project
       operationId: UpdateProject
       parameters:
       - name: projectId
@@ -171,7 +179,7 @@ paths:
     delete:
       tags:
       - Project
-      summary: Deletes a project.
+      summary: Deletes a project
       operationId: DeleteProject
       parameters:
       - name: projectId
@@ -191,42 +199,41 @@ paths:
           description: Provided input refers to entries that do not exist or have been deleted.
 components:
   schemas:
-    PublicationAdvisoryServiceDto:
+    ProjectMinimalDto:
       required:
-      - displayName
-      - email
-      type: object
-      properties:
-        displayName:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's display name.
-        email:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's email address.
-        description:
-          type: string
-          description: Gets the data publication service's description.
-          nullable: true
-        organizationRor:
-          type: string
-          description: Gets the ROR of the organization that provides this publication service.
-          nullable: true
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the publication advisory service of an organization.
-    VisibilityDto:
+      - id
       type: object
       properties:
         id:
           type: string
-          description: The identifier for the visibility setting.
+          description: Unique identifier for the project.
           format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
+      description: Represents a minimal data transfer object (DTO) for a project.
+    ProjectDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProjectDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     DisciplineForProjectManipulationDto:
       required:
       - id
@@ -238,21 +245,24 @@ components:
           format: uuid
       additionalProperties: false
       description: Data transfer object (DTO) representing a discipline for project manipulation.
-    OrganizationForProjectManipulationDto:
-      required:
-      - responsible
-      - uri
+    ProjectDtoResponse:
       type: object
       properties:
-        uri:
-          type: string
-          description: Gets or initializes the URI of the organization.
-          format: uri
-        responsible:
+        data:
+          $ref: '#/components/schemas/ProjectDto'
+        isSuccess:
           type: boolean
-          description: Gets or initializes if the organization is responsible.
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-      description: Data transfer object (DTO) representing an organization for project manipulation.
     ProjectDto:
       required:
       - description
@@ -289,23 +299,27 @@ components:
           description: End date of the project.
           format: date-time
         keywords:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: Collection of keywords associated with the project.
-          nullable: true
         displayName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Display name of the project.
-          nullable: true
         principleInvestigators:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Principal investigators involved in the project.
-          nullable: true
         grantId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Grant ID associated with the project.
-          nullable: true
         visibility:
           $ref: '#/components/schemas/VisibilityDto'
         disciplines:
@@ -324,21 +338,60 @@ components:
         creator:
           $ref: '#/components/schemas/UserMinimalDto'
         creationDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Date of creation of the project.
           format: date-time
-          nullable: true
         subProjects:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ProjectDto'
           description: Collection of sub-projects associated with this project.
-          nullable: true
           deprecated: true
         parent:
           $ref: '#/components/schemas/ProjectMinimalDto'
       additionalProperties: false
       description: Represents a data transfer object (DTO) for project information.
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
+        email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Gets the data publication service's description.
+        organizationRor:
+          type:
+          - string
+          - 'null'
+          description: Gets the ROR of the organization that provides this publication service.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
     ProjectForUpdateDto:
       required:
       - description
@@ -368,26 +421,30 @@ components:
           description: Gets or initializes the end date of the project.
           format: date-time
         keywords:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: Gets or initializes the keywords associated with the project.
-          nullable: true
         displayName:
           maxLength: 25
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the display name of the project.
-          nullable: true
         principleInvestigators:
           maxLength: 500
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the principal investigators associated with the project.
-          nullable: true
         grantId:
           maxLength: 500
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the grant ID associated with the project.
-          nullable: true
         visibility:
           $ref: '#/components/schemas/VisibilityForProjectManipulationDto'
         disciplines:
@@ -406,7 +463,79 @@ components:
           type: string
           description: Gets or initializes the slug associated with the project for identification purposes.
       additionalProperties: false
-      description: "Data transfer object (DTO) representing the update of a project.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectForManipulationDto."
+      description: 'Data transfer object (DTO) representing the update of a project.
+
+        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectForManipulationDto.'
+    ProjectOrganizationDto:
+      required:
+      - displayName
+      - responsible
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the organization.
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+        responsible:
+          type: boolean
+          description: Determines if the organization is Responsible for a given project.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization in the context of a project.
+    OrganizationForProjectManipulationDto:
+      required:
+      - responsible
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Gets or initializes the URI of the organization.
+          format: uri
+        responsible:
+          type: boolean
+          description: Gets or initializes if the organization is responsible.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing an organization for project manipulation.
+    VisibilityForProjectManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the visibility setting.
+          format: uuid
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for manipulating the visibility of a project.
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
     Pagination:
       type: object
       properties:
@@ -436,98 +565,18 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    DisciplineDto:
+    VisibilityDto:
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier for the discipline.
+          description: The identifier for the visibility setting.
           format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
-      additionalProperties: false
-      description: Represents the data transfer object for a discipline.
-    ProjectDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    ProjectOrganizationDto:
-      required:
-      - displayName
-      - responsible
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The ROR (Research Organization Registry) ID of the organization.
-          format: uri
         displayName:
           type: string
-          description: The display name of the organization.
-        email:
-          type: string
-          description: The email address of the organization.
-          nullable: true
-        publicationAdvisoryService:
-          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
-        responsible:
-          type: boolean
-          description: Determines if the organization is Responsible for a given project.
+          description: The display name for the visibility setting.
       additionalProperties: false
-      description: Represents a data transfer object (DTO) for an organization in the context of a project.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    VisibilityForProjectManipulationDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the visibility setting.
-          format: uuid
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for manipulating the visibility of a project.
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
     ProjectForCreationDto:
       required:
       - description
@@ -556,26 +605,30 @@ components:
           description: Gets or initializes the end date of the project.
           format: date-time
         keywords:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: Gets or initializes the keywords associated with the project.
-          nullable: true
         displayName:
           maxLength: 25
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the display name of the project.
-          nullable: true
         principleInvestigators:
           maxLength: 500
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the principal investigators associated with the project.
-          nullable: true
         grantId:
           maxLength: 500
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the grant ID associated with the project.
-          nullable: true
         visibility:
           $ref: '#/components/schemas/VisibilityForProjectManipulationDto'
         disciplines:
@@ -589,37 +642,20 @@ components:
             $ref: '#/components/schemas/OrganizationForProjectManipulationDto'
           description: Gets or initializes the organizations associated with the project.
         parentId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets or initializes the identifier of the parent project.
           format: uuid
-          nullable: true
         copyOwnersFromParent:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           description: Gets or initializes if the owners of the parent project should be copied to the sub project.
-          nullable: true
       additionalProperties: false
-      description: "Data transfer object (DTO) representing the creation of a project.\r\nInherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectForManipulationDto."
-    ProjectDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
+      description: 'Data transfer object (DTO) representing the creation of a project.
+
+        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectForManipulationDto.'
   securitySchemes:
     Bearer:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Blob API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Blob API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     post:
       tags:
       - Blob
-      summary: Creates a new blob for a resource.
+      summary: Creates a new blob for a resource
       operationId: CreateBlob
       parameters:
       - name: projectId
@@ -64,7 +64,7 @@ paths:
     get:
       tags:
       - Blob
-      summary: Download a blob from a resource.
+      summary: Download a blob from a resource
       operationId: GetBlob
       parameters:
       - name: projectId
@@ -100,7 +100,7 @@ paths:
     put:
       tags:
       - Blob
-      summary: Updates an existing blob of a resource.
+      summary: Updates an existing blob of a resource
       operationId: UpdateBlob
       parameters:
       - name: projectId
@@ -145,7 +145,7 @@ paths:
     delete:
       tags:
       - Blob
-      summary: Deletes a blob from a resource.
+      summary: Deletes a blob from a resource
       operationId: DeleteBlob
       parameters:
       - name: projectId
@@ -177,7 +177,7 @@ paths:
     options:
       tags:
       - Blob
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -192,6 +192,8 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdResourcesByResourceIdBlobs
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

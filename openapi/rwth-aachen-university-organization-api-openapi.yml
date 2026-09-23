@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin Organization API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Organization API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Organization
-      summary: Retrieves an organization.
+      summary: Retrieves an organization
       operationId: GetOrganization
       parameters:
       - name: organizationRorUri
@@ -42,7 +42,7 @@ paths:
     get:
       tags:
       - Organization
-      summary: Retrieves all organizations.
+      summary: Retrieves all organizations
       operationId: GetOrganizations
       parameters:
       - name: SearchTerm
@@ -74,7 +74,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       responses:
@@ -90,10 +96,12 @@ paths:
     options:
       tags:
       - Organization
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2Organizations
+      x-operation-id-source: derived
 components:
   schemas:
     PublicationAdvisoryServiceDto:
@@ -111,63 +119,35 @@ components:
           type: string
           description: Gets the data publication service's email address.
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets the data publication service's description.
-          nullable: true
         organizationRor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Gets the ROR of the organization that provides this publication service.
-          nullable: true
       additionalProperties: false
       description: Data transfer object (DTO) representing the publication advisory service of an organization.
-    OrganizationDtoPagedResponse:
+    OrganizationDtoResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationDto'
-          nullable: true
+          $ref: '#/components/schemas/OrganizationDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
-    OrganizationDto:
-      required:
-      - displayName
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The ROR (Research Organization Registry) ID of the organization.
-          format: uri
-        displayName:
-          type: string
-          description: The display name of the organization.
-        email:
-          type: string
-          description: The email address of the organization.
-          nullable: true
-        publicationAdvisoryService:
-          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
     Pagination:
       type: object
       properties:
@@ -197,22 +177,58 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    OrganizationDtoResponse:
+    OrganizationDto:
+      required:
+      - displayName
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the organization.
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
+    OrganizationDtoPagedResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/OrganizationDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrganizationDto'
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
   securitySchemes:
     Bearer:
       type: apiKey

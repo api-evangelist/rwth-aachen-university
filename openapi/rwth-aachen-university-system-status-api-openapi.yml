@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin SystemStatus API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web System Status API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -12,14 +12,14 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: SystemStatus
+- name: System Status
   description: Endpoints for system status messages.
 paths:
   /api/v2/system/status/internal:
     get:
       tags:
-      - SystemStatus
-      summary: Retrieves the internal messages.
+      - System Status
+      summary: Retrieves the internal messages
       operationId: GetInternalMessages
       parameters:
       - name: StartDateAfter
@@ -70,7 +70,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       - name: Accept-Language
@@ -91,8 +97,8 @@ paths:
   /api/v2/system/status/noc:
     get:
       tags:
-      - SystemStatus
-      summary: Retrieves the NOC messages.
+      - System Status
+      summary: Retrieves the NOC messages
       operationId: GetNocMessages
       parameters:
       - name: PageNumber
@@ -109,7 +115,13 @@ paths:
           format: int32
       - name: OrderBy
         in: query
-        description: "Gets or sets the field name used for ordering the results.\r\nThe order is constructed by an order string.\r\nUse the property followed by \"asc\" or \"desc\" and separate properties by commas. Default is asc.\r\nCan be used like this: \"propertyA asc, propertyB desc\"."
+        description: 'Gets or sets the field name used for ordering the results.
+
+          The order is constructed by an order string.
+
+          Use the property followed by "asc" or "desc" and separate properties by commas. Default is asc.
+
+          Can be used like this: "propertyA asc, propertyB desc".'
         schema:
           type: string
       - name: Accept-Language
@@ -130,8 +142,8 @@ paths:
   /api/v2/system/status/noc/active:
     get:
       tags:
-      - SystemStatus
-      summary: Retrieves the NOC messages.
+      - System Status
+      summary: Retrieves the NOC messages
       operationId: GetActiveNocMessages
       parameters:
       - name: Accept-Language
@@ -152,58 +164,50 @@ paths:
   /api/v2/system/status:
     options:
       tags:
-      - SystemStatus
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      - System Status
+      summary: Responds with the HTTP methods allowed for the endpoint
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2SystemStatus
+      x-operation-id-source: derived
 components:
   schemas:
-    MessageDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageDto'
-          nullable: true
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type: integer
-          format: int32
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    AcceptedLanguage:
+    MessageType:
       enum:
-      - de
-      - en
+      - Disturbance
+      - PartialDisturbance
+      - Maintenance
+      - PartialMaintenance
+      - LimitedOperation
+      - Interruption
+      - Change
+      - Hint
+      - Warning
+      - Information
       type: string
-      description: Accepted languages by the API.
+      description: Defines the various types of messages.
     MessageDtoIEnumerableResponse:
       type: object
       properties:
         data:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/MessageDto'
-          nullable: true
         isSuccess:
           type: boolean
           readOnly: true
         statusCode:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         traceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     Pagination:
       type: object
@@ -234,6 +238,36 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
+    MessageDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     MessageDto:
       required:
       - id
@@ -243,47 +277,38 @@ components:
           type: string
           description: ID of the message.
         body:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
             type: string
-          description: "Message body in multiple languages as key-value pairs. \r\nThe key is the ISO 639-1 Alpha-2 two-letter language code, and the value is the message in that language."
-          nullable: true
+          description: "Message body in multiple languages as key-value pairs. \nThe key is the ISO 639-1 Alpha-2 two-letter language code, and the value is the message in that language."
         type:
           $ref: '#/components/schemas/MessageType'
         title:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Title of the message.
-          nullable: true
         href:
-          type: string
+          type:
+          - string
+          - 'null'
           description: URL related to the message.
           format: uri
-          nullable: true
         startDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Start date of the message (UTC).
           format: date-time
-          nullable: true
         endDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: End date of the message (UTC).
           format: date-time
-          nullable: true
       additionalProperties: false
-    MessageType:
-      enum:
-      - Disturbance
-      - PartialDisturbance
-      - Maintenance
-      - PartialMaintenance
-      - LimitedOperation
-      - Interruption
-      - Change
-      - Hint
-      - Warning
-      - Information
-      type: string
-      description: Defines the various types of messages.
   securitySchemes:
     Bearer:
       type: apiKey

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin StorageContent API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Storage Content API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -13,13 +13,15 @@ security:
 - Bearer: []
 tags:
 - name: StorageContent
-  description: "Provides endpoints for managing raw file content in blob storage for project resources,\r\nincluding downloading, uploading, and updating files."
+  description: 'Provides endpoints for managing raw file content in blob storage for project resources,
+
+    including downloading, uploading, and updating files.'
 paths:
   /api/v2/projects/{projectId}/resources/{resourceId}/storage/{encodedPath}/content:
     get:
       tags:
       - StorageContent
-      summary: Retrieves the raw content of a file, optionally at a specific version.
+      summary: Retrieves the raw content of a file, optionally at a specific version
       operationId: GetStorageRaw
       parameters:
       - name: projectId
@@ -60,7 +62,7 @@ paths:
     post:
       tags:
       - StorageContent
-      summary: Uploads a new file with raw content.
+      summary: Uploads a new file with raw content
       operationId: PostStorageRaw
       parameters:
       - name: projectId
@@ -104,7 +106,7 @@ paths:
     put:
       tags:
       - StorageContent
-      summary: Updates or overwrites a file with new raw content.
+      summary: Updates or overwrites a file with new raw content
       operationId: PutStorageRaw
       parameters:
       - name: projectId
@@ -148,7 +150,7 @@ paths:
     options:
       tags:
       - StorageContent
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -168,6 +170,8 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdResourcesByResourceIdStorageByEncodedPathContent
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

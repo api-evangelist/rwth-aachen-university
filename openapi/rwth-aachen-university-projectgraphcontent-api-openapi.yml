@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Coscine Web Admin ProjectGraphContent API
-  description: Coscine (short for <b>CO</b>llaborative <b>SC</b>ientific <b>IN</b>tegration <b>E</b>nvironment) is the research data management platform for your research project.
+  title: Coscine Web Project Graph Content API
+  description: Coscine (short for COllaborative SCientific INtegration Environment) is the research data management platform for your research project.
   termsOfService: https://about.coscine.de/en/termsofuse/
   contact:
     name: Coscine Team
@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - ProjectGraphContent
-      summary: Retrieves a project graph.
+      summary: Retrieves a project graph
       operationId: GetProjectGraphContent
       parameters:
       - name: projectId
@@ -38,7 +38,7 @@ paths:
     options:
       tags:
       - ProjectGraphContent
-      summary: Responds with the HTTP methods allowed for the endpoint.
+      summary: Responds with the HTTP methods allowed for the endpoint
       parameters:
       - name: projectId
         in: path
@@ -48,6 +48,8 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: optionsApiV2ProjectsByProjectIdGraphsMetadataContent
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:
