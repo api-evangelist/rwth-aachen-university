@@ -173,42 +173,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MessageType:
-      enum:
-      - Disturbance
-      - PartialDisturbance
-      - Maintenance
-      - PartialMaintenance
-      - LimitedOperation
-      - Interruption
-      - Change
-      - Hint
-      - Warning
-      - Information
-      type: string
-      description: Defines the various types of messages.
-    MessageDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/MessageDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -268,6 +232,42 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    MessageDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    MessageType:
+      enum:
+      - Disturbance
+      - PartialDisturbance
+      - Maintenance
+      - PartialMaintenance
+      - LimitedOperation
+      - Interruption
+      - Change
+      - Hint
+      - Warning
+      - Information
+      type: string
+      description: Defines the various types of messages.
     MessageDto:
       required:
       - id

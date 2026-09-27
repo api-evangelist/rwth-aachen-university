@@ -185,50 +185,41 @@ paths:
                 $ref: '#/components/schemas/VocabularyInstanceDtoResponse'
 components:
   schemas:
-    VocabularyDto:
-      required:
-      - classUri
-      - graphUri
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
+    Pagination:
       type: object
       properties:
-        graphUri:
-          type: string
-          description: The URI of the graph containing the vocabulary.
-          format: uri
-        classUri:
-          type: string
-          description: The URI of the top-level parent class in the vocabulary.
-          format: uri
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: The display name of the vocabulary.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the vocabulary.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for vocabulary details.
-    VocabularyInstanceDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/VocabularyInstanceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
           format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
       additionalProperties: false
+      description: Represents pagination information for a collection of items.
     VocabularyInstanceDto:
       required:
       - graphUri
@@ -266,59 +257,32 @@ components:
           description: The description of the vocabulary instance.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for vocabulary instance details.
-    VocabularyInstanceDtoPagedResponse:
+    VocabularyDto:
+      required:
+      - classUri
+      - graphUri
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/VocabularyInstanceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
+        graphUri:
+          type: string
+          description: The URI of the graph containing the vocabulary.
+          format: uri
+        classUri:
+          type: string
+          description: The URI of the top-level parent class in the vocabulary.
+          format: uri
+        displayName:
           type:
           - string
           - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          description: The display name of the vocabulary.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the vocabulary.
       additionalProperties: false
-    Pagination:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          description: Gets or sets the current page number.
-          format: int32
-        totalPages:
-          type: integer
-          description: Gets or sets the total number of pages.
-          format: int32
-        pageSize:
-          type: integer
-          description: Gets or sets the number of items per page.
-          format: int32
-        totalCount:
-          type: integer
-          description: Gets or sets the total count of items across all pages.
-          format: int64
-        hasPrevious:
-          type: boolean
-          description: Gets a value indicating whether there is a previous page.
-          readOnly: true
-        hasNext:
-          type: boolean
-          description: Gets a value indicating whether there is a next page.
-          readOnly: true
-      additionalProperties: false
-      description: Represents pagination information for a collection of items.
+      description: Represents a Data Transfer Object (DTO) for vocabulary details.
     VocabularyDtoPagedResponse:
       type: object
       properties:
@@ -343,12 +307,48 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
+    VocabularyInstanceDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VocabularyInstanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    VocabularyInstanceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/VocabularyInstanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

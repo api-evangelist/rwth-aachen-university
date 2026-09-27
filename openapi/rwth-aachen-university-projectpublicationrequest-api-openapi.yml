@@ -109,17 +109,6 @@ paths:
           description: Publication request does not exist or has been deleted.
 components:
   schemas:
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
     PublicationRequestForCreationDto:
       required:
       - publicationServiceRorId
@@ -143,17 +132,6 @@ components:
           description: A message of the requester.
       additionalProperties: false
       description: Data transfer object (DTO) representing the creation of a publication request.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
     ProjectPublicationRequestDto:
       type: object
       properties:
@@ -196,6 +174,28 @@ components:
           format: uuid
       additionalProperties: false
       description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
     ProjectPublicationRequestDtoResponse:
       type: object
       properties:

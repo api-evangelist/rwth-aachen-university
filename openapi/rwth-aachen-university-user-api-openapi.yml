@@ -56,21 +56,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TitleDto:
-      required:
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the title.
-          format: uuid
-        displayName:
-          type: string
-          description: The displayed name of the title.
-      additionalProperties: false
-      description: Represents the Data Transfer Object (DTO) for title information.
     PublicUserDto:
       required:
       - displayName
@@ -103,6 +88,21 @@ components:
           $ref: '#/components/schemas/TitleDto'
       additionalProperties: false
       description: Represents a public user data transfer object (DTO).
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
     PublicUserDtoIEnumerableResponse:
       type: object
       properties:

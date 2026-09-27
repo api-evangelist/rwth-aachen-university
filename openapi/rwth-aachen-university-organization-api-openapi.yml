@@ -104,50 +104,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PublicationAdvisoryServiceDto:
-      required:
-      - displayName
-      - email
-      type: object
-      properties:
-        displayName:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's display name.
-        email:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's email address.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Gets the data publication service's description.
-        organizationRor:
-          type:
-          - string
-          - 'null'
-          description: Gets the ROR of the organization that provides this publication service.
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the publication advisory service of an organization.
-    OrganizationDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/OrganizationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
     Pagination:
       type: object
       properties:
@@ -177,28 +139,24 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    OrganizationDto:
-      required:
-      - displayName
-      - uri
+    OrganizationDtoResponse:
       type: object
       properties:
-        uri:
-          type: string
-          description: The ROR (Research Organization Registry) ID of the organization.
-          format: uri
-        displayName:
-          type: string
-          description: The display name of the organization.
-        email:
+        data:
+          $ref: '#/components/schemas/OrganizationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
           type:
           - string
           - 'null'
-          description: The email address of the organization.
-        publicationAdvisoryService:
-          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
       additionalProperties: false
-      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
     OrganizationDtoPagedResponse:
       type: object
       properties:
@@ -223,12 +181,54 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
+    OrganizationDto:
+      required:
+      - displayName
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the organization.
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
+        email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Gets the data publication service's description.
+        organizationRor:
+          type:
+          - string
+          - 'null'
+          description: Gets the ROR of the organization that provides this publication service.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
   securitySchemes:
     Bearer:
       type: apiKey

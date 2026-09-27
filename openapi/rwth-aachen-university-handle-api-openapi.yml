@@ -115,6 +115,35 @@ components:
           format: int32
       additionalProperties: false
       description: Data transfer object (DTO) representing updating a handle.
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
+    PidDto:
+      required:
+      - prefix
+      - suffix
+      type: object
+      properties:
+        prefix:
+          type: string
+          description: Gets or sets the prefix of the PID.
+        suffix:
+          type: string
+          description: Gets or sets the suffix of the PID.
+        identifier:
+          type: string
+          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/PidType'
+        isEntityValid:
+          type: boolean
+          description: Gets or sets a value indicating whether the linked entity is considered valid.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
     HandleValueDto:
       type: object
       properties:
@@ -151,29 +180,6 @@ components:
           items:
             $ref: '#/components/schemas/HandleValueDto'
       additionalProperties: false
-    PidDto:
-      required:
-      - prefix
-      - suffix
-      type: object
-      properties:
-        prefix:
-          type: string
-          description: Gets or sets the prefix of the PID.
-        suffix:
-          type: string
-          description: Gets or sets the suffix of the PID.
-        identifier:
-          type: string
-          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
-          readOnly: true
-        type:
-          $ref: '#/components/schemas/PidType'
-        isEntityValid:
-          type: boolean
-          description: Gets or sets a value indicating whether the linked entity is considered valid.
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
     HandleDtoResponse:
       type: object
       properties:
@@ -192,12 +198,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    PidType:
-      enum:
-      - project
-      - resource
-      type: string
-      description: Specifies the type of PID.
     HandleForUpdateDto:
       required:
       - values

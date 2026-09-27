@@ -228,32 +228,6 @@ components:
         links:
           $ref: '#/components/schemas/StorageNodeLinks'
       additionalProperties: false
-    StorageNodeLinks:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-        children:
-          type: object
-          additionalProperties:
-            type: string
-        self:
-          type: object
-          additionalProperties:
-            type: string
-        links:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -306,6 +280,32 @@ components:
           - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    StorageNodeLinks:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+        children:
+          type: object
+          additionalProperties:
+            type: string
+        self:
+          type: object
+          additionalProperties:
+            type: string
+        links:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
       additionalProperties: false
     StorageNodeDtoResponse:
       type: object

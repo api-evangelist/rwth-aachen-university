@@ -96,6 +96,16 @@ components:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
+    QuotaUnit:
+      enum:
+      - https://qudt.org/vocab/unit/BYTE
+      - https://qudt.org/vocab/unit/KibiBYTE
+      - https://qudt.org/vocab/unit/MebiBYTE
+      - https://qudt.org/vocab/unit/GibiBYTE
+      - https://qudt.org/vocab/unit/TebiBYTE
+      - https://qudt.org/vocab/unit/PebiBYTE
+      type: string
+      description: Specifies the unit of quota.
     ResourceQuotaDtoResponse:
       type: object
       properties:
@@ -114,27 +124,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    QuotaUnit:
-      enum:
-      - https://qudt.org/vocab/unit/BYTE
-      - https://qudt.org/vocab/unit/KibiBYTE
-      - https://qudt.org/vocab/unit/MebiBYTE
-      - https://qudt.org/vocab/unit/GibiBYTE
-      - https://qudt.org/vocab/unit/TebiBYTE
-      - https://qudt.org/vocab/unit/PebiBYTE
-      type: string
-      description: Specifies the unit of quota.
-    ResourceMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
     QuotaDto:
       required:
       - unit
@@ -149,6 +138,17 @@ components:
           $ref: '#/components/schemas/QuotaUnit'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for quota values.
+    ResourceMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
   securitySchemes:
     Bearer:
       type: apiKey

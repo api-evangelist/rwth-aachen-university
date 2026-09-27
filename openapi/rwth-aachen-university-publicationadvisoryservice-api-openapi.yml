@@ -76,6 +76,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
     Pagination:
       type: object
       properties:
@@ -129,12 +135,6 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
     PublicationAdvisoryServiceDto:
       required:
       - displayName

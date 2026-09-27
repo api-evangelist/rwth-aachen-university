@@ -223,76 +223,6 @@ paths:
                 $ref: '#/components/schemas/UserProjectRoleCountDtoResponse'
 components:
   schemas:
-    IdentityProviders:
-      enum:
-      - Shibboleth
-      - ORCiD
-      type: string
-      description: Specifies the supported external authentication services.
-    UserMergeDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UserMergeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ProjectInvitationResolveDto:
-      required:
-      - token
-      type: object
-      properties:
-        token:
-          type: string
-          description: Gets or initializes the token associated with resolving the project invitation.
-          format: uuid
-      additionalProperties: false
-      description: Data transfer object (DTO) for resolving a project invitation.
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    CoscineRoleDto:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Gets or sets the name of the role (e.g. "User", "QuotaAdmin").
-      additionalProperties: false
-      description: Data Transfer Object (DTO) that represents a user role within Coscine.///
     UserOrganizationDto:
       required:
       - displayName
@@ -325,149 +255,27 @@ components:
           description: Gets a value indicating whether the organization's details can be modified.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for user-related organization information, inheriting from OrganizationDto.
-    UserProjectRoleCountDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UserProjectRoleCountDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    DisciplineForUserManipulationDto:
+    IdentityProviderDto:
       required:
+      - displayName
       - id
       type: object
       properties:
         id:
           type: string
-          description: Gets or initializes the identifier of the discipline.
+          description: Gets or sets the unique identifier for the identity provider.
           format: uuid
-      additionalProperties: false
-      description: Data transfer object (DTO) representing a discipline for user manipulation.
-    UserForUpdateDto:
-      required:
-      - disciplines
-      - email
-      - familyName
-      - givenName
-      - language
-      type: object
-      properties:
-        givenName:
-          minLength: 1
+        displayName:
           type: string
-          description: The user's given name.
-        familyName:
-          minLength: 1
-          type: string
-          description: The user's family name.
-        email:
-          minLength: 1
-          type: string
-          description: The user's email address.
-          format: email
-        title:
-          $ref: '#/components/schemas/TitleForUserManipulationDto'
-        language:
-          $ref: '#/components/schemas/LanguageForUserManipulationDto'
-        organization:
-          type:
-          - string
-          - 'null'
-          description: The user's organization.
-        disciplines:
-          type: array
-          items:
-            $ref: '#/components/schemas/DisciplineForUserManipulationDto'
-          description: The disciplines associated with the user for manipulation.
+          description: Gets or sets the display name of the identity provider.
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for updating user details.
-    UserEmailDto:
-      type: object
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address of the user.
-        isConfirmed:
-          type: boolean
-          description: Indicates whether the email address is confirmed.
-        isPrimary:
-          type: boolean
-          description: Indicates whether the email address is the primary one for the user.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for user email information.
-    UserTermsOfServiceAcceptDto:
-      required:
-      - version
-      type: object
-      properties:
-        version:
-          minLength: 1
-          type: string
-          description: The version of the terms of service being accepted.
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for accepting the terms of service by a user.
-    UserMergeDto:
-      required:
-      - token
-      type: object
-      properties:
-        token:
-          type: string
-          description: The token required for merging user accounts.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for merging user accounts.
-    DefaultOrganizationQuotaDto:
-      type: object
-      properties:
-        resourceTypeId:
-          type: string
-          description: Gets or sets the resource type id of the default quota.
-          format: uuid
-        defaultQuota:
-          type: integer
-          description: Gets or sets the default quota value.
-          format: int32
-        defaultMaxQuota:
-          type: integer
-          description: Gets or sets the default max quota value.
-          format: int32
-      additionalProperties: false
-      description: Represents the default quota of an organization.
-    LanguageForUserManipulationDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets or initializes the identifier of the language.
-          format: uuid
-      additionalProperties: false
-      description: Data transfer object (DTO) representing a language for user manipulation.
-    TitleForUserManipulationDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the title.
-          format: uuid
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for manipulating a user's title.
+      description: Represents a Data Transfer Object (DTO) for an identity provider.
+    IdentityProviders:
+      enum:
+      - Shibboleth
+      - ORCiD
+      type: string
+      description: Specifies the supported external authentication services.
     LanguageDto:
       required:
       - abbreviation
@@ -487,6 +295,57 @@ components:
           description: Gets or sets the abbreviation for the language.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for language details.
+    DefaultOrganizationQuotaDto:
+      type: object
+      properties:
+        resourceTypeId:
+          type: string
+          description: Gets or sets the resource type id of the default quota.
+          format: uuid
+        defaultQuota:
+          type: integer
+          description: Gets or sets the default quota value.
+          format: int32
+        defaultMaxQuota:
+          type: integer
+          description: Gets or sets the default max quota value.
+          format: int32
+      additionalProperties: false
+      description: Represents the default quota of an organization.
+    UserProjectRoleCountDto:
+      type: object
+      properties:
+        activeProjectRolesTotal:
+          type: integer
+          description: Gets the total number of active project roles associated with the current authenticated user.
+          format: int32
+      additionalProperties: false
+      description: Represents a Data Transfer Object containing the number of active project roles for a user.
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+    CoscineRoleDto:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Gets or sets the name of the role (e.g. "User", "QuotaAdmin").
+      additionalProperties: false
+      description: Data Transfer Object (DTO) that represents a user role within Coscine.///
     UserDtoResponse:
       type: object
       properties:
@@ -505,48 +364,17 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    DisciplineDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the discipline.
-          format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
-      additionalProperties: false
-      description: Represents the data transfer object for a discipline.
-    IdentityProviderDto:
+    ProjectInvitationResolveDto:
       required:
-      - displayName
-      - id
+      - token
       type: object
       properties:
-        id:
+        token:
           type: string
-          description: Gets or sets the unique identifier for the identity provider.
+          description: Gets or initializes the token associated with resolving the project invitation.
           format: uuid
-        displayName:
-          type: string
-          description: Gets or sets the display name of the identity provider.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for an identity provider.
-    UserProjectRoleCountDto:
-      type: object
-      properties:
-        activeProjectRolesTotal:
-          type: integer
-          description: Gets the total number of active project roles associated with the current authenticated user.
-          format: int32
-      additionalProperties: false
-      description: Represents a Data Transfer Object containing the number of active project roles for a user.
+      description: Data transfer object (DTO) for resolving a project invitation.
     UserDto:
       required:
       - areToSAccepted
@@ -621,21 +449,193 @@ components:
           format: date-time
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for user-related information.
-    TitleDto:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    DisciplineForUserManipulationDto:
       required:
-      - displayName
       - id
       type: object
       properties:
         id:
           type: string
-          description: The identifier for the title.
+          description: Gets or initializes the identifier of the discipline.
           format: uuid
-        displayName:
-          type: string
-          description: The displayed name of the title.
       additionalProperties: false
-      description: Represents the Data Transfer Object (DTO) for title information.
+      description: Data transfer object (DTO) representing a discipline for user manipulation.
+    UserMergeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserMergeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    UserProjectRoleCountDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserProjectRoleCountDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    UserForUpdateDto:
+      required:
+      - disciplines
+      - email
+      - familyName
+      - givenName
+      - language
+      type: object
+      properties:
+        givenName:
+          minLength: 1
+          type: string
+          description: The user's given name.
+        familyName:
+          minLength: 1
+          type: string
+          description: The user's family name.
+        email:
+          minLength: 1
+          type: string
+          description: The user's email address.
+          format: email
+        title:
+          $ref: '#/components/schemas/TitleForUserManipulationDto'
+        language:
+          $ref: '#/components/schemas/LanguageForUserManipulationDto'
+        organization:
+          type:
+          - string
+          - 'null'
+          description: The user's organization.
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineForUserManipulationDto'
+          description: The disciplines associated with the user for manipulation.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for updating user details.
+    LanguageForUserManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or initializes the identifier of the language.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing a language for user manipulation.
+    UserTermsOfServiceAcceptDto:
+      required:
+      - version
+      type: object
+      properties:
+        version:
+          minLength: 1
+          type: string
+          description: The version of the terms of service being accepted.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for accepting the terms of service by a user.
+    UserEmailDto:
+      type: object
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        isConfirmed:
+          type: boolean
+          description: Indicates whether the email address is confirmed.
+        isPrimary:
+          type: boolean
+          description: Indicates whether the email address is the primary one for the user.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for user email information.
+    UserMergeDto:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: The token required for merging user accounts.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for merging user accounts.
+    TitleForUserManipulationDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the title.
+          format: uuid
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for manipulating a user's title.
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
   securitySchemes:
     Bearer:
       type: apiKey

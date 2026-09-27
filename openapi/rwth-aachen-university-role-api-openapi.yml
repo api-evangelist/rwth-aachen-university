@@ -92,25 +92,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RoleDto:
-      required:
-      - description
-      - displayName
-      - id
+    RoleDtoPagedResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier of the role.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name of the role.
-        description:
-          type: string
-          description: The description of the role.
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RoleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a role.
     Pagination:
       type: object
       properties:
@@ -140,30 +145,25 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    RoleDtoPagedResponse:
+    RoleDto:
+      required:
+      - description
+      - displayName
+      - id
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RoleDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        id:
+          type: string
+          description: The unique identifier of the role.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name of the role.
+        description:
+          type: string
+          description: The description of the role.
       additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a role.
     RoleDtoResponse:
       type: object
       properties:

@@ -188,6 +188,46 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    FileActionDto:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Gets or sets the presigned URL associated with the file action.
+          format: uri
+        method:
+          $ref: '#/components/schemas/FileActionHttpMethod'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
     FileActionHttpMethod:
       enum:
       - GET
@@ -196,6 +236,12 @@ components:
       - DELETE
       type: string
       description: Represents the possible HTTP methods associated with file actions.
+    TreeDataType:
+      enum:
+      - Tree
+      - Leaf
+      type: string
+      description: Represents the types of nodes within a hierarchical tree structure.
     FileTreeDtoPagedResponse:
       type: object
       properties:
@@ -260,35 +306,6 @@ components:
           description: Determines if the specific tree entry is hidden.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
-    Pagination:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          description: Gets or sets the current page number.
-          format: int32
-        totalPages:
-          type: integer
-          description: Gets or sets the total number of pages.
-          format: int32
-        pageSize:
-          type: integer
-          description: Gets or sets the number of items per page.
-          format: int32
-        totalCount:
-          type: integer
-          description: Gets or sets the total count of items across all pages.
-          format: int64
-        hasPrevious:
-          type: boolean
-          description: Gets a value indicating whether there is a previous page.
-          readOnly: true
-        hasNext:
-          type: boolean
-          description: Gets a value indicating whether there is a next page.
-          readOnly: true
-      additionalProperties: false
-      description: Represents pagination information for a collection of items.
     FileActionsDto:
       type: object
       properties:
@@ -296,23 +313,6 @@ components:
           $ref: '#/components/schemas/FileActionDto'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
-    TreeDataType:
-      enum:
-      - Tree
-      - Leaf
-      type: string
-      description: Represents the types of nodes within a hierarchical tree structure.
-    FileActionDto:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Gets or sets the presigned URL associated with the file action.
-          format: uri
-        method:
-          $ref: '#/components/schemas/FileActionHttpMethod'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
   securitySchemes:
     Bearer:
       type: apiKey

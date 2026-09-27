@@ -91,6 +91,49 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    NotificationDto:
+      required:
+      - category
+      - id
+      - isOptional
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project notification.
+          format: uuid
+        category:
+          type: string
+          description: Category of the notification.
+        isOptional:
+          type: boolean
+          description: Field which clarifies if the notification is optional or not.
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a notification.
+    NotificationDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NotificationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -120,25 +163,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    NotificationDto:
-      required:
-      - category
-      - id
-      - isOptional
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project notification.
-          format: uuid
-        category:
-          type: string
-          description: Category of the notification.
-        isOptional:
-          type: boolean
-          description: Field which clarifies if the notification is optional or not.
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a notification.
     NotificationDtoResponse:
       type: object
       properties:
@@ -156,30 +180,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    NotificationDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NotificationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
   securitySchemes:
     Bearer:

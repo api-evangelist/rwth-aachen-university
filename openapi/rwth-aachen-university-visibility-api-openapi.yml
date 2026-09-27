@@ -92,30 +92,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VisibilityDtoPagedResponse:
+    VisibilityDto:
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/VisibilityDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        id:
+          type: string
+          description: The identifier for the visibility setting.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name for the visibility setting.
       additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
     Pagination:
       type: object
       properties:
@@ -145,18 +133,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    VisibilityDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the visibility setting.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
     VisibilityDtoResponse:
       type: object
       properties:
@@ -174,6 +150,30 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    VisibilityDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VisibilityDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
   securitySchemes:
     Bearer:

@@ -92,28 +92,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TitleDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TitleDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     TitleDtoResponse:
       type: object
       properties:
@@ -147,6 +125,28 @@ components:
           description: The displayed name of the title.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for title information.
+    TitleDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TitleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

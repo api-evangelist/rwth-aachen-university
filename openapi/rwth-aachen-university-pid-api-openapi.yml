@@ -157,50 +157,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PidRequestDto:
-      required:
-      - email
-      - message
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or initializes the name associated with the PID request.
-        email:
-          minLength: 1
-          type: string
-          description: Gets or initializes the email associated with the PID request.
-          format: email
-        message:
-          maxLength: 5000
-          minLength: 1
-          type: string
-          description: Gets or initializes the message for the PID request.
-        sendConfirmationEmail:
-          type: boolean
-          description: Gets or initializes whether to send a confirmation email for the PID request.
-      additionalProperties: false
-      description: Data transfer object (DTO) representing a PID request.
-    PidDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/PidDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     PidDtoPagedResponse:
       type: object
       properties:
@@ -225,6 +181,53 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    PidDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PidDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
+    PidDto:
+      required:
+      - prefix
+      - suffix
+      type: object
+      properties:
+        prefix:
+          type: string
+          description: Gets or sets the prefix of the PID.
+        suffix:
+          type: string
+          description: Gets or sets the suffix of the PID.
+        identifier:
+          type: string
+          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/PidType'
+        isEntityValid:
+          type: boolean
+          description: Gets or sets a value indicating whether the linked entity is considered valid.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
     Pagination:
       type: object
       properties:
@@ -254,35 +257,32 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    PidDto:
+    PidRequestDto:
       required:
-      - prefix
-      - suffix
+      - email
+      - message
+      - name
       type: object
       properties:
-        prefix:
+        name:
+          minLength: 1
           type: string
-          description: Gets or sets the prefix of the PID.
-        suffix:
+          description: Gets or initializes the name associated with the PID request.
+        email:
+          minLength: 1
           type: string
-          description: Gets or sets the suffix of the PID.
-        identifier:
+          description: Gets or initializes the email associated with the PID request.
+          format: email
+        message:
+          maxLength: 5000
+          minLength: 1
           type: string
-          description: Gets the constructed PID by combining the prefix and suffix ("{Prefix}/{Suffix}").
-          readOnly: true
-        type:
-          $ref: '#/components/schemas/PidType'
-        isEntityValid:
+          description: Gets or initializes the message for the PID request.
+        sendConfirmationEmail:
           type: boolean
-          description: Gets or sets a value indicating whether the linked entity is considered valid.
+          description: Gets or initializes whether to send a confirmation email for the PID request.
       additionalProperties: false
-      description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
-    PidType:
-      enum:
-      - project
-      - resource
-      type: string
-      description: Specifies the type of PID.
+      description: Data transfer object (DTO) representing a PID request.
   securitySchemes:
     Bearer:
       type: apiKey

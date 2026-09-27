@@ -92,25 +92,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LanguageDto:
-      required:
-      - abbreviation
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets or sets the unique identifier for the language.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets or sets the display name of the language.
-        abbreviation:
-          type: string
-          description: Gets or sets the abbreviation for the language.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for language details.
     LanguageDtoIEnumerableResponse:
       type: object
       properties:
@@ -151,6 +132,25 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    LanguageDto:
+      required:
+      - abbreviation
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the language.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the language.
+        abbreviation:
+          type: string
+          description: Gets or sets the abbreviation for the language.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for language details.
   securitySchemes:
     Bearer:
       type: apiKey

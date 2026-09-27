@@ -119,6 +119,35 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DataHamsterKpiDto:
+      type: object
+      properties:
+        measurementId:
+          type: integer
+          format: int32
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        start:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        end:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        additionalInfo:
+          type: object
+          additionalProperties:
+            type: string
+        query:
+          type: string
+          readOnly: true
+      additionalProperties: false
     DataHamsterKpiDtoIEnumerableResponse:
       type: object
       properties:
@@ -140,6 +169,14 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    StorageDataHamsterKpiDto:
+      type: object
+      properties:
+        reserved:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
+        used:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
       additionalProperties: false
     StorageDataHamsterKpiDtoResponse:
       type: object
@@ -176,43 +213,6 @@ components:
           type:
           - string
           - 'null'
-      additionalProperties: false
-    DataHamsterKpiDto:
-      type: object
-      properties:
-        measurementId:
-          type: integer
-          format: int32
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-        start:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        end:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        additionalInfo:
-          type: object
-          additionalProperties:
-            type: string
-        query:
-          type: string
-          readOnly: true
-      additionalProperties: false
-    StorageDataHamsterKpiDto:
-      type: object
-      properties:
-        reserved:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
-        used:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
       additionalProperties: false
   securitySchemes:
     Bearer:

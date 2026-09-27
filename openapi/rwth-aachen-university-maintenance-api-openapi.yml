@@ -43,30 +43,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MaintenanceDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/MaintenanceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     MaintenanceDto:
       type: object
       properties:
@@ -97,6 +73,30 @@ components:
           format: date-time
       additionalProperties: false
       description: This class represents a maintenance with its significant properties, which is returned from the API.
+    MaintenanceDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MaintenanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     Pagination:
       type: object
       properties:

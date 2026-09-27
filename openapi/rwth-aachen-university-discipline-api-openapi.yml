@@ -126,24 +126,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    DisciplineDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the discipline.
-          format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
-      additionalProperties: false
-      description: Represents the data transfer object for a discipline.
     DisciplineDtoPagedResponse:
       type: object
       properties:
@@ -186,6 +168,24 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
   securitySchemes:
     Bearer:
       type: apiKey

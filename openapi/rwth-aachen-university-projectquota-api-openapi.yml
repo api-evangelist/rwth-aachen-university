@@ -181,24 +181,101 @@ components:
       - https://qudt.org/vocab/unit/PebiBYTE
       type: string
       description: Specifies the unit of quota.
-    ProjectQuotaDtoResponse:
+    Pagination:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/ProjectQuotaDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
           format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
       additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    ProjectQuotaForUpdateDto:
+      required:
+      - allocated
+      type: object
+      properties:
+        allocated:
+          $ref: '#/components/schemas/QuotaForManipulationDto'
+        maximum:
+          $ref: '#/components/schemas/QuotaForManipulationDto'
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the update of project quotas.
+    QuotaForManipulationDto:
+      required:
+      - unit
+      - value
+      type: object
+      properties:
+        value:
+          minimum: 0
+          type: integer
+          description: The numerical value of the quota. Must be a positive System.Int64.
+          format: int64
+        unit:
+          $ref: '#/components/schemas/QuotaUnit'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) used for manipulating quota values.
+    QuotaDto:
+      required:
+      - unit
+      - value
+      type: object
+      properties:
+        value:
+          type: number
+          description: The value of the quota.
+          format: float
+        unit:
+          $ref: '#/components/schemas/QuotaUnit'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for quota values.
+    ProjectQuotaDto:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Identifier of the project.
+          format: uuid
+        totalUsed:
+          $ref: '#/components/schemas/QuotaDto'
+        totalReserved:
+          $ref: '#/components/schemas/QuotaDto'
+        allocated:
+          $ref: '#/components/schemas/QuotaDto'
+        maximum:
+          $ref: '#/components/schemas/QuotaDto'
+        resourceType:
+          $ref: '#/components/schemas/ResourceTypeMinimalDto'
+        resourceQuotas:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceQuotaDto'
+          description: Quota information for individual resources of the selected project's resource type.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) containing quota information for a project.
     ResourceMinimalDto:
       required:
       - id
@@ -234,61 +311,6 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    ProjectQuotaDto:
-      type: object
-      properties:
-        projectId:
-          type: string
-          description: Identifier of the project.
-          format: uuid
-        totalUsed:
-          $ref: '#/components/schemas/QuotaDto'
-        totalReserved:
-          $ref: '#/components/schemas/QuotaDto'
-        allocated:
-          $ref: '#/components/schemas/QuotaDto'
-        maximum:
-          $ref: '#/components/schemas/QuotaDto'
-        resourceType:
-          $ref: '#/components/schemas/ResourceTypeMinimalDto'
-        resourceQuotas:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ResourceQuotaDto'
-          description: Quota information for individual resources of the selected project's resource type.
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) containing quota information for a project.
-    Pagination:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          description: Gets or sets the current page number.
-          format: int32
-        totalPages:
-          type: integer
-          description: Gets or sets the total number of pages.
-          format: int32
-        pageSize:
-          type: integer
-          description: Gets or sets the number of items per page.
-          format: int32
-        totalCount:
-          type: integer
-          description: Gets or sets the total count of items across all pages.
-          format: int64
-        hasPrevious:
-          type: boolean
-          description: Gets a value indicating whether there is a previous page.
-          readOnly: true
-        hasNext:
-          type: boolean
-          description: Gets a value indicating whether there is a next page.
-          readOnly: true
-      additionalProperties: false
-      description: Represents pagination information for a collection of items.
     ResourceTypeMinimalDto:
       required:
       - id
@@ -304,46 +326,24 @@ components:
           description: The specific type of the resource.
       additionalProperties: false
       description: Represents a minimal Data Transfer Object (DTO) for a resource type.
-    QuotaForManipulationDto:
-      required:
-      - unit
-      - value
+    ProjectQuotaDtoResponse:
       type: object
       properties:
-        value:
-          minimum: 0
-          type: integer
-          description: The numerical value of the quota. Must be a positive System.Int64.
-          format: int64
-        unit:
-          $ref: '#/components/schemas/QuotaUnit'
+        data:
+          $ref: '#/components/schemas/ProjectQuotaDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-      description: Represents a data transfer object (DTO) used for manipulating quota values.
-    QuotaDto:
-      required:
-      - unit
-      - value
-      type: object
-      properties:
-        value:
-          type: number
-          description: The value of the quota.
-          format: float
-        unit:
-          $ref: '#/components/schemas/QuotaUnit'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for quota values.
-    ProjectQuotaForUpdateDto:
-      required:
-      - allocated
-      type: object
-      properties:
-        allocated:
-          $ref: '#/components/schemas/QuotaForManipulationDto'
-        maximum:
-          $ref: '#/components/schemas/QuotaForManipulationDto'
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the update of project quotas.
   securitySchemes:
     Bearer:
       type: apiKey
