@@ -92,6 +92,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    RoleDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     RoleDtoPagedResponse:
       type: object
       properties:
@@ -164,24 +182,6 @@ components:
           description: The description of the role.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for a role.
-    RoleDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

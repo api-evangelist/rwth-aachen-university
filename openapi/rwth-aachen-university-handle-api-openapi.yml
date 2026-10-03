@@ -98,6 +98,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
+    HandleForUpdateDto:
+      required:
+      - values
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandleValueForUpdateDto'
+      additionalProperties: false
     HandleValueForUpdateDto:
       required:
       - parsed_data
@@ -115,12 +131,6 @@ components:
           format: int32
       additionalProperties: false
       description: Data transfer object (DTO) representing updating a handle.
-    PidType:
-      enum:
-      - project
-      - resource
-      type: string
-      description: Specifies the type of PID.
     PidDto:
       required:
       - prefix
@@ -144,6 +154,24 @@ components:
           description: Gets or sets a value indicating whether the linked entity is considered valid.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
+    HandleDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/HandleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     HandleValueDto:
       type: object
       properties:
@@ -179,34 +207,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HandleValueDto'
-      additionalProperties: false
-    HandleDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/HandleDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    HandleForUpdateDto:
-      required:
-      - values
-      type: object
-      properties:
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/HandleValueForUpdateDto'
       additionalProperties: false
   securitySchemes:
     Bearer:

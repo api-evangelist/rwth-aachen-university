@@ -205,6 +205,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    MetadataVersionNodeDto:
+      type: object
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+          format: uri
+        path:
+          type: string
+        version:
+          type: string
+        generatedAtTime:
+          type: string
+          format: date-time
+        isInvalidated:
+          type: boolean
+        isRevision:
+          type: boolean
+        hasVariant:
+          type: boolean
+        hasExtracted:
+          type: boolean
+      additionalProperties: false
     MetadataVersionNodeDtoPagedResponse:
       type: object
       properties:
@@ -276,30 +300,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    MetadataVersionNodeDto:
-      type: object
-      properties:
-        subject:
-          type:
-          - string
-          - 'null'
-          format: uri
-        path:
-          type: string
-        version:
-          type: string
-        generatedAtTime:
-          type: string
-          format: date-time
-        isInvalidated:
-          type: boolean
-        isRevision:
-          type: boolean
-        hasVariant:
-          type: boolean
-        hasExtracted:
-          type: boolean
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

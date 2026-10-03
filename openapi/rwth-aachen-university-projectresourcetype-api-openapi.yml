@@ -59,6 +59,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ResourceContentPageDto:
+      type: object
+      properties:
+        readOnly:
+          type: boolean
+          description: Indicates whether the resource is read-only.
+        metadataView:
+          $ref: '#/components/schemas/ResourceContentPageMetadataViewDto'
+        entriesView:
+          $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
+      additionalProperties: false
+      description: Represents the content page details for a resource.
+    ResourceCreationPageDto:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
+      additionalProperties: false
+      description: Represents the structure of resource type-specific components for steps in the resource creation page.
     ResourceTypeInformationDto:
       type: object
       properties:
@@ -130,24 +154,6 @@ components:
           $ref: '#/components/schemas/ResourceContentPageDto'
       additionalProperties: false
       description: Represents information about a resource type.
-    ResourceContentPageColumnsDto:
-      type: object
-      properties:
-        always:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Set of columns that should always be displayed in the content view.
-      additionalProperties: false
-      description: Represents a set of columns to be displayed in the content view.
-    ResourceContentPageEntriesViewDto:
-      type: object
-      properties:
-        columns:
-          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
-      additionalProperties: false
-      description: Represents information about the resource type for the columns within the entries view Vue component.
     ResourceTypeInformationDtoIEnumerableResponse:
       type: object
       properties:
@@ -170,6 +176,17 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    ResourceContentPageColumnsDto:
+      type: object
+      properties:
+        always:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Set of columns that should always be displayed in the content view.
+      additionalProperties: false
+      description: Represents a set of columns to be displayed in the content view.
     ResourceContentPageMetadataViewDto:
       type: object
       properties:
@@ -187,30 +204,13 @@ components:
       - active
       type: string
       description: Specifies the status of a resource type.
-    ResourceContentPageDto:
+    ResourceContentPageEntriesViewDto:
       type: object
       properties:
-        readOnly:
-          type: boolean
-          description: Indicates whether the resource is read-only.
-        metadataView:
-          $ref: '#/components/schemas/ResourceContentPageMetadataViewDto'
-        entriesView:
-          $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
+        columns:
+          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
       additionalProperties: false
-      description: Represents the content page details for a resource.
-    ResourceCreationPageDto:
-      type: object
-      properties:
-        components:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
-      additionalProperties: false
-      description: Represents the structure of resource type-specific components for steps in the resource creation page.
+      description: Represents information about the resource type for the columns within the entries view Vue component.
   securitySchemes:
     Bearer:
       type: apiKey

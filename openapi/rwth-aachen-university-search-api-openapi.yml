@@ -124,6 +124,23 @@ components:
           items:
             $ref: '#/components/schemas/SearchCategory'
       additionalProperties: false
+    SearchResultDto:
+      required:
+      - source
+      - type
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The URI associated with the search result.
+          format: uri
+        type:
+          $ref: '#/components/schemas/SearchCategoryType'
+        source:
+          description: The dynamic source data for the search result.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for search results.
     Pagination:
       type: object
       properties:
@@ -153,23 +170,14 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    SearchResultDto:
-      required:
-      - source
-      - type
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The URI associated with the search result.
-          format: uri
-        type:
-          $ref: '#/components/schemas/SearchCategoryType'
-        source:
-          description: The dynamic source data for the search result.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for search results.
+    SearchCategoryType:
+      enum:
+      - None
+      - https://purl.org/coscine/terms/structure#Metadata
+      - https://purl.org/coscine/terms/structure#Project
+      - https://purl.org/coscine/terms/structure#Resource
+      type: string
+      description: Specifies the search item type.
     SearchCategory:
       type: object
       properties:
@@ -182,14 +190,6 @@ components:
           format: int64
       additionalProperties: false
       description: Represents a search category with a name and count of occurrences.
-    SearchCategoryType:
-      enum:
-      - None
-      - https://purl.org/coscine/terms/structure#Metadata
-      - https://purl.org/coscine/terms/structure#Project
-      - https://purl.org/coscine/terms/structure#Resource
-      type: string
-      description: Specifies the search item type.
   securitySchemes:
     Bearer:
       type: apiKey

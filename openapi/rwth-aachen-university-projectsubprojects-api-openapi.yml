@@ -114,6 +114,44 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
+        email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Gets the data publication service's description.
+        organizationRor:
+          type:
+          - string
+          - 'null'
+          description: Gets the ROR of the organization that provides this publication service.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
+    VisibilityDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the visibility setting.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name for the visibility setting.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
     ProjectDto:
       required:
       - description
@@ -230,17 +268,24 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    ProjectMinimalDto:
-      required:
-      - id
+    DisciplineDto:
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the project.
+          description: The unique identifier for the discipline.
           format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
       additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
+      description: Represents the data transfer object for a discipline.
     UserMinimalDto:
       required:
       - id
@@ -278,62 +323,17 @@ components:
           description: Determines if the organization is Responsible for a given project.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for an organization in the context of a project.
-    VisibilityDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the visibility setting.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
-    PublicationAdvisoryServiceDto:
+    ProjectMinimalDto:
       required:
-      - displayName
-      - email
-      type: object
-      properties:
-        displayName:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's display name.
-        email:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's email address.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Gets the data publication service's description.
-        organizationRor:
-          type:
-          - string
-          - 'null'
-          description: Gets the ROR of the organization that provides this publication service.
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the publication advisory service of an organization.
-    DisciplineDto:
+      - id
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier for the discipline.
+          description: Unique identifier for the project.
           format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
       additionalProperties: false
-      description: Represents the data transfer object for a discipline.
+      description: Represents a minimal data transfer object (DTO) for a project.
   securitySchemes:
     Bearer:
       type: apiKey

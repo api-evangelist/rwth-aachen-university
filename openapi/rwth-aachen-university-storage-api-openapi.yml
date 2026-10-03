@@ -188,17 +188,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FileActionDto:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Gets or sets the presigned URL associated with the file action.
-          format: uri
-        method:
-          $ref: '#/components/schemas/FileActionHttpMethod'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
+    FileActionHttpMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      type: string
+      description: Represents the possible HTTP methods associated with file actions.
     Pagination:
       type: object
       properties:
@@ -228,44 +225,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    FileActionHttpMethod:
-      enum:
-      - GET
-      - POST
-      - PUT
-      - DELETE
-      type: string
-      description: Represents the possible HTTP methods associated with file actions.
-    TreeDataType:
-      enum:
-      - Tree
-      - Leaf
-      type: string
-      description: Represents the types of nodes within a hierarchical tree structure.
-    FileTreeDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FileTreeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     FileTreeDto:
       type: object
       properties:
@@ -306,6 +265,47 @@ components:
           description: Determines if the specific tree entry is hidden.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
+    FileActionDto:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Gets or sets the presigned URL associated with the file action.
+          format: uri
+        method:
+          $ref: '#/components/schemas/FileActionHttpMethod'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
+    TreeDataType:
+      enum:
+      - Tree
+      - Leaf
+      type: string
+      description: Represents the types of nodes within a hierarchical tree structure.
+    FileTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FileTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     FileActionsDto:
       type: object
       properties:

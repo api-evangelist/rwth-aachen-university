@@ -143,6 +143,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ApiTokenForCreationDto:
+      required:
+      - expiresInDays
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          description: Gets or sets the name of the API token.
+        expiresInDays:
+          maximum: 370
+          minimum: 1
+          type: integer
+          description: Gets or sets the expiration duration of the token in days.
+          format: int32
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of an API token.
     Pagination:
       type: object
       properties:
@@ -172,6 +190,24 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    ApiTokenDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiTokenDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ApiTokenDtoPagedResponse:
       type: object
       properties:
@@ -196,53 +232,6 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    ApiTokenDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiTokenDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    ApiTokenForCreationDto:
-      required:
-      - expiresInDays
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or sets the name of the API token.
-        expiresInDays:
-          maximum: 370
-          minimum: 1
-          type: integer
-          description: Gets or sets the expiration duration of the token in days.
-          format: int32
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of an API token.
     ApiTokenDto:
       type: object
       properties:
@@ -270,6 +259,17 @@ components:
           $ref: '#/components/schemas/UserMinimalDto'
       additionalProperties: false
       description: Represents an API token used for authentication.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
   securitySchemes:
     Bearer:
       type: apiKey

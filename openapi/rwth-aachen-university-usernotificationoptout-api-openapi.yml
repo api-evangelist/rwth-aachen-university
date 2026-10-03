@@ -174,17 +174,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    UserNotificationForCreationDto:
-      required:
-      - notificationId
-      type: object
-      properties:
-        notificationId:
-          type: string
-          description: The id of the notification.
-          format: uuid
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of a user notification.
     UserNotificationOptOutDtoResponse:
       type: object
       properties:
@@ -203,6 +192,17 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    UserNotificationForCreationDto:
+      required:
+      - notificationId
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: The id of the notification.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of a user notification.
     UserNotificationOptOutDto:
       required:
       - id

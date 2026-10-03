@@ -203,30 +203,29 @@ paths:
           description: The user is not authorized to access the resource.
 components:
   schemas:
-    StorageNodeDto:
+    StorageNodeDtoPagedResponse:
       type: object
       properties:
-        subject:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StorageNodeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
           type:
           - string
           - 'null'
-          format: uri
-        path:
-          type: string
-        prefix:
-          type: string
-          description: Gets the prefix of the node.
-        name:
-          type: string
-          description: Gets the name of the node.
-        hasMetadata:
-          type: boolean
-        hasData:
-          type: boolean
-        hasChildren:
-          type: boolean
-        links:
-          $ref: '#/components/schemas/StorageNodeLinks'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
     Pagination:
       type: object
@@ -257,29 +256,30 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    StorageNodeDtoPagedResponse:
+    StorageNodeDto:
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StorageNodeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
+        subject:
           type:
           - string
           - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          format: uri
+        path:
+          type: string
+        prefix:
+          type: string
+          description: Gets the prefix of the node.
+        name:
+          type: string
+          description: Gets the name of the node.
+        hasMetadata:
+          type: boolean
+        hasData:
+          type: boolean
+        hasChildren:
+          type: boolean
+        links:
+          $ref: '#/components/schemas/StorageNodeLinks'
       additionalProperties: false
     StorageNodeLinks:
       type: object

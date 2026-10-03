@@ -205,12 +205,82 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    ApplicationProfileForCreationDto:
+      required:
+      - definition
+      - name
+      - uri
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          description: Gets or initializes the name of the application profile.
+        uri:
+          type: string
+          description: Gets or initializes the URI of the application profile.
+          format: uri
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of an application profile.
+    ApplicationProfileDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationProfileDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     AcceptedLanguage:
       enum:
       - de
       - en
       type: string
       description: Accepted languages by the API.
+    RdfDefinitionDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          description: The content of the RDF definition.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of the RDF definition.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
+    ApplicationProfileForCreationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationProfileForCreationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     RdfDefinitionForManipulationDto:
       required:
       - content
@@ -248,24 +318,14 @@ components:
           $ref: '#/components/schemas/RdfDefinitionDto'
       additionalProperties: false
       description: Represents an application profile data transfer object.
-    ApplicationProfileDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApplicationProfileDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    RdfFormat:
+      enum:
+      - text/turtle
+      - application/ld+json
+      - application/x-trig
+      - application/n-quads
+      type: string
+      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
     ApplicationProfileDtoPagedResponse:
       type: object
       properties:
@@ -290,66 +350,6 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    RdfDefinitionDto:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-          description: The content of the RDF definition.
-        type:
-          type:
-          - string
-          - 'null'
-          description: The type of the RDF definition.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
-    ApplicationProfileForCreationDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApplicationProfileForCreationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApplicationProfileForCreationDto:
-      required:
-      - definition
-      - name
-      - uri
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or initializes the name of the application profile.
-        uri:
-          type: string
-          description: Gets or initializes the URI of the application profile.
-          format: uri
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of an application profile.
-    RdfFormat:
-      enum:
-      - text/turtle
-      - application/ld+json
-      - application/x-trig
-      - application/n-quads
-      type: string
-      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
   securitySchemes:
     Bearer:
       type: apiKey

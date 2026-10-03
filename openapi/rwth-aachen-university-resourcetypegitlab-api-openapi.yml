@@ -143,28 +143,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GitlabProjectDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GitlabProjectDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     GitlabBranchDtoIEnumerableResponse:
       type: object
       properties:
@@ -187,6 +165,58 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    GitlabProjectDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GitlabProjectDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    GitlabBranchDto:
+      required:
+      - canPush
+      - default
+      - developersCanMerge
+      - developersCanPush
+      - merged
+      - name
+      - protected
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the GitLab branch.
+        merged:
+          type: boolean
+          description: Indicates if the branch is merged.
+        protected:
+          type: boolean
+          description: Indicates if the branch is protected.
+        default:
+          type: boolean
+          description: Indicates if the branch is set as default.
+        developersCanPush:
+          type: boolean
+          description: Indicates if developers can push changes to the branch.
+        developersCanMerge:
+          type: boolean
+          description: Indicates if developers can merge changes into the branch.
+        canPush:
+          type: boolean
+          description: Indicates if the user can push changes to the branch.
+      additionalProperties: false
+      description: Represents a GitLab branch data transfer object (DTO).
     GitlabProjectDto:
       required:
       - archived
@@ -246,11 +276,15 @@ components:
           description: The SSH URL to access the GitLab project repository.
       additionalProperties: false
       description: Represents a GitLab project data transfer object (DTO).
-    GitlabProjectDtoResponse:
+    GitlabProjectDtoIEnumerableResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/GitlabProjectDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GitlabProjectDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -264,40 +298,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    GitlabBranchDto:
-      required:
-      - canPush
-      - default
-      - developersCanMerge
-      - developersCanPush
-      - merged
-      - name
-      - protected
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the GitLab branch.
-        merged:
-          type: boolean
-          description: Indicates if the branch is merged.
-        protected:
-          type: boolean
-          description: Indicates if the branch is protected.
-        default:
-          type: boolean
-          description: Indicates if the branch is set as default.
-        developersCanPush:
-          type: boolean
-          description: Indicates if developers can push changes to the branch.
-        developersCanMerge:
-          type: boolean
-          description: Indicates if developers can merge changes into the branch.
-        canPush:
-          type: boolean
-          description: Indicates if the user can push changes to the branch.
-      additionalProperties: false
-      description: Represents a GitLab branch data transfer object (DTO).
   securitySchemes:
     Bearer:
       type: apiKey

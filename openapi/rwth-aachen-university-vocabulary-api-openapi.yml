@@ -185,12 +185,30 @@ paths:
                 $ref: '#/components/schemas/VocabularyInstanceDtoResponse'
 components:
   schemas:
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
+    VocabularyInstanceDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VocabularyInstanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -220,43 +238,30 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    VocabularyInstanceDto:
-      required:
-      - graphUri
+    VocabularyInstanceDtoResponse:
       type: object
       properties:
-        graphUri:
-          type: string
-          description: The URI of the graph containing the vocabulary.
-          format: uri
-        instanceUri:
-          type: string
-          description: The URI of the instance.
-          format: uri
-        typeUri:
+        data:
+          $ref: '#/components/schemas/VocabularyInstanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
           type:
           - string
           - 'null'
-          description: The URI representing the type of the instance.
-          format: uri
-        subClassOfUri:
-          type:
-          - string
-          - 'null'
-          description: The URI of the direct parent class.
-          format: uri
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: The display name of the vocabulary instance.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the vocabulary instance.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for vocabulary instance details.
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
     VocabularyDto:
       required:
       - classUri
@@ -307,48 +312,43 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    VocabularyInstanceDtoPagedResponse:
+    VocabularyInstanceDto:
+      required:
+      - graphUri
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/VocabularyInstanceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
+        graphUri:
+          type: string
+          description: The URI of the graph containing the vocabulary.
+          format: uri
+        instanceUri:
+          type: string
+          description: The URI of the instance.
+          format: uri
+        typeUri:
           type:
           - string
           - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    VocabularyInstanceDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/VocabularyInstanceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
+          description: The URI representing the type of the instance.
+          format: uri
+        subClassOfUri:
           type:
           - string
           - 'null'
+          description: The URI of the direct parent class.
+          format: uri
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The display name of the vocabulary instance.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the vocabulary instance.
       additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for vocabulary instance details.
   securitySchemes:
     Bearer:
       type: apiKey

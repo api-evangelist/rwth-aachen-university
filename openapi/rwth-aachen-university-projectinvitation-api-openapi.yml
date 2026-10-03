@@ -176,6 +176,34 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    RoleMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the role.
+          format: uuid
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) containing minimal information about a role.
+    ProjectInvitationForProjectManipulationDto:
+      required:
+      - email
+      - roleId
+      type: object
+      properties:
+        roleId:
+          type: string
+          description: Gets or initializes the identifier of the role associated with the invitation.
+          format: uuid
+        email:
+          minLength: 1
+          type: string
+          description: Gets or initializes the email address of the invited user.
+          format: email
+      additionalProperties: false
+      description: Data transfer object (DTO) representing an invitation for project manipulation.
     Pagination:
       type: object
       properties:
@@ -205,109 +233,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    ProjectInvitationDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProjectInvitationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    ProjectInvitationForProjectManipulationDto:
-      required:
-      - email
-      - roleId
-      type: object
-      properties:
-        roleId:
-          type: string
-          description: Gets or initializes the identifier of the role associated with the invitation.
-          format: uuid
-        email:
-          minLength: 1
-          type: string
-          description: Gets or initializes the email address of the invited user.
-          format: email
-      additionalProperties: false
-      description: Data transfer object (DTO) representing an invitation for project manipulation.
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    RoleMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the role.
-          format: uuid
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) containing minimal information about a role.
-    ProjectInvitationDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the invitation.
-          format: uuid
-        expirationDate:
-          type: string
-          description: Expiration date of the invitation.
-          format: date-time
-        email:
-          type: string
-          description: Email associated with the invitation.
-        issuer:
-          $ref: '#/components/schemas/PublicUserDto'
-        project:
-          $ref: '#/components/schemas/ProjectMinimalDto'
-        role:
-          $ref: '#/components/schemas/RoleMinimalDto'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for project invitations.
-    ProjectInvitationDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectInvitationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     PublicUserDto:
       required:
       - displayName
@@ -340,6 +265,48 @@ components:
           $ref: '#/components/schemas/TitleDto'
       additionalProperties: false
       description: Represents a public user data transfer object (DTO).
+    ProjectInvitationDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProjectInvitationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    ProjectInvitationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectInvitationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     TitleDto:
       required:
       - displayName
@@ -355,6 +322,39 @@ components:
           description: The displayed name of the title.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for title information.
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    ProjectInvitationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the invitation.
+          format: uuid
+        expirationDate:
+          type: string
+          description: Expiration date of the invitation.
+          format: date-time
+        email:
+          type: string
+          description: Email associated with the invitation.
+        issuer:
+          $ref: '#/components/schemas/PublicUserDto'
+        project:
+          $ref: '#/components/schemas/ProjectMinimalDto'
+        role:
+          $ref: '#/components/schemas/RoleMinimalDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for project invitations.
   securitySchemes:
     Bearer:
       type: apiKey

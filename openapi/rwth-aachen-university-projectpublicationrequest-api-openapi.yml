@@ -109,29 +109,6 @@ paths:
           description: Publication request does not exist or has been deleted.
 components:
   schemas:
-    PublicationRequestForCreationDto:
-      required:
-      - publicationServiceRorId
-      - resourceIds
-      type: object
-      properties:
-        publicationServiceRorId:
-          minLength: 1
-          type: string
-          description: The data publication service's ror id.
-        resourceIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: The resource guids.
-        message:
-          type:
-          - string
-          - 'null'
-          description: A message of the requester.
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of a publication request.
     ProjectPublicationRequestDto:
       type: object
       properties:
@@ -163,6 +140,40 @@ components:
           description: Collection of the resources involved in the publication request.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a project publication request.
+    PublicationRequestForCreationDto:
+      required:
+      - publicationServiceRorId
+      - resourceIds
+      type: object
+      properties:
+        publicationServiceRorId:
+          minLength: 1
+          type: string
+          description: The data publication service's ror id.
+        resourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: The resource guids.
+        message:
+          type:
+          - string
+          - 'null'
+          description: A message of the requester.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of a publication request.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
     ResourceMinimalDto:
       required:
       - id
@@ -185,17 +196,6 @@ components:
           format: uuid
       additionalProperties: false
       description: Represents a minimal data transfer object (DTO) for a project.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
     ProjectPublicationRequestDtoResponse:
       type: object
       properties:
