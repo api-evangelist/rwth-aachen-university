@@ -1802,6 +1802,8 @@ apis:
   humanURL: https://publications.rwth-aachen.de/
   baseURL: https://publications.rwth-aachen.de/oai2d
   tags:
+  - ResourceType
+  tags_raw:
   - Resource Type
   properties:
   - type: OpenAPI
