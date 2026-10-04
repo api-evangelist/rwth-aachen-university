@@ -92,40 +92,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LicenseDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/LicenseDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LicenseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets or sets the unique identifier for the license.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets or sets the display name of the license.
-        url:
-          type: string
-          description: Gets or sets the Uri of the license.
-          format: uri
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for license details.
     Pagination:
       type: object
       properties:
@@ -155,6 +121,24 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    LicenseDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LicenseDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     LicenseDtoPagedResponse:
       type: object
       properties:
@@ -179,6 +163,22 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    LicenseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the license.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the license.
+        url:
+          type: string
+          description: Gets or sets the Uri of the license.
+          format: uri
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for license details.
   securitySchemes:
     Bearer:
       type: apiKey

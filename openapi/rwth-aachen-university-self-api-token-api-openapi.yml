@@ -143,95 +143,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ApiTokenForCreationDto:
-      required:
-      - expiresInDays
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or sets the name of the API token.
-        expiresInDays:
-          maximum: 370
-          minimum: 1
-          type: integer
-          description: Gets or sets the expiration duration of the token in days.
-          format: int32
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the creation of an API token.
-    Pagination:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          description: Gets or sets the current page number.
-          format: int32
-        totalPages:
-          type: integer
-          description: Gets or sets the total number of pages.
-          format: int32
-        pageSize:
-          type: integer
-          description: Gets or sets the number of items per page.
-          format: int32
-        totalCount:
-          type: integer
-          description: Gets or sets the total count of items across all pages.
-          format: int64
-        hasPrevious:
-          type: boolean
-          description: Gets a value indicating whether there is a previous page.
-          readOnly: true
-        hasNext:
-          type: boolean
-          description: Gets a value indicating whether there is a next page.
-          readOnly: true
-      additionalProperties: false
-      description: Represents pagination information for a collection of items.
-    ApiTokenDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ApiTokenDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ApiTokenDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ApiTokenDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     ApiTokenDto:
       type: object
       properties:
@@ -270,6 +181,95 @@ components:
           format: uuid
       additionalProperties: false
       description: Represents a minimal Data Transfer Object (DTO) for user information.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    ApiTokenDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApiTokenDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    ApiTokenForCreationDto:
+      required:
+      - expiresInDays
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          description: Gets or sets the name of the API token.
+        expiresInDays:
+          maximum: 370
+          minimum: 1
+          type: integer
+          description: Gets or sets the expiration duration of the token in days.
+          format: int32
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the creation of an API token.
+    ApiTokenDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiTokenDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

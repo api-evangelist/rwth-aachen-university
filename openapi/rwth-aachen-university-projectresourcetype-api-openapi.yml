@@ -59,30 +59,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ResourceContentPageDto:
+    ResourceContentPageMetadataViewDto:
       type: object
       properties:
-        readOnly:
+        editableDataUrl:
           type: boolean
-          description: Indicates whether the resource is read-only.
-        metadataView:
-          $ref: '#/components/schemas/ResourceContentPageMetadataViewDto'
-        entriesView:
-          $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
+          description: Indicates if a data URL can be provided and is editable.
+        editableKey:
+          type: boolean
+          description: Indicates if a key can be provided and is editable.
       additionalProperties: false
-      description: Represents the content page details for a resource.
-    ResourceCreationPageDto:
-      type: object
-      properties:
-        components:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
-      additionalProperties: false
-      description: Represents the structure of resource type-specific components for steps in the resource creation page.
+      description: Represents the metadata view for a resource's content page.
     ResourceTypeInformationDto:
       type: object
       properties:
@@ -154,6 +141,18 @@ components:
           $ref: '#/components/schemas/ResourceContentPageDto'
       additionalProperties: false
       description: Represents information about a resource type.
+    ResourceContentPageDto:
+      type: object
+      properties:
+        readOnly:
+          type: boolean
+          description: Indicates whether the resource is read-only.
+        metadataView:
+          $ref: '#/components/schemas/ResourceContentPageMetadataViewDto'
+        entriesView:
+          $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
+      additionalProperties: false
+      description: Represents the content page details for a resource.
     ResourceTypeInformationDtoIEnumerableResponse:
       type: object
       properties:
@@ -176,6 +175,13 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    ResourceContentPageEntriesViewDto:
+      type: object
+      properties:
+        columns:
+          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
+      additionalProperties: false
+      description: Represents information about the resource type for the columns within the entries view Vue component.
     ResourceContentPageColumnsDto:
       type: object
       properties:
@@ -187,30 +193,24 @@ components:
           description: Set of columns that should always be displayed in the content view.
       additionalProperties: false
       description: Represents a set of columns to be displayed in the content view.
-    ResourceContentPageMetadataViewDto:
-      type: object
-      properties:
-        editableDataUrl:
-          type: boolean
-          description: Indicates if a data URL can be provided and is editable.
-        editableKey:
-          type: boolean
-          description: Indicates if a key can be provided and is editable.
-      additionalProperties: false
-      description: Represents the metadata view for a resource's content page.
     ResourceTypeStatus:
       enum:
       - hidden
       - active
       type: string
       description: Specifies the status of a resource type.
-    ResourceContentPageEntriesViewDto:
+    ResourceCreationPageDto:
       type: object
       properties:
-        columns:
-          $ref: '#/components/schemas/ResourceContentPageColumnsDto'
+        components:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
       additionalProperties: false
-      description: Represents information about the resource type for the columns within the entries view Vue component.
+      description: Represents the structure of resource type-specific components for steps in the resource creation page.
   securitySchemes:
     Bearer:
       type: apiKey

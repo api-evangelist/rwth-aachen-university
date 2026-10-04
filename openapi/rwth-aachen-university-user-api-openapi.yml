@@ -56,21 +56,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TitleDto:
-      required:
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the title.
-          format: uuid
-        displayName:
-          type: string
-          description: The displayed name of the title.
-      additionalProperties: false
-      description: Represents the Data Transfer Object (DTO) for title information.
     PublicUserDto:
       required:
       - displayName
@@ -125,6 +110,21 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
   securitySchemes:
     Bearer:
       type: apiKey

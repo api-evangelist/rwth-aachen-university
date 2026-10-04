@@ -501,84 +501,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserDto:
+    ProjectOrganizationDto:
       required:
-      - areToSAccepted
-      - disciplines
       - displayName
-      - emails
-      - id
-      - identities
-      - organizations
+      - responsible
+      - uri
       type: object
       properties:
-        id:
+        uri:
           type: string
-          description: The unique identifier of the user.
-          format: uuid
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
         displayName:
           type: string
-          description: The display name of the user.
-        givenName:
+          description: The display name of the organization.
+        email:
           type:
           - string
           - 'null'
-          description: The given name of the user.
-        familyName:
-          type:
-          - string
-          - 'null'
-          description: The family name of the user.
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserEmailDto'
-          description: The email addresses associated with the user.
-        title:
-          $ref: '#/components/schemas/TitleDto'
-        language:
-          $ref: '#/components/schemas/LanguageDto'
-        areToSAccepted:
+          description: The email address of the organization.
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
+        responsible:
           type: boolean
-          description: Indicates if the terms of service are accepted by the user.
-        latestActivity:
-          type:
-          - string
-          - 'null'
-          description: The date and time of the latest activity of the user.
-          format: date-time
-        disciplines:
-          type: array
-          items:
-            $ref: '#/components/schemas/DisciplineDto'
-          description: The disciplines associated with the user.
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserOrganizationDto'
-          description: The organizations associated with the user.
-        identities:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityProviderDto'
-          description: The identity providers associated with the user.
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoscineRoleDto'
-          description: The coscine roles associated with the user.
-        dataProcessingConsentAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the user give consent to the proccessing of data.
-          format: date-time
+          description: Determines if the organization is Responsible for a given project.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for user-related information.
-    LinkedDataOptionsDto:
-      type: object
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for Linked Data options.
+      description: Represents a data transfer object (DTO) for an organization in the context of a project.
     ProjectPublicationRequestDto:
       type: object
       properties:
@@ -610,33 +558,6 @@ components:
           description: Collection of the resources involved in the publication request.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a project publication request.
-    QuotaUnit:
-      enum:
-      - https://qudt.org/vocab/unit/BYTE
-      - https://qudt.org/vocab/unit/KibiBYTE
-      - https://qudt.org/vocab/unit/MebiBYTE
-      - https://qudt.org/vocab/unit/GibiBYTE
-      - https://qudt.org/vocab/unit/TebiBYTE
-      - https://qudt.org/vocab/unit/PebiBYTE
-      type: string
-      description: Specifies the unit of quota.
-    ProjectRoleMinimalDto:
-      type: object
-      properties:
-        projectId:
-          type: string
-          description: Identifier of the project associated with the role.
-          format: uuid
-        userId:
-          type: string
-          description: Identifier of the user associated with the role.
-          format: uuid
-        roleId:
-          type: string
-          description: Identifier of the role.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project role.
     DeployedGraphDto:
       type: object
       properties:
@@ -651,11 +572,15 @@ components:
           description: Collection of file hashes associated with the graph.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for deployed graph details.
-    CreateDatasourceDtoResponse:
+    ActivityLogDtoPagedResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/CreateDatasourceDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActivityLogDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -668,39 +593,32 @@ components:
           type:
           - string
           - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    RdsS3OptionsDto:
-      required:
-      - accessKeyRead
-      - accessKeyWrite
-      - bucketName
-      - endpoint
-      - secretKeyRead
-      - secretKeyWrite
+    RdfFormat:
+      enum:
+      - text/turtle
+      - application/ld+json
+      - application/x-trig
+      - application/n-quads
+      type: string
+      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
+    RdfDefinitionDto:
       type: object
       properties:
-        bucketName:
-          type: string
-          description: The name of the bucket associated with RDS S3.
-        accessKeyRead:
-          type: string
-          description: The access key for reading from the RDS S3 bucket.
-        secretKeyRead:
-          type: string
-          description: The secret key for reading from the RDS S3 bucket.
-        accessKeyWrite:
-          type: string
-          description: The access key for writing to the RDS S3 bucket.
-        secretKeyWrite:
-          type: string
-          description: The secret key for writing to the RDS S3 bucket.
-        endpoint:
-          type: string
-          description: The endpoint for the RDS S3 bucket.
-        size:
-          $ref: '#/components/schemas/QuotaDto'
+        content:
+          type:
+          - string
+          - 'null'
+          description: The content of the RDF definition.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of the RDF definition.
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for RDS S3 options.
+      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
     CreateDatasourceDto:
       type: object
       properties:
@@ -712,6 +630,53 @@ components:
           format: uuid
       additionalProperties: false
       description: Represents the data transfer object for creating a datasource.
+    ApplicationProfileMinimalDto:
+      required:
+      - uri
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The URI associated with the application profile.
+          format: uri
+      additionalProperties: false
+      description: Represents a minimalistic application profile data transfer object.
+    ProjectAdminDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProjectAdminDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    DataStorageNrwWebOptionsDto:
+      required:
+      - bucketName
+      type: object
+      properties:
+        bucketName:
+          type: string
+          description: The name of the bucket associated with DataStorage.nrw Web.
+        size:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for DataStorage.nrw Web options.
     DataStorageNrwS3WormOptionsDto:
       required:
       - accessKeyRead
@@ -744,25 +709,120 @@ components:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
       description: Represents the data transfer object (DTO) for DataStorage.nrw S3 WORM options.
-    RdfDefinitionDtoResponse:
+    CoscineRoleDto:
+      required:
+      - name
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/RdfDefinitionDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
+        name:
+          type: string
+          description: Gets or sets the name of the role (e.g. "User", "QuotaAdmin").
       additionalProperties: false
-    ResourceAdminDtoPagedResponse:
+      description: Data Transfer Object (DTO) that represents a user role within Coscine.///
+    LicenseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the license.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the license.
+        url:
+          type: string
+          description: Gets or sets the Uri of the license.
+          format: uri
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for license details.
+    ResourceQuotaDto:
+      required:
+      - resource
+      type: object
+      properties:
+        resource:
+          $ref: '#/components/schemas/ResourceMinimalDto'
+        usedPercentage:
+          type:
+          - number
+          - 'null'
+          description: The percentage of quota used by the resource.
+          format: float
+        used:
+          $ref: '#/components/schemas/QuotaDto'
+        versions:
+          $ref: '#/components/schemas/QuotaDto'
+        reserved:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
+    ResourceTypeMinimalDto:
+      required:
+      - id
+      - specificType
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the resource type.
+          format: uuid
+        specificType:
+          type: string
+          description: The specific type of the resource.
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource type.
+    FileSystemStorageOptionsDto:
+      required:
+      - directory
+      type: object
+      properties:
+        directory:
+          type: string
+          description: The directory where the files are stored.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for FileSystemStorage options.
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+    ProjectQuotaDto:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Identifier of the project.
+          format: uuid
+        totalUsed:
+          $ref: '#/components/schemas/QuotaDto'
+        totalReserved:
+          $ref: '#/components/schemas/QuotaDto'
+        allocated:
+          $ref: '#/components/schemas/QuotaDto'
+        maximum:
+          $ref: '#/components/schemas/QuotaDto'
+        resourceType:
+          $ref: '#/components/schemas/ResourceTypeMinimalDto'
+        resourceQuotas:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceQuotaDto'
+          description: Quota information for individual resources of the selected project's resource type.
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) containing quota information for a project.
+    DeployedGraphDtoPagedResponse:
       type: object
       properties:
         data:
@@ -770,7 +830,7 @@ components:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/ResourceAdminDto'
+            $ref: '#/components/schemas/DeployedGraphDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -786,6 +846,82 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    FixedValueForResourceManipulationDto:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the value of the fixed resource value.
+        type:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the type of the fixed resource value.
+        datatype:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the data type URI of the fixed resource value.
+          format: uri
+        targetClass:
+          type:
+          - string
+          - 'null'
+          description: Gets the target class of the provided value (e.g., "https://purl.org/coscine/ap/base/").
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the manipulation of a fixed value associated with a resource.
+    DsNrwReplicationGroup:
+      enum:
+      - RWTH-UDE
+      - UZK-UPB
+      type: string
+    QuotaUnit:
+      enum:
+      - https://qudt.org/vocab/unit/BYTE
+      - https://qudt.org/vocab/unit/KibiBYTE
+      - https://qudt.org/vocab/unit/MebiBYTE
+      - https://qudt.org/vocab/unit/GibiBYTE
+      - https://qudt.org/vocab/unit/TebiBYTE
+      - https://qudt.org/vocab/unit/PebiBYTE
+      type: string
+      description: Specifies the unit of quota.
+    RdfPatchDocumentDto:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/RdfPatchOperationDto'
+          description: The list of operations in the RDF Patch document.
+      additionalProperties: false
+      description: Represents an RDF Patch document containing a series of operations.
+    RdfDefinitionForManipulationDto:
+      required:
+      - content
+      - type
+      type: object
+      properties:
+        content:
+          minLength: 1
+          type: string
+          description: The content of the RDF definition.
+        type:
+          $ref: '#/components/schemas/RdfFormat'
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) used for manipulating RDF definitions.
     UserOrganizationDto:
       required:
       - displayName
@@ -818,464 +954,61 @@ components:
           description: Gets a value indicating whether the organization's details can be modified.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for user-related organization information, inheriting from OrganizationDto.
-    VisibilityDto:
+    ResourceTypeOptionsDto:
       type: object
       properties:
-        id:
-          type: string
-          description: The identifier for the visibility setting.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
+        linkedData:
+          $ref: '#/components/schemas/LinkedDataOptionsDto'
+        gitLab:
+          $ref: '#/components/schemas/GitLabOptionsDto'
+        rds:
+          $ref: '#/components/schemas/RdsOptionsDto'
+        rdsS3:
+          $ref: '#/components/schemas/RdsS3OptionsDto'
+        rdsS3Worm:
+          $ref: '#/components/schemas/RdsS3WormOptionsDto'
+        fileSystemStorage:
+          $ref: '#/components/schemas/FileSystemStorageOptionsDto'
+        dataStorageNrwWeb:
+          $ref: '#/components/schemas/DataStorageNrwWebOptionsDto'
+        dataStorageNrwS3:
+          $ref: '#/components/schemas/DataStorageNrwS3OptionsDto'
+        dataStorageNrwS3Worm:
+          $ref: '#/components/schemas/DataStorageNrwS3WormOptionsDto'
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
-    ProjectDto:
+      description: Represents the options available for different resource types.
+    RdsS3OptionsDto:
       required:
-      - description
-      - disciplines
-      - endDate
-      - id
-      - name
-      - organizations
-      - pid
-      - slug
-      - startDate
-      - visibility
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-        pid:
-          type: string
-          description: Persistent identifier for the project.
-        name:
-          type: string
-          description: Name of the project.
-        description:
-          type: string
-          description: Description of the project.
-        startDate:
-          type: string
-          description: Start date of the project.
-          format: date-time
-        endDate:
-          type: string
-          description: End date of the project.
-          format: date-time
-        keywords:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Collection of keywords associated with the project.
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: Display name of the project.
-        principleInvestigators:
-          type:
-          - string
-          - 'null'
-          description: Principal investigators involved in the project.
-        grantId:
-          type:
-          - string
-          - 'null'
-          description: Grant ID associated with the project.
-        visibility:
-          $ref: '#/components/schemas/VisibilityDto'
-        disciplines:
-          type: array
-          items:
-            $ref: '#/components/schemas/DisciplineDto'
-          description: Disciplines related to the project.
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectOrganizationDto'
-          description: Organizations associated with the project.
-        slug:
-          type: string
-          description: Slug for the project.
-        creator:
-          $ref: '#/components/schemas/UserMinimalDto'
-        creationDate:
-          type:
-          - string
-          - 'null'
-          description: Date of creation of the project.
-          format: date-time
-        subProjects:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProjectDto'
-          description: Collection of sub-projects associated with this project.
-          deprecated: true
-        parent:
-          $ref: '#/components/schemas/ProjectMinimalDto'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for project information.
-    DefaultOrganizationQuotaDto:
-      type: object
-      properties:
-        resourceTypeId:
-          type: string
-          description: Gets or sets the resource type id of the default quota.
-          format: uuid
-        defaultQuota:
-          type: integer
-          description: Gets or sets the default quota value.
-          format: int32
-        defaultMaxQuota:
-          type: integer
-          description: Gets or sets the default max quota value.
-          format: int32
-      additionalProperties: false
-      description: Represents the default quota of an organization.
-    ResourceMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
-    DsNrwReplicationGroup:
-      enum:
-      - RWTH-UDE
-      - UZK-UPB
-      type: string
-    RdfPatchDocumentDto:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/RdfPatchOperationDto'
-          description: The list of operations in the RDF Patch document.
-      additionalProperties: false
-      description: Represents an RDF Patch document containing a series of operations.
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    MetadataUpdateAdminParameters:
-      required:
-      - definition
-      type: object
-      properties:
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-      additionalProperties: false
-      description: Represents parameters for updating metadata in an administrative context.
-    RdfFormat:
-      enum:
-      - text/turtle
-      - application/ld+json
-      - application/x-trig
-      - application/n-quads
-      type: string
-      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
-    LanguageDto:
-      required:
-      - abbreviation
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets or sets the unique identifier for the language.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets or sets the display name of the language.
-        abbreviation:
-          type: string
-          description: Gets or sets the abbreviation for the language.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for language details.
-    DeployedGraphDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DeployedGraphDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    CoscineRoleDto:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Gets or sets the name of the role (e.g. "User", "QuotaAdmin").
-      additionalProperties: false
-      description: Data Transfer Object (DTO) that represents a user role within Coscine.///
-    RdsOptionsDto:
-      required:
+      - accessKeyRead
+      - accessKeyWrite
       - bucketName
+      - endpoint
+      - secretKeyRead
+      - secretKeyWrite
       type: object
       properties:
         bucketName:
           type: string
-          description: The name of the bucket associated with RDS.
+          description: The name of the bucket associated with RDS S3.
+        accessKeyRead:
+          type: string
+          description: The access key for reading from the RDS S3 bucket.
+        secretKeyRead:
+          type: string
+          description: The secret key for reading from the RDS S3 bucket.
+        accessKeyWrite:
+          type: string
+          description: The access key for writing to the RDS S3 bucket.
+        secretKeyWrite:
+          type: string
+          description: The secret key for writing to the RDS S3 bucket.
+        endpoint:
+          type: string
+          description: The endpoint for the RDS S3 bucket.
         size:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for RDS options.
-    ProjectResourceMinimalDto:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          description: Identifier of the resource.
-          format: uuid
-        projectId:
-          type: string
-          description: Identifier of the project associated with the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project resource.
-    Pagination:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          description: Gets or sets the current page number.
-          format: int32
-        totalPages:
-          type: integer
-          description: Gets or sets the total number of pages.
-          format: int32
-        pageSize:
-          type: integer
-          description: Gets or sets the number of items per page.
-          format: int32
-        totalCount:
-          type: integer
-          description: Gets or sets the total count of items across all pages.
-          format: int64
-        hasPrevious:
-          type: boolean
-          description: Gets a value indicating whether there is a previous page.
-          readOnly: true
-        hasNext:
-          type: boolean
-          description: Gets a value indicating whether there is a next page.
-          readOnly: true
-      additionalProperties: false
-      description: Represents pagination information for a collection of items.
-    FileSystemStorageOptionsDto:
-      required:
-      - directory
-      type: object
-      properties:
-        directory:
-          type: string
-          description: The directory where the files are stored.
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for FileSystemStorage options.
-    FixedValueForResourceManipulationDto:
-      type: object
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the value of the fixed resource value.
-        type:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the type of the fixed resource value.
-        datatype:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the data type URI of the fixed resource value.
-          format: uri
-        targetClass:
-          type:
-          - string
-          - 'null'
-          description: Gets the target class of the provided value (e.g., "https://purl.org/coscine/ap/base/").
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the manipulation of a fixed value associated with a resource.
-    RdfDefinitionDto:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-          description: The content of the RDF definition.
-        type:
-          type:
-          - string
-          - 'null'
-          description: The type of the RDF definition.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
-    UserEmailDto:
-      type: object
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address of the user.
-        isConfirmed:
-          type: boolean
-          description: Indicates whether the email address is confirmed.
-        isPrimary:
-          type: boolean
-          description: Indicates whether the email address is the primary one for the user.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for user email information.
-    RdfPatchOperationDto:
-      type: object
-      properties:
-        operationType:
-          $ref: '#/components/schemas/RdfPatchOperationType'
-        changes:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-      additionalProperties: false
-      description: Represents a single operation in an RDF Patch document.
-    DisciplineDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the discipline.
-          format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
-      additionalProperties: false
-      description: Represents the data transfer object for a discipline.
-    GitLabOptionsDto:
-      type: object
-      properties:
-        projectId:
-          type: integer
-          description: The project ID associated with GitLab.
-          format: int32
-        repoUrl:
-          type:
-          - string
-          - 'null'
-          description: The repository URL for GitLab.
-        accessToken:
-          type:
-          - string
-          - 'null'
-          description: The access token for GitLab.
-        branch:
-          type:
-          - string
-          - 'null'
-          description: The branch for GitLab.
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for GitLab options.
-    RdfDefinitionForManipulationDto:
-      required:
-      - content
-      - type
-      type: object
-      properties:
-        content:
-          minLength: 1
-          type: string
-          description: The content of the RDF definition.
-        type:
-          $ref: '#/components/schemas/RdfFormat'
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) used for manipulating RDF definitions.
-    CoscineHttpMethod:
-      enum:
-      - GET
-      - HEAD
-      - POST
-      - PUT
-      - DELETE
-      type: string
-      description: An enumeration representing the supported HTTP verbs.
-    ProjectAdminDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ProjectAdminDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    ApplicationProfileMinimalDto:
-      required:
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The URI associated with the application profile.
-          format: uri
-      additionalProperties: false
-      description: Represents a minimalistic application profile data transfer object.
+      description: Represents the data transfer object (DTO) for RDS S3 options.
     ProjectAdminDto:
       required:
       - description
@@ -1393,105 +1126,50 @@ components:
       description: 'Represents a data transfer object (DTO) for an administrative view of a project.
 
         Extends the base information in Coscine.Api.Core.Shared.DataTransferObjects.ReturnObjects.ProjectDto.'
-    ProjectQuotaDto:
+    UserEmailDto:
       type: object
       properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        isConfirmed:
+          type: boolean
+          description: Indicates whether the email address is confirmed.
+        isPrimary:
+          type: boolean
+          description: Indicates whether the email address is the primary one for the user.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for user email information.
+    IdentityProviderDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the identity provider.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the identity provider.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for an identity provider.
+    ProjectResourceMinimalDto:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: Identifier of the resource.
+          format: uuid
         projectId:
           type: string
-          description: Identifier of the project.
+          description: Identifier of the project associated with the resource.
           format: uuid
-        totalUsed:
-          $ref: '#/components/schemas/QuotaDto'
-        totalReserved:
-          $ref: '#/components/schemas/QuotaDto'
-        allocated:
-          $ref: '#/components/schemas/QuotaDto'
-        maximum:
-          $ref: '#/components/schemas/QuotaDto'
-        resourceType:
-          $ref: '#/components/schemas/ResourceTypeMinimalDto'
-        resourceQuotas:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ResourceQuotaDto'
-          description: Quota information for individual resources of the selected project's resource type.
       additionalProperties: false
-      description: Represents a data transfer object (DTO) containing quota information for a project.
-    ResourceTypeMinimalDto:
-      required:
-      - id
-      - specificType
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the resource type.
-          format: uuid
-        specificType:
-          type: string
-          description: The specific type of the resource.
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource type.
-    ActivityLogDto:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        apiPath:
-          type: string
-        httpAction:
-          type: string
-        controllerName:
-          type:
-          - string
-          - 'null'
-        actionName:
-          type:
-          - string
-          - 'null'
-        userId:
-          type: string
-          format: uuid
-        activityTimestamp:
-          type: string
-          format: date-time
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for an activity log.
-    RdsS3WormOptionsDto:
-      required:
-      - accessKeyRead
-      - accessKeyWrite
-      - bucketName
-      - endpoint
-      - secretKeyRead
-      - secretKeyWrite
-      type: object
-      properties:
-        bucketName:
-          type: string
-          description: The name of the bucket associated with RDS S3 WORM.
-        accessKeyRead:
-          type: string
-          description: The access key for reading from the RDS S3 WORM bucket.
-        secretKeyRead:
-          type: string
-          description: The secret key for reading from the RDS S3 WORM bucket.
-        accessKeyWrite:
-          type: string
-          description: The access key for writing to the RDS S3 WORM bucket.
-        secretKeyWrite:
-          type: string
-          description: The secret key for writing to the RDS S3 WORM bucket.
-        endpoint:
-          type: string
-          description: The endpoint for the RDS S3 WORM bucket.
-        size:
-          $ref: '#/components/schemas/QuotaDto'
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for RDS S3 WORM options.
+      description: Represents a minimal data transfer object (DTO) for a project resource.
     QuotaDto:
       required:
       - unit
@@ -1506,48 +1184,57 @@ components:
           $ref: '#/components/schemas/QuotaUnit'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for quota values.
-    LicenseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets or sets the unique identifier for the license.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets or sets the display name of the license.
-        url:
-          type: string
-          description: Gets or sets the Uri of the license.
-          format: uri
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for license details.
-    PublicationAdvisoryServiceDto:
+    MetadataUpdateAdminParameters:
       required:
-      - displayName
-      - email
+      - definition
       type: object
       properties:
-        displayName:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's display name.
-        email:
-          minLength: 1
-          type: string
-          description: Gets the data publication service's email address.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Gets the data publication service's description.
-        organizationRor:
-          type:
-          - string
-          - 'null'
-          description: Gets the ROR of the organization that provides this publication service.
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
       additionalProperties: false
-      description: Data transfer object (DTO) representing the publication advisory service of an organization.
+      description: Represents parameters for updating metadata in an administrative context.
+    UserDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    RdfDefinitionDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RdfDefinitionDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ResourceAdminDto:
       required:
       - applicationProfile
@@ -1656,21 +1343,431 @@ components:
           $ref: '#/components/schemas/ResourceQuotaDto'
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for administrative purposes with additional resource details.
-    IdentityProviderDto:
+    LinkedDataOptionsDto:
+      type: object
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for Linked Data options.
+    GitLabOptionsDto:
+      type: object
+      properties:
+        projectId:
+          type: integer
+          description: The project ID associated with GitLab.
+          format: int32
+        repoUrl:
+          type:
+          - string
+          - 'null'
+          description: The repository URL for GitLab.
+        accessToken:
+          type:
+          - string
+          - 'null'
+          description: The access token for GitLab.
+        branch:
+          type:
+          - string
+          - 'null'
+          description: The branch for GitLab.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for GitLab options.
+    CreateDatasourceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateDatasourceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ProjectDto:
       required:
+      - description
+      - disciplines
+      - endDate
+      - id
+      - name
+      - organizations
+      - pid
+      - slug
+      - startDate
+      - visibility
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+        pid:
+          type: string
+          description: Persistent identifier for the project.
+        name:
+          type: string
+          description: Name of the project.
+        description:
+          type: string
+          description: Description of the project.
+        startDate:
+          type: string
+          description: Start date of the project.
+          format: date-time
+        endDate:
+          type: string
+          description: End date of the project.
+          format: date-time
+        keywords:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Collection of keywords associated with the project.
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: Display name of the project.
+        principleInvestigators:
+          type:
+          - string
+          - 'null'
+          description: Principal investigators involved in the project.
+        grantId:
+          type:
+          - string
+          - 'null'
+          description: Grant ID associated with the project.
+        visibility:
+          $ref: '#/components/schemas/VisibilityDto'
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineDto'
+          description: Disciplines related to the project.
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectOrganizationDto'
+          description: Organizations associated with the project.
+        slug:
+          type: string
+          description: Slug for the project.
+        creator:
+          $ref: '#/components/schemas/UserMinimalDto'
+        creationDate:
+          type:
+          - string
+          - 'null'
+          description: Date of creation of the project.
+          format: date-time
+        subProjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProjectDto'
+          description: Collection of sub-projects associated with this project.
+          deprecated: true
+        parent:
+          $ref: '#/components/schemas/ProjectMinimalDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for project information.
+    RdsS3WormOptionsDto:
+      required:
+      - accessKeyRead
+      - accessKeyWrite
+      - bucketName
+      - endpoint
+      - secretKeyRead
+      - secretKeyWrite
+      type: object
+      properties:
+        bucketName:
+          type: string
+          description: The name of the bucket associated with RDS S3 WORM.
+        accessKeyRead:
+          type: string
+          description: The access key for reading from the RDS S3 WORM bucket.
+        secretKeyRead:
+          type: string
+          description: The secret key for reading from the RDS S3 WORM bucket.
+        accessKeyWrite:
+          type: string
+          description: The access key for writing to the RDS S3 WORM bucket.
+        secretKeyWrite:
+          type: string
+          description: The secret key for writing to the RDS S3 WORM bucket.
+        endpoint:
+          type: string
+          description: The endpoint for the RDS S3 WORM bucket.
+        size:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for RDS S3 WORM options.
+    ActivityLogDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        apiPath:
+          type: string
+        httpAction:
+          type: string
+        controllerName:
+          type:
+          - string
+          - 'null'
+        actionName:
+          type:
+          - string
+          - 'null'
+        userId:
+          type: string
+          format: uuid
+        activityTimestamp:
+          type: string
+          format: date-time
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for an activity log.
+    ResourceMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
+    LanguageDto:
+      required:
+      - abbreviation
       - displayName
       - id
       type: object
       properties:
         id:
           type: string
-          description: Gets or sets the unique identifier for the identity provider.
+          description: Gets or sets the unique identifier for the language.
           format: uuid
         displayName:
           type: string
-          description: Gets or sets the display name of the identity provider.
+          description: Gets or sets the display name of the language.
+        abbreviation:
+          type: string
+          description: Gets or sets the abbreviation for the language.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for an identity provider.
+      description: Represents a Data Transfer Object (DTO) for language details.
+    ProjectRoleMinimalDto:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Identifier of the project associated with the role.
+          format: uuid
+        userId:
+          type: string
+          description: Identifier of the user associated with the role.
+          format: uuid
+        roleId:
+          type: string
+          description: Identifier of the role.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project role.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
+    CoscineHttpMethod:
+      enum:
+      - GET
+      - HEAD
+      - POST
+      - PUT
+      - DELETE
+      type: string
+      description: An enumeration representing the supported HTTP verbs.
+    ResourceAdminDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceAdminDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    RdfPatchOperationDto:
+      type: object
+      properties:
+        operationType:
+          $ref: '#/components/schemas/RdfPatchOperationType'
+        changes:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: Represents a single operation in an RDF Patch document.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    UserDto:
+      required:
+      - areToSAccepted
+      - disciplines
+      - displayName
+      - emails
+      - id
+      - identities
+      - organizations
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the user.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name of the user.
+        givenName:
+          type:
+          - string
+          - 'null'
+          description: The given name of the user.
+        familyName:
+          type:
+          - string
+          - 'null'
+          description: The family name of the user.
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserEmailDto'
+          description: The email addresses associated with the user.
+        title:
+          $ref: '#/components/schemas/TitleDto'
+        language:
+          $ref: '#/components/schemas/LanguageDto'
+        areToSAccepted:
+          type: boolean
+          description: Indicates if the terms of service are accepted by the user.
+        latestActivity:
+          type:
+          - string
+          - 'null'
+          description: The date and time of the latest activity of the user.
+          format: date-time
+        disciplines:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisciplineDto'
+          description: The disciplines associated with the user.
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserOrganizationDto'
+          description: The organizations associated with the user.
+        identities:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProviderDto'
+          description: The identity providers associated with the user.
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoscineRoleDto'
+          description: The coscine roles associated with the user.
+        dataProcessingConsentAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user give consent to the proccessing of data.
+          format: date-time
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for user-related information.
+    ResourceTypeDto:
+      required:
+      - generalType
+      - specificType
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the resource type.
+          format: uuid
+        generalType:
+          type: string
+          description: The general type of the resource.
+        specificType:
+          type: string
+          description: The specific type of the resource.
+        options:
+          $ref: '#/components/schemas/ResourceTypeOptionsDto'
+      additionalProperties: false
+      description: Represents a resource type.
+    RdfPatchOperationType:
+      enum:
+      - A
+      - D
+      type: string
+      description: Represents the types of operations that can be performed in an RDF Patch document.
     DataStorageNrwS3OptionsDto:
       required:
       - accessKeyRead
@@ -1703,188 +1800,91 @@ components:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
       description: Represents the data transfer object (DTO) for DataStorage.nrw S3 options.
-    ActivityLogDtoPagedResponse:
+    DefaultOrganizationQuotaDto:
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ActivityLogDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
+        resourceTypeId:
           type: string
-          description: The unique identifier for the user.
+          description: Gets or sets the resource type id of the default quota.
           format: uuid
+        defaultQuota:
+          type: integer
+          description: Gets or sets the default quota value.
+          format: int32
+        defaultMaxQuota:
+          type: integer
+          description: Gets or sets the default max quota value.
+          format: int32
       additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    ResourceTypeOptionsDto:
-      type: object
-      properties:
-        linkedData:
-          $ref: '#/components/schemas/LinkedDataOptionsDto'
-        gitLab:
-          $ref: '#/components/schemas/GitLabOptionsDto'
-        rds:
-          $ref: '#/components/schemas/RdsOptionsDto'
-        rdsS3:
-          $ref: '#/components/schemas/RdsS3OptionsDto'
-        rdsS3Worm:
-          $ref: '#/components/schemas/RdsS3WormOptionsDto'
-        fileSystemStorage:
-          $ref: '#/components/schemas/FileSystemStorageOptionsDto'
-        dataStorageNrwWeb:
-          $ref: '#/components/schemas/DataStorageNrwWebOptionsDto'
-        dataStorageNrwS3:
-          $ref: '#/components/schemas/DataStorageNrwS3OptionsDto'
-        dataStorageNrwS3Worm:
-          $ref: '#/components/schemas/DataStorageNrwS3WormOptionsDto'
-      additionalProperties: false
-      description: Represents the options available for different resource types.
-    DataStorageNrwWebOptionsDto:
+      description: Represents the default quota of an organization.
+    RdsOptionsDto:
       required:
       - bucketName
       type: object
       properties:
         bucketName:
           type: string
-          description: The name of the bucket associated with DataStorage.nrw Web.
+          description: The name of the bucket associated with RDS.
         size:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for DataStorage.nrw Web options.
-    UserDtoPagedResponse:
+      description: Represents the data transfer object (DTO) for RDS options.
+    VisibilityDto:
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UserDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        id:
+          type: string
+          description: The identifier for the visibility setting.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name for the visibility setting.
       additionalProperties: false
-    ProjectOrganizationDto:
-      required:
-      - displayName
-      - responsible
-      - uri
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
+    DisciplineDto:
       type: object
       properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
         uri:
           type: string
-          description: The ROR (Research Organization Registry) ID of the organization.
-          format: uri
-        displayName:
+          description: The URI associated with the discipline.
+        displayNameDe:
           type: string
-          description: The display name of the organization.
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
+    PublicationAdvisoryServiceDto:
+      required:
+      - displayName
+      - email
+      type: object
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's display name.
         email:
+          minLength: 1
+          type: string
+          description: Gets the data publication service's email address.
+        description:
           type:
           - string
           - 'null'
-          description: The email address of the organization.
-        publicationAdvisoryService:
-          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
-        responsible:
-          type: boolean
-          description: Determines if the organization is Responsible for a given project.
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for an organization in the context of a project.
-    ResourceQuotaDto:
-      required:
-      - resource
-      type: object
-      properties:
-        resource:
-          $ref: '#/components/schemas/ResourceMinimalDto'
-        usedPercentage:
+          description: Gets the data publication service's description.
+        organizationRor:
           type:
-          - number
+          - string
           - 'null'
-          description: The percentage of quota used by the resource.
-          format: float
-        used:
-          $ref: '#/components/schemas/QuotaDto'
-        versions:
-          $ref: '#/components/schemas/QuotaDto'
-        reserved:
-          $ref: '#/components/schemas/QuotaDto'
+          description: Gets the ROR of the organization that provides this publication service.
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
-    TitleDto:
-      required:
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the title.
-          format: uuid
-        displayName:
-          type: string
-          description: The displayed name of the title.
-      additionalProperties: false
-      description: Represents the Data Transfer Object (DTO) for title information.
-    ResourceTypeDto:
-      required:
-      - generalType
-      - specificType
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the resource type.
-          format: uuid
-        generalType:
-          type: string
-          description: The general type of the resource.
-        specificType:
-          type: string
-          description: The specific type of the resource.
-        options:
-          $ref: '#/components/schemas/ResourceTypeOptionsDto'
-      additionalProperties: false
-      description: Represents a resource type.
-    RdfPatchOperationType:
-      enum:
-      - A
-      - D
-      type: string
-      description: Represents the types of operations that can be performed in an RDF Patch document.
+      description: Data transfer object (DTO) representing the publication advisory service of an organization.
   securitySchemes:
     Bearer:
       type: apiKey

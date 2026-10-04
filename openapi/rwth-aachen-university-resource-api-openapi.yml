@@ -55,10 +55,142 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LinkedDataOptionsDto:
+    ApplicationProfileMinimalDto:
+      required:
+      - uri
       type: object
+      properties:
+        uri:
+          type: string
+          description: The URI associated with the application profile.
+          format: uri
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for Linked Data options.
+      description: Represents a minimalistic application profile data transfer object.
+    ResourceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DataStorageNrwWebOptionsDto:
+      required:
+      - bucketName
+      type: object
+      properties:
+        bucketName:
+          type: string
+          description: The name of the bucket associated with DataStorage.nrw Web.
+        size:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for DataStorage.nrw Web options.
+    DataStorageNrwS3WormOptionsDto:
+      required:
+      - accessKeyRead
+      - accessKeyWrite
+      - bucketName
+      - endpoint
+      - secretKeyRead
+      - secretKeyWrite
+      type: object
+      properties:
+        bucketName:
+          type: string
+          description: The name of the bucket associated with DataStorage.nrw S3 WORM.
+        accessKeyRead:
+          type: string
+          description: The access key for reading from the DataStorage.nrw S3 WORM bucket.
+        secretKeyRead:
+          type: string
+          description: The secret key for reading from the DataStorage.nrw S3 WORM bucket.
+        accessKeyWrite:
+          type: string
+          description: The access key for writing to the DataStorage.nrw S3 WORM bucket.
+        secretKeyWrite:
+          type: string
+          description: The secret key for writing to the DataStorage.nrw S3 WORM bucket.
+        endpoint:
+          type: string
+          description: The endpoint for the RDS DataStorage.nrw WORM bucket.
+        size:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for DataStorage.nrw S3 WORM options.
+    LicenseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Gets or sets the unique identifier for the license.
+          format: uuid
+        displayName:
+          type: string
+          description: Gets or sets the display name of the license.
+        url:
+          type: string
+          description: Gets or sets the Uri of the license.
+          format: uri
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for license details.
+    FileSystemStorageOptionsDto:
+      required:
+      - directory
+      type: object
+      properties:
+        directory:
+          type: string
+          description: The directory where the files are stored.
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for FileSystemStorage options.
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    FixedValueForResourceManipulationDto:
+      type: object
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the value of the fixed resource value.
+        type:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the type of the fixed resource value.
+        datatype:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the data type URI of the fixed resource value.
+          format: uri
+        targetClass:
+          type:
+          - string
+          - 'null'
+          description: Gets the target class of the provided value (e.g., "https://purl.org/coscine/ap/base/").
+      additionalProperties: false
+      description: Data transfer object (DTO) representing the manipulation of a fixed value associated with a resource.
     QuotaUnit:
       enum:
       - https://qudt.org/vocab/unit/BYTE
@@ -101,25 +233,72 @@ components:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
       description: Represents the data transfer object (DTO) for RDS S3 options.
-    ResourceDtoResponse:
+    ResourceTypeOptionsDto:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/ResourceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
+        linkedData:
+          $ref: '#/components/schemas/LinkedDataOptionsDto'
+        gitLab:
+          $ref: '#/components/schemas/GitLabOptionsDto'
+        rds:
+          $ref: '#/components/schemas/RdsOptionsDto'
+        rdsS3:
+          $ref: '#/components/schemas/RdsS3OptionsDto'
+        rdsS3Worm:
+          $ref: '#/components/schemas/RdsS3WormOptionsDto'
+        fileSystemStorage:
+          $ref: '#/components/schemas/FileSystemStorageOptionsDto'
+        dataStorageNrwWeb:
+          $ref: '#/components/schemas/DataStorageNrwWebOptionsDto'
+        dataStorageNrwS3:
+          $ref: '#/components/schemas/DataStorageNrwS3OptionsDto'
+        dataStorageNrwS3Worm:
+          $ref: '#/components/schemas/DataStorageNrwS3WormOptionsDto'
+      additionalProperties: false
+      description: Represents the options available for different resource types.
+    QuotaDto:
+      required:
+      - unit
+      - value
+      type: object
+      properties:
+        value:
+          type: number
+          description: The value of the quota.
+          format: float
+        unit:
+          $ref: '#/components/schemas/QuotaUnit'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for quota values.
+    GitLabOptionsDto:
+      type: object
+      properties:
+        projectId:
+          type: integer
+          description: The project ID associated with GitLab.
           format: int32
-        traceId:
+        repoUrl:
           type:
           - string
           - 'null'
+          description: The repository URL for GitLab.
+        accessToken:
+          type:
+          - string
+          - 'null'
+          description: The access token for GitLab.
+        branch:
+          type:
+          - string
+          - 'null'
+          description: The branch for GitLab.
       additionalProperties: false
-    DataStorageNrwS3WormOptionsDto:
+      description: Represents the data transfer object (DTO) for GitLab options.
+    LinkedDataOptionsDto:
+      type: object
+      additionalProperties: false
+      description: Represents the data transfer object (DTO) for Linked Data options.
+    RdsS3WormOptionsDto:
       required:
       - accessKeyRead
       - accessKeyWrite
@@ -131,38 +310,26 @@ components:
       properties:
         bucketName:
           type: string
-          description: The name of the bucket associated with DataStorage.nrw S3 WORM.
+          description: The name of the bucket associated with RDS S3 WORM.
         accessKeyRead:
           type: string
-          description: The access key for reading from the DataStorage.nrw S3 WORM bucket.
+          description: The access key for reading from the RDS S3 WORM bucket.
         secretKeyRead:
           type: string
-          description: The secret key for reading from the DataStorage.nrw S3 WORM bucket.
+          description: The secret key for reading from the RDS S3 WORM bucket.
         accessKeyWrite:
           type: string
-          description: The access key for writing to the DataStorage.nrw S3 WORM bucket.
+          description: The access key for writing to the RDS S3 WORM bucket.
         secretKeyWrite:
           type: string
-          description: The secret key for writing to the DataStorage.nrw S3 WORM bucket.
+          description: The secret key for writing to the RDS S3 WORM bucket.
         endpoint:
           type: string
-          description: The endpoint for the RDS DataStorage.nrw WORM bucket.
+          description: The endpoint for the RDS S3 WORM bucket.
         size:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for DataStorage.nrw S3 WORM options.
-    VisibilityDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the visibility setting.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
+      description: Represents the data transfer object (DTO) for RDS S3 WORM options.
     ResourceDto:
       required:
       - applicationProfile
@@ -259,180 +426,37 @@ components:
           description: The projects associated with the resource.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for resource details.
-    ProjectMinimalDto:
+    UserMinimalDto:
       required:
       - id
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the project.
+          description: The unique identifier for the user.
           format: uuid
       additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    RdsOptionsDto:
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
+    ResourceTypeDto:
       required:
-      - bucketName
-      type: object
-      properties:
-        bucketName:
-          type: string
-          description: The name of the bucket associated with RDS.
-        size:
-          $ref: '#/components/schemas/QuotaDto'
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for RDS options.
-    FileSystemStorageOptionsDto:
-      required:
-      - directory
-      type: object
-      properties:
-        directory:
-          type: string
-          description: The directory where the files are stored.
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for FileSystemStorage options.
-    FixedValueForResourceManipulationDto:
-      type: object
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the value of the fixed resource value.
-        type:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the type of the fixed resource value.
-        datatype:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the data type URI of the fixed resource value.
-          format: uri
-        targetClass:
-          type:
-          - string
-          - 'null'
-          description: Gets the target class of the provided value (e.g., "https://purl.org/coscine/ap/base/").
-      additionalProperties: false
-      description: Data transfer object (DTO) representing the manipulation of a fixed value associated with a resource.
-    DisciplineDto:
+      - generalType
+      - specificType
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier for the discipline.
+          description: The unique identifier of the resource type.
           format: uuid
-        uri:
+        generalType:
           type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
+          description: The general type of the resource.
+        specificType:
           type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
+          description: The specific type of the resource.
+        options:
+          $ref: '#/components/schemas/ResourceTypeOptionsDto'
       additionalProperties: false
-      description: Represents the data transfer object for a discipline.
-    GitLabOptionsDto:
-      type: object
-      properties:
-        projectId:
-          type: integer
-          description: The project ID associated with GitLab.
-          format: int32
-        repoUrl:
-          type:
-          - string
-          - 'null'
-          description: The repository URL for GitLab.
-        accessToken:
-          type:
-          - string
-          - 'null'
-          description: The access token for GitLab.
-        branch:
-          type:
-          - string
-          - 'null'
-          description: The branch for GitLab.
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for GitLab options.
-    ApplicationProfileMinimalDto:
-      required:
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The URI associated with the application profile.
-          format: uri
-      additionalProperties: false
-      description: Represents a minimalistic application profile data transfer object.
-    RdsS3WormOptionsDto:
-      required:
-      - accessKeyRead
-      - accessKeyWrite
-      - bucketName
-      - endpoint
-      - secretKeyRead
-      - secretKeyWrite
-      type: object
-      properties:
-        bucketName:
-          type: string
-          description: The name of the bucket associated with RDS S3 WORM.
-        accessKeyRead:
-          type: string
-          description: The access key for reading from the RDS S3 WORM bucket.
-        secretKeyRead:
-          type: string
-          description: The secret key for reading from the RDS S3 WORM bucket.
-        accessKeyWrite:
-          type: string
-          description: The access key for writing to the RDS S3 WORM bucket.
-        secretKeyWrite:
-          type: string
-          description: The secret key for writing to the RDS S3 WORM bucket.
-        endpoint:
-          type: string
-          description: The endpoint for the RDS S3 WORM bucket.
-        size:
-          $ref: '#/components/schemas/QuotaDto'
-      additionalProperties: false
-      description: Represents the data transfer object (DTO) for RDS S3 WORM options.
-    LicenseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Gets or sets the unique identifier for the license.
-          format: uuid
-        displayName:
-          type: string
-          description: Gets or sets the display name of the license.
-        url:
-          type: string
-          description: Gets or sets the Uri of the license.
-          format: uri
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for license details.
-    QuotaDto:
-      required:
-      - unit
-      - value
-      type: object
-      properties:
-        value:
-          type: number
-          description: The value of the quota.
-          format: float
-        unit:
-          $ref: '#/components/schemas/QuotaUnit'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for quota values.
+      description: Represents a resource type.
     DataStorageNrwS3OptionsDto:
       required:
       - accessKeyRead
@@ -465,72 +489,48 @@ components:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
       description: Represents the data transfer object (DTO) for DataStorage.nrw S3 options.
-    ResourceTypeOptionsDto:
-      type: object
-      properties:
-        linkedData:
-          $ref: '#/components/schemas/LinkedDataOptionsDto'
-        gitLab:
-          $ref: '#/components/schemas/GitLabOptionsDto'
-        rds:
-          $ref: '#/components/schemas/RdsOptionsDto'
-        rdsS3:
-          $ref: '#/components/schemas/RdsS3OptionsDto'
-        rdsS3Worm:
-          $ref: '#/components/schemas/RdsS3WormOptionsDto'
-        fileSystemStorage:
-          $ref: '#/components/schemas/FileSystemStorageOptionsDto'
-        dataStorageNrwWeb:
-          $ref: '#/components/schemas/DataStorageNrwWebOptionsDto'
-        dataStorageNrwS3:
-          $ref: '#/components/schemas/DataStorageNrwS3OptionsDto'
-        dataStorageNrwS3Worm:
-          $ref: '#/components/schemas/DataStorageNrwS3WormOptionsDto'
-      additionalProperties: false
-      description: Represents the options available for different resource types.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    DataStorageNrwWebOptionsDto:
+    RdsOptionsDto:
       required:
       - bucketName
       type: object
       properties:
         bucketName:
           type: string
-          description: The name of the bucket associated with DataStorage.nrw Web.
+          description: The name of the bucket associated with RDS.
         size:
           $ref: '#/components/schemas/QuotaDto'
       additionalProperties: false
-      description: Represents the data transfer object (DTO) for DataStorage.nrw Web options.
-    ResourceTypeDto:
-      required:
-      - generalType
-      - specificType
+      description: Represents the data transfer object (DTO) for RDS options.
+    VisibilityDto:
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier of the resource type.
+          description: The identifier for the visibility setting.
           format: uuid
-        generalType:
+        displayName:
           type: string
-          description: The general type of the resource.
-        specificType:
-          type: string
-          description: The specific type of the resource.
-        options:
-          $ref: '#/components/schemas/ResourceTypeOptionsDto'
+          description: The display name for the visibility setting.
       additionalProperties: false
-      description: Represents a resource type.
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
   securitySchemes:
     Bearer:
       type: apiKey

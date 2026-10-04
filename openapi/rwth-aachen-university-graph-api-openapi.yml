@@ -203,15 +203,11 @@ paths:
           description: The user is not authorized to access the resource.
 components:
   schemas:
-    StorageNodeDtoPagedResponse:
+    StorageNodeDtoResponse:
       type: object
       properties:
         data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StorageNodeDto'
+          $ref: '#/components/schemas/StorageNodeDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -224,8 +220,32 @@ components:
           type:
           - string
           - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    StorageNodeLinks:
+      type: object
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+        children:
+          type: object
+          additionalProperties:
+            type: string
+        self:
+          type: object
+          additionalProperties:
+            type: string
+        links:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
       additionalProperties: false
     Pagination:
       type: object
@@ -281,37 +301,15 @@ components:
         links:
           $ref: '#/components/schemas/StorageNodeLinks'
       additionalProperties: false
-    StorageNodeLinks:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-        children:
-          type: object
-          additionalProperties:
-            type: string
-        self:
-          type: object
-          additionalProperties:
-            type: string
-        links:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-      additionalProperties: false
-    StorageNodeDtoResponse:
+    StorageNodeDtoPagedResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/StorageNodeDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StorageNodeDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -324,6 +322,8 @@ components:
           type:
           - string
           - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
   securitySchemes:
     Bearer:

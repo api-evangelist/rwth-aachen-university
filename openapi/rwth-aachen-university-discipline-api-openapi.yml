@@ -97,24 +97,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DisciplineDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DisciplineDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     DisciplineDtoPagedResponse:
       type: object
       properties:
@@ -139,6 +121,24 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
     Pagination:
       type: object
       properties:
@@ -168,24 +168,24 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    DisciplineDto:
+    DisciplineDtoResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier for the discipline.
-          format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
+        data:
+          $ref: '#/components/schemas/DisciplineDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-      description: Represents the data transfer object for a discipline.
   securitySchemes:
     Bearer:
       type: apiKey

@@ -143,15 +143,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GitlabBranchDtoIEnumerableResponse:
+    GitlabProjectDtoResponse:
       type: object
       properties:
         data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GitlabBranchDto'
+          $ref: '#/components/schemas/GitlabProjectDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -165,11 +161,15 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    GitlabProjectDtoResponse:
+    GitlabProjectDtoIEnumerableResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/GitlabProjectDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GitlabProjectDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -276,7 +276,7 @@ components:
           description: The SSH URL to access the GitLab project repository.
       additionalProperties: false
       description: Represents a GitLab project data transfer object (DTO).
-    GitlabProjectDtoIEnumerableResponse:
+    GitlabBranchDtoIEnumerableResponse:
       type: object
       properties:
         data:
@@ -284,7 +284,7 @@ components:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/GitlabProjectDto'
+            $ref: '#/components/schemas/GitlabBranchDto'
         isSuccess:
           type: boolean
           readOnly: true

@@ -140,6 +140,57 @@ components:
           description: Collection of the resources involved in the publication request.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a project publication request.
+    UserMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for user information.
+    ProjectPublicationRequestDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectPublicationRequestDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    ResourceMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
     PublicationRequestForCreationDto:
       required:
       - publicationServiceRorId
@@ -163,57 +214,6 @@ components:
           description: A message of the requester.
       additionalProperties: false
       description: Data transfer object (DTO) representing the creation of a publication request.
-    UserMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the user.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for user information.
-    ResourceMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
-    ProjectPublicationRequestDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectPublicationRequestDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

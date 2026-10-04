@@ -241,6 +241,54 @@ paths:
           description: Authenticated user has no role in the given project.
 components:
   schemas:
+    ProjectRoleForProjectCreationDto:
+      required:
+      - roleId
+      - userId
+      type: object
+      properties:
+        roleId:
+          type: string
+          description: Gets or initializes the identifier of the role associated with the project manipulation.
+          format: uuid
+        userId:
+          type: string
+          description: Gets or initializes the identifier of the user associated with the project role creation.
+          format: uuid
+      additionalProperties: false
+      description: 'Data transfer object (DTO) representing the creation of a project role within a project.
+
+        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectRoleForProjectManipulationDto.'
+    TitleDto:
+      required:
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the title.
+          format: uuid
+        displayName:
+          type: string
+          description: The displayed name of the title.
+      additionalProperties: false
+      description: Represents the Data Transfer Object (DTO) for title information.
+    ProjectRoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier of the project role.
+          format: uuid
+        project:
+          $ref: '#/components/schemas/ProjectMinimalDto'
+        role:
+          $ref: '#/components/schemas/RoleDto'
+        user:
+          $ref: '#/components/schemas/PublicUserDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for a project role.
     ProjectRoleDtoPagedResponse:
       type: object
       properties:
@@ -264,24 +312,6 @@ components:
           - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    ProjectRoleDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProjectRoleDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     Pagination:
       type: object
@@ -312,6 +342,65 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    ProjectRoleDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ProjectRoleDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ProjectRoleForProjectManipulationDto:
+      required:
+      - roleId
+      type: object
+      properties:
+        roleId:
+          type: string
+          description: Gets or initializes the identifier of the role associated with the project manipulation.
+          format: uuid
+      additionalProperties: false
+      description: Data transfer object (DTO) representing a project role for manipulation within a project.
+    ProjectMinimalDto:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a project.
+    RoleDto:
+      required:
+      - description
+      - displayName
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the role.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name of the role.
+        description:
+          type: string
+          description: The description of the role.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a role.
     PublicUserDto:
       required:
       - displayName
@@ -344,95 +433,6 @@ components:
           $ref: '#/components/schemas/TitleDto'
       additionalProperties: false
       description: Represents a public user data transfer object (DTO).
-    ProjectRoleForProjectCreationDto:
-      required:
-      - roleId
-      - userId
-      type: object
-      properties:
-        roleId:
-          type: string
-          description: Gets or initializes the identifier of the role associated with the project manipulation.
-          format: uuid
-        userId:
-          type: string
-          description: Gets or initializes the identifier of the user associated with the project role creation.
-          format: uuid
-      additionalProperties: false
-      description: 'Data transfer object (DTO) representing the creation of a project role within a project.
-
-        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProjectRoleForProjectManipulationDto.'
-    ProjectRoleForProjectManipulationDto:
-      required:
-      - roleId
-      type: object
-      properties:
-        roleId:
-          type: string
-          description: Gets or initializes the identifier of the role associated with the project manipulation.
-          format: uuid
-      additionalProperties: false
-      description: Data transfer object (DTO) representing a project role for manipulation within a project.
-    RoleDto:
-      required:
-      - description
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the role.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name of the role.
-        description:
-          type: string
-          description: The description of the role.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a role.
-    ProjectRoleDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Identifier of the project role.
-          format: uuid
-        project:
-          $ref: '#/components/schemas/ProjectMinimalDto'
-        role:
-          $ref: '#/components/schemas/RoleDto'
-        user:
-          $ref: '#/components/schemas/PublicUserDto'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for a project role.
-    TitleDto:
-      required:
-      - displayName
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the title.
-          format: uuid
-        displayName:
-          type: string
-          description: The displayed name of the title.
-      additionalProperties: false
-      description: Represents the Data Transfer Object (DTO) for title information.
-    ProjectMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the project.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a project.
   securitySchemes:
     Bearer:
       type: apiKey

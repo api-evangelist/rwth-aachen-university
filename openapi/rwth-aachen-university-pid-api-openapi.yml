@@ -157,6 +157,74 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PidDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PidDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PidRequestDto:
+      required:
+      - email
+      - message
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          description: Gets or initializes the name associated with the PID request.
+        email:
+          minLength: 1
+          type: string
+          description: Gets or initializes the email associated with the PID request.
+          format: email
+        message:
+          maxLength: 5000
+          minLength: 1
+          type: string
+          description: Gets or initializes the message for the PID request.
+        sendConfirmationEmail:
+          type: boolean
+          description: Gets or initializes whether to send a confirmation email for the PID request.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing a PID request.
+    PidDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PidDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -186,12 +254,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    PidType:
-      enum:
-      - project
-      - resource
-      type: string
-      description: Specifies the type of PID.
     PidDto:
       required:
       - prefix
@@ -215,74 +277,12 @@ components:
           description: Gets or sets a value indicating whether the linked entity is considered valid.
       additionalProperties: false
       description: Represents a data transfer object (DTO) for a PID (Persistent Identifier).
-    PidDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PidDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    PidRequestDto:
-      required:
-      - email
-      - message
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          description: Gets or initializes the name associated with the PID request.
-        email:
-          minLength: 1
-          type: string
-          description: Gets or initializes the email associated with the PID request.
-          format: email
-        message:
-          maxLength: 5000
-          minLength: 1
-          type: string
-          description: Gets or initializes the message for the PID request.
-        sendConfirmationEmail:
-          type: boolean
-          description: Gets or initializes whether to send a confirmation email for the PID request.
-      additionalProperties: false
-      description: Data transfer object (DTO) representing a PID request.
-    PidDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/PidDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    PidType:
+      enum:
+      - project
+      - resource
+      type: string
+      description: Specifies the type of PID.
   securitySchemes:
     Bearer:
       type: apiKey

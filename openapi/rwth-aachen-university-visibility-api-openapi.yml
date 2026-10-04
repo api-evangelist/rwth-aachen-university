@@ -92,42 +92,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VisibilityDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The identifier for the visibility setting.
-          format: uuid
-        displayName:
-          type: string
-          description: The display name for the visibility setting.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for visibility settings.
-    VisibilityDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/VisibilityDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     VisibilityDtoResponse:
       type: object
       properties:
@@ -175,6 +139,42 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    VisibilityDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/VisibilityDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    VisibilityDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier for the visibility setting.
+          format: uuid
+        displayName:
+          type: string
+          description: The display name for the visibility setting.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for visibility settings.
   securitySchemes:
     Bearer:
       type: apiKey

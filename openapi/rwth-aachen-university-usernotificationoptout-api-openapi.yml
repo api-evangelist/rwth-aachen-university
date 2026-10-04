@@ -145,6 +145,24 @@ paths:
           description: Provided input refers to entries that do not exist or have been deleted.
 components:
   schemas:
+    UserNotificationOptOutDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserNotificationOptOutDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -174,11 +192,15 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    UserNotificationOptOutDtoResponse:
+    UserNotificationOptOutDtoPagedResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/UserNotificationOptOutDto'
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserNotificationOptOutDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -191,6 +213,8 @@ components:
           type:
           - string
           - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
     UserNotificationForCreationDto:
       required:
@@ -224,30 +248,6 @@ components:
           format: uuid
       additionalProperties: false
       description: Represents a minimal data transfer object (DTO) for a user notification.
-    UserNotificationOptOutDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UserNotificationOptOutDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

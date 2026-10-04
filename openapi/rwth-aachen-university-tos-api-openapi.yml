@@ -42,6 +42,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TermsOfServiceDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TermsOfServiceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     TermsOfServiceDto:
       required:
       - href
@@ -61,24 +79,6 @@ components:
           description: Indicates whether these terms of service are current or not.
       additionalProperties: false
       description: Represents the Data Transfer Object (DTO) for terms of service information.
-    TermsOfServiceDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TermsOfServiceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

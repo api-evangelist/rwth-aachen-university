@@ -119,23 +119,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DataHamsterKpiDtoResponse:
+    StorageDataHamsterKpiDto:
       type: object
       properties:
-        data:
+        reserved:
           $ref: '#/components/schemas/DataHamsterKpiDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
+        used:
+          $ref: '#/components/schemas/DataHamsterKpiDto'
       additionalProperties: false
     StorageDataHamsterKpiDtoResponse:
       type: object
@@ -155,23 +145,11 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    StorageDataHamsterKpiDto:
-      type: object
-      properties:
-        reserved:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
-        used:
-          $ref: '#/components/schemas/DataHamsterKpiDto'
-      additionalProperties: false
-    DataHamsterKpiDtoIEnumerableResponse:
+    DataHamsterKpiDtoResponse:
       type: object
       properties:
         data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DataHamsterKpiDto'
+          $ref: '#/components/schemas/DataHamsterKpiDto'
         isSuccess:
           type: boolean
           readOnly: true
@@ -213,6 +191,28 @@ components:
         query:
           type: string
           readOnly: true
+      additionalProperties: false
+    DataHamsterKpiDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DataHamsterKpiDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

@@ -473,77 +473,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FileTreeDtoPagedResponse:
+    FileActionDto:
       type: object
       properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FileTreeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    MetadataTreeDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/MetadataTreeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    MetadataTreeExtractedDto:
-      type: object
-      properties:
-        path:
+        url:
           type: string
-          description: Gets the path of the tree item.
-        type:
-          $ref: '#/components/schemas/TreeDataType'
-        metadataId:
-          type: string
-          description: Gets the identifier of the metadata extraction graph.
+          description: Gets or sets the presigned URL associated with the file action.
           format: uri
-        rawDataId:
-          type:
-          - string
-          - 'null'
-          description: Gets the identifier of the raw data extraction graph.
-          format: uri
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionDto'
+        method:
+          $ref: '#/components/schemas/FileActionHttpMethod'
       additionalProperties: false
-      description: Represents a data transfer object (DTO) for extracted metadata within a tree structure, extending the base TreeDto.
-    ExtractedMetadataTreeForCreationDto:
+      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
+    ExtractedMetadataTreeForUpdateDto:
       required:
       - definition
       - id
@@ -557,16 +498,95 @@ components:
           description: Gets or initializes the path of the metadata tree.
         id:
           type: string
-          description: Gets or sets the id of the new metadata tree.
+          description: Gets or sets the id of the to update metadata tree.
           format: uri
         definition:
           $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
         provenance:
           $ref: '#/components/schemas/ProvenanceParametersDto'
+        forceNewMetadataVersion:
+          type: boolean
+          description: Gets or initializes a flag for creating a new metadata version.
       additionalProperties: false
-      description: 'Data transfer object (DTO) representing the creation of a metadata tree.
+      description: 'Data transfer object (DTO) representing the update of a metadata tree.
 
-        Extends the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
+        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
+    RdfFormat:
+      enum:
+      - text/turtle
+      - application/ld+json
+      - application/x-trig
+      - application/n-quads
+      type: string
+      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
+    RdfDefinitionDto:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          description: The content of the RDF definition.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of the RDF definition.
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
+    ProvenanceParametersDto:
+      type: object
+      properties:
+        wasRevisionOf:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Gets or sets the adapted versions from the specific metadata tree.
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantDto'
+          description: Gets or sets the variants of the specific metadata tree.
+        wasInvalidatedBy:
+          type:
+          - string
+          - 'null'
+          description: Information if the specific metadata tree was invalidated by something.
+          format: uri
+        similarityToLastVersion:
+          type:
+          - number
+          - 'null'
+          description: The similarity to the last version.
+          format: double
+        metadataExtractorVersion:
+          type:
+          - string
+          - 'null'
+          description: Gets or initializes the version of the metadata extractor.
+        hashParameters:
+          $ref: '#/components/schemas/HashParametersDto'
+      additionalProperties: false
+      description: Data transfer object (DTO) representing Provenance Parameters in a request.
+    MetadataTreeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MetadataTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     FileTreeDto:
       type: object
       properties:
@@ -607,183 +627,36 @@ components:
           description: Determines if the specific tree entry is hidden.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
-    FileActionDto:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Gets or sets the presigned URL associated with the file action.
-          format: uri
-        method:
-          $ref: '#/components/schemas/FileActionHttpMethod'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for file actions, including the URL and HTTP method.
-    MetadataTreeForDeletionDto:
-      required:
-      - invalidatedBy
-      - path
-      - version
-      type: object
-      properties:
-        path:
-          minLength: 1
-          type: string
-          description: Gets or initializes the path of the metadata tree.
-        version:
-          type: integer
-          description: Gets or initializes the version of the metadata tree to be deleted.
-          format: int64
-        invalidatedBy:
-          type: string
-          description: Gets or initializes the invalidation entity.
-          format: uri
-      additionalProperties: false
-      description: Data transfer object (DTO) for deleting a specific version of metadata.
-    VariantDto:
-      type: object
-      properties:
-        graphName:
-          type: string
-          description: Name of the graph.
-          format: uri
-        similarity:
-          type: number
-          description: Similarity value 0-1
-          format: double
-      additionalProperties: false
-      description: Represents the variants of this specific metadata tree.
-    RdfFormat:
-      enum:
-      - text/turtle
-      - application/ld+json
-      - application/x-trig
-      - application/n-quads
-      type: string
-      description: Specifies the RDF <i>(Resource Description Framework)</i> format.
-    FileActionHttpMethod:
-      enum:
-      - GET
-      - POST
-      - PUT
-      - DELETE
-      type: string
-      description: Represents the possible HTTP methods associated with file actions.
-    Pagination:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          description: Gets or sets the current page number.
-          format: int32
-        totalPages:
-          type: integer
-          description: Gets or sets the total number of pages.
-          format: int32
-        pageSize:
-          type: integer
-          description: Gets or sets the number of items per page.
-          format: int32
-        totalCount:
-          type: integer
-          description: Gets or sets the total count of items across all pages.
-          format: int64
-        hasPrevious:
-          type: boolean
-          description: Gets a value indicating whether there is a previous page.
-          readOnly: true
-        hasNext:
-          type: boolean
-          description: Gets a value indicating whether there is a next page.
-          readOnly: true
-      additionalProperties: false
-      description: Represents pagination information for a collection of items.
-    MetadataTreeForUpdateDto:
-      required:
-      - definition
-      - path
-      type: object
-      properties:
-        path:
-          minLength: 1
-          type: string
-          description: Gets or initializes the path of the metadata tree.
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-      additionalProperties: false
-      description: 'Data transfer object (DTO) representing the update of a metadata tree.
-
-        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
-    ExtractedMetadataTreeForUpdateDto:
-      required:
-      - definition
-      - id
-      - path
-      - provenance
-      type: object
-      properties:
-        path:
-          minLength: 1
-          type: string
-          description: Gets or initializes the path of the metadata tree.
-        id:
-          type: string
-          description: Gets or sets the id of the to update metadata tree.
-          format: uri
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-        provenance:
-          $ref: '#/components/schemas/ProvenanceParametersDto'
-        forceNewMetadataVersion:
-          type: boolean
-          description: Gets or initializes a flag for creating a new metadata version.
-      additionalProperties: false
-      description: 'Data transfer object (DTO) representing the update of a metadata tree.
-
-        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
-    RdfDefinitionDto:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-          description: The content of the RDF definition.
-        type:
-          type:
-          - string
-          - 'null'
-          description: The type of the RDF definition.
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for RDF (Resource Description Framework) definition details.
     TreeDataType:
       enum:
       - Tree
       - Leaf
       type: string
       description: Represents the types of nodes within a hierarchical tree structure.
-    FileActionsDto:
+    MetadataTreeDtoPagedResponse:
       type: object
       properties:
-        download:
-          $ref: '#/components/schemas/FileActionDto'
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MetadataTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
-    MetadataTreeForCreationDto:
-      required:
-      - definition
-      - path
-      type: object
-      properties:
-        path:
-          minLength: 1
-          type: string
-          description: Gets or initializes the path of the metadata tree.
-        definition:
-          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
-      additionalProperties: false
-      description: 'Data transfer object (DTO) representing the creation of a metadata tree.
-
-        Extends the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
     ProvenanceDto:
       required:
       - id
@@ -858,6 +731,186 @@ components:
           description: Gets or initializes the hash value.
       additionalProperties: false
       description: Data transfer object (DTO) representing Hash Parameters in a request.
+    FileTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FileTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    MetadataTreeForCreationDto:
+      required:
+      - definition
+      - path
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: 'Data transfer object (DTO) representing the creation of a metadata tree.
+
+        Extends the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
+    MetadataTreeForDeletionDto:
+      required:
+      - invalidatedBy
+      - path
+      - version
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        version:
+          type: integer
+          description: Gets or initializes the version of the metadata tree to be deleted.
+          format: int64
+        invalidatedBy:
+          type: string
+          description: Gets or initializes the invalidation entity.
+          format: uri
+      additionalProperties: false
+      description: Data transfer object (DTO) for deleting a specific version of metadata.
+    MetadataTreeForUpdateDto:
+      required:
+      - definition
+      - path
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+      additionalProperties: false
+      description: 'Data transfer object (DTO) representing the update of a metadata tree.
+
+        Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
+    VariantDto:
+      type: object
+      properties:
+        graphName:
+          type: string
+          description: Name of the graph.
+          format: uri
+        similarity:
+          type: number
+          description: Similarity value 0-1
+          format: double
+      additionalProperties: false
+      description: Represents the variants of this specific metadata tree.
+    FileActionsDto:
+      type: object
+      properties:
+        download:
+          $ref: '#/components/schemas/FileActionDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
+    Pagination:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          description: Gets or sets the current page number.
+          format: int32
+        totalPages:
+          type: integer
+          description: Gets or sets the total number of pages.
+          format: int32
+        pageSize:
+          type: integer
+          description: Gets or sets the number of items per page.
+          format: int32
+        totalCount:
+          type: integer
+          description: Gets or sets the total count of items across all pages.
+          format: int64
+        hasPrevious:
+          type: boolean
+          description: Gets a value indicating whether there is a previous page.
+          readOnly: true
+        hasNext:
+          type: boolean
+          description: Gets a value indicating whether there is a next page.
+          readOnly: true
+      additionalProperties: false
+      description: Represents pagination information for a collection of items.
+    MetadataTreeExtractedDto:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Gets the path of the tree item.
+        type:
+          $ref: '#/components/schemas/TreeDataType'
+        metadataId:
+          type: string
+          description: Gets the identifier of the metadata extraction graph.
+          format: uri
+        rawDataId:
+          type:
+          - string
+          - 'null'
+          description: Gets the identifier of the raw data extraction graph.
+          format: uri
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionDto'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) for extracted metadata within a tree structure, extending the base TreeDto.
+    FileActionHttpMethod:
+      enum:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      type: string
+      description: Represents the possible HTTP methods associated with file actions.
+    ExtractedMetadataTreeForCreationDto:
+      required:
+      - definition
+      - id
+      - path
+      - provenance
+      type: object
+      properties:
+        path:
+          minLength: 1
+          type: string
+          description: Gets or initializes the path of the metadata tree.
+        id:
+          type: string
+          description: Gets or sets the id of the new metadata tree.
+          format: uri
+        definition:
+          $ref: '#/components/schemas/RdfDefinitionForManipulationDto'
+        provenance:
+          $ref: '#/components/schemas/ProvenanceParametersDto'
+      additionalProperties: false
+      description: 'Data transfer object (DTO) representing the creation of a metadata tree.
+
+        Extends the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.MetadataTreeForManipulationDto.'
     MetadataTreeDto:
       type: object
       properties:
@@ -886,59 +939,6 @@ components:
           $ref: '#/components/schemas/ProvenanceDto'
       additionalProperties: false
       description: Represents a data transfer object (DTO) for metadata within a tree structure, extending the base TreeDto.
-    MetadataTreeDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/MetadataTreeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ProvenanceParametersDto:
-      type: object
-      properties:
-        wasRevisionOf:
-          type: array
-          items:
-            type: string
-            format: uri
-          description: Gets or sets the adapted versions from the specific metadata tree.
-        variants:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariantDto'
-          description: Gets or sets the variants of the specific metadata tree.
-        wasInvalidatedBy:
-          type:
-          - string
-          - 'null'
-          description: Information if the specific metadata tree was invalidated by something.
-          format: uri
-        similarityToLastVersion:
-          type:
-          - number
-          - 'null'
-          description: The similarity to the last version.
-          format: double
-        metadataExtractorVersion:
-          type:
-          - string
-          - 'null'
-          description: Gets or initializes the version of the metadata extractor.
-        hashParameters:
-          $ref: '#/components/schemas/HashParametersDto'
-      additionalProperties: false
-      description: Data transfer object (DTO) representing Provenance Parameters in a request.
   securitySchemes:
     Bearer:
       type: apiKey

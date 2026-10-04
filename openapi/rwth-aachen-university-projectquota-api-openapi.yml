@@ -150,6 +150,42 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ResourceQuotaDto:
+      required:
+      - resource
+      type: object
+      properties:
+        resource:
+          $ref: '#/components/schemas/ResourceMinimalDto'
+        usedPercentage:
+          type:
+          - number
+          - 'null'
+          description: The percentage of quota used by the resource.
+          format: float
+        used:
+          $ref: '#/components/schemas/QuotaDto'
+        versions:
+          $ref: '#/components/schemas/QuotaDto'
+        reserved:
+          $ref: '#/components/schemas/QuotaDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
+    ResourceTypeMinimalDto:
+      required:
+      - id
+      - specificType
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the resource type.
+          format: uuid
+        specificType:
+          type: string
+          description: The specific type of the resource.
+      additionalProperties: false
+      description: Represents a minimal Data Transfer Object (DTO) for a resource type.
     ProjectQuotaDto:
       type: object
       properties:
@@ -176,21 +212,6 @@ components:
           description: Quota information for individual resources of the selected project's resource type.
       additionalProperties: false
       description: Represents a data transfer object (DTO) containing quota information for a project.
-    ResourceTypeMinimalDto:
-      required:
-      - id
-      - specificType
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the resource type.
-          format: uuid
-        specificType:
-          type: string
-          description: The specific type of the resource.
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource type.
     QuotaDto:
       required:
       - unit
@@ -234,16 +255,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    QuotaUnit:
-      enum:
-      - https://qudt.org/vocab/unit/BYTE
-      - https://qudt.org/vocab/unit/KibiBYTE
-      - https://qudt.org/vocab/unit/MebiBYTE
-      - https://qudt.org/vocab/unit/GibiBYTE
-      - https://qudt.org/vocab/unit/TebiBYTE
-      - https://qudt.org/vocab/unit/PebiBYTE
-      type: string
-      description: Specifies the unit of quota.
     ProjectQuotaDtoResponse:
       type: object
       properties:
@@ -262,32 +273,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    QuotaForManipulationDto:
-      required:
-      - unit
-      - value
-      type: object
-      properties:
-        value:
-          minimum: 0
-          type: integer
-          description: The numerical value of the quota. Must be a positive System.Int64.
-          format: int64
-        unit:
-          $ref: '#/components/schemas/QuotaUnit'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) used for manipulating quota values.
-    ResourceMinimalDto:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the resource.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
     ProjectQuotaDtoPagedResponse:
       type: object
       properties:
@@ -323,27 +308,42 @@ components:
           $ref: '#/components/schemas/QuotaForManipulationDto'
       additionalProperties: false
       description: Data transfer object (DTO) representing the update of project quotas.
-    ResourceQuotaDto:
+    ResourceMinimalDto:
       required:
-      - resource
+      - id
       type: object
       properties:
-        resource:
-          $ref: '#/components/schemas/ResourceMinimalDto'
-        usedPercentage:
-          type:
-          - number
-          - 'null'
-          description: The percentage of quota used by the resource.
-          format: float
-        used:
-          $ref: '#/components/schemas/QuotaDto'
-        versions:
-          $ref: '#/components/schemas/QuotaDto'
-        reserved:
-          $ref: '#/components/schemas/QuotaDto'
+        id:
+          type: string
+          description: Unique identifier for the resource.
+          format: uuid
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) containing quota information for a resource.
+      description: Represents a minimal Data Transfer Object (DTO) for a resource, containing essential identifiers.
+    QuotaUnit:
+      enum:
+      - https://qudt.org/vocab/unit/BYTE
+      - https://qudt.org/vocab/unit/KibiBYTE
+      - https://qudt.org/vocab/unit/MebiBYTE
+      - https://qudt.org/vocab/unit/GibiBYTE
+      - https://qudt.org/vocab/unit/TebiBYTE
+      - https://qudt.org/vocab/unit/PebiBYTE
+      type: string
+      description: Specifies the unit of quota.
+    QuotaForManipulationDto:
+      required:
+      - unit
+      - value
+      type: object
+      properties:
+        value:
+          minimum: 0
+          type: integer
+          description: The numerical value of the quota. Must be a positive System.Int64.
+          format: int64
+        unit:
+          $ref: '#/components/schemas/QuotaUnit'
+      additionalProperties: false
+      description: Represents a data transfer object (DTO) used for manipulating quota values.
   securitySchemes:
     Bearer:
       type: apiKey
