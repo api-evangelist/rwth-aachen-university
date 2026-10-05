@@ -1,0 +1,12 @@
+{
+ "url": "https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json",
+ "requested_url": "https://coscine.rwth-aachen.de/coscine/api/swagger/v2/swagger.json",
+ "status": 200,
+ "content_type": "application/json;charset=utf-8",
+ "bytes": 482152,
+ "sha256": "c23416ce25ac70fd70c5a81dbb7a462ccf30a3798e7148e5a413fa88f3904fde",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.946), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
