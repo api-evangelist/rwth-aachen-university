@@ -65,7 +65,7 @@ tags:
   - Germany
   - Europe
 created: '2026-06-03'
-modified: '2026-08-30'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: rwth-aachen-university:publications-oai
@@ -1905,6 +1905,10 @@ apis:
   - type: x-json-ld-context
     url: json-ld/rwth-aachen-university-context.jsonld
 common:
+  - url: https://www.rwth-aachen.de/go/id/a/?lidx=1
+    type: Blog
+  - url: https://www.rwth-aachen.de/cms/root/Die-RWTH/Aktuell/~uma/Pressemitteilungen/lidx/1/?rss=1&dateid=1
+    type: BlogRSS
   - type: CapabilityMap
     url: capabilities/rwth-aachen-university-capability-edges.yml
     name: RWTH Aachen University Business Capability Map
