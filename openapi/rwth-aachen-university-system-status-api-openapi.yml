@@ -173,47 +173,34 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MessageDto:
-      required:
-      - id
+    MessageDtoIEnumerableResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: ID of the message.
-        body:
+        data:
           type:
-          - object
+          - array
           - 'null'
-          additionalProperties:
-            type: string
-          description: "Message body in multiple languages as key-value pairs. \nThe key is the ISO 639-1 Alpha-2 two-letter language code, and the value is the message in that language."
-        type:
-          $ref: '#/components/schemas/MessageType'
-        title:
+          items:
+            $ref: '#/components/schemas/MessageDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
           type:
-          - string
+          - integer
           - 'null'
-          description: Title of the message.
-        href:
+          format: int32
+        traceId:
           type:
           - string
           - 'null'
-          description: URL related to the message.
-          format: uri
-        startDate:
-          type:
-          - string
-          - 'null'
-          description: Start date of the message (UTC).
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          description: End date of the message (UTC).
-          format: date-time
       additionalProperties: false
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
     MessageDtoPagedResponse:
       type: object
       properties:
@@ -267,27 +254,46 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    MessageDtoIEnumerableResponse:
+    MessageDto:
+      required:
+      - id
       type: object
       properties:
-        data:
+        id:
+          type: string
+          description: ID of the message.
+        body:
           type:
-          - array
+          - object
           - 'null'
-          items:
-            $ref: '#/components/schemas/MessageDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
+          additionalProperties:
+            type: string
+          description: "Message body in multiple languages as key-value pairs. \nThe key is the ISO 639-1 Alpha-2 two-letter language code, and the value is the message in that language."
+        type:
+          $ref: '#/components/schemas/MessageType'
+        title:
           type:
           - string
           - 'null'
+          description: Title of the message.
+        href:
+          type:
+          - string
+          - 'null'
+          description: URL related to the message.
+          format: uri
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Start date of the message (UTC).
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: End date of the message (UTC).
+          format: date-time
       additionalProperties: false
     MessageType:
       enum:
@@ -303,12 +309,6 @@ components:
       - Information
       type: string
       description: Defines the various types of messages.
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
   securitySchemes:
     Bearer:
       type: apiKey

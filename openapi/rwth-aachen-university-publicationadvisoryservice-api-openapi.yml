@@ -76,6 +76,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
     Pagination:
       type: object
       properties:
@@ -131,12 +137,6 @@ components:
           description: Gets the ROR of the organization that provides this publication service.
       additionalProperties: false
       description: Data transfer object (DTO) representing the publication advisory service of an organization.
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
     PublicationAdvisoryServiceDtoPagedResponse:
       type: object
       properties:

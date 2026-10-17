@@ -104,24 +104,34 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    OrganizationDtoResponse:
+    OrganizationDto:
+      required:
+      - displayName
+      - uri
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/OrganizationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
+        uri:
+          type: string
+          description: The ROR (Research Organization Registry) ID of the organization.
+          format: uri
+        displayName:
+          type: string
+          description: The display name of the organization.
+        email:
           type:
           - string
           - 'null'
+          description: The email address of the organization.
+        publicationAdvisoryService:
+          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
       additionalProperties: false
+      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
+    AcceptedLanguage:
+      enum:
+      - de
+      - en
+      type: string
+      description: Accepted languages by the API.
     Pagination:
       type: object
       properties:
@@ -151,58 +161,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    OrganizationDto:
-      required:
-      - displayName
-      - uri
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The ROR (Research Organization Registry) ID of the organization.
-          format: uri
-        displayName:
-          type: string
-          description: The display name of the organization.
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address of the organization.
-        publicationAdvisoryService:
-          $ref: '#/components/schemas/PublicationAdvisoryServiceDto'
-      additionalProperties: false
-      description: Represents a data transfer object (DTO) for an organization, including its ROR (Research Organization Registry) ID, display name, and email address.
-    AcceptedLanguage:
-      enum:
-      - de
-      - en
-      type: string
-      description: Accepted languages by the API.
-    OrganizationDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/OrganizationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     PublicationAdvisoryServiceDto:
       required:
       - displayName
@@ -229,6 +187,48 @@ components:
           description: Gets the ROR of the organization that provides this publication service.
       additionalProperties: false
       description: Data transfer object (DTO) representing the publication advisory service of an organization.
+    OrganizationDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrganizationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    OrganizationDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/OrganizationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

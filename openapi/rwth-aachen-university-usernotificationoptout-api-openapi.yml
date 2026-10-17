@@ -145,24 +145,6 @@ paths:
           description: Provided input refers to entries that do not exist or have been deleted.
 components:
   schemas:
-    UserNotificationOptOutDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/UserNotificationOptOutDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -192,6 +174,27 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
+    UserNotificationOptOutDto:
+      required:
+      - id
+      - notificationId
+      - userId
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the user notification.
+          format: uuid
+        userId:
+          type: string
+          description: Unique identifier of the user.
+          format: uuid
+        notificationId:
+          type: string
+          description: Unique identifier of the notification.
+          format: uuid
+      additionalProperties: false
+      description: Represents a minimal data transfer object (DTO) for a user notification.
     UserNotificationOptOutDtoPagedResponse:
       type: object
       properties:
@@ -216,6 +219,24 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
+    UserNotificationOptOutDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserNotificationOptOutDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     UserNotificationForCreationDto:
       required:
       - notificationId
@@ -227,27 +248,6 @@ components:
           format: uuid
       additionalProperties: false
       description: Data transfer object (DTO) representing the creation of a user notification.
-    UserNotificationOptOutDto:
-      required:
-      - id
-      - notificationId
-      - userId
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the user notification.
-          format: uuid
-        userId:
-          type: string
-          description: Unique identifier of the user.
-          format: uuid
-        notificationId:
-          type: string
-          description: Unique identifier of the notification.
-          format: uuid
-      additionalProperties: false
-      description: Represents a minimal data transfer object (DTO) for a user notification.
   securitySchemes:
     Bearer:
       type: apiKey

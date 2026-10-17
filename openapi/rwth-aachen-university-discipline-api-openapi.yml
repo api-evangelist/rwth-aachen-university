@@ -97,6 +97,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DisciplineDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the discipline.
+          format: uuid
+        uri:
+          type: string
+          description: The URI associated with the discipline.
+        displayNameDe:
+          type: string
+          description: The display name of the discipline in German.
+        displayNameEn:
+          type: string
+          description: The display name of the discipline in English.
+      additionalProperties: false
+      description: Represents the data transfer object for a discipline.
     DisciplineDtoPagedResponse:
       type: object
       properties:
@@ -121,24 +139,6 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
       additionalProperties: false
-    DisciplineDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the discipline.
-          format: uuid
-        uri:
-          type: string
-          description: The URI associated with the discipline.
-        displayNameDe:
-          type: string
-          description: The display name of the discipline in German.
-        displayNameEn:
-          type: string
-          description: The display name of the discipline in English.
-      additionalProperties: false
-      description: Represents the data transfer object for a discipline.
     Pagination:
       type: object
       properties:

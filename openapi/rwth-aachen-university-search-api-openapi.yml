@@ -123,23 +123,26 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    SearchResultDto:
-      required:
-      - source
-      - type
-      - uri
+    SearchCategory:
       type: object
       properties:
-        uri:
+        name:
           type: string
-          description: The URI associated with the search result.
-          format: uri
-        type:
-          $ref: '#/components/schemas/SearchCategoryType'
-        source:
-          description: The dynamic source data for the search result.
+          description: The name of the search category.
+        count:
+          type: integer
+          description: The count of occurrences for the search category.
+          format: int64
       additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for search results.
+      description: Represents a search category with a name and count of occurrences.
+    SearchCategoryType:
+      enum:
+      - None
+      - https://purl.org/coscine/terms/structure#Metadata
+      - https://purl.org/coscine/terms/structure#Project
+      - https://purl.org/coscine/terms/structure#Resource
+      type: string
+      description: Specifies the search item type.
     SearchResultDtoPagedSearchResponse:
       type: object
       properties:
@@ -170,26 +173,23 @@ components:
           items:
             $ref: '#/components/schemas/SearchCategory'
       additionalProperties: false
-    SearchCategoryType:
-      enum:
-      - None
-      - https://purl.org/coscine/terms/structure#Metadata
-      - https://purl.org/coscine/terms/structure#Project
-      - https://purl.org/coscine/terms/structure#Resource
-      type: string
-      description: Specifies the search item type.
-    SearchCategory:
+    SearchResultDto:
+      required:
+      - source
+      - type
+      - uri
       type: object
       properties:
-        name:
+        uri:
           type: string
-          description: The name of the search category.
-        count:
-          type: integer
-          description: The count of occurrences for the search category.
-          format: int64
+          description: The URI associated with the search result.
+          format: uri
+        type:
+          $ref: '#/components/schemas/SearchCategoryType'
+        source:
+          description: The dynamic source data for the search result.
       additionalProperties: false
-      description: Represents a search category with a name and count of occurrences.
+      description: Represents a Data Transfer Object (DTO) for search results.
   securitySchemes:
     Bearer:
       type: apiKey

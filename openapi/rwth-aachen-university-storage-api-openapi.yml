@@ -188,36 +188,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FileTreeDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FileTreeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
-    TreeDataType:
-      enum:
-      - Tree
-      - Leaf
-      type: string
-      description: Represents the types of nodes within a hierarchical tree structure.
     FileActionDto:
       type: object
       properties:
@@ -266,6 +236,37 @@ components:
       - DELETE
       type: string
       description: Represents the possible HTTP methods associated with file actions.
+    FileTreeDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FileTreeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    FileActionsDto:
+      type: object
+      properties:
+        download:
+          $ref: '#/components/schemas/FileActionDto'
+      additionalProperties: false
+      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
     FileTreeDto:
       type: object
       properties:
@@ -306,13 +307,12 @@ components:
           description: Determines if the specific tree entry is hidden.
       additionalProperties: false
       description: Represents a Data Transfer Object (DTO) for a file within a tree structure, extending the base TreeDto.
-    FileActionsDto:
-      type: object
-      properties:
-        download:
-          $ref: '#/components/schemas/FileActionDto'
-      additionalProperties: false
-      description: Represents a Data Transfer Object (DTO) for a collection of file actions, including download action details.
+    TreeDataType:
+      enum:
+      - Tree
+      - Leaf
+      type: string
+      description: Represents the types of nodes within a hierarchical tree structure.
   securitySchemes:
     Bearer:
       type: apiKey

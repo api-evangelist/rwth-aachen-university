@@ -70,6 +70,57 @@ components:
           description: Indicates if a key can be provided and is editable.
       additionalProperties: false
       description: Represents the metadata view for a resource's content page.
+    ResourceCreationPageDto:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
+      additionalProperties: false
+      description: Represents the structure of resource type-specific components for steps in the resource creation page.
+    ResourceTypeStatus:
+      enum:
+      - hidden
+      - active
+      type: string
+      description: Specifies the status of a resource type.
+    ResourceContentPageColumnsDto:
+      type: object
+      properties:
+        always:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          description: Set of columns that should always be displayed in the content view.
+      additionalProperties: false
+      description: Represents a set of columns to be displayed in the content view.
+    ResourceTypeInformationDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceTypeInformationDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ResourceTypeInformationDto:
       type: object
       properties:
@@ -153,28 +204,6 @@ components:
           $ref: '#/components/schemas/ResourceContentPageEntriesViewDto'
       additionalProperties: false
       description: Represents the content page details for a resource.
-    ResourceTypeInformationDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ResourceTypeInformationDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     ResourceContentPageEntriesViewDto:
       type: object
       properties:
@@ -182,35 +211,6 @@ components:
           $ref: '#/components/schemas/ResourceContentPageColumnsDto'
       additionalProperties: false
       description: Represents information about the resource type for the columns within the entries view Vue component.
-    ResourceContentPageColumnsDto:
-      type: object
-      properties:
-        always:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-          description: Set of columns that should always be displayed in the content view.
-      additionalProperties: false
-      description: Represents a set of columns to be displayed in the content view.
-    ResourceTypeStatus:
-      enum:
-      - hidden
-      - active
-      type: string
-      description: Specifies the status of a resource type.
-    ResourceCreationPageDto:
-      type: object
-      properties:
-        components:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: List of Lists containing all the resource type specific components for the steps in the resource creation page.
-      additionalProperties: false
-      description: Represents the structure of resource type-specific components for steps in the resource creation page.
   securitySchemes:
     Bearer:
       type: apiKey

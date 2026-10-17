@@ -203,50 +203,6 @@ paths:
           description: The user is not authorized to access the resource.
 components:
   schemas:
-    StorageNodeDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StorageNodeDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    StorageNodeLinks:
-      type: object
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-        children:
-          type: object
-          additionalProperties:
-            type: string
-        self:
-          type: object
-          additionalProperties:
-            type: string
-        links:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -276,30 +232,49 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    StorageNodeDto:
+    StorageNodeLinks:
       type: object
       properties:
-        subject:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+        children:
+          type: object
+          additionalProperties:
+            type: string
+        self:
+          type: object
+          additionalProperties:
+            type: string
+        links:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+      additionalProperties: false
+    StorageNodeDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StorageNodeDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
           type:
           - string
           - 'null'
-          format: uri
-        path:
-          type: string
-        prefix:
-          type: string
-          description: Gets the prefix of the node.
-        name:
-          type: string
-          description: Gets the name of the node.
-        hasMetadata:
-          type: boolean
-        hasData:
-          type: boolean
-        hasChildren:
-          type: boolean
-        links:
-          $ref: '#/components/schemas/StorageNodeLinks'
       additionalProperties: false
     StorageNodeDtoPagedResponse:
       type: object
@@ -324,6 +299,31 @@ components:
           - 'null'
         pagination:
           $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    StorageNodeDto:
+      type: object
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+          format: uri
+        path:
+          type: string
+        prefix:
+          type: string
+          description: Gets the prefix of the node.
+        name:
+          type: string
+          description: Gets the name of the node.
+        hasMetadata:
+          type: boolean
+        hasData:
+          type: boolean
+        hasChildren:
+          type: boolean
+        links:
+          $ref: '#/components/schemas/StorageNodeLinks'
       additionalProperties: false
   securitySchemes:
     Bearer:

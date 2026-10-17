@@ -92,6 +92,28 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LanguageDtoIEnumerableResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LanguageDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     LanguageDto:
       required:
       - abbreviation
@@ -116,28 +138,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/LanguageDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LanguageDtoIEnumerableResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LanguageDto'
         isSuccess:
           type: boolean
           readOnly: true

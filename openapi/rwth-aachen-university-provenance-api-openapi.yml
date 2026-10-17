@@ -129,37 +129,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProvenanceDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ProvenanceDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    VariantDto:
-      type: object
-      properties:
-        graphName:
-          type: string
-          description: Name of the graph.
-          format: uri
-        similarity:
-          type: number
-          description: Similarity value 0-1
-          format: double
-      additionalProperties: false
-      description: Represents the variants of this specific metadata tree.
     ProvenanceForUpdateDto:
       required:
       - id
@@ -203,6 +172,22 @@ components:
       description: 'Data transfer object (DTO) representing the update of provenance
 
         Inherits from the base class Coscine.Api.Core.Shared.DataTransferObjects.ParameterObjects.ProvenanceParametersDto.'
+    HashParametersDto:
+      required:
+      - algorithmName
+      - value
+      type: object
+      properties:
+        algorithmName:
+          minLength: 1
+          type: string
+          description: Gets or initializes the hash algorithm name.
+        value:
+          minLength: 1
+          type: string
+          description: Gets or initializes the hash value.
+      additionalProperties: false
+      description: Data transfer object (DTO) representing Hash Parameters in a request.
     ProvenanceDto:
       required:
       - id
@@ -247,22 +232,37 @@ components:
           $ref: '#/components/schemas/HashParametersDto'
       additionalProperties: false
       description: Represents a data transfer object (DTO) for provenance information.
-    HashParametersDto:
-      required:
-      - algorithmName
-      - value
+    ProvenanceDtoResponse:
       type: object
       properties:
-        algorithmName:
-          minLength: 1
-          type: string
-          description: Gets or initializes the hash algorithm name.
-        value:
-          minLength: 1
-          type: string
-          description: Gets or initializes the hash value.
+        data:
+          $ref: '#/components/schemas/ProvenanceDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
-      description: Data transfer object (DTO) representing Hash Parameters in a request.
+    VariantDto:
+      type: object
+      properties:
+        graphName:
+          type: string
+          description: Name of the graph.
+          format: uri
+        similarity:
+          type: number
+          description: Similarity value 0-1
+          format: double
+      additionalProperties: false
+      description: Represents the variants of this specific metadata tree.
   securitySchemes:
     Bearer:
       type: apiKey

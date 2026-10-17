@@ -92,6 +92,48 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LicenseDtoPagedResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LicenseDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      additionalProperties: false
+    LicenseDtoResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LicenseDto'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        statusCode:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        traceId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     Pagination:
       type: object
       properties:
@@ -121,48 +163,6 @@ components:
           readOnly: true
       additionalProperties: false
       description: Represents pagination information for a collection of items.
-    LicenseDtoResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/LicenseDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    LicenseDtoPagedResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LicenseDto'
-        isSuccess:
-          type: boolean
-          readOnly: true
-        statusCode:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        traceId:
-          type:
-          - string
-          - 'null'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-      additionalProperties: false
     LicenseDto:
       type: object
       properties:
